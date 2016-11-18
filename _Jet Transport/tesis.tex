@@ -1,0 +1,540 @@
+\documentclass[letterpaper,12pt]{book}
+\usepackage[spanish]{babel}
+\decimalpoint 
+\usepackage[utf8]{inputenc}
+%\usepackage{ifpdf}            %provee un switcheado facil para pdf o dvi
+\usepackage[numbers]{natbib}  %para la bibliografia
+%\usepackage{gnuplottex} %por si se quisiera usar gnuplot directamente
+
+
+
+\usepackage{lscape} 
+\usepackage{epsfig}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{amsfonts}  
+\usepackage{multicol}
+\usepackage{wrapfig}   
+%\usepackage[lofdepth,lotdepth]{subfig}%subs clasificados en lof y lot
+%\usepackage{subfig}%subs clasificados en lof y lot
+\usepackage{textcomp} 
+\usepackage{subfloat} 
+\usepackage{float}
+%\usepackage{placeins}% provides \FloatBarrier, it prevents floats from being moved over it. 
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{color} %Para poner letras con color
+\usepackage{soul} %Subrayar.
+\usepackage[normalem]{ulem}
+\usepackage[usenames,dvipsnames]{xcolor} %Definir nombres de colores
+\usepackage{url} %Para escribir urls
+\usepackage{listings} %Para transcribir código
+\usepackage{footnote} %Para poner footnotes en floats
+\usepackage{array}
+\usepackage{mathrsfs} %Font cursivo
+\usepackage{enumerate}
+\usepackage[T1]{fontenc}
+
+%\usepackage{tocloft}
+
+\usepackage[lined,boxed,commentsnumbered, algochapter]{algorithm2e}
+\usepackage{setspace}%Reducir el espacio en la biblio
+\renewcommand{\bibfont}{\small}%Letra pequeña en la biblio
+
+
+\usepackage{enumitem}%reducir espacio de items
+\setlist[1]{itemsep=-3pt}
+ 
+% \usepackage{cleveref}
+% %\crefname{section}{§}{§§}
+% \crefname{section}{§}{§§}
+% \Crefname{section}{§}{§§} 
+
+%\usepackage{framed} %%%Not using it.    
+
+%\usepackage{cite} %%%Not working
+
+\usepackage{titlesec}         %para titulos fancy de capitulos
+\usepackage{caption}  
+\captionsetup[figure]{margin=0.5cm,font=footnotesize,labelfont=bf}
+\captionsetup[table]{margin=0.5cm,font=footnotesize,labelfont=bf}
+\captionsetup[lstlistlisting]{margin=0.5cm,font=footnotesize,labelfont=bf}
+\captionsetup[algorithmcf]{margin=0.5cm,font=footnotesize,labelfont=bf}
+
+
+\usepackage[list=true]{subcaption}
+\captionsetup[subfigure]{margin=0.5cm,font=footnotesize,labelfont=bf}
+\captionsetup[subtable]{margin=0.5cm,font=footnotesize,labelfont=bf}
+
+
+%\usepackage{psfrag}             %para que texto en la figura sea remplazado
+                                %incluso formulas
+\usepackage[inner=2.cm,outer=1.5cm, top=4.cm, bottom=0cm]{geometry}
+\usepackage[final]{pdfpages}    %para que meta facilmente paginas de pdf's
+
+\usepackage{booktabs} %Fancy toprule, midrule, bottomrule
+\usepackage{tabularx}           %tablas con anchos establecidos
+\usepackage{makeidx}    %para que haga un indice de palabras. Notar:
+
+%\usepackage{nextpage}\pagestyle{headings}
+\usepackage{fancyhdr}           %para las lineas de los headers
+\pagestyle{fancy}               %idem
+\setlength\voffset{-0.7in}
+\fancyheadoffset[LE,RO]{15pt}
+%\setlength\headsep{25pt}
+
+
+% Dutch style of paragraph formatting, i.e. no indents. 
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+\setlength{\parindent}{0pt}
+
+
+
+
+% %******************************************************
+
+% %* Número de cuenta
+% \newcommand{\alumnocta}[1]{\def\elalumnocta{#1}}
+% %* Jefe(a) de la División de Estudios Profesionales
+% \newcommand{\jefeDEP}[1]{\def\eljefeDEP{#1}} 
+% %* Nombre de la carrera               
+% \newcommand{\nomcarrera}[1]{\def\elnomcarrera{#1}}
+% %* Sinodal propietario A
+% \newcommand{\sinoda}[1]{\def\elsinoda{#1}}
+% %* Sinodal suplente A
+% \newcommand{\suplea}[1]{\def\elsuplea{#1}}
+% %* Sinodal propietario B
+% \newcommand{\sinodb}[1]{\def\elsinodb{#1}}
+% %* Sinodal suplente B  
+% \newcommand{\supleb}[1]{\def\elsupleb{#1}}
+% %* Jefe(a) del Consejo Departamental de la carrera
+% \newcommand{\jefeCD}[1]{\def\eljefeCD{#1}}
+
+
+% \alumnocta{40802391-7***}
+% \jefeDEP{El Jefe(a) de la División de Estudios Profesionales}  %--'
+% \nomcarrera{Física}
+% \sinoda{El Sinodal A}
+% \suplea{El Suplente A}
+% \sinodb{El Sinodal B}
+% \supleb{El Suplente B}
+% \jefeCD{El Jefe(a) del Consejo Departamental de \elnomcarrera}
+
+\newcommand{\titulo}{Búsquedas de oscilaciones de neutrinos en el experimento
+MiniBooNE:\\ análisis de aparición de neutrinos y antineutrinos del
+electrón}
+\newcommand{\titulito}{Búsquedas de oscilaciones de neutrinos en el experimento
+MiniBooNE: análisis de aparición de neutrinos y antineutrinos del electrón}
+\newcommand{\nombre}{{\Large \textbf{\textsc{Iker Loic De Icaza Astiz}}}}
+\newcommand{\carrera}{{\large \textsc{Físico}}}
+\newcommand{\director}{{\large\textsc{Dr. Alexis Armando Aguilar Arévalo}}}
+\newcommand{\fecha}{2013} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Para asegurar que no ponga encabezados en las páginas blancas al
+%% final de los capítulos que terminan en página impar.
+
+\makeatletter
+\def\cleardoublepage{\clearpage
+\if@twoside
+  \ifodd\c@page\else
+    \hbox{}
+    \thispagestyle{plain} %cambiar a empty para que no ponga el numero de pag.
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi
+  \fi
+\fi}
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Algunos otros detalles de fancyheaders, como pie de pagina en el exterior,
+%%y que en paginas impares el titulo del capitulo se muestre a la derecha
+%%y en italicas (Definicion del estilo de pagina)
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{ \emph{#1}}{}}
+\fancyhead[LO]{}
+\fancyhead[RE]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+
+
+%%%%%%para activar, poner despues de \begin(document)%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeindex              %hay que correr makeindex archivo.idx y luego compilar
+
+\setlength{\headheight}{16pt} %para que no se queje por fancyheaders
+\setlength{\marginparwidth}{1.5cm} %para que todonotes sea util en este caso
+\definecolor{dark-red}{rgb}{0.4,0.15,0.15}
+\definecolor{dark-blue}{rgb}{0.15,0.15,0.4}
+\definecolor{medium-blue}{rgb}{0,0,0.5}
+\definecolor{dark-green}{RGB}{50,71,13}
+
+\ifpdf
+\usepackage[pdfauthor={De Icaza Astiz Iker Loic},%
+pdftitle={\titulito},%
+pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
+\hypersetup{   %para que aparezcan o no los cuadros de los links
+  linktocpage,%make page number, not text, be link 
+  colorlinks,%
+  citecolor=dark-blue,%
+  filecolor=black,%
+  linkcolor=dark-green,%
+  urlcolor=NavyBlue
+  % menucolor
+  % runcolor
+  % anchorcolor
+}
+\else
+  \usepackage[dvipdfm]{hyperref}
+  \hypersetup{   %para que aparezcan o no los cuadros de los links
+    colorlinks,%
+    citecolor=dark-blue,%
+  %    citecolor=black,%
+    filecolor=black,%
+    linkcolor=dark-red,%
+  %    linkcolor=black,%
+    urlcolor=black
+  }
+\fi
+
+%\renewcommand{\sectionautorefname}{\S}
+\def\sectionautorefname{\S$\!$}
+\def\subsectionautorefname{\S$\!$}
+\def\subsubsectionautorefname{\S$\!$}
+
+
+\begin{document}
+
+
+\newcommand{\bra}[1]{\left\langle #1\right|}
+\newcommand{\ket}[1]{\left|#1\right\rangle}
+\newcommand{\ketB}[1]{\big|#1\big\rangle}
+\newcommand{\braket}[2]{\left\langle #1\middle|#2\right\rangle} 
+\newcommand{\braketB}[2]{\big\langle #1 \big|#2\big\rangle} 
+\newcommand{\nubar}{\bar{\nu}}
+\newcommand{\nutau}{\nu_{\tau}}
+\newcommand{\numu}{\nu_{\mu}}
+\newcommand{\nue}{\nu_e}
+\newcommand{\numubar}{\bar{\nu}_{\mu}}
+\newcommand{\nuebar}{\bar{\nu}_e}
+\newcommand{\dmtwo}{\Delta m^2}
+\newcommand{\stt}{\sin^2{ 2 \theta}}
+\newcommand{\numunue}{\numu \rightarrow \nue}
+\newcommand{\numunuebar}{\numubar \rightarrow \nuebar}
+\newcommand{\pspace}{\left(\sin^2{ 2 \theta}, \Delta m^2\right)}
+\newcommand{\pplane}{\sin^2{ 2 \theta}\mbox{--}\Delta m^2}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\data}{\boldsymbol{D}}
+\newcommand{\bgr}{\boldsymbol{B}}
+\newcommand{\signal}{\boldsymbol{S}}
+\newcommand{\pred}{\boldsymbol{Q}}
+\newcommand{\enuqe}{E_{\nu}^{QE}}
+\newcommand{\like}{\mathscr{L}}
+%\newcommand{\true}{\Delta \mathscr{L_{\mathbf{V}}}}
+\newcommand{\true}{\Delta \mathscr{L}}
+\newcommand{\fake}{\Delta \like_{\mathbf{f}\ i}^{\{\bs{p}_0\}}}
+\newcommand{\eff}{\chi^2_{\mathbf{Ef}}}%no me gusta esta notacion!!!!
+\newcommand{\NF}{n_{\mathbf{f}}}
+\newcommand{\critic}{\Delta\like^{\{\bs{p}_0\}}_c}
+
+
+\newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+
+\newcommand{\arlia}{\begin{flushright} \includegraphics[width=18pt]{Imagenes/arlia.pdf}
+  \end{flushright}} 
+
+\newcommand{\arliaBW}{\begin{flushright} \includegraphics[width=18pt]{Imagenes/arlia-BW.pdf}
+  \end{flushright}} 
+
+
+%%%float parameters
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+
+% %%%Puse esto para los float se queden hasta arriba cuando les toca
+% \makeatletter
+% \setlength{\@fptop}{0pt}
+% \makeatother
+
+
+%\renewcommand{\contentsname}{Contenido}
+\renewcommand{\bibname}{Bibliografía} %--'
+\renewcommand{\indexname}{Índice} %--'
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\chaptername}{Capítulo} %--'
+\renewcommand{\appendixname}{Apéndice} %--'
+\renewcommand\lstlistingname{Código}
+\renewcommand\lstlistlistingname{Código}
+\renewcommand{\algorithmcfname}{Algoritmo}
+\renewcommand{\listalgorithmcfname}{Índice de algoritmos y código}
+%\renewcommand{\algorithmautorefname}{algoritmo}
+
+\setcounter{tocdepth}{2}%Para que salga hasta 3=subsubsection,
+                        %4=paragraph, en el índice general. 
+
+\makeatletter
+\providecommand\phantomsection{}% for hyperref
+
+\newcommand\listofillustrations{%
+    \chapter*{Índices de figuras, tablas, algoritmos y código}%
+    \phantomsection
+    \addcontentsline{toc}{chapter}{Índices de figuras, tablas,
+      algoritmos y código}%
+    \section*{Figuras}%
+    \phantomsection
+    \addcontentsline{toc}{section}{\protect\numberline{}Figuras}%
+    \@starttoc{lof}%
+    \bigskip
+    \section*{Tablas}%
+    \phantomsection
+    \addcontentsline{toc}{section}{\protect\numberline{}Tablas}%
+    \@starttoc{lot}
+    \section*{Algoritmos y código}%
+    \phantomsection
+    \addcontentsline{toc}{section}{\protect\numberline{}Algoritmos y código}%
+    \@starttoc{loa}%
+    \bigskip
+}
+\makeatother
+
+%\hyphenation{pa-la-bra}         %para que separe correctamente palabra
+% usar \- entre silabas y en el mismo texto para evitar probs. con acentos
+
+%%%Comandos para cambiar los identificadores en itemize
+%\renewcommand{\labelitemi}{$\bullet$}
+%\renewcommand{\labelitemii}{$\cdot$}
+%\renewcommand{\labelitemiii}{$\diamond$}
+%\renewcommand{\labelitemiv}{$\ast$}
+%%%
+
+%%% Posiblemente util para hacer una especie de itemize
+%\begin{description}
+%\item[Biology] Study of life.
+%\item[Physics] Science of matter and its motion.
+%\item[Psychology] Scientific study of mental processes and behaviour.
+%\end{description}
+%%%
+
+% \tiny
+% \scriptsize
+% \footnotesize
+% \small 	
+% \normalsize
+% \large 	
+% \Large 	
+% \LARGE 	
+% \huge 	
+% \Huge
+
+
+
+%%%%%%%% Modifica formato de los titulos de los capitulos %%%%%%%
+
+\titleformat{\chapter}[display] % cambiamos el formato de los capítulos
+{\bfseries\Huge} % por defecto se usarán caracteres de tamaño \Huge en negrita
+{% contenido de la etiqueta
+\titlerule[2pt] % línea horizontal
+\vspace{1pt}
+\filleft % texto alineado a la derecha
+\Large\chaptertitlename\ % "Capítulo" o "Apéndice" en tamaño \Large en lugar de \Huge
+\Large\thechapter} % número de capítulo en tamaño \Large
+{0mm} % espacio mínimo entre etiqueta y cuerpo
+{\filleft} % texto del cuerpo alineado a la derecha
+[\vspace{1pt} \noindent\rule{\textwidth}{2pt}]%\bigrule] % después del cuerpo, dejar espacio vertical y trazar línea horizontal gruesa
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% segunda opcion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \renewcommand{\thechapter}{\Roman{chapter}}
+% \titleformat{\chapter}[display]
+%   {\bfseries\Large}
+%   {\filleft\MakeUppercase{\chaptertitlename} \Huge\thechapter}
+%   {4ex}
+%   {\titlerule
+%    \vspace{2ex}%
+%    \filright}
+%   [\vspace{2ex}%
+%    \titlerule]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\frontmatter %ahorraria lo de cleardoublepage hasta chaptermark. Con
+             %\frontmatter se da estilo a la parte frontal del
+             %libro. Todo lo que quede contenido entre \frontmatter y
+             %\mainmatter, tendra un estilo en el que la numeracion de
+             %pagina es con numeros romanos, y ningun capitulo, ni
+             %ningun otro titulo de nivel inferior sera numerado.
+
+
+%********************************
+%\includepdf[pages=1]{main.pdf} %para incluir como pdf la portada
+%(parece que se modifica ligeramente)
+%\phantomsection
+\input{Chapters/portada}
+%\addcontentsline{toc}{chapter}{Portada}    
+%\fullpage{1}{logoUNAM}
+
+%\setcounter{page}{3}
+%\pagenumbering{roman} %esto no sera necesario porque estamos usando frontmatter
+
+
+
+% \newpage
+% \input{Chapters/dedicatoria}        
+ 
+\chapter{Agradecimientos} 
+\input{Chapters/agradecimientos}
+
+% para que no haya salto de linea en el archivo toc, y por tanto no haya
+% problemas en el indice
+\setlength{\parskip}{0ex plus 0.5ex minus 0.2ex}
+ 
+
+\pagestyle{fancy}
+\fancyhead[LO]{}
+\fancyhead[RE]{\emph{Índice general}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\phantomsection
+\tableofcontents
+\addcontentsline{toc}{chapter}{Índice general}    
+\clearpage
+
+\pagestyle{fancy}
+\fancyhead[LO]{}
+\fancyhead[RE]{\emph{Índices de figuras, tablas, algoritmos y código}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+ \listofillustrations
+
+ % % \setcounter{page}{1}
+
+
+
+\newpage
+\pagestyle{fancy}
+\fancyhead[LO]{}
+\fancyhead[RE]{\emph{Resumen / Abstract}}
+\renewcommand{\headrulewidth}{0.5pt}
+\addcontentsline{toc}{chapter}{Resumen / Abstract}
+\input{Chapters/resumen}
+\clearpage
+
+\pagestyle{fancy}
+\fancyhead[LO]{}
+\fancyhead[RE]{\emph{Introducción}}
+\renewcommand{\headrulewidth}{0.5pt}
+\chapter{Introducción}
+\label{chap:Intro}
+\input{Chapters/00_intro}
+
+% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+
+           
+
+
+
+\mainmatter %Estilo del texto principal del documento, en que las
+            %paginas seran numeradas con numeros arabigos y los
+            %capitulos y titulos de nivel inferior, si seran
+            %numerados.
+
+% Ajuste de los encabezados de nuevo para que esta vez, las paginas impares
+% tengan el capitulo a la izquierda, y las pares tendran capitulo x a la
+% derecha.
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\emph{Capítulo \thechapter}}
+
+
+\chapter{Álgebra Polinomial}    
+\label{chap:algebP}
+\input{Chapters/01_algebraPoli}
+
+% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+\chapter{Transporte de Jet} 
+\label{chap:jetT}
+\input{Chapters/02_transporteJet}
+
+
+% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+
+\chapter{Modelación del Tokamak} 
+\label{chap:toka}
+\input{Chapters/03_tokamak}
+
+
+% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+\chapter{Resultados} 
+\label{chap:Resultados}
+\input{Chapters/04_resultados}
+
+% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+\chapter{Conclusiones} 
+\label{chap:Conclusiones}
+\input{Chapters/05_conclusiones}
+
+ 
+% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+
+
+
+
+ 
+%APÉNDICES
+\cleardoublepage 
+\phantomsection  %para el anclado este en la pagina correcta
+\addcontentsline{toc}{chapter}{Apéndices}
+\chaptermark{Apéndices} %cambia el encabezado
+\appendix
+
+% Reajuste de los encabezados para que diga Apendice 
+\pagestyle{fancy}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\emph{Apéndice \thechapter}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\chapter{El código}
+\label{chap:Codigo}
+\input{Chapters/codigo}  
+
+\backmatter %los capitulos y titulos de nivel inferior no aparecen numerados
+
+ 
+\pagestyle{plain} %Reajuste en encabezados
+\cleardoublepage %supuestamente necesario si tuviera mas de una pagina
+\phantomsection  %para el anclado este en la pagina correcta
+\addcontentsline{toc}{chapter}{Bibliografía}
+\chaptermark{Bibliografía} %cambia el encabezado
+
+
+
+\bibliographystyle{ieeetr-etal}    
+
+\setlength{\bibsep}{4pt}
+\begin{spacing}{0.9} 
+\bibliography{Chapters/biblio}
+\end{spacing}
+
+       
+\end{document}     
