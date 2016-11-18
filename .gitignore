@@ -1,0 +1,12 @@
+#ignore garbage files from tex files...
+*.pdf
+*.log
+*.aux
+*.idx
+*.lof
+*.lot
+*.out
+*.gz
+*.toc
+#Mac Garbage
+.DS_Store
