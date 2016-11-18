@@ -8,5 +8,6 @@
 *.out
 *.gz
 *.toc
+*.loa
 #Mac Garbage
 .DS_Store
