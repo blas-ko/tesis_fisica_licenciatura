@@ -9,5 +9,12 @@
 *.gz
 *.toc
 *.loa
+
 #Mac Garbage
 .DS_Store
+
+#ignored directories
+notebooks/media/
+
+#notebooks ignored (this may change)
+*.ipynb
