@@ -89,8 +89,19 @@
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
 \setlength{\parindent}{0pt}
 
+% %******************************************************
+%Mis librerías Blas
 
-
+%theorem & proof packages
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposicion}[theorem]{Proposición}
+\newtheorem{corolario}[theorem]{Corolario} 
+\newenvironment{proof}[1][Dem]{\begin{trivlist} %proof
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newcommand{\qed}{\nobreak \ifvmode \relax \else %qed
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
 
 % %******************************************************
 
@@ -391,8 +402,8 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 % \newpage
 % \input{Chapters/dedicatoria}        
  
-\chapter{Agradecimientos} 
-\input{Chapters/agradecimientos}
+%\chapter{Agradecimientos} 
+%\input{Chapters/agradecimientos}
 
 % para que no haya salto de linea en el archivo toc, y por tanto no haya
 % problemas en el indice
