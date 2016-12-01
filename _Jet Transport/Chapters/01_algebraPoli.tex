@@ -8,10 +8,115 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 
+%theorem & proof packages
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposicion}[theorem]{Proposición}
+\newtheorem{corolario}[theorem]{Corolario} 
+\newenvironment{proof}[1][Dem]{\begin{trivlist} %proof
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newcommand{\qed}{\nobreak \ifvmode \relax \else %qed
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
 \begin{document}
 
+\newcommand{\polk}[1]{\sum_{k=0}^n #1 x^k}
+\newcommand{\polj}[1]{(\sum_{j=0}^k #1 )}
+\newcommand{\pk}{{^{n}P_{\mathbb{K}}}}
+
+Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\mathcal{U}$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\mathcal{U}$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\mathbf{x_0} := \mathbf{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución del polinomio en el paso anterior, el cual se puede sustituir por reales y obtener así puntos de la vecindad de $\mathbf{x_0}$. \\
+
+Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\mathcal{A}(^{n}P_{\mathbb{K}},+,\cdot)$ donde $^{n}P_{\mathbb{K}}$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
+$$P = P(x) := \polk{p_k} $$
+con $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
+
+%Aquí desarrollar operaciones (+,·). Procurar hacerlo general para cualquier campo K.
+
+\begin{proposicion}
+Para $\mathbb{K} = \mathbb{R}$ o $\mathbb{C}$, $\mathcal{A}(^{n}P_{\mathbb{K}},+,\cdot)$ forma un campo.
+\end{proposicion}
+
+\begin{proof}
+Basta probar las nueve propiedades de campo; iremos una por una.
+Sean $A$, $B$ y $C \in \pk$
+\begin{enumerate}
+
+ \item $ A + B = B + A $
+ \begin{proof}
+ %%to0 large
+  \begin{align*}
+   A + B =& \polk{a_k} + \polk{b_k}  = \polk{(a_k + b_k)} \\ 
+   =& \polk{(b_k + a_k)} = \polk{b_k} +     \polk{a_k} = B + A
+  \end{align*}
+ \end{proof}
+ 
+ \item A + (B+C) = (A+B) + C
+ \begin{proof}
+ %too large
+  \begin{align*}
+   A + (B+C) =& \polk{a} + \polk{(b_k+c_k)} = \polk{(a_k + (b_k + c_k))} \\
+   =&  \polk{((a_k + b_k) + c_k)} = \polk{(a_k+b_k)} + \polk{c_k} \\
+   =& (A+B) + C 
+  \end{align*}
+ \end{proof}
+ 
+ \item $ \mathbf{0} + A = A $
+ \begin{proof}
+ Sea $0 = \mathbf{0}(x) = \polk{\sigma_k}$ donde $\sigma_k = 0 \ \forall k \in [0,n]$, así 
+  \begin{align*}
+  \mathbf{0} + A = \polk{(\sigma_k + a_k)} = \polk{(0 + a_k)} = \polk{a_k} = A
+  \end{align*}
+ \end{proof}
+ 
+ \item $ A + (-A) = 0 $
+ \begin{proof}
+ Sea $-A = -A(x) = \polk{\mathrm{a}_k}$ donde $\mathrm{a}_k = -a_k \ \forall k \in [0,n]$, así
+  \begin{align*}
+   A + (-A) = \polk{(a_k + \mathrm{a}_k)} = \polk{(a_k + (-a_k))} = \polk{0} = \mathbf{0}
+  \end{align*}
+ \end{proof}
+ 
+ \item $ A\cdot B = B\cdot A $
+ \begin{proof}
+  \begin{align*} 
+   A\cdot B = \polk{ \polj{a_{k-j}b_j} }
+  \end{align*}
+ \end{proof}
+ 
+ \item $ (A \cdot B) \cdot C = A \cdot (B \cdot C) $
+ \begin{proof}
+ 
+ \end{proof}
+ 
+ \item $\textbf{1}\cdot A = A $
+ \begin{proof}
+ Sea $ \textbf{1}(x)  = \textbf{1} = \polk{\omega_k}$ donde $\omega_k = 0 \ \forall k > 0$ y $\omega_0 = 1$, así:
+ \end{proof}
+ 
+ \item $A \cdot A^{-1} = \textbf{1} $
+ \begin{proof}
+ 
+ \end{proof}
+ 
+ \item $ A \cdot (B+C) = A \cdot B + A \cdot C $
+ \begin{proof}
+  \begin{align*}
+  A \cdot (B+C) =& \polk{a_k} \big(\polk{(b_k + c_k)} \big) = \polk{\polj{a_{k-j}(b_j+c_j)}} \\
+  =& \polk{\polj{a_{k-j}b_j} \polj{a_{k-j}c_j}} = A \cdot B + A \cdot C
+  \end{align*}   
+ \end{proof}
+ 
+\end{enumerate}
+\qed
+\end{proof}
+
+%missing: - Correct style of the proposition
+%		  - Define operations (+, ·) explicitely before making the proposition.
+%		  - Prove that this algebra is also a field over \pk
+%		  - Prove, as a corolary, that this algebra is also a vector space over K (optional).
 
 
 \end{document}
 
-
+ 
