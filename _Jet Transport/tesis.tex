@@ -39,12 +39,12 @@
 %\usepackage{tocloft}
 
 \usepackage[lined,boxed,commentsnumbered, algochapter]{algorithm2e}
-\usepackage{setspace}%Reducir el espacio en la biblio
-\renewcommand{\bibfont}{\small}%Letra pequeña en la biblio
+%\usepackage{setspace}%Reducir el espacio en la biblio
+%\renewcommand{\bibfont}{\small}%Letra pequeña en la biblio
 
 
-\usepackage{enumitem}%reducir espacio de items
-\setlist[1]{itemsep=-3pt}
+%\usepackage{enumitem}%reducir espacio de items
+%\setlist[1]{itemsep=-3pt}
  
 % \usepackage{cleveref}
 % %\crefname{section}{§}{§§}
@@ -57,7 +57,7 @@
 
 \usepackage{titlesec}         %para titulos fancy de capitulos
 \usepackage{caption}  
-\captionsetup[figure]{margin=0.5cm,font=footnotesize,labelfont=bf}
+\captionsetup[figure]{margin=0.5cm,font=small,labelfont=bf}
 \captionsetup[table]{margin=0.5cm,font=footnotesize,labelfont=bf}
 \captionsetup[lstlistlisting]{margin=0.5cm,font=footnotesize,labelfont=bf}
 \captionsetup[algorithmcf]{margin=0.5cm,font=footnotesize,labelfont=bf}
@@ -70,7 +70,7 @@
 
 %\usepackage{psfrag}             %para que texto en la figura sea remplazado
                                 %incluso formulas
-\usepackage[inner=2.cm,outer=1.5cm, top=4.cm, bottom=0cm]{geometry}
+\usepackage[inner=3.2cm,outer=2.5cm, top=4.5cm, bottom=2.0cm]{geometry}
 \usepackage[final]{pdfpages}    %para que meta facilmente paginas de pdf's
 
 \usepackage{booktabs} %Fancy toprule, midrule, bottomrule
@@ -132,15 +132,12 @@
 % \supleb{El Suplente B}
 % \jefeCD{El Jefe(a) del Consejo Departamental de \elnomcarrera}
 
-\newcommand{\titulo}{Búsquedas de oscilaciones de neutrinos en el experimento
-MiniBooNE:\\ análisis de aparición de neutrinos y antineutrinos del
-electrón}
-\newcommand{\titulito}{Búsquedas de oscilaciones de neutrinos en el experimento
-MiniBooNE: análisis de aparición de neutrinos y antineutrinos del electrón}
-\newcommand{\nombre}{{\Large \textbf{\textsc{Iker Loic De Icaza Astiz}}}}
+\newcommand{\titulo}{Working title on portada}
+\newcommand{\titulito}{Working title on headers}
+\newcommand{\nombre}{{\Large \textbf{\textsc{Blas Kolic}}}}
 \newcommand{\carrera}{{\large \textsc{Físico}}}
-\newcommand{\director}{{\large\textsc{Dr. Alexis Armando Aguilar Arévalo}}}
-\newcommand{\fecha}{2013} 
+\newcommand{\director}{{\large\textsc{Dr. Fancy Pants}}}
+\newcommand{\fecha}{2017} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Para asegurar que no ponga encabezados en las páginas blancas al
@@ -184,7 +181,7 @@ MiniBooNE: análisis de aparición de neutrinos y antineutrinos del electrón}
 \definecolor{dark-green}{RGB}{50,71,13}
 
 \ifpdf
-\usepackage[pdfauthor={De Icaza Astiz Iker Loic},%
+\usepackage[pdfauthor={Kolic Blas},%
 pdftitle={\titulito},%
 pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \hypersetup{   %para que aparezcan o no los cuadros de los links
@@ -218,6 +215,10 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
 
 \begin{document}
+
+\newcommand{\polk}[1]{\sum_{k=0}^n #1 x^k}
+\newcommand{\polj}[1]{(\sum_{j=0}^k #1 )}
+\newcommand{\pk}{{^{n}P_{\mathbb{K}}}}
 
 
 \newcommand{\bra}[1]{\left\langle #1\right|}
@@ -255,32 +256,29 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
 
 
-\newcommand{\arlia}{\begin{flushright} \includegraphics[width=18pt]{Imagenes/arlia.pdf}
-  \end{flushright}} 
 
-\newcommand{\arliaBW}{\begin{flushright} \includegraphics[width=18pt]{Imagenes/arlia-BW.pdf}
-  \end{flushright}} 
 
 
 %%%float parameters
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.75}
-
 % %%%Puse esto para los float se queden hasta arriba cuando les toca
+
+
 % \makeatletter
 % \setlength{\@fptop}{0pt}
 % \makeatother
 
 
 %\renewcommand{\contentsname}{Contenido}
-\renewcommand{\bibname}{Bibliografía} %--'
-\renewcommand{\indexname}{Índice} %--'
+\renewcommand{\bibname}{Bibliografía}
+\renewcommand{\indexname}{Índice}
 \renewcommand{\figurename}{Figura}
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\listtablename}{Índice de tablas}
-\renewcommand{\chaptername}{Capítulo} %--'
-\renewcommand{\appendixname}{Apéndice} %--'
+\renewcommand{\chaptername}{Capítulo}
+\renewcommand{\appendixname}{Apéndice}
 \renewcommand\lstlistingname{Código}
 \renewcommand\lstlistlistingname{Código}
 \renewcommand{\algorithmcfname}{Algoritmo}
@@ -402,8 +400,8 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 % \newpage
 % \input{Chapters/dedicatoria}        
  
-%\chapter{Agradecimientos} 
-%\input{Chapters/agradecimientos}
+\chapter{Agradecimientos} 
+\input{Chapters/agradecimientos}
 
 % para que no haya salto de linea en el archivo toc, y por tanto no haya
 % problemas en el indice
@@ -542,10 +540,10 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
 \bibliographystyle{ieeetr-etal}    
 
-\setlength{\bibsep}{4pt}
-\begin{spacing}{0.9} 
+%\setlength{\bibsep}{4pt}
+%\begin{spacing}{0.9} 
 \bibliography{Chapters/biblio}
-\end{spacing}
+%\end{spacing}
 
        
 \end{document}     
