@@ -1,30 +1,3 @@
-\documentclass[letterpaper,12pt]{book}
-\usepackage[spanish]{babel}
-\decimalpoint 
-\usepackage[utf8]{inputenc}
-
-\usepackage{mathrsfs}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-
-%theorem & proof packages
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposicion}[theorem]{Proposición}
-\newtheorem{corolario}[theorem]{Corolario} 
-\newenvironment{proof}[1][Dem]{\begin{trivlist} %proof
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-\newcommand{\qed}{\nobreak \ifvmode \relax \else %qed
-      \ifdim\lastskip<1.5em \hskip-\lastskip
-      \hskip1.5em plus0em minus0.5em \fi \nobreak
-      \vrule height0.75em width0.5em depth0.25em\fi}
-
-\begin{document}
-
-\newcommand{\polk}[1]{\sum_{k=0}^n #1 x^k}
-\newcommand{\polj}[1]{(\sum_{j=0}^k #1 )}
-\newcommand{\pk}{{^{n}P_{\mathbb{K}}}}
-
 Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\mathcal{U}$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\mathcal{U}$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\mathbf{x_0} := \mathbf{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución del polinomio en el paso anterior, el cual se puede sustituir por reales y obtener así puntos de la vecindad de $\mathbf{x_0}$. \\
 
 Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\mathcal{A}(^{n}P_{\mathbb{K}},+,\cdot)$ donde $^{n}P_{\mathbb{K}}$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
@@ -61,15 +34,15 @@ Sean $A$, $B$ y $C \in \pk$
   \end{align*}
  \end{proof}
  
- \item $ \mathbf{0} + A = A $
+ \item $\exists \  \mathbf{0} \in \pk \text{ tal que }  \mathbf{0} + A = A $
  \begin{proof}
- Sea $0 = \mathbf{0}(x) = \polk{\sigma_k}$ donde $\sigma_k = 0 \ \forall k \in [0,n]$, así 
+ Sea $\mathbb{0} = \mathbf{0}(x) = \polk{\sigma_k}$ donde $\sigma_k = 0 \ \forall k \in [0,n]$, así 
   \begin{align*}
   \mathbf{0} + A = \polk{(\sigma_k + a_k)} = \polk{(0 + a_k)} = \polk{a_k} = A
   \end{align*}
  \end{proof}
  
- \item $ A + (-A) = 0 $
+ \item $\exists \ {-A} \in\pk  \text{ tal que } A + (-A) = 0 $
  \begin{proof}
  Sea $-A = -A(x) = \polk{\mathrm{a}_k}$ donde $\mathrm{a}_k = -a_k \ \forall k \in [0,n]$, así
   \begin{align*}
@@ -79,44 +52,76 @@ Sean $A$, $B$ y $C \in \pk$
  
  \item $ A\cdot B = B\cdot A $
  \begin{proof}
+ Hay que probar, básicamente, que $\sum_{j=0}^k{a_{k-j}b_j} = \sum_{j=0}^k{b_{k-j}a_j}$:
   \begin{align*} 
-   A\cdot B = \polk{ \polj{a_{k-j}b_j} }
+   \sum_{j=0}^k{a_{k-j}b_j} =& \sum_{i=0}^k{a_ib_{k-i}} \text{ con } i = k - j \\
+   =& \sum_{i=0}^k{ b_{k-i}a_i } = \sum_{j=0}^k { b_{k-j}a_j }
   \end{align*}
+  $\therefore A\cdot B = B\cdot A$.
  \end{proof}
  
  \item $ (A \cdot B) \cdot C = A \cdot (B \cdot C) $
  \begin{proof}
- 
+ Por un lado
+  \begin{align*}
+  A \cdot (B \cdot C) =& \polk{a_k}\ \polk{ \polj{b_{k-j}c_j} } = \polk{\big(  \sum_{j=0}^ka_{k-j}\sum_{i=0}^jb_{j-i}c_i \big)} \\
+  =& \polk{\big(  \sum_{r+j=k}a_r\sum_{p+i=j}b_pc_i \big)} = \polk{\big(  \sum_{r+j=k}\sum_{p+i=j}a_rb_pc_i \big)} \\
+  =& \polk{\big(  \sum_{r+p+i=k}a_rb_pc_i \big)} 
+  \end{align*}
+  por otro
+    \begin{align*}
+  (A \cdot B) \cdot C =& \polk{ \polj{a_{k-j}b_j} }\ \polk{c_k} = \polk{\big( \sum_{i=0}^ja_{j-i}b_i  \sum_{j=0}^kc_{k-j} \big)} \\
+  =& \polk{\big(  \sum_{r+j=k}(\sum_{p+i=r}a_pb_i) c_j \big)} = \polk{\big(  \sum_{r+j=k}\sum_{p+i=r}a_pb_ic_j \big)} \\
+  =& \polk{\big(  \sum_{p+i+j=k}a_pb_ic_j \big)} 
+  \end{align*}
+  
+  Basta ver que, por un cambio de nombre de índices $p \to r$, $i \to p$, $j \to i$,
+  \begin{align*}
+   \sum_{p+i+j=k}a_pb_ic_j = \sum_{r+p+i=k}a_rb_pc_i
+  \end{align*}   
+  $\therefore (A \cdot B) \cdot C = A \cdot (B \cdot C)$.
  \end{proof}
  
- \item $\textbf{1}\cdot A = A $
+ \item $\exists \ \textbf{1} \in \pk \text{ tal que } \textbf{1}\cdot A = A $
  \begin{proof}
- Sea $ \textbf{1}(x)  = \textbf{1} = \polk{\omega_k}$ donde $\omega_k = 0 \ \forall k > 0$ y $\omega_0 = 1$, así:
+ Sea $ \textbf{1} = \textbf{1}(x) = \polk{\omega_k}$ donde $\omega_k = 0 \ \forall k > 0$ y $\omega_0 = 1$, así:
+ \begin{align*}
+  \textbf{1} \cdot A = \polk{ \polj{a_{k-j}\omega_j} } = \polk{ a_{k-0} \cdot 1 } 
+  =& \polk{a_k} = A 
+ \end{align*}
  \end{proof}
  
- \item $A \cdot A^{-1} = \textbf{1} $
+ \item $\exists \  A^{-1} \in \pk \text{ tal que } A \cdot A^{-1} = \textbf{1} \ \forall A \text{ con } a_o \neq 0 $
  \begin{proof}
- 
+ Sea $A^{-1} = A^{-1}(x) = \polk{\alpha_k}$; con 
  \end{proof}
- 
+ \begin{align*}
+  A \cdot A^{-1} = \polk{ \polj{a_{k-j}\alpha_j} } \text{ así, buscando} \\
+  \sum_{j=0}^k a_{k-j} \alpha_j = 0 \ \forall \ k>0 \text{ y }  \alpha_0 = \frac{1}{a_0}  
+ \end{align*}
+ podemos llegar a una fórmula recursiva para $\alpha_k$
+ \begin{align*}
+ \alpha_k = -\frac{1}{a_0} \sum_{j=0}^{k-1}a_{k-j}\alpha_j.
+ \end{align*}
+ Así, por construcción, se obtiene que $ A \cdot A^{-1} = \textbf{1} $.
  \item $ A \cdot (B+C) = A \cdot B + A \cdot C $
  \begin{proof}
   \begin{align*}
   A \cdot (B+C) =& \polk{a_k} \big(\polk{(b_k + c_k)} \big) = \polk{\polj{a_{k-j}(b_j+c_j)}} \\
-  =& \polk{\polj{a_{k-j}b_j} \polj{a_{k-j}c_j}} = A \cdot B + A \cdot C
+  =& \polk{ \big( \polj{a_{k-j}b_j} \polj{a_{k-j}c_j} \big) } = A \cdot B + A \cdot C
   \end{align*}   
  \end{proof}
  
 \end{enumerate}
-\qed
+Así, quedan demostradas todas las propiedades de campo. \qed
 \end{proof}
 
-%missing: - Correct style of the proposition
+
+
+%missing: 
 %		  - Define operations (+, ·) explicitely before making the proposition.
 %		  - Prove that this algebra is also a field over \pk
 %		  - Prove, as a corolary, that this algebra is also a vector space over K (optional).
 
-
-\end{document}
 
  
