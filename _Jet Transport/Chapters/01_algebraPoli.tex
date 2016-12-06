@@ -3,7 +3,7 @@
 
 Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\mathcal{U}$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\mathcal{U}$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\mathbf{x_0} := \mathbf{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución del polinomio en el paso anterior, el cual se puede sustituir por reales y obtener así puntos de la vecindad de $\mathbf{x_0}$. \\
 
-Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\algpol$ donde $^{n}P_{\mathbb{K}}$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
+Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\algpol$ donde $\pk$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
 $$P = P(x) := \polk{p_k} $$
 con $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
 
@@ -14,7 +14,7 @@ Sean $A,B \in \pk$ con $A = \polk{a_k}$ y $B = \polk{b_k} \ a_k,b_k \in \mathbb{
 \polk{a_k} + \polk{b_k} =& a_0 + a_1 x + \cdots a_n x^n + b_0 + b_1 x + \cdots + b_n x^n \\
 =& (a_0 + b_0) + (a_1 + b_1) x + \cdots + (a_n + b_n)x^n = \polk{(a_n + b_n)} 
 \end{align*}
-así, podemos definir \textbf{$+$}  en $\pk$ como
+así, se define \textbf{$+$}  en $\pk$ como
 \begin{equation}
 A + B = \polk{(a_k + b_k)}.
 \label{eq: polsum}
@@ -27,7 +27,7 @@ Para el producto, notemos que
 +& \sum_{j=0}^n a_{n-j}b_j x^n + \mathcal{O}(x^{n+1}) = \polk{ \polj{a_{k-j}b_j } }
 \end{align*}
 
-así, podemos definir \textbf{$\cdot$}  en $\pk$ como
+así, se define \textbf{$\cdot$}  en $\pk$ como
 
 \begin{equation}
 A \cdot B = \polk{\sum_{j=0}^k a_{k-j}b_j}.
@@ -46,7 +46,6 @@ Sean $A$, $B$ y $C \in \pk$
 
  \item $ A + B = B + A $
  \begin{proof}
- %%to0 large
   \begin{align*}
    A + B =& \polk{a_k} + \polk{b_k}  = \polk{(a_k + b_k)} \\ 
    =& \polk{(b_k + a_k)} = \polk{b_k} +     \polk{a_k} = B + A
@@ -55,7 +54,6 @@ Sean $A$, $B$ y $C \in \pk$
  
  \item A + (B+C) = (A+B) + C
  \begin{proof}
- %too large
   \begin{align*}
    A + (B+C) =& \polk{a} + \polk{(b_k+c_k)} = \polk{(a_k + (b_k + c_k))} \\
    =&  \polk{((a_k + b_k) + c_k)} = \polk{(a_k+b_k)} + \polk{c_k} \\
@@ -145,13 +143,51 @@ Sean $A$, $B$ y $C \in \pk$
 Así, quedan demostradas todas las propiedades de campo. \qed
 \end{proof}
 
+Visto eso, es práctico definir otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la derivada, la potencia y la composición  nuestros " caballos de batalla " para el desarrollo de casi cualquier función existente en la aritmética usual.
+
+Sea $A = A(x) = \polk{a_k} \in \pk$. Inspirados en la derivada usual de polinomios de orden $n$ $A: \mathbb{C} \to \mathbb{C}$, vemos que
+
+\begin{align*}
+ \frac{dA(x)}{dx} := A'(x) = A' = \sum_{k=0}^n{k a_k x^{k-1}} = \polk{(k+1)a_{k+1}} 
+\end{align*}
+
+así, se define a la \textbf{derivada} de $A$ como
+
+\begin{align}
+ A' = \polk{(k+1)a_{k+1}}
+ \label{eq:polderiv}
+\end{align}
+
+con $a_{n+1} := 0 \in \mathbb{K}$ tal que $A' \in \pk$.
+
+Ahora, si $m \in \mathbb{N}$,
+\begin{align*}
+ A^m =& \big(\polk{a_k}\big)^m = \polk{a_k}\polk{a_k}\big(\polk{a_k}\big)^{m-2} \\
+ =& \polk{\polj{a_{k-j}a_j}}\polk{a_k}\big(\polk{a_k}\big)^{m-3} = \polk{{^1\alpha_k}}\polk{a_k}\big(\polk{a_k}\big)^{l-3} \\
+ =& \cdots = \polk{{^m\alpha_k}} \\
+ &\text{con } {^1\alpha_k} = \polj{a_{k-j}a_j} \text{ y } {^m\alpha_k} = \polj{{^{m-1}\alpha_k}a_j} \\
+\end{align*}
+y , aunque no queda clara la forma explícita de ${^m\alpha_k}$, se muestra que la \textbf{potencia} está bien definida y que $A^m \in \pk$.
 
 
-%missing: 
-%		  - Define operations (+, ·) explicitely before making the proposition.
-%		  - Prove that this algebra is also a field over \pk
-%		  - Prove, as a corolary, that this algebra is also a vector space over K (optional).
-%		  - Definir otras operaciones necesarias para el desarrollo del algebra (/,-,sin,cos,exp,log,pow)
+Con esto último, y sea $B = \polk{b_k} \in \pk$, se puede desarrollar
+\begin{align*}
+ B(A(x)) = B(A) =& \sum_{k=0}^n b_k \big( \sum_{j=0}^n a_j x^j  \big)^k = \polk{b_k} \sum_{j=0}^n {^k\alpha_j x^j} =\polk{ \polj{b_{k-j} {^k\alpha_j} } }
+ \end{align*}
+que corresponde a la \textbf{composición} de $A$ en $B$, la cual está bien definida y pertenece a $\pk$.
+
+%		- Show that the "chain rule" works fine.
+%		- Define (/,-,sin,cos,exp,log,pow)
+
+Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$.
+
+%		- Prove that this algebra is also a field over \pk (mention)
+%		- Show that a polynomial of a polynomial of 1 variable is a polynomial of 2 variables... or n variables (inductive way)! 
+%		  (we're gonna use Taylor1{TaylorN{K}})
+%		- Prove, as a corolary, that this algebra is also a vector space over K (optional).
+
+%% ****** NEXT UP ********
+%		- Investigate about error of a \pk for 1 variable and then for n variables.
 
 
  
