@@ -7,6 +7,9 @@ Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotarem
 $$P = P(x) := \polk{p_k} $$
 con $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
 
+%		- It may be necessary to analize how different independet variables imply that A(x) != A(b).
+
+
 Inspirado en la aritmética usual en $\mathbb{C}$ o $\mathbb{R}$, podemos definir $(+,\cdot)$ para $\algpol$ de la siguiente manera:
 
 Sean $A,B \in \pk$ con $A = \polk{a_k}$ y $B = \polk{b_k} \ a_k,b_k \in \mathbb{K} \ \forall k \in [0,n]$, entonces, para la suma, notemos que
@@ -143,24 +146,9 @@ Sean $A$, $B$ y $C \in \pk$
 Así, quedan demostradas todas las propiedades de campo. \qed
 \end{proof}
 
-Visto eso, es práctico definir otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la derivada, la potencia y la composición  nuestros " caballos de batalla " para el desarrollo de casi cualquier función existente en la aritmética usual.
+Visto eso, es práctico definir otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la potencia, la composición y la derivada nuestros ` caballos de batalla '' para el desarrollo de casi cualquier función existente en la aritmética usual.
 
-Sea $A = A(x) = \polk{a_k} \in \pk$. Inspirados en la derivada usual de polinomios de orden $n$ $A: \mathbb{C} \to \mathbb{C}$, vemos que
-
-\begin{align*}
- \frac{dA(x)}{dx} := A'(x) = A' = \sum_{k=0}^n{k a_k x^{k-1}} = \polk{(k+1)a_{k+1}} 
-\end{align*}
-
-así, se define a la \textbf{derivada} de $A$ como
-
-\begin{align}
- A' = \polk{(k+1)a_{k+1}}
- \label{eq:polderiv}
-\end{align}
-
-con $a_{n+1} := 0 \in \mathbb{K}$ tal que $A' \in \pk$.
-
-Ahora, si $m \in \mathbb{N}$,
+Sea $A = A(x) = \polk{a_k} \in \pk$. Si $m \in \mathbb{N}$,
 \begin{align*}
  A^m =& \big(\polk{a_k}\big)^m = \polk{a_k}\polk{a_k}\big(\polk{a_k}\big)^{m-2} \\
  =& \polk{\polj{a_{k-j}a_j}}\polk{a_k}\big(\polk{a_k}\big)^{m-3} = \polk{{^1\alpha_k}}\polk{a_k}\big(\polk{a_k}\big)^{l-3} \\
@@ -176,7 +164,36 @@ Con esto último, y sea $B = \polk{b_k} \in \pk$, se puede desarrollar
  \end{align*}
 que corresponde a la \textbf{composición} de $A$ en $B$, la cual está bien definida y pertenece a $\pk$.
 
-%		- Show that the "chain rule" works fine.
+Inspirados en la derivada usual de polinomios de orden $n$ $A: \mathbb{C} \to \mathbb{C}$, vemos que
+
+\begin{align*}
+ \frac{dA(x)}{dx} := A'(x) = A' = \sum_{k=0}^n{k a_k x^{k-1}} = \polk{(k+1)a_{k+1}} 
+\end{align*}
+
+así, se define a la \textbf{derivada} de $A$ como
+
+\begin{align}
+ A' = \polk{(k+1)a_{k+1}}
+ \label{eq:polderiv}
+\end{align}
+
+con $a_{n+1} := 0 \in \mathbb{K}$ tal que $A' \in \pk$. De la definición usual de derivada podemos ver cómo la \textbf{regla de la cadena} también tiene sentido en este campo, ya que 
+\begin{align*}
+ { A(B(x))}' :=& \lim_{x \to a}\frac{A(B(x)) - A(B(a))}{x-a} = \lim_{x \to a} \frac{A(B(x)) - A(B(a))}{B(x)-B(a)}\frac{B(x) - B(a)}{x-a}  \\
+ =& \lim_{x \to a} \frac{A(B(x)) - A(B(a))}{B(x)-B(a)} \lim_{x \to a} \frac{B(x) - B(a)}{x-a} = A(B(x))'B(x)'
+\end{align*}
+
+lo cual se puede traducir a 
+\begin{align*}
+\lim_{x \to a} \big( A(B(x)) + \ - A(B(a)) \big) \cdot \big( (B(x) + \ -B(a) \big)^{-1} \cdot \lim_{x \to a} \big( (B(x) + \ -B(a) \big) \cdot \big( \textbf{1(x)} + \ -\textbf{1(a)} \big)    
+\end{align*}
+con las operaciones definidas hasta ahora.
+
+%		- See "chain rule" technical details.
+
+
+
+
 %		- Define (/,-,sin,cos,exp,log,pow)
 
 Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$.
