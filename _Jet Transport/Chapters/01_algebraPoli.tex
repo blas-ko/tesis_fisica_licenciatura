@@ -189,12 +189,30 @@ lo cual se puede traducir a
 \end{align*}
 con las operaciones definidas hasta ahora.
 
-%		- See "chain rule" technical details.
+%		- See "chain rule" technical details. Maybe only mention taht is has sense for polynomial functions and later on prove that it is indeed true.
+%		- Define (/,-,sin,cos,exp,log,pow). This should be expanded when needed in the thesis only.
+
+Aún cuando ya tenemos las operaciones básicas del álgebra definidas, va a ser de gran practicidad extender otras operaciones útiles para el transporte de $\mathbb{U}$ para el campo vectorial que estemos estudiando.
+
+Se define la \textbf{resta $-$} como
+\begin{equation}
+ A - B := A + (-B).
+ \label{eq:polisub}
+\end{equation}
 
 
+Para la división, sea $D(x) \in \pk$, tal que  $B \cdot D = A $,  entonces 
+\begin{align*}
+ & \polk{ \polj{b_{k-j} d_j} } = \polk{ a_k } \implies \polk{ a_k - \polj{b_{k-j} d_j} } = 0 \\ 
+ &\implies a_k - ( \sum_{j=0}^{k-1}a_{k-j} d_j + b_0 d_k ) = 0 \\
+ & \therefore d_k = \frac{1}{b_0} \big( a_k - \sum_{j=0}^{k-1} b_{k-j} d_j \big)  
+\end{align*}.
 
-
-%		- Define (/,-,sin,cos,exp,log,pow)
+Se define la \textbf{división} como
+\begin{equation}
+ D = A/B \text{ con } d_k = \frac{1}{b_0} \big( a_k - \sum_{j=0}^{k-1} b_{k-j} d_j \big)
+ \label{eq:polidiv}
+\end{equation}
 
 Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$.
 
