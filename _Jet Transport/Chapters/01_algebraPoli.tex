@@ -5,7 +5,7 @@ Como se menciona en la introducción, para poder hacer el transporte alrededor d
 
 Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\algpol$ donde $\pk$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
 $$P = P(x) := \polk{p_k} $$
-con $P: \mathbb{K} \to \mathbb{K}$ una función analítica y $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
+con $P: \mathbb{C} \to \mathbb{K}$ una función analítica y $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
 
 %		- It may be necessary to analize how different independet variables imply that A(x) != A(b).
 
@@ -219,12 +219,24 @@ Se define la \textbf{división} como
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
 
 
-Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$.
+Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$. Es decir, nos gustaría trabajar con polinomios cuyos coeficientes sean polinomios, cuyos coeficientes sean, finalmente, números.
+Sea  $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$, entonces
 
-%		- Prove that this algebra is also a field over \pk (mention)
-%		- Show that a polynomial of a polynomial of 1 variable is a polynomial of 2 variables... or n variables (inductive way)! 
+\begin{align*}
+ P(x) = \polk{p_k(y)} = \polk{\sum_{j=0}^n p_{kj} y^j}
+\end{align*}
+
+así, se observa cómo un polinomio cuyos coeficientes son polinomios es equivalente a un polinomio de dos variables que vive en un espacio que denominaremos, por construcción, $\pkn{2}$.
+
+Esto último se puede extender inductivamente para construir polinomios de cualquier orden. Para el estudio de esta tesis buscamos construir $\pk$ donde $\mathbb{K} = \pkn{N}$ con $N$ el grado de la ecuación diferencial a desarrollar.
+
+
+
+
+%		- Prove that this algebra is also a field over \pk (mention) - done -
+%		- Show that a polynomial of a polynomial of 1 variable is a polynomial of 2 variables... or n variables (inductive way)!  - done -
 %		  (we're gonna use Taylor1{TaylorN{K}})
-%		- Prove, as a corolary, that this algebra is also a vector space over K (optional).
+%		- Prove, as a corolary, that this algebra is also a vector space over K (optional). - not necessary -
 
 %% ****** NEXT UP ********
 %		- Investigate about error of a \pk for 1 variable and then for n variables.
