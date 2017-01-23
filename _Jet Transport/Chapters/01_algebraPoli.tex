@@ -5,7 +5,7 @@ Como se menciona en la introducción, para poder hacer el transporte alrededor d
 
 Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\algpol$ donde $\pk$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
 $$P = P(x) := \polk{p_k} $$
-con $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
+con $P: \mathbb{K} \to \mathbb{K}$ una función analítica y $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
 
 %		- It may be necessary to analize how different independet variables imply that A(x) != A(b).
 
@@ -164,13 +164,13 @@ Con esto último, y sea $B = \polk{b_k} \in \pk$, se puede desarrollar
  \end{align*}
 que corresponde a la \textbf{composición} de $A$ en $B$, la cual está bien definida y pertenece a $\pk$.
 
-Inspirados en la derivada usual de polinomios de orden $n$ $A: \mathbb{C} \to \mathbb{C}$, vemos que
+Inspirados en la derivada usual de polinomios de orden $n$ $P: \mathbb{C} \to \mathbb{C}$, tenemos que
 
 \begin{align*}
- \frac{dA(x)}{dx} := A'(x) = A' = \sum_{k=0}^n{k a_k x^{k-1}} = \polk{(k+1)a_{k+1}} 
+ \frac{dP(x)}{dx} := P'(x) = P' = \sum_{k=0}^n{k p_k x^{k-1}} = \polk{(k+1)p_{k+1}} 
 \end{align*}
 
-así, se define a la \textbf{derivada} de $A$ como
+así, se define la \textbf{derivada} de $A$ como
 
 \begin{align}
  A' = \polk{(k+1)a_{k+1}}
@@ -206,13 +206,18 @@ Para la división, sea $D(x) \in \pk$, tal que  $B \cdot D = A $,  entonces
  & \polk{ \polj{b_{k-j} d_j} } = \polk{ a_k } \implies \polk{ a_k - \polj{b_{k-j} d_j} } = 0 \\ 
  &\implies a_k - ( \sum_{j=0}^{k-1}a_{k-j} d_j + b_0 d_k ) = 0 \\
  & \therefore d_k = \frac{1}{b_0} \big( a_k - \sum_{j=0}^{k-1} b_{k-j} d_j \big)  
-\end{align*}.
+\end{align*}
 
 Se define la \textbf{división} como
 \begin{equation}
  D = A/B \text{ con } d_k = \frac{1}{b_0} \big( a_k - \sum_{j=0}^{k-1} b_{k-j} d_j \big)
  \label{eq:polidiv}
 \end{equation}
+
+%		- Discussion about the "x" in the polynomials and how they represent different things and can be altered. 
+%		- Here, polynomials will be the normal functions with its normal derivatives. 
+%		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
+
 
 Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$.
 
