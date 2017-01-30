@@ -3,7 +3,8 @@
 \decimalpoint 
 \usepackage[utf8]{inputenc}
 %\usepackage{ifpdf}            %provee un switcheado facil para pdf o dvi
-\usepackage[numbers]{natbib}  %para la bibliografia
+%\usepackage[numbers]{natbib}  %para la bibliografia
+\usepackage{cite}
 %\usepackage{gnuplottex} %por si se quisiera usar gnuplot directamente
 
 
@@ -533,19 +534,19 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
  
 \pagestyle{plain} %Reajuste en encabezados
-\cleardoublepage %supuestamente necesario si tuviera mas de una pagina
+%\cleardoublepage %supuestamente necesario si tuviera mas de una pagina
 \phantomsection  %para el anclado este en la pagina correcta
 \addcontentsline{toc}{chapter}{Bibliografía}
 \chaptermark{Bibliografía} %cambia el encabezado
 
 
-
-\bibliographystyle{ieeetr-etal}    
+\bibliographystyle{ieeetr}    
 
 %\setlength{\bibsep}{4pt}
 %\begin{spacing}{0.9} 
 \bibliography{Chapters/biblio}
 %\end{spacing}
+
 
        
 \end{document}     
