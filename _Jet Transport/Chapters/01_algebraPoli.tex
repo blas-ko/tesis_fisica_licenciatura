@@ -1,5 +1,6 @@
 %% ************************************************************************
 %% &&&&&&&&&&&&&&&&   01. ÁLGEBRA POLINOMIAL  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+\subsection{Construcción del Álgebra}
 
 Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\mathcal{U}$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\mathcal{U}$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\mathbf{x_0} := \mathbf{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución del polinomio en el paso anterior, el cual se puede sustituir por reales y obtener así puntos de la vecindad de $\mathbf{x_0}$. \\
 
@@ -214,7 +215,7 @@ Se define la \textbf{división} como
  \label{eq:polidiv}
 \end{equation}
 
-Con el mismo espíritu, inspirados por ~\cite{Haro2009} podemos definir más relaciones de recurrencia para otras operaciones entre polinomios.
+Con el mismo espíritu, inspirados por el artículo de Haro ~\cite{Haro2009} podemos definir más relaciones de recurrencia para otras operaciones entre polinomios.
 
 %		- Discussion about the "x" in the polynomials and how they represent different things and can be altered. 
 %		- Here, polynomials will be the normal functions with its normal derivatives. 
@@ -242,5 +243,57 @@ Esto último se puede extender inductivamente para construir polinomios de cualq
 %% ****** NEXT UP ********
 %		- Investigate about error of a \pk for 1 variable and then for n variables.
 
+\subsection{Integrador de Taylor}
 
- 
+%		- Cómo funciona un integrador numérico genérico (usar Euler como ejemplo, quizá)?
+%		- ¿Qué es el step size y cómo se determina?
+%		- ¿Cómo calcular el error en cada paso?
+%		- ¿En qué unidades trabajar?
+%		- ¿Cómo funciona ÉSTE integrador de superficies iniciales? 
+
+Ahora que ya están definidas todas las operaciones de polinomios es buen momento para desarrollar al integrador numérico que nos permitirá hacer el transporte mencionadas en la introducción.
+
+La idea básica de un integrador es que, dado un sistema de ecuaciones diferenciales
+
+\begin{align}
+ \dot{\textbf{x}} := \frac{dx_i(t)}{dt} = f_i(\textbf{x}(t)) \ \forall i
+ \label{eq: eqdif}
+\end{align}
+
+se encuentre un método que evolucione de la mejor manera posible dada una condición inicial $x_0$ o, en nuestro caso, una \textit{bola} inicial $B_{x_0}$ a cada paso del parámetro $t$ (tiempo) que rige la ecuación. El tema con un integrador numérico es que éste pretende evaluar todos los tiempos contenidos entre la condición inicial y la final y, como ninguna máquina ha sido capaz de evaluar una cantidad continua en un intervalo, es necesario discretizar al parámetro que hace que nuestras ecuaciones evolucionen
+
+Una forma muy intuitiva de abordar este problema es con el método de Euler, que parte de la definición usual de derivada. Tomemos el caso de una función analítica $f: \mathbb{R}  \to \mathbb{R}$, entonces
+
+\begin{align}
+ \dot{f} := \frac{df(t)}{dt} = \lim_{h\to 0} \frac{ f(t+h) - f(t) }{h}
+ \label{eq: deriv}
+\end{align}.
+
+Si tomamos el límite $h \to 0$ de una manera menos rigurosa y lo tratamos simplemente como un \textit{incremento muy pequeño}, podemos tener una aproximación razonablemente buena de la derivada, donde
+
+\begin{align*}
+\dot{f} = \frac{ f(t+h) - f(t) }{h} + R(t;h)
+\end{align*}
+
+donde $R$ es un residuo que depende de $h$ y decrece con ella. Si esto lo aplicamos a \ref{eq: eqdif} cuando $\textbf{x} \in \mathbf{R}$, entonces
+
+\begin{align}
+ f(x(t)) =& \frac{dx(t)}{dt} = \frac{ x(t+h) - x(t) }{h}+ R(h)\\
+ \implies& x(t+h) = x(t) + h\cdot f(\textbf{x}(t)) - R(t;h)
+ \label{eq: poli1g}
+\end{align}
+\begin{align}
+ \to \ & x_{n+1} = x_n + h\cdot f_n - R_1(h)
+ \label{eq: euler}
+\end{align}
+
+que plantea una relación de recurrencia, conocida como el \textbf{método de Euler}. Aún cuando esta relación no es tan poderosa y no es, definitivamente, la que se usará en los cálculos desarrollados en la presente tesis, es interesante notar que \ref{eq: euler} es ahora un \textit{mapeo} que resuelve la ecuación diferencial de manera discreta, con un \textit{salto temporal} de tamaño $h$ y un error o residuo $R_1(h)$ y esto se conservará para cualquier método empleado.\\
+
+Hay que prestar especial atención al error que pueda tener la ecuación en cada paso temporal, ya que éste determinará qué tan preciso es el método y qué tan fiable es la solución que obtenemos al integrar para un intervalo de tiempo dado. Si se observa la ecuación \ref{eq: poli1g}, se puede reconocer el desarrollo en \textit{series de Taylor} a primer orden de $x(t)$. Éste se puede generalizar a cualquier orden reduciendo el error al aumentar el orden del desarrollo de la serie de Taylor de la función del sistema dinámico. Es de especial interés entender cómo varía el error en función del orden del polinomio escogido (notar que en \ref{eq: euler} se escribe $R_1(h)$ que corresponde al error dado por un desarrollo de primer orden) y del tamaño del paso de integración escogido $h$.
+
+En el apéndice \textit{Taylor series methods of integration} de Simó (2001) ~\cite{Simo2001} se propone y prueba que el paso de integración más eficiente es 
+\begin{equation}
+ h = \frac{\rho}{e^{2}}
+\end{equation}
+
+con $\rho = \rho(t)$ el radio de convergencia de la serie asociada a la función desarrollada. 
