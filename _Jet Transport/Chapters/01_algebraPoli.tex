@@ -260,7 +260,7 @@ La idea básica de un integrador es que, dado un sistema de ecuaciones diferenci
  \label{eq: eqdif}
 \end{align}
 
-se encuentre un método que evolucione de la mejor manera posible dada una condición inicial $x_0$ o, en nuestro caso, una \textit{bola} inicial $B_{x_0}$ a cada paso del parámetro $t$ (tiempo) que rige la ecuación. El tema con un integrador numérico es que éste pretende evaluar todos los tiempos contenidos entre la condición inicial y la final y, como ninguna máquina ha sido capaz de evaluar una cantidad continua en un intervalo, es necesario discretizar al parámetro que hace que nuestras ecuaciones evolucionen
+se encuentre un método que evolucione de la mejor manera posible dada una condición inicial $x_0$ o, en nuestro caso, una \textit{bola} inicial $B_{x_0}$ a cada paso del parámetro $t$ (tiempo) que rige la ecuación. El tema con un integrador numérico es que éste pretende evaluar todos los tiempos contenidos entre la condición inicial y la final y, como ninguna máquina ha sido capaz de evaluar una cantidad continua en un intervalo, es necesario discretizar al parámetro que hace que nuestras ecuaciones evolucionen.
 
 Una forma muy intuitiva de abordar este problema es con el método de Euler, que parte de la definición usual de derivada. Tomemos el caso de una función analítica $f: \mathbb{R}  \to \mathbb{R}$, entonces
 
@@ -288,6 +288,8 @@ donde $R$ es un residuo que depende de $h$ y decrece con ella. Si esto lo aplica
 \end{align}
 
 que plantea una relación de recurrencia, conocida como el \textbf{método de Euler}. Aún cuando esta relación no es tan poderosa y no es, definitivamente, la que se usará en los cálculos desarrollados en la presente tesis, es interesante notar que \ref{eq: euler} es ahora un \textit{mapeo} que resuelve la ecuación diferencial de manera discreta, con un \textit{salto temporal} de tamaño $h$ y un error o residuo $R_1(h)$ y esto se conservará para cualquier método empleado.\\
+
+%	- Releer con cuidado esta sección para ver si la redacción puede mejorar. Introducir el método de Taylor en 1 variable, el método de taylor en varias variables y el método de Taylor con coeficientes polinomiales debe ser algo natural. Posiblemente hablar del error tenga sentido después de presentar el de varias variables y discutir cómo cambiaría este cuando los coeficientes son polinomios (ver 244-246 de D. Perez en esto). Entender bien qué onda con el radio de convergencia planteado en este paper en relación con lo que dice Simó. 
 
 Hay que prestar especial atención al error que pueda tener la ecuación en cada paso temporal, ya que éste determinará qué tan preciso es el método y qué tan fiable es la solución que obtenemos al integrar para un intervalo de tiempo dado. Si se observa la ecuación \ref{eq: poli1g}, se puede reconocer el desarrollo en \textit{series de Taylor} a primer orden de $x(t)$. Éste se puede generalizar a cualquier orden reduciendo el error al aumentar el orden del desarrollo de la serie de Taylor de la función del sistema dinámico. Es de especial interés entender cómo varía el error en función del orden del polinomio escogido (notar que en \ref{eq: euler} se escribe $R_1(h)$ que corresponde al error dado por un desarrollo de primer orden) y del tamaño del paso de integración escogido $h$.
 
