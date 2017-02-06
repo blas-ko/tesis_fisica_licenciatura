@@ -1,6 +1,6 @@
 %% ************************************************************************
 %% &&&&&&&&&&&&&&&&   01. ÁLGEBRA POLINOMIAL  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-\subsection{Construcción del Álgebra}
+\section{Construcción del Álgebra}
 
 Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\mathcal{U}$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\mathcal{U}$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\bm{x_0} := \bm{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución del polinomio en el paso anterior, el cual se puede sustituir por reales y obtener así puntos de la vecindad de $\bm{x_0}$. \\
 
@@ -217,10 +217,7 @@ Se define la \textbf{división} como
 
 Con el mismo espíritu, inspirados por el artículo de Haro ~\cite{Haro2009} podemos definir más relaciones de recurrencia para otras operaciones entre polinomios.
 
-%		- Discussion about the "x" in the polynomials and how they represent different things and can be altered. 
-%		- Here, polynomials will be the normal functions with its normal derivatives. 
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
-
 
 Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$. Es decir, nos gustaría trabajar con polinomios cuyos coeficientes sean polinomios, cuyos coeficientes sean, finalmente, números.
 Sea  $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$, entonces
@@ -233,30 +230,14 @@ así, se observa cómo un polinomio cuyos coeficientes son polinomios es equival
 
 Esto último se puede extender inductivamente para construir polinomios de cualquier orden. Para el estudio de esta tesis buscamos construir $\pk$ donde $\mathbb{K} = \pkn{N}$ con $N$ el grado de la ecuación diferencial a desarrollar.
 
-
-%		- Prove that this algebra is also a field over \pk (mention) - done -
-%		- Show that a polynomial of a polynomial of 1 variable is a polynomial of 2 variables... or n variables (inductive way)!  - done -
-%		  (we're gonna use Taylor1{TaylorN{K}})
-%		- Prove, as a corolary, that this algebra is also a vector space over K (optional). - not necessary -
-
-
-%% ****** NEXT UP ********
-%		- Investigate about error of a \pk for 1 variable and then for n variables.
-
-\subsection{Integrador de Taylor}
-
-%		- Cómo funciona un integrador numérico genérico (usar Euler como ejemplo, quizá)?
-%		- ¿Qué es el step size y cómo se determina?
-%		- ¿Cómo calcular el error en cada paso?
-%		- ¿En qué unidades trabajar?
-%		- ¿Cómo funciona ÉSTE integrador de superficies iniciales? 
+\section{Integrador de Taylor}
 
 Ahora que ya están definidas todas las operaciones de polinomios es buen momento para desarrollar al integrador numérico que nos permitirá hacer el transporte mencionadas en la introducción.
 
 La idea básica de un integrador es que, dado un sistema de $n$ ecuaciones diferenciales
 
 \begin{align}
- \dot{\bm{x}(t)} := \frac{dx_i(t)}{dt} = f_i(\textbf{x}(t)) \ \forall i \in [1,n]
+ \dot{\bm{x}(t)} := \frac{dx_i(t)}{dt} = f_i(t;\bm{x}(t)) \ \forall i \in [1,n]
  \label{eq: eqdif}
 \end{align}
 
@@ -292,26 +273,58 @@ que plantea una relación de recurrencia, conocida como el \textbf{método de Eu
 En lugar de tomar una condición inicial $\bm{x_0}$, nos interesa tomar el polinomio
 
 \begin{align*}
- B_{0,\bm{x}_0}(\bm{\mu}) = \bm{x}_0 + \bm{\mu}
+ \ball{0} = \bm{x}_0 + \bm{\mu}
 \end{align*}
 
 que representa a la condición inicial $\bm{x_0}$ más alguna perturbación definida  por el vector de polinomios $\bm{\mu}$, similar a como se hace en \cite{Perez2015}. Con las operaciones definidas en la sección anterior se puede desarrollar la relación de recurrencia \ref{eq: euler} tal que 
 
 \begin{align*}
- \bm{x_1} =&  B_{1,\bm{x}_0}(\bm{\mu}) =  B_{0,\bm{x}_0}(\bm{\mu}) + h\cdot\bm{f}( B_{0,\bm{x}_0}(\bm{\mu})) \\ 
+ \bm{x_1} =&  \ball{1} =  \ball{0} + h\cdot\bm{f}( \ball{0}) \\ 
  =& \big( \bm{x_0} + h\cdot \bm{f}(\bm{x_0}) \big) +  \big( \bm{\mu} + h\cdot \bm{f}(\bm{\mu}) \big) + \bm{R}_1(h)
 \end{align*}
 
+que representa el primer paso temporal del método de Euler pero con la condición inicial $\ball{0}$, que hace uso del álgebra de polinomios desarrollado en la sección anterior. Es interesante notar que el tranporte de bolas si puede hacer con cualquier integrador numérico. Generalizar este método es simplemente extender la o las funciones del sistema de ecuaciones diferenciales asociadas hasta algún orden $N$, donde si $f_i$ en \ref{eq: eqdif} es analítica $\forall i$, entonces 
 
-%	- Releer con cuidado esta sección para ver si la redacción puede mejorar. Introducir el método de Taylor en 1 variable, el método de taylor en varias variables y el método de Taylor con coeficientes polinomiales debe ser algo natural. Posiblemente hablar del error tenga sentido después de presentar el de varias variables y discutir cómo cambiaría este cuando los coeficientes son polinomios (ver 244-246 de D. Perez en esto). Entender bien qué onda con el radio de convergencia planteado en este paper en relación con lo que dice Simó. 
+\begin{align}
+ \bm{x}(t+h) = \bm{x}(t) + \bm{x}^{\prime}(t)h + \frac{1}{2!}\bm{x}^{\prime\prime}(t)h^2 + ... + \frac{1}{n!}\bm{x}^{(n)}(t)h^n + \bm{R}^{n+1}(h)
+\end{align}
+que, por \ref{eq: eqdif},
+\begin{align}
+ \bm{x}(t+h) =& \bm{x}(t) + \bm{f}(t;\bm{x}(t))h + \frac{1}{2!}\bm{f}^\prime(t;\bm{x}(t))h^2 \\ 
+ +& ... + \frac{1}{n!}\bm{f}^{(n-1)}(t;\bm{x}(t))h^n + \bm{R}^{n+1}(h)
+ \label{eq: taylorint}
+\end{align}
 
-%	- Esto último va mejor... Ya es claro que con bolas iniciales Euler funciona, ahora sólo queda generalizar el orden de Euler para que se vuelva un método de Taylor, discutir la elección del step-size óptimo y ver cómo se trata esta elección cuando los coeficientes son polinomios.
+definiendo así la relación de recurrencia del \textbf{método de Taylor}. Notemos que \ref{eq: taylorint} también puede ser evaluada por $\ball{0}$, siempre y cuando estén definidas las operaciones para $\bm{f}$ y todas sus derivadas en el intervalo de interés.
 
-Hay que prestar especial atención al error que pueda tener la ecuación en cada paso temporal, ya que éste determinará qué tan preciso es el método y qué tan fiable es la solución que obtenemos al integrar para un intervalo de tiempo dado. Si se observa la ecuación \ref{eq: poli1g}, se puede reconocer el desarrollo en \textit{series de Taylor} a primer orden de $x(t)$. Éste se puede generalizar a cualquier orden reduciendo el error al aumentar el orden del desarrollo de la serie de Taylor de la función del sistema dinámico. Es de especial interés entender cómo varía el error en función del orden del polinomio escogido (notar que en \ref{eq: euler} se escribe $R_1(h)$ que corresponde al error dado por un desarrollo de primer orden) y del tamaño del paso de integración escogido $h$.
+Hay que prestar especial atención al error que pueda tener la ecuación en cada paso temporal, ya que éste determinará qué tan preciso es el método y qué tan fiable es la solución que obtenemos al integrar para un intervalo de tiempo dado. Se busca encontrar cómo varía el error en función del orden del polinomio escogido y el tamaño del paso de integración $h$.
 
-En el apéndice \textit{Taylor series methods of integration} de Simó (2001) ~\cite{Simo2001} se propone y prueba que el paso de integración más eficiente es 
+En el apéndice \textit{Taylor series methods of integration} de Simó (2001) ~\cite{Simo2001} se propone y prueba que para obtener obtener un error relativo predeterminado $\epsilon$ en cada paso, el paso de integración más eficiente es 
 \begin{equation}
  h = \frac{ \rho}{e^{2}}
 \end{equation}
 
-con $\rho = \rho(t)$ el radio de convergencia de la serie asociada a la función desarrollada. 
+cuando el error escogido $\epsilon$ tiende a $0$, con $\rho = \rho(t)$ el radio de convergencia de la serie asociada a la función desarrollada. Así, para el método de Taylor tradicional podemos proponer, como se hizo en \cite{Perez2015}, un paso de integración dependiente del estado actual del sistema dinámico
+
+\begin{align}
+ h := \min{ \left\lbrace \left(\frac{ \epsilon e^2 \norm{\bm{f}} }{ \norm{\bm{f}^{(n-2)}}}\right)^{  \frac{1}{n-2} } , \left(\frac{ \epsilon e^2 \norm{\bm{f}}}{ \norm{\bm{f}^{(n-1)}}}\right)^{ \frac{1}{n-1} }  \right\rbrace }
+\end{align}
+
+donde se toman los últimos dos coeficientes de la serie en caso de que la última divergiese. Nótese que se toma el error relativo aunque hay ocasiones donde el error absoluto es preferido.
+
+Ahora, si \ref{eq: taylorint} es evaluada en bolas, entonces se debe tomar en consideración que cada uno de los coeficientes  de la serie es un vector de polinomios de tantas variables como los grados de libertad de la ecuación diferencial. En este caso, los coeficientes de la j-ésima variable $f_j^(i)$ para su i-ésima derivada se representan como $f_j^{(i)} = \sum_k f_{j,k}^{(i)} \eta^k$. Para que tenga sentido hablar de un paso óptimo, se propone en \cite{Perez2015} tomar 
+
+\begin{align*}
+ \psi_k^{(i)} := \max_{j \in [1,N]}{|f_{j,k}^{(i)}|}
+\end{align*}
+
+que representa la dirección de mayor crecimiento del k-ésimo coeficiente de la i-ésima derivada. Si el orden al que expandimos las series es $L$, esto nos genera un conjunto de $L \ \psi_k^{(i)}$  para cada $i$, de modo que se plantea 
+
+\begin{align*}
+ h := \min_{k \in [1,L]}{ \left\lbrace \left(\frac{ \epsilon e^2 \psi_k^{(1)} }{ \psi_k^{(n-2)}}\right)^{  \frac{1}{n-2} } , \left(\frac{ \epsilon e^2 \psi_k^{(1)}}{ \psi_k^{(n-1)}}\right)^{ \frac{1}{n-1} }  \right\rbrace }
+\end{align*}
+
+como el nuevo paso óptimo adaptado al álgebra polinomial que se ha desarrollado. Generalmente, si los coeficientes de la serie decrecen con el orden de esta, las $k$s mínimas serán siempre cercanas a $L$, por la convergencia que se presupone de las funciones del sistema dinámico.
+
+%		- ¿En qué unidades trabajar? ...puede ser interesante incluir esa discusión, posiblemente pertenezca al siguiente capítulo (jet transport).
+%		- Releer todo a ver si todo es coherente.
