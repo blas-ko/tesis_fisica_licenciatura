@@ -218,6 +218,8 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
 \begin{document}
 
+%%%%%%%%%%%%%%%%% DEFINICION DE COMANDOS %%%%%%%%%%%%%%%%%
+
 \newcommand{\polk}[1]{\sum_{k=0}^n #1 x^k}
 \newcommand{\polj}[1]{(\sum_{j=0}^k #1 )}
 \newcommand{\pk}{{^{n}P_{\mathbb{K}}}}
@@ -471,10 +473,10 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \fancyhead[LO]{\leftmark}
 \fancyhead[RE]{\emph{Capítulo \thechapter}}
 
-
-\chapter{Álgebra Polinomial}    
-\label{chap:algebP}
-\input{Chapters/01_algebraPoli}
+%%%%%%%%%%%%%%%%% CAPÍTULOS %%%%%%%%%%%%%%%%%
+\chapter{Mezcla Cuántica de Spin de Condensados de Bosé-Einstein (MCSCBE)}    
+\label{chap:MCSCBE}
+\input{Chapters/01_MCSCBE}
 
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
@@ -487,25 +489,16 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
 
-
-\chapter{Modelación del Tokamak} 
-\label{chap:toka}
-\input{Chapters/03_tokamak}
-
-
-% Para que de nuevo haya salto de linea. (buscar Dutch style)
-\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
-
 \chapter{Resultados} 
 \label{chap:Resultados}
-\input{Chapters/04_resultados}
+\input{Chapters/03_resultados}
 
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
 
 \chapter{Conclusiones} 
 \label{chap:Conclusiones}
-\input{Chapters/05_conclusiones}
+\input{Chapters/04_conclusiones}
 
  
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
@@ -516,7 +509,7 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
 
  
-%APÉNDICES
+%%%%%%%%%%%%%%%%%   APÉNDICES   %%%%%%%%%%%%%%%%%
 \cleardoublepage 
 \phantomsection  %para el anclado este en la pagina correcta
 \addcontentsline{toc}{chapter}{Apéndices}
@@ -531,7 +524,11 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
 \chapter{El código}
 \label{chap:Codigo}
-\input{Chapters/codigo}  
+\input{Chapters/codigo}
+
+\chapter{Álgebra Polinomial}
+\label{chap:AlgPoli}
+\input{Chapters/algebraPoli}  
 
 \backmatter %los capitulos y titulos de nivel inferior no aparecen numerados
 
