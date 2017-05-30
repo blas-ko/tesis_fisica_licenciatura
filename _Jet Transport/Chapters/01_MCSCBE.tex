@@ -1,8 +1,8 @@
-%%%% INTRODUCCIÓN A LAS ECUACIONES DE  BOSE-EINSTEIN, MOTIVACIÓN DE ESTAS Y DESARROLLO DE LAS ECUACIONES. ¿CUÁNDO SE DE EL CONDENDSADO? ¿QUÉ APROXMACIONES VAMOS A TOMAR PARA ESTE PROBLEMA? 
+%%%% INTRODUCCIÓN A LAS ECUACIONES DE  BOSE-EINSTEIN, MOTIVACIÓN DE ESTAS Y DESARROLLO DE LAS ECUACIONES. ¿CUÁNDO SE DE EL CONDENDSADO? ¿QUÉ APROXMACIONES VAMOS A TOMAR PARA ESTE PROBLEMA? MÉTODOS PARA ATRAPAR Y ENFRIAR ÁTOMOS EXPERIMENTALMENTE. 
 
-Tomando el estado base del condensado, que es equivalente al estado de temperatura cero, es interesante estudiar la dinámica de los estados de spín de los bosones en el sistema. Al tener estos un spin $s = 1$, cada átomo tendrá una posible proyección de spin $m_s \in \left\lbrace +,0,- \right\rbrace$, por tanto, la dinámica de estos y el espacio fase generado en el la capa de energía cero nos dará propiedades cuánticas sobre dicho sistema. 
+Tomando el estado base del condensado, que es equivalente al estado de temperatura cero, es interesante estudiar la dinámica de los estados de spín de los bosones en el sistema. Al tener estos un spin $s = 1$, cada átomo tendrá una posible proyección de spin $m_s \in \left\lbrace +,0,- \right\rbrace$, por tanto, la dinámica de estos y el espacio fase generado en el la capa de energía cero nos dará propiedades cuánticas sobre dicho sistema. Nótese que al hablar del espín de las partículas del sistema hay que tener en cuenta las pequeñas correcciones energéticas que hay en la estructura fina cuando hay presencia de un campo magnético externo.
 
-el hamiltoniano general en sus segunda cuantización para un grupo de bosones que interactuán en un sistema con un potencial externo $V(x)$ es ( $ \hbar = 1$ )
+el hamiltoniano general en sus segunda cuantización para un grupo de bosones que interactuán en un sistema con un potencial externo $V_{Trap}(x)$ es ( $ \hbar = 1$ )
 
 \begin{equation}
 \begin{split}
@@ -14,21 +14,42 @@ el hamiltoniano general en sus segunda cuantización para un grupo de bosones qu
 
 %%% OJO: Este hamiltoniano NO presupone un mínimo de energía, es un hamiltoniano general, por tanto el estado de mínima energía deberá ser encontrado a posteriori del desarrollo.
 
-donde $\afc{\alpha}$ es el operador de campo de aniquilación para el estado $\alpha = \ket{s=1,m_s=\alpha}$, $V_{Trap}$, por otro lado, es el potencial que atrapa a los bosones, que, como se discute en \cite{trap}, es un sistema magnético (...).
-$\hat{U}$ es el potencial de interacción entre las partículas del sistema. Es pertinente pensar que los bosones interactúan únicamente al colisionar, describiendo dicha interacción con
+donde $\afc{\alpha}$ es el operador de campo de aniquilación para el estado $\alpha = \ket{s=1,m_s=\alpha}$. $V_{Trap}$ es el potencial que atrapa a los bosones, que, como se discute en \cite{trap}, es un sistema magnético (...).
+$\hat{U}$ es el potencial de interacción entre las partículas del sistema. Para dicho potencial se aproxima que la interacción se da únicamente en las colisiones entre los bosones \cite{potential}
 
 \begin{equation}
 \hat{U}(x_1,x_2) = \delta{(x_1 - x_2)} \sum_{S=0}^2 g_S \sum_{M_S=-S}^S \ket{S,M_S}\bra{S,M_S}
 \label{pseudopot}
 \end{equation}
 
-%%% hablar sobre los coeficientes g_S, el operador de proyeccción y qué significa el ket-bra. 
-%%% Intentar hacer clara la analogía de porque se usa el s-wave scattering y hacer referencia a estos papers
 
-Seguiremos la estructura planteada por \cite{law98} para estudiar a fondo \ref{gen_ham}.  
+%%% hablar sobre los coeficientes g_S, el operador de proyeccción y qué significa el ket-bra.
+donde el peso $g_S = \frac{4\pi a_S}{2m}$ de la proyección de estados $\ket{S,M_S}$ viene de hacer una analogía con un sistema de  ¬¬¬¬4WAVE-MIXING¬¬¬¬ \cite{g_smodel}, donde $a_S$ es la longitud de dispersión de de una onda tipo $s$ \cite{s-wave}, obtenida de ver el primer modo resultante de un potencial de cascarón esférico. ¬¬¬¬EXPLICAR ESTO MEJOR¬¬¬¬  
+ 
+%%% Intentar hacer clara la analogía de porque se usa el s-wave scattering y hacer referencia a estos papers.
+
+Es interesante observar que \ref{gen_ham} conserva el número de partículas (siempre se crean el mismo número de partículas de las que se destruyen) y, por la forma de \ref{pseudopot}, conserva también el momento angular del sistema (las partículas creadas suman el mismo spin total que las partículas aniquiladas).
+Con esto, es plausible suponer que el hamiltoniano puede expresarse en término del número de partículas $\hat{N}$ y el momento angular total $\hat{L}^2$ que son constantes de movimiento del sistema, lo cual nos da un buen indicio para pensar en la integrabilidad de este. Seguiré la estructura planteada por \cite{law98} para llegar a la forma explícita de \ref{gen_ham} en términos de las constantes de movimiento del sistema. 
 
 %%% Desarrollar o plantear el desarrollo del ket-bra via los coeficientes de clebsch-gordon. 
-%%% Obtener los hamiltonianos simetricos (H_s) y no simétrico (H_a).
+Primero, es necesario desarrollar los términos de interacción dados por \ref{pseudopot}, donde es necesario expandir el spin total de los dos bosones $\ket{S,M_S}$ en término del producto directo de los estados puros de cada uno de ellos $\ket{s=1,m_s=\alpha} \tens \ket{s=1,m_s=\beta}$
+
+Para dos bosones de spin $s=1$ cada uno, las combinaciones posibles de la expansión de estados están dadas por los coeficientes de Clebsch-Gordon \cite{griffiths}, donde, por ejemplo
+\begin{equation*}
+\begin{split}
+\ket{S=0,M_S=0} = \frac{1}{\sqrt{3}} &  ( \ket{1,+}\ket{1,-} + \ket{1,-}\ket{1,+} - \ket{1,0}\ket{1,0} ) \\ 
+ = \frac{1}{\sqrt{3}} & \left( 2\ket{1,+}\ket{1,-} - \ket{1,0}\ket{1,0} \right),
+\end{split}
+\end{equation*}
+
+los cuales se sustituyen\footnote{Revisar apéndice \cite{talacha} para ver a detalle este desarrollo} en \ref{gen_ham} para obtener ¬¬¬¬TALACHA EN UN APÉNDICE??¬¬¬¬
+	%%% Obtener los hamiltonianos simetricos (H_s) y no simétrico (H_a).
+
+\begin{eqnarray}
+\hat{H}_{sym} & = \sum_{\alpha} \int \afc{\alpha} \left( -\frac{\nabla^2}{2m} + V_{Trap} \right) \afa{\alpha} d^3x + \frac{C_s}{2}\sum_{\alpha,\beta}\int \interact{\alpha}{\beta}{\alpha}{\beta} d^3x \\
+\hat{H}_{nosym} & = 3
+\end{eqnarray}
+
 %%% Hablar de la aproximación phi_k(x) ≈ phi(x)“ cuando Hs/Ha >> 1 y dar ejemplos reales donde sí pase esto. 
 %%% Usar las ecuaciones de Gross-Pitaevskii para obtener la parte simétrica del hamiltoniano en términos de N.
 %%% Estructuras similares en nonlinear wave-mixing processes in cavity QED [ref]. Así, se puede hacer una estructura de momentos angulares definidas como L_, L+, Lz usadas en [refs] y trabajar con Ha para obtenerla en términos de L^2.
