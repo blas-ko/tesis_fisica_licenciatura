@@ -1,0 +1,26 @@
+%%%% INTRODUCCIÓN A LAS ECUACIONES DE  BOSE-EINSTEIN, MOTIVACIÓN DE ESTAS Y DESARROLLO DE LAS ECUACIONES. ¿CUÁNDO SE DE EL CONDENDSADO? ¿QUÉ APROXMACIONES VAMOS A TOMAR PARA ESTE PROBLEMA? 
+
+Tomando el estado base del condensado, que es equivalente al estado de temperatura cero, es interesante estudiar la dinámica de los estados de spín de los bosones en el sistema. Al tener estos un spin $s = 1$, cada átomo tendrá una posible proyección de spin $m_s \in \left\lbrace +,0,- \right\rbrace$, por tanto, la dinámica de estos y el espacio fase generado en el la capa de energía cero nos dará propiedades cuánticas sobre dicho sistema. 
+
+el hamiltoniano general en sus segunda cuantización para un grupo de bosones que interactuán en un sistema con un potencial externo $V(x)$ es ( $ \hbar = 1$ )
+
+\begin{equation}
+\begin{split}
+\hat{H} & = \sum_{\alpha} \int \afc{\alpha}(x) \left( -\frac{\nabla^2}{2m} + V_{Trap}(x) \right) \afa{\alpha}(x) d^3x \\ 
+& + \sum_{\alpha,\beta, \mu, \nu} \int d^3x_1 \int d^3x_2  	\afc{\alpha}(x_1) \afc{\beta}(x_2) \hat{U}(x_1,x_2) \afa{\mu}(x_1) \afa{\nu}(x_2)
+\end{split}
+\label{gen_ham}
+\end{equation}
+
+donde $\afc{\alpha}$ es el operador de campo de aniquilación para el estado $\alpha = \ket{s=1,m_s=\alpha}$, $V_{Trap}$, por otro lado, es el potencial que atrapa a los bosones, que, como se discute en \cite{trap}, es un sistema magnético (...).
+$\hat{U}$ es el potencial de interacción entre las partículas del sistema. Es pertinente pensar que los bosones interactúan únicamente al colisionar, describiendo dicha interacción con
+
+\begin{equation}
+\hat{U}(x_1,x_2) = \delta{(x_1 - x_2)} \sum_{S=0}^2 g_S \sum_{M_S=-S}^S \ket{S,M_S}\bra{S,M_S}
+\label{pseudopot}
+\end{equation}
+
+Seguiremos la estructura planteada por \cite{law98} para estudiar a fondo \ref{gen_ham}.  
+
+
+
