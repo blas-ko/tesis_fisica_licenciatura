@@ -50,7 +50,7 @@ Este tipo de expansiones se sustituyen\footnote{Revisar apéndice \cite{talacha}
 
 \begin{equation}
 \hat{H}_{sim} = \sum_{\alpha} \int_{\Omega} \afc{\alpha} \left( -\frac{\nabla^2}{2m} + V_{Trap} \right) \afa{\alpha} d^3x + \frac{C_s}{2}\sum_{\alpha,\beta}\int_{\Omega} \interact{\alpha}{\beta}{\alpha}{\beta} d^3x
-\label{h_sym}
+\label{h_sim}
 \end{equation}
 
 \begin{equation}
@@ -59,7 +59,7 @@ Este tipo de expansiones se sustituyen\footnote{Revisar apéndice \cite{talacha}
 \interact{-}{-}{-}{-} + 2\interact{+}{0}{+}{0} + 2\interact{-}{0}{-}{0} \\
 & - 2\interact{+}{-}{+}{-} + 2\interact{0}{0}{+}{-} + 2\interact{+}{-}{0}{0} ) d^3x
 \end{split}
-\label{h_nosym}
+\label{h_nosim}
 \end{equation}
 %%% Hablar de la aproximación phi_k(x) ≈ phi(x)“ cuando Hs/Ha >> 1 y dar ejemplos reales donde sí pase esto. 
 
@@ -70,12 +70,51 @@ donde $C_s := \frac{g_0 + 2g_2}{3}$ y $C_a := \frac{g_2 - g_0}{3}$ y $\hat{H} = 
 \label{gross-pita}
 \end{equation}
 
-con $\hat{N}= \sum_\alpha \crea{\alpha} \anni{\alpha}$ el número de partículas y $\mu$ el potencial químico del sistema. $\mu$ también se podría entender como la energía promedio del sistema al ser el eigenvalor de las ecuaciones de \ref{gross-pita} para la función de onda en cuestión. 
+con $\hat{N}= \sum_\alpha \crea{\alpha} \anni{\alpha}$ el número de partículas y $\mu$ el potencial químico del condensado, donde $\anni{\alpha}$ es el operador de aniquilación del estado $\alpha$. $\mu$ también se podría entender como la energía promedio del sistema al ser el eigenvalor de las ecuaciones de \ref{gross-pita} para la función de onda en cuestión. 
 
-
-%% Como h_sim siempre fue invariante anteintercambio de las componentes de spin, nunca dependió explicitamente del momento angular, sólo del número de partículas totales.
 
 %%% Usar las ecuaciones de Gross-Pitaevskii para obtener la parte simétrica del hamiltoniano en términos de N.
+
+Con esta aproximación, $\afa{\alpha} = \anni{\alpha} \phi_\alpha(x) \approx \anni{\alpha} \phi(x)$, usando las relaciones de conmutación $\left[\anni{\alpha},\anni{\beta}\right] = 0$ y $\left[\anni{\alpha},\crea{\beta}\right] = \delta_{\alpha\beta}$, y sustituyendo todo en \ref{h_sim} y \ref{h_nosim}, tenemos que
+
+TALACHA
+
+con $C_s' = \frac{C_s}{2}\int_{\Omega}|\phi|^4d^3x$. Notemos que para \ref{h_sim} siempre fue invariante el intercambio de sus componentes de espín y por tanto, nunca depende explícitamente del momento angular, sólo del número de partículas totales $\hat{N}$. Para la parte no simétrica \ref{h_nosim}, cada términos cumple que $\interact{\alpha}{\beta}{\mu}{\nu}$ tal que $\alpha + \beta = \mu + \nu$ lo cual nos da un buen indicio que la componente conservada de momento angular se manifestará. ¬¬¬VER REFERENCIAS [9,10] DE LAW98¬¬¬¬
+
+Se observa que los operadores definidos como $\hat{L}_+ := \sqrt{2}( \crea{0}\anni{+} + \crea{-}\anni{0})$ , $\hat{L}_- := \sqrt{2}( \crea{+}\anni{0} + \crea{0}\anni{-})$ y $\hat{L}_z := ( \crea{-}\anni{-} + \crea{+}\anni{+})$ siguen las relaciones de conmutación de momento angular $\left[ \hat{L}_+, \hat{L}_- \right] = 2\hat{L}_z$, $\left[ \hat{L}_z, \hat{L}_\pm \right] = \pm \hat{L}_\pm$.
+Con esto, podemos construir el momento angular total como 
+
+\begin{equation*}
+\begin{split}
+\hat{L}^2 & = \hat{L}_+\hat{L}_- + \hat{L}_z^2 - \hat{L}_z = 2(  \crea{0}\anni{+}\crea{+}\anni{0} + \crea{0}\anni{+}\crea{0}\anni{-} + \crea{-}\anni{0}\crea{+}\anni{0} + \crea{-}\anni{0}\crea{0}\anni{-}) \\
+& + \crea{-}\anni{-}\crea{-}\anni{-} + \crea{+}\anni{+}\crea{+}\anni{+} - \crea{-}\anni{-}\crea{+}\anni{+} - \crea{+}\anni{+}\crea{-}\anni{-} -(\crea{+}\anni{+} -\crea{-}\anni{-}) \\
+& = 2\left(  \crea{0}(\crea{+}\anni{+}-1)\anni{0} + \crea{0}(\crea{0}\anni{+})\anni{-} + \crea{-}(\crea{+}\anni{0})\anni{0} + \crea{-}(\crea{0}\anni{0}-1)\anni{-}\right) \\
+& + \crea{-}(\crea{-}\anni{-}-1)\anni{-} + \crea{+}(\crea{+}\anni{+}-1)\anni{+} - \crea{-}(\crea{+}\anni{-})\anni{+} - \crea{+}(\crea{-}\anni{+}\anni{-} -\crea{+}\anni{+} + \crea{-}\anni{-}) \\
+& = 2\left( \interactt{+}{0}{+}{0} + \interactt{0}{0}{+}{-} +\interactt{+}{-}{0}{0} + \interactt{-}{0}{-}{0}\right) + \interactt{+}{+}{+}{+} \\
+& + \interactt{-}{-}{-}{-} -2 \interactt{+}{-}{+}{-} - 2\crea{0}\anni{0} -2\crea{-}\anni{-} -\cancel{\crea{-}\anni{-}} -\crea{+}\anni{+} +\cancel{\crea{-}\anni{-}} -\crea{+}\anni{+}
+\end{split}
+\end{equation*}
+
+y así
+\begin{equation}
+\begin{split}
+\hat{L}^2 &= 2\left( \interactt{+}{0}{+}{0} + \interactt{0}{0}{+}{-} +\interactt{+}{-}{0}{0} + \interactt{-}{0}{-}{0}\right) + \interactt{+}{+}{+}{+} \\
+& + \interactt{-}{-}{-}{-} -2 \interactt{+}{-}{+}{-}  \underbrace{- 2\crea{0}\anni{0} -2\crea{-}\anni{-}  -2\crea{+}\anni{+}}_{-2\hat{N}} 
+\end{split}
+\end{equation}
+\label{lsqrd}
+
+que, si comparamos con $\hat{H}_{nosim}$, obtenemos finalmente que 
+\begin{equation}
+\hat{H}_{nosim} = C_a'\left( \hat{L}^2 + 2\hat{N} \right)
+\label{h_nosim_integ}
+\end{equation}
+
+con $C_a' = \frac{C_a}{2}\int_{\Omega}|\phi|^4d^3x$.
+
+%%% LOS EIGENVALORES DEL MOMENTO ANGULAR SON: .... POR TANTO, LOS EIGENESTADOS DE H_a ESTAN DADOS POR: .... Y , DE ESTE MODO SE PUEDE ENCONTRAR LA CAPA DE ENERGÍA MAS BAJA PARA OBTENER EL CONDENSADO.
+
+
 %%% Estructuras similares en nonlinear wave-mixing processes in cavity QED [ref]. Así, se puede hacer una estructura de momentos angulares definidas como L_, L+, Lz usadas en [refs] y trabajar con Ha para obtenerla en términos de L^2.
 
 %%% Discusión general de las ecuaciones encontradas si es necesario
