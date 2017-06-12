@@ -1,5 +1,6 @@
 %%%% INTRODUCCIÓN A LAS ECUACIONES DE  BOSE-EINSTEIN, MOTIVACIÓN DE ESTAS Y DESARROLLO DE LAS ECUACIONES. ¿CUÁNDO SE DE EL CONDENDSADO? ¿QUÉ APROXMACIONES VAMOS A TOMAR PARA ESTE PROBLEMA? MÉTODOS PARA ATRAPAR Y ENFRIAR ÁTOMOS EXPERIMENTALMENTE. 
-%%% Meter una descripcción de porqué se puede describir al sistema como un sistema de dispersión de paquetes de ondas (s-wave scattering)...
+
+%%% Meter una descripcción de porqué se puede describir al sistema como un sistema de dispersión de paquetes de ondas (s-wave scattering)... ¿Es necesario? 
 
 Tomando el estado base del condensado, que es equivalente al estado de temperatura cero, es interesante estudiar la dinámica de espín de los bosones en el sistema. Cada bosón tiene espín $s = 1$, con proyecciones $m_s \in \left\lbrace +,0,- \right\rbrace$, formando una dinámica sobre la superficie de nivel del estado base, la cual es de especial interés estudiar. En la literatura \cite{law98} se hace referencia al espín de la estructura hiperfina $f = 1$ para los bosones, ya que debido al campo magnético presente en $V_{Trap}(x)$ que atrapa a los átomos, hay un rompimiento en la degeneración del estado cuántico. 
 
@@ -13,20 +14,17 @@ El hamiltoniano general en segunda cuantización con dicho potencial es ( $ \hba
 \label{gen_ham}
 \end{equation}
 
-%%% OJO: Este hamiltoniano NO presupone un mínimo de energía, es un hamiltoniano general, por tanto el estado de mínima energía deberá ser encontrado a posteriori del desarrollo.
-
 donde $\afc{\alpha}$ es el operador de campo de aniquilación para el estado $\alpha = \ket{s=1,m_s=\alpha}$. 
-$V_{Trap}$, como se discute en \cite{trap}, es un sistema magnético ¬¬¬¬HABLAR DEL SISTEMA MAGNETICO¬¬¬¬ .
-$\hat{U}$ es el potencial de interacción entre las partículas del sistema
+$V_{Trap}$, como se discute en \cite{trap}, es un sistema magnético ¬¬¬¬HABLAR DEL SISTEMA MAGNETICO¬¬¬¬ y $\hat{U}$ es el potencial de interacción entre las partículas del sistema.
+
+Dicho potencial de interacción se construye pensando en un sistema de dispersión cuántico donde se toma en cuenta que el CBE es un sistema de mínima energía y, por tanto, 
 
 \begin{equation}
 \hat{U}(x_1,x_2) = \delta{(x_1 - x_2)} \sum_{S=0}^2 g_S \sum_{M_S=-S}^S \ket{S,M_S}\bra{S,M_S}.
 \label{pseudopot}
 \end{equation}
 
-
-%%% hablar sobre los coeficientes g_S, el operador de proyeccción y qué significa el ket-bra.
-con $g_S = \frac{4\pi a_S}{2m}$ el peso de la proyección de los estados $\ket{S,M_S}$, que viene de hacer una analogía con un sistema de  ¬¬¬¬4WAVE-MIXING¬¬¬¬ \cite{g_smodel}, donde $a_S$ es la longitud de dispersión de de una onda tipo $s$ \cite{s-wave}, obtenida de ver el primer modo resultante de un potencial de cascarón esférico. ¬¬¬¬EXPLICAR ESTO MEJOR¬¬¬¬  
+con $g_S = \frac{4\pi a_S}{2m}$ el peso de la proyección de los estados $\ket{S,M_S}$, donde $a_S$ es la longitud de dispersión de de una onda de baja energía \cite{s-wave}. %% se necesita explicar màs ??? 
 Este tipo de interacción se conoce como pseudopotencial, ya que la interacción entre las partículas se supone únicamente cuando colisionan, lo cual está representado por $\delta(x_1-x_2)$. 
  
 %%% Intentar hacer clara la analogía de porque se usa el s-wave scattering y hacer referencia a estos papers.
@@ -34,19 +32,30 @@ Este tipo de interacción se conoce como pseudopotencial, ya que la interacción
 Es interesante observar que \ref{gen_ham} parece conservar el número de partículas (siempre se crean el mismo número de partículas de las que se destruyen) y, por la forma de \ref{pseudopot}, parece conservar también el momento angular del sistema (las partículas creadas suman el mismo spin total que las partículas aniquiladas). %chance esto vaya después...
 Con esto, se busca expresar al hamiltoniano en términos del número de partículas $\hat{N}$ y el momento angular total $\hat{L}^2$. Si se logra obtener esto y demostrar que son constantes de movimiento del sistema, entonces podremos encontrar en \ref{gen_ham} un sistema integrable, lo cual nos permitirá entender la dinámica de espín en el estado base como se había planteado en un principio. Se seguirá la estructura planteada por \cite{law98} para llegar a la forma explícita de \ref{gen_ham} en términos de las constantes de movimiento del sistema. 
 
-%%% Desarrollar o plantear el desarrollo del ket-bra via los coeficientes de clebsch-gordon. 
 Primero, se deben desarrollar los términos de \ref{pseudopot} expandiendo el spin total de la interacción entre dos bosones $\ket{S,M_S}$ en relación a las combinaciones de estados puros de cada uno de las partículas que interaccionan $\ket{s=1,m_s=\alpha} \tens \ket{s=1,m_s=\beta}$
 
-Para dichos bosones de spin $s=1$ cada uno, las combinaciones posibles de la expansión de estados están dadas por los coeficientes de Clebsch-Gordon \cite{griffiths}, donde, por ejemplo
-\begin{equation*}
-\begin{split}
-\ket{S=0,M_S=0} = \frac{1}{\sqrt{3}} &  ( \ket{1,+}\ket{1,-} + \ket{1,-}\ket{1,+} - \ket{1,0}\ket{1,0} ) \\ 
- = \frac{1}{\sqrt{3}} & \left( 2\ket{1,+}\ket{1,-} - \ket{1,0}\ket{1,0} \right).
-\end{split}
-\end{equation*}
+Para dichos bosones de espín $s=1$ cada uno, las combinaciones posibles de la expansión de estados están dadas por los coeficientes de Clebsch-Gordon \cite{griffiths}
 
-Este tipo de expansiones se sustituyen\footnote{Revisar apéndice \cite{talacha} para ver a detalle este desarrollo} en \ref{gen_ham} para obtener ¬¬¬¬TALACHA EN UN APÉNDICE??¬¬¬¬
-	%%% Obtener los hamiltonianos simetricos (H_s) y no simétrico (H_a).
+%%%% TALACHA
+\begin{align*}
+\ket{S=0,M_S=0} = \frac{1}{\sqrt{3}} &  \left( \ket{1,+}\ket{1,-} + \ket{1,-}\ket{1,+} - \ket{1,0}\ket{1,0} \right) \\ 
+ = \frac{1}{\sqrt{3}} & \left( 2\ket{1,+}\ket{1,-} - \ket{1,0}\ket{1,0} \right).
+\end{align*}
+\begin{align*}
+\ket{S=1,M_S=1} & = \frac{1}{\sqrt{2}} \left( \ket{1,+}\ket{1,0} - \ket{1,0}\ket{1,+} \right) = 0\\ 
+\ket{S=1,M_S=0} & = \frac{1}{\sqrt{2}} \left( \ket{1,+}\ket{1,-} - \ket{1,-}\ket{1,+} \right) = 0\\ 
+\ket{S=1,M_S=-1} & = \frac{1}{\sqrt{2}} \left( \ket{1,+}\ket{1,-} - \ket{1,-}\ket{1,+} \right) = 0 
+\end{align*}
+\begin{align*}
+\ket{S=2,M_S=2} & = \ket{1,+}\ket{1,+} \\
+\ket{S=2,M_S=1} & = \frac{1}{\sqrt{2}}\left( \ket{1,+}\ket{1,0} + \ket{1,0}\ket{1,+} \right) = \frac{2}{\sqrt{2}}\ket{1,+}\ket{1,0} \\ 
+\ket{S=2,M_S=0} & = \frac{1}{\sqrt{6}}\left( \ket{1,+}\ket{1,-} + \ket{1,-}\ket{1,+} + 2\ket{1,0}\ket{1,0} \right) \\
+& = \sqrt{\frac{2}{3}}\left( \ket{1,+}\ket{1,-} + \ket{1,0}\ket{1,0} \right) \\ 
+\ket{S=2,M_S=-1} & = \frac{1}{\sqrt{2}}\left( \ket{1,-}\ket{1,0} + \ket{1,0}\ket{1,-} \right) = \frac{2}{\sqrt{2}}\ket{1,-}\ket{1,0} \\ 
+\ket{S=2,M_S=-2} & = \ket{1,-}\ket{1,-}.
+\end{align*}
+
+Estas expansiones se sustituyen en \ref{gen_ham} para obtener
 
 \begin{equation}
 \hat{H}_{sim} = \sum_{\alpha} \int_{\Omega} \afc{\alpha} \left( -\frac{\nabla^2}{2m} + V_{Trap} \right) \afa{\alpha} d^3x + \frac{C_s}{2}\sum_{\alpha,\beta}\int_{\Omega} \interact{\alpha}{\beta}{\alpha}{\beta} d^3x
@@ -61,9 +70,8 @@ Este tipo de expansiones se sustituyen\footnote{Revisar apéndice \cite{talacha}
 \end{split}
 \label{h_nosim}
 \end{equation}
-%%% Hablar de la aproximación phi_k(x) ≈ phi(x)“ cuando Hs/Ha >> 1 y dar ejemplos reales donde sí pase esto. 
 
-donde $C_s := \frac{g_0 + 2g_2}{3}$ y $C_a := \frac{g_2 - g_0}{3}$ y $\hat{H} = \hat{H}_{sim} + \hat{H}_{nosim}$. Con el mismo espíritu que \cite{law98} se asumirá que el término dominante será el simétrico ante intercambio de sus componentes de espín $\hat{H}_{sim}$, lo cual se consigue cuando las longitudes de dispersión son muy similares entre sí y, por tanto, resulta que $|C_s/C_a| >> 1$. Resulta que existen algunos átomos que presentan estas características, como lo son el sodio o el rubidio \cite{sim_scatt_length}. Con esta simetría, se puede suponer que las funciones de onda del condensado $\phi_k(x)$ son aproximadamente una única función de onda $\phi(x) \approx \phi_k(x)$, para $k \in \{ +,0,- \}$. Así, dicha $\phi(x)$ puede ser descrita por la ecuación de Gross-Pitaevskii
+donde $C_s := \frac{g_0 + 2g_2}{3}$ y $C_a := \frac{g_2 - g_0}{3}$ y $\hat{H} = \hat{H}_{sim} + \hat{H}_{nosim}$. Con el mismo espíritu que \cite{law98} se asumirá que el término dominante será el simétrico ante intercambio de sus componentes de espín $\hat{H}_{sim}$, lo cual se consigue cuando las longitudes de dispersión son muy similares entre sí y, por tanto, $|C_s/C_a| >> 1$. Resulta que existen algunos átomos como el sodio o el rubidio que presentan estas características  \cite{sim_scatt_length}. Con esta simetría, se puede suponer que las funciones de onda del condensado $\phi_k(x)$ son aproximadamente una única función de onda $\phi(x) \approx \phi_k(x)$, para $k \in \{ +,0,- \}$. Así, $\phi(x)$ puede ser descrita por la ecuación de Gross-Pitaevskii
 
 \begin{equation}
 \left(-\frac{\nabla^2}{2m} + V + C_s\hat{N}|\phi|^2 \right)\phi = \mu \phi
@@ -73,17 +81,40 @@ donde $C_s := \frac{g_0 + 2g_2}{3}$ y $C_a := \frac{g_2 - g_0}{3}$ y $\hat{H} = 
 con $\hat{N}= \sum_\alpha \crea{\alpha} \anni{\alpha}$ el número de partículas y $\mu$ el potencial químico del condensado, donde $\anni{\alpha}$ es el operador de aniquilación del estado $\alpha$. $\mu$ también se podría entender como la energía promedio del sistema al ser el eigenvalor de las ecuaciones de \ref{gross-pita} para la función de onda en cuestión. 
 
 
-%%% Usar las ecuaciones de Gross-Pitaevskii para obtener la parte simétrica del hamiltoniano en términos de N.
+Con esta aproximación, $\afa{\alpha} = \anni{\alpha} \phi_\alpha(x) \approx \anni{\alpha} \phi(x)$, usando las relaciones de conmutación $\left[\anni{\alpha},\anni{\beta}\right] = 0$ y $\left[\anni{\alpha},\crea{\beta}\right] = \delta_{\alpha\beta}$, y, sustituyendo en \ref{h_sim}, se ve que
 
-Con esta aproximación, $\afa{\alpha} = \anni{\alpha} \phi_\alpha(x) \approx \anni{\alpha} \phi(x)$, usando las relaciones de conmutación $\left[\anni{\alpha},\anni{\beta}\right] = 0$ y $\left[\anni{\alpha},\crea{\beta}\right] = \delta_{\alpha\beta}$, y sustituyendo todo en \ref{h_sim} y \ref{h_nosim}, tenemos que
-
-TALACHA
+%%% TALACHA
+\begin{align*}
+ \sum_\alpha \int_\Omega \afc{\alpha} \left( -\frac{\nabla^2}{2m} + V_{Trap} \right) \afa{\alpha}d^3x &= \sum_\alpha \int_\Omega \crea{\alpha} \phi^* \left( -\frac{\nabla^2}{2m} + V_{Trap} \right) \anni{\alpha} \phi d^3x \underset{\text{por \ref{gross-pita}}}{=} \\
+\sum_\alpha \int_\Omega \crea{\alpha} \phi^* \Big( \mu - C_s \underbrace{\sum_\beta \crea{\beta}\anni{\beta}}_{\hat{N}} |\phi|^2 \Big) \phi \anni{\alpha} &= \sum_\alpha \int_\Omega \left( \mu\crea{\alpha}\anni{\alpha} \cancelto{\int|\phi|^2 = 1}{|\phi|^2} - C_s|\phi|^4  \sum_\beta \crea{\alpha} \crea{\beta}\anni{\beta}\anni{\alpha} \right) d^3x 
+\end{align*}
+donde
+\begin{align*}
+\sum_{\alpha,\beta} \interactt{\alpha}{\beta}{\beta}{\alpha} & = \sum_{\alpha,\beta} \interactt{\alpha}{\beta}{\alpha}{\beta} = \sum_{\alpha,\beta} \crea{\alpha} \left( \anni{\alpha}\crea{\beta} - \delta_{\alpha,\beta} \right) \anni{\beta} \\
+& = \sum_{\alpha} \crea{\alpha}\anni{\alpha} \sum_\beta \crea{\beta}\anni{\beta} - \sum_\alpha \crea{\alpha}\anni{\alpha} \\ 
+& = \hat{N}\left( \hat{N} - 1 \right)
+\end{align*}
+y así, la parte sin interacción queda como
+\begin{align*}
+\sum_\alpha \int_\Omega \afc{\alpha} \left( -\frac{\nabla^2}{2m} + V_{Trap} \right) \afa{\alpha}d^3x = \mu \hat{N} - 2C_s'\hat{N}\left( \hat{N} - 1 \right).
+\end{align*}
+Por otro lado, tenemos que 
+\begin{align*}
+\frac{C_s}{2} \sum_{\alpha,\beta} \int_\Omega \interact{\alpha}{\beta}{\alpha}{\beta} d^3x = \sum_{\alpha,\beta} \int_\Omega \interactt{\alpha}{\beta}{\alpha}{\beta} |\phi|^4 d^3x =  {C_s'} \hat{N}\left( \hat{N} - 1 \right)
+\end{align*}
+que, sustituyendo en \ref{h_sim}, obtenemos
+\begin{equation}
+\hat{H_{sim}} = \mu \hat{N} - C_s' \hat{N} \left( \hat{N} - 1 \right)
+\end{equation}
 
 con $C_s' = \frac{C_s}{2}\int_{\Omega}|\phi|^4d^3x$. Notemos que para \ref{h_sim} siempre fue invariante el intercambio de sus componentes de espín y por tanto, nunca depende explícitamente del momento angular, sólo del número de partículas totales $\hat{N}$. Para la parte no simétrica \ref{h_nosim}, cada términos cumple que $\interact{\alpha}{\beta}{\mu}{\nu}$ tal que $\alpha + \beta = \mu + \nu$ lo cual nos da un buen indicio que la componente conservada de momento angular se manifestará. ¬¬¬VER REFERENCIAS [9,10] DE LAW98¬¬¬¬
 
 Se observa que los operadores definidos como $\hat{L}_+ := \sqrt{2}( \crea{0}\anni{+} + \crea{-}\anni{0})$ , $\hat{L}_- := \sqrt{2}( \crea{+}\anni{0} + \crea{0}\anni{-})$ y $\hat{L}_z := ( \crea{-}\anni{-} + \crea{+}\anni{+})$ siguen las relaciones de conmutación de momento angular $\left[ \hat{L}_+, \hat{L}_- \right] = 2\hat{L}_z$, $\left[ \hat{L}_z, \hat{L}_\pm \right] = \pm \hat{L}_\pm$.
 Con esto, podemos construir el momento angular total como 
 
+%%% Estructuras similares en nonlinear wave-mixing processes in cavity QED [ref]. Así, se puede hacer una estructura de momentos angulares definidas como L_, L+, Lz usadas en [refs] y trabajar con Ha para obtenerla en términos de L^2.
+
+%%%% TALACHA
 \begin{equation*}
 \begin{split}
 \hat{L}^2 & = \hat{L}_+\hat{L}_- + \hat{L}_z^2 - \hat{L}_z = 2(  \crea{0}\anni{+}\crea{+}\anni{0} + \crea{0}\anni{+}\crea{0}\anni{-} + \crea{-}\anni{0}\crea{+}\anni{0} + \crea{-}\anni{0}\crea{0}\anni{-}) \\
@@ -112,14 +143,15 @@ que, si comparamos con $\hat{H}_{nosim}$, obtenemos finalmente que
 
 con $C_a' = \frac{C_a}{2}\int_{\Omega}|\phi|^4d^3x$.
 
-%%% LOS EIGENVALORES DEL MOMENTO ANGULAR SON: .... POR TANTO, LOS EIGENESTADOS DE H_a ESTAN DADOS POR: .... Y , DE ESTE MODO SE PUEDE ENCONTRAR LA CAPA DE ENERGÍA MAS BAJA PARA OBTENER EL CONDENSADO.
+%%% LOS EIGENVALORES DEL MOMENTO ANGULAR SON: (...) Y, POR TANTO, LOS EIGENESTADOS DE H_a ESTAN DADOS POR: (...), DE ESTE MODO, SE PUEDE ENCONTRAR LA CAPA DE ENERGÍA MAS BAJA PARA OBTENER EL CONDENSADO.
 
-
-%%% Estructuras similares en nonlinear wave-mixing processes in cavity QED [ref]. Así, se puede hacer una estructura de momentos angulares definidas como L_, L+, Lz usadas en [refs] y trabajar con Ha para obtenerla en términos de L^2.
-
-%%% Discusión general de las ecuaciones encontradas si es necesario
+%%% Discusión general de las ecuaciones encontradas si es necesario...
 
 %%%%%%%%%%%%%%%%%%%%%%%% MEAN-FIELD APPROXIMATION %%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% PERTURBATION-TIME ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
