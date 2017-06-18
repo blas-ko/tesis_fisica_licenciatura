@@ -104,7 +104,8 @@ Por otro lado, tenemos que
 \end{align*}
 que, sustituyendo en \ref{h_sim}, obtenemos
 \begin{equation}
-\hat{H_{sim}} = \mu \hat{N} - C_s' \hat{N} \left( \hat{N} - 1 \right)
+\hat{H}_{sim} = \mu \hat{N} - C_s' \hat{N} \left( \hat{N} - 1 \right)
+\label{h_sim_integ}
 \end{equation}
 
 con $C_s' = \frac{C_s}{2}\int_{\Omega}|\phi|^4d^3x$. Notemos que para \ref{h_sim} siempre fue invariante el intercambio de sus componentes de espín y por tanto, nunca depende explícitamente del momento angular, sólo del número de partículas totales $\hat{N}$. Para la parte no simétrica \ref{h_nosim}, cada términos cumple que $\interact{\alpha}{\beta}{\mu}{\nu}$ tal que $\alpha + \beta = \mu + \nu$ lo cual nos da un buen indicio que la componente conservada de momento angular se manifestará. ¬¬¬VER REFERENCIAS [9,10] DE LAW98¬¬¬¬
@@ -143,12 +144,86 @@ que, si comparamos con $\hat{H}_{nosim}$, obtenemos finalmente que
 
 con $C_a' = \frac{C_a}{2}\int_{\Omega}|\phi|^4d^3x$.
 
+Al ser $\hat{H}_{sim}$ y $\hat{H}_{nosim}$ integrables y $\hat{H} = \hat{H}_{sim} + \hat{H}_{nosim}$, entonces el hamiltoniano es completamente integrable y conserva el momento angular total así como el número de partículas. 
+
 %%% LOS EIGENVALORES DEL MOMENTO ANGULAR SON: (...) Y, POR TANTO, LOS EIGENESTADOS DE H_a ESTAN DADOS POR: (...), DE ESTE MODO, SE PUEDE ENCONTRAR LA CAPA DE ENERGÍA MAS BAJA PARA OBTENER EL CONDENSADO.
 
 %%% Discusión general de las ecuaciones encontradas si es necesario...
 
 %%%%%%%%%%%%%%%%%%%%%%%% MEAN-FIELD APPROXIMATION %%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Aproximación semiclásica}
+Una buena aproximación para entender la dinámica de este sistema es tomando el límite semiclásico de \ref{gen_ham}. La forma más intuituva de hacer esto es remplazar los operadores cuánticos por algún número complejo arbitrario 
+\begin{equation}
+\begin{split}
+& \crea{\alpha} \to c_\alpha^*, \ \anni{\alpha} \to c_\alpha \\ 
+\text{con } & c_\alpha = \sqrt{I_\alpha}e^{-i\phi_\alpha} \text{ y } c \in \mathbb{C}
+\end{split}
+\label{heisen_rels}
+\end{equation}
+donde $I_\alpha$ tiene unidades de acción y $\phi_\alpha$ es una fase asociada al estado $\alpha$. Generalmente \cite{benet,graefe2007} se hace una simetrización de los operadores cuánticos ya que $c_\alpha$ son números y, por tanto, conmutan. Simetrizar los operadores aseguran correcciones a la energía en términos de los parámetros involucrados que no podrían obtenerse si se hace el límite clásico de antemano.
 
+Partiremos de las ecuaciones \ref{h_nosim} y \ref{h_sim_integ}, las cuales hay que simetrizar vía las relaciones de conmutación usadas anteriormente junto con $\crea{\alpha}\anni{\beta} = \frac{1}{2} \left( \crea{\alpha}\anni{\beta} + \anni{\beta}\crea{\alpha} - \delta_{\alpha,\beta} \right)$.  
+
+Notemos, en general, que
+%%% TALACHA 
+\begin{equation}
+\begin{split}
+\interactt{\alpha}{\beta}{\mu}{\nu} =& \crea{\alpha}\left( \anni{\mu}\crea{\beta} - \delta_{\alpha,\beta} \right) \anni{\nu} = \crea{\alpha}\anni{\mu}\crea{\beta}\anni{\nu} - \delta_{\beta,\mu} \crea{\alpha}\anni{\nu} \\
+=& \frac{1}{4} \left( \crea{\alpha}\anni{\mu} - \anni{\mu}\crea{\alpha} -\delta_{\alpha,\mu} \right) \left( \crea{\beta}\anni{\nu} - \anni{\nu}\crea{\beta} - \delta{\nu,\beta} \right) - \frac{1}{2} \left( \crea{\alpha}\anni{\nu} + \anni{\nu}\crea{\alpha} - \delta_{\nu,\alpha} \right) \\
+=& \frac{1}{4} \Big( \crea{\alpha}\anni{\mu}\crea{\beta}\anni{\nu} + \anni{\mu}\crea{\alpha}\anni{\nu}\crea{\beta} + \crea{\alpha}\anni{\mu}\anni{\nu}\crea{\beta} + \anni{\mu}\crea{\alpha}\crea{\beta}\anni{\nu} - \delta_{\nu,\beta} \left( \crea{\alpha}\anni{\mu} + \anni{\mu}\crea{\alpha} \right) \\ 
+&- \delta_{\alpha,\mu} \left( \anni{\nu}\crea{\beta} + \crea{\beta}\anni{\nu} \right) + \delta_{\alpha,\beta,\mu,\nu} \Big) - \frac{1}{2} \delta_{\mu,\beta} \left( \crea{\alpha}\anni{\nu} + \anni{\nu}\crea{\alpha} - \delta_{\nu,\alpha} \right)  
+\end{split}
+\end{equation}
+que, con la transformación clásica de \ref{heisen_rels}, nos queda
+\begin{equation}
+\begin{split}
+\interactt{\alpha}{\beta}{\mu}{\nu} \to & \frac{1}{4} \Big[ 4 \sqrt{I_\alpha I_\beta I_\mu I_\nu}\exp{i ( \phi_\alpha + \phi_\beta - \phi_\mu - \phi_\nu ) } - \delta_{\nu,\beta} 2 \sqrt{I_\alpha I_\beta}\exp{ i (\phi_\alpha - \phi_\mu)} \\
+&- \delta_{\alpha,\mu} 2 \sqrt{I_\beta I_\nu} \exp{i(\phi_\beta - \phi_\nu)} + 3 \delta_{\alpha,\beta,\mu,\nu} - 4 \delta_{\mu,\beta} \sqrt{I_\alpha I_\nu} \exp{i(\phi_\alpha - \phi_\nu)} \Big].
+\end{split}
+\end{equation}
+
+Usando esta relación para \ref{h_nosim} y \ref{h_sim_integ}, obtenemos las expresiones semiclásicas para el hamiltoniano 
+
+\begin{align}
+\hat{H}_{sim} \to & \mu\left( I_+ + I_0 + I_- \right) - \lambda_s' \left(I_+^2 + I_0^2 + I_-^2 \right) - \frac{3}{2} \left(\lambda_s' + \mu \right) \\
+\nonumber \\
+\hat{H}_{nosim} \to & \lambda_a' \Big( I_+^2 + I_-^2 - 2I_+I_- + 2I_+I_0 + 2I_-I_0 - 2I_+ - 2 I_- -2I_0 \\
+&+ 2I_0\sqrt{I_+I_-}\cos{(2\phi_0 - \phi_+ - \phi_-)} + \frac{3}{2} \Big). \nonumber
+\end{align}
+
+A pesar de que $H = H(I_+,I_0,I_-,\phi_+,\phi_0,\phi_-)$, se observa cómo la ecuación tiene la única dependencia angular $2\phi_0 - \phi_+ - \phi_-$, sugiriendo esto que existen constantes de movimiento en el sistema. Podemos reordenar las ecuaciones obtenidas en términos de sus dependencias de modo que $H = H_0(I) + V(I,\phi) + E_0$
+
+\begin{align}
+H_0 =& - \lambda_s'\left( I_+^2 + I_0^2 + I_-^2 \right) + \lambda_a' \left( I_+^2 + I_-^2 - 2I_+I_- + 2I_+I_0 + 2I_-I_0 \right) \\
+&+  (\mu - 2\lambda_a')\left(I_+ + I_0 + I_-\right) \\
+V =& \ 2 \lambda_a' I_0 \sqrt{I_+I_-} \cos{(2\phi_0 - \phi_+ - \phi_-)} \\
+E_0 =& \frac{3}{2}\left( \lambda_a' - \lambda_s' - \mu \right)
+\end{align}
+
+Con esto, podemos proponer la función generadora $W=K\phi_+ + J\phi_- + L(2\phi_0 - \phi_- - \phi_+)$ que lleva la información de las variables canónicas conjugadas de  $I_+,I_0,I_-,\phi_+,\phi_0,\phi_-$
+
+\begin{equation}
+\begin{aligned}[c]
+I_+ &= \pder{W}{\phi_+} = K-L \\
+I_0 &= \pder{W}{\phi_0} = 2L \\
+I_- &= \pder{W}{\phi_-} = J-L 
+\end{aligned}
+\ \ 
+\begin{aligned}[c]
+\xi &= \pder{W}{K} = \phi_+ \\ 
+\psi &= \pder{W}{J} = \phi_- \\
+\chi  &= \pder{W}{L} = 2\phi_0 - \phi_+ - \phi_- 
+\end{aligned}
+\label{canon_transform}
+\end{equation}
+
+y reescribir $H_0, V$ y $E_0$ en términos de las transformaciones de \ref{canon_transform}
+
+\begin{align}
+H_0 =& \\
+V =& \\ 
+E_0 =& 
+\end{align}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%% PERTURBATION-TIME ! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
