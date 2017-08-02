@@ -1,4 +1,4 @@
-\documentclass[letterpaper,12pt]{book}
+ \documentclass[letterpaper,12pt]{book}
 \usepackage[spanish]{babel}
 \decimalpoint 
 \usepackage[utf8]{inputenc}
@@ -237,6 +237,13 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \newcommand{\bra}[1]{\left\langle #1\right|}
 \newcommand{\ket}[1]{\left|#1\right\rangle}
 \newcommand{\tens}{\mathbin{\mathop{\otimes}}}
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\flowci}{\phi(t;t_0,\mathbf{x}_0)}
+\newcommand{\flowU}{\phi(t;t_0,\mathcal{U}_{\mathbf{x}_0)}}
+\newcommand{\xo}{\mathbf{x}_0}
+\newcommand{\dotx}{\dot{\mathbf{x}}}
+\newcommand{\U}{\mathcal{U}}
+%\newcommand{\pder}[3]{\frac{\partial^#3 #1}{\partial #2^#3}}
 
 \newcommand{\ketB}[1]{\big|#1\big\rangle}
 \newcommand{\braket}[2]{\left\langle #1\middle|#2\right\rangle} 
