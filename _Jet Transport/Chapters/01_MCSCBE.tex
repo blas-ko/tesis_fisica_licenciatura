@@ -110,7 +110,7 @@ que, sustituyendo en \ref{h_sim}, obtenemos
 
 con $C_s' = \frac{C_s}{2}\int_{\Omega}|\phi|^4d^3x$. Notemos que para \ref{h_sim} siempre fue invariante el intercambio de sus componentes de espín y por tanto, nunca depende explícitamente del momento angular, sólo del número de partículas totales $\hat{N}$. Para la parte no simétrica \ref{h_nosim}, cada términos cumple que $\interact{\alpha}{\beta}{\mu}{\nu}$ tal que $\alpha + \beta = \mu + \nu$ lo cual nos da un buen indicio que la componente conservada de momento angular se manifestará. ¬¬¬VER REFERENCIAS [9,10] DE LAW98¬¬¬¬
 
-Se observa que los operadores definidos como $\hat{L}_+ := \sqrt{2}( \crea{0}\anni{+} + \crea{-}\anni{0})$ , $\hat{L}_- := \sqrt{2}( \crea{+}\anni{0} + \crea{0}\anni{-})$ y $\hat{L}_z := ( \crea{-}\anni{-} + \crea{+}\anni{+})$ siguen las relaciones de conmutación de momento angular $\left[ \hat{L}_+, \hat{L}_- \right] = 2\hat{L}_z$, $\left[ \hat{L}_z, \hat{L}_\pm \right] = \pm \hat{L}_\pm$.
+Se observa que los operadores definidos como $\hat{L}_+ := \sqrt{2}( \crea{0}\anni{+} + \crea{-}\anni{0})$ , $\hat{L}_- := \sqrt{2}( \crea{+}\anni{0} + \crea{0}\anni{-})$ y $\hat{L}_z := ( \crea{-}\anni{-} - \crea{+}\anni{+})$ siguen las relaciones de conmutación de momento angular $\left[ \hat{L}_+, \hat{L}_- \right] = 2\hat{L}_z$, $\left[ \hat{L}_z, \hat{L}_\pm \right] = \pm \hat{L}_\pm$.
 Con esto, podemos construir el momento angular total como 
 
 %%% Estructuras similares en nonlinear wave-mixing processes in cavity QED [ref]. Así, se puede hacer una estructura de momentos angulares definidas como L_, L+, Lz usadas en [refs] y trabajar con Ha para obtenerla en términos de L^2.
@@ -191,16 +191,16 @@ Usando esta relación para \ref{h_nosim} y \ref{h_sim_integ}, obtenemos las expr
 &+ 2I_0\sqrt{I_+I_-}\cos{(2\phi_0 - \phi_+ - \phi_-)} + \frac{3}{2} \Big). \nonumber
 \end{align}
 
-A pesar de que $H = H(I_+,I_0,I_-,\phi_+,\phi_0,\phi_-)$, se observa cómo la ecuación tiene la única dependencia angular $2\phi_0 - \phi_+ - \phi_-$, sugiriendo esto que existen constantes de movimiento en el sistema. Podemos reordenar las ecuaciones obtenidas en términos de sus dependencias de modo que $H = H_0(I) + V(I,\phi) + E_0$
+A pesar de que $H = H(I_+,I_0,I_-,\phi_+,\phi_0,\phi_-)$, se observa cómo la ecuación tiene la única dependencia angular $2\phi_0 - \phi_+ - \phi_-$, haciéndonos pensar que existen diversas constantes de movimiento en el sistema. Podemos ordenar las ecuaciones obtenidas en términos de sus dependencias de modo que $H = H_0(I) + V(I,\phi) + E_0$
 
 \begin{align}
-H_0 =& - \lambda_s'\left( I_+^2 + I_0^2 + I_-^2 \right) + \lambda_a' \left( I_+^2 + I_-^2 - 2I_+I_- + 2I_+I_0 + 2I_-I_0 \right) \\
+H_0 =& - \lambda_s'\left( I_+^2 + I_0^2 + I_-^2 \right) + \lambda_a' \left( I_+^2 + I_-^2 - 2I_+I_- + 2I_+I_0 + 2I_-I_0 \right) \nonumber \\
 &+  (\mu - 2\lambda_a')\left(I_+ + I_0 + I_-\right) \\
 V =& \ 2 \lambda_a' I_0 \sqrt{I_+I_-} \cos{(2\phi_0 - \phi_+ - \phi_-)} \\
-E_0 =& \frac{3}{2}\left( \lambda_a' - \lambda_s' - \mu \right)
+E_0 =& \frac{3}{2}\left( \lambda_a' - \lambda_s' - \mu \right).
 \end{align}
 
-Con esto, podemos proponer la función generadora $W=K\phi_+ + J\phi_- + L(2\phi_0 - \phi_- - \phi_+)$ que lleva la información de las variables canónicas conjugadas de  $I_+,I_0,I_-,\phi_+,\phi_0,\phi_-$
+Dada la dependencia explícita de $V(\phi)$, proponemos la función generadora $W=K\phi_+ + J\phi_- + L(2\phi_0 - \phi_- - \phi_+)$ que lleva la información de las variables canónicas conjugadas de  $I_+,I_0,I_-,\phi_+,\phi_0,\phi_-$
 
 \begin{equation}
 \begin{aligned}[c]
@@ -217,12 +217,37 @@ I_- &= \pder{W}{\phi_-} = J-L
 \label{canon_transform}
 \end{equation}
 
-y reescribir $H_0, V$ y $E_0$ en términos de las transformaciones de \ref{canon_transform}
+Así, podemos reescribir $H_0, V$ y $E_0$ en términos de las transformaciones \ref{canon_transform}
 
 \begin{align}
 H_0 =& \\
 V =& \\ 
 E_0 =& 
+\end{align}
+
+Con estas, se puede entonces plantear el hamiltoniano en las nuevas coordenadas
+\begin{equation}
+H = 
+\end{equation}
+
+y las ecuaciones de movimiento vía las relaciones clásicas
+\begin{equation*}
+\begin{aligned}[c]
+\dot{\vec{q}} = \pder{H}{\vec{p}}
+\end{aligned}
+\ 
+\begin{aligned}[c]
+\dot{\vec{p}} = -\pder{H}{\vec{q}}
+\end{aligned}
+\end{equation*}
+
+\begin{align}
+\dot{K} =& \\
+\dot{J} =& \\
+\dot{L} =& \\
+\dot{\xi} =& \\
+\dot{\psi} =& \\
+\dot{\chi} =& 
 \end{align}
 
 
