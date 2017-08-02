@@ -1,0 +1,88 @@
+Pensemos un sistema que, como en la mayoría de los sistemas en la naturaleza, cambie con el tiempo. Sea $\dot{\mathbf{x}(t)} = f(\mathbf{x}(t),t)$ la ecuación lo representa y $\flowci$ el flujo asociado a la ecuación diferencial planteada donde, al tiempo $t$, sabemos dónde se encuentra la partícula que en el instante $t_0$ estaba en $x_0$. 
+
+Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obtener de manera analítica y, por tanto, estudiar las familias de soluciones para diferentes condiciones iniciales no siempre es una labor evidente. Se han enfrentado varias formas para darle la vuelta a este problema, y una de las soluciones más prácticas ha sido discretizar la evolución temporal de los campos vectoriales definidos por $f(\mathbf{x}(t),t)$ y encontrar alguna forma iterativa de encontrar un ``estado actual" dado un ``estado anterior". Aprovechando que hoy en día existe poder de cómputo para hacer muchas operaciones simples en relativamente poco tiempo, dichos métodos iterativos para obtener $\flowci$ dada una condición inicial $\mathbf{x}_0$ al tiempo $t_0$ han sido de gran utilidad en los últimos años; estos se conocen como métodos numéricos de integración de ecuaciones diferenciales. 
+
+Sin embargo, no siempre es suficiente obtener la solución de una única condición inicial dada, y muchas veces interesa todo una familia de soluciones alrededor de un punto de interés. Esto puede pasar, por ejemplo, en aceleradores de partículas que disparan paquetes de onda como si fuesen ``gotas" sujetas a algún campo externo. También en mecánica de fluidos es interesante estudiar parcelas de fluidos y, con la representación lagranjiana de las ecuaciones de Navier-Stokes, ver cómo evolucionan estas parcelas en el tiempo. 
+Más general aún, en el mundo de las ecuaciones diferenciales ordinarias (EDO) se han estudiado exhaustivamente los campos vectoriales que generan las ecuaciones. Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa a las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Con esta motivación se han estudiado los comportamientos de familias de soluciones cercanas para entender qué tan sensibles son a las condiciones iniciales del sistema. Indicadores dinámicos como las secciones de Poincaré, la derivada de Lie o la linealización de Grobman-Harbman (¿?) son resultado de dicha motivación, pero existe todavía un mundo gigante de exploración hacia este lado.
+
+Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\mathcal{V}$ alrededor de $\mathbf{x}_0$ y se encuentra e flujo para toda esta parcela. Ésta el principal motivación detrás del Transporte de Jet (TJ). La idea operativa del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$.
+
+Merece la pena ilustrar dicha discretización con un método muy directo, aunque no tan preciso.
+
+Sabemos, por definición, que 
+\begin{equation*}
+\dot{\mathbf{x}} = \lim_{h\to 0} \frac{\mathbf{x}(t+h)-\mathbf{x}(t)}{h}.
+\end{equation*}  
+
+Si tomamos $h$ \textit{suficientemente pequeña}, aunque finita, podemos aproximar
+\begin{equation*}
+\mathbf{x}(t+h) \approx \mathbf{x}(t) + h \dot{\mathbf{x}}(t)
+\end{equation*}
+
+que, si tomamos en cuenta que $\dot{\mathbf{x}(t)} = f(\mathbf{x}(t),t)$ y que $h$ es un paso de integración, se obtiene
+ 
+\begin{equation}
+\mathbf{x}_{n+1} = \mathbf{x}_n + h f(\mathbf{x}_n)
+\label{euler} 
+\end{equation}
+
+que se conoce como el \textbf{Método de Euler}. Así, dada $\xo$ se puede obtener $\flowci$ iterando \ref{euler} hasta llegar a $t$ en pasos de $h$.
+
+Ahora, para la evolución del TJ se parametriza a la vecindad $\U$ con algún polinomio $P_{t_0,\xo}(\xi)$ alrededor de $\xo \in \mathbb{R}^n$ 
+\begin{equation*}
+\U_{x_0} = P_{t_0,\xo}(\xi) = \xo + \xi = \xo + \left( \xi_1, \xi_2, ..., \xi_n \right)^T
+\end{equation*} 
+
+y se evalúa en el método de Euler (o cualquier otro) para obtener el flujo de $\U$ en algún tiempo $t$ posterior $\flowU$
+\begin{equation*}
+P_{1,\xo}(\xi) := P_{t_0+h,\xo}(\xi) = P_{t_0,\xo}(\xi) + h f(P_{t_0,\xo}) = \xo + \xi + h f(\xo + \xi).
+\end{equation*}
+
+Así, se puede extender el método de Euler al TJ 
+\begin{equation}
+P_{N,\xo}(\xi) = P_{t,\xo}(\xi) = P_{N-1,\xo}(\xi) + h f(P_{N-1,\xo}(\xi))
+\label{eulerU}
+\end{equation}
+
+donde $P_{N,\xo}(\xi)$ representa al flujo $\flowU$ para la vecindad $U_{\xo}$.
+
+Es evidente que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar las funciones que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ.  
+
+Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que motive el uso del Transporte de Jet.
+
+Sea
+\begin{align}
+\dotx = f(t,\mathbf{x}) = \left[ \begin{array}{cc}
+ 0 & 1  \\
+-1 & 0  \\
+\end{array} \right] \left( x_1, x_2 \right)^T
+\label{center}
+\end{align}
+un campo vectorial que describe centros alrededor de $x_0 = (0,0)$. 
+
+Si se toma $\U_{\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inicial, podemos desarrollar ``a mano´´ el transporte de Jet, donde, por Euler
+
+\begin{align*}
+\mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi)) \\
+&= (x_{1_0} + h x_{2_0}, x_{2_0} - h x_{1_0}) + \left[ \begin{array}{cc}
+ 1 & h  \\
+-h & 1  \\
+\end{array} \right] (\xi_1,\xi_2)^T.
+\end{align*} 
+
+El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin la vecindad $\U_{\xo}$. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}$. de este modo, el TJ pinta a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$,. al cargar toda una aritmética de polinomios, suele ser más lenta que la de una sola trayectoría que pasa por $\xo$ en $t_0$.
+ 
+
+Notemos que $f_{x_1}(\mathbf{x}) = -f_{x_2}(\mathbf{x})$ haciendo a \ref{center} una ecuación hamiltoniana cuyas curvas de nivel en el espacio fase están dadas por
+\begin{equation*}
+H(\mathbf{x}) = \frac{1}{2} \left( x_1^2 + x_2^2 \right)
+\end{equation*} 
+% comparación de plots...
+
+%ejemplo
+
+Aún cuando Euler es ilustrativo para entender ... , se busca un método con la mayor precisión posible. De hecho, es importante tener un paso de iteración que se adapte a una tolerancia mínima ... Se decide usar el método de Taylor para la implementación del TJ. En la sección \ref{sec:intTaylor} del apéndice \ref{chap:AlgPoli} se desarrolla el método de Taylor a detalle, donde se discute la precisión, la complejidad computacional y la adaptación del TJ a éste.
+
+
+
+ 
