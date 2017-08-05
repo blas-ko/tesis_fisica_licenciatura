@@ -46,8 +46,6 @@ P_{N,\xo}(\xi) = P_{t,\xo}(\xi) = P_{N-1,\xo}(\xi) + h f(P_{N-1,\xo}(\xi))
 
 donde $P_{N,\xo}(\xi)$ representa al flujo $\flowU$ para la vecindad $U_{\xo}$.
 
-Es evidente que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar las funciones que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ.  
-
 Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que motive el uso del Transporte de Jet.
 
 Sea
@@ -70,13 +68,43 @@ Si se toma $\U_{\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inici
 \end{array} \right] (\xi_1,\xi_2)^T.
 \end{align*} 
 
-El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin la vecindad $\U_{\xo}$. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}$. de este modo, el TJ pinta a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$,. al cargar toda una aritmética de polinomios, suele ser más lenta que la de una sola trayectoría que pasa por $\xo$ en $t_0$.
- 
+El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin la expansión de la vecindad $\U_{\xo}$. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}$. De este modo, el TJ pinta a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$, al operar siempre con polinomios y no con números, suele ser más lenta que la de una única trayectoria que pasa por $\xo$ en $t_0$.
 
-Notemos que $f_{x_1}(\mathbf{x}) = -f_{x_2}(\mathbf{x})$ haciendo a \ref{center} una ecuación hamiltoniana cuyas curvas de nivel en el espacio fase están dadas por
+Se podría seguir haciendo el desarrollo del TJ iterativamente con el método de Euler. Por ejemplo, el segundo paso quedaría como 
+\begin{align*}
+\mathbf{x}_2 =& P_{2,\xo}(\xi) = P_{1,\xo}(\xi) + h f(P_{1,\xo}(\xi)) \\
+=& (x_{1_0} + h x_{2_0}, x_{2_0} - h x_{1_0}) + \left[ \begin{array}{cc}
+ 1 & h  \\
+-h & 1  \\
+\end{array} \right] (\xi_1,\xi_2)^T \\ 
+&+ h \left( \left[ \begin{array}{cc}
+ 0 & 1  \\
+-1 & 0  \\
+\end{array} \right] \left( x_{1_0} + h x_{2_0}, x_{2_0} - h x_{1_0}) + \left[ \begin{array}{cc}
+ 1 & h  \\
+-h & 1  \\
+\end{array} \right] (\xi_1,\xi_2)^T \right) \right) \\
+=& \left[ \begin{array}{c}
+x_{1_0} + 2h x_{2_0} - h^2x_{1_0}  \\
+x_{2_0} - 2h x_{1_0} - h^2x_{2_0}  \\
+\end{array} \right] + \left[ \begin{array}{cc}
+ 1-h^2 & 2h  \\
+2h & 1-h^2  \\
+\end{array} \right] (\xi_1,\xi_2)^T
+\end{align*}
+ 
+y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores \textit{suficientemente pequeños} para encontrar las soluciones cerca de la vecindad de $\xo$. En la figura ? se pueden ver las evaluaciones de $P_{N,\xo}(\xi)$ para distintos valores de $N$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
+%FIGURA!
+
+Notemos que \ref{center} es una ecuación hamiltoniana cuyas soluciones en el espacio fase están dadas por las curvas de nivel de
 \begin{equation*}
-H(\mathbf{x}) = \frac{1}{2} \left( x_1^2 + x_2^2 \right)
+H(\mathbf{x}) = \frac{1}{2} \left( x_1^2 + x_2^2 \right),
 \end{equation*} 
+en la figura ?, se grafica la diferencia entre las solución reales para distintos radios alrededor de $\xo$ y los calculados por el TJ\footnote{Las soluciones para \ref{center} se obtuvieron con el método de Taylor a primer orden que, en este caso, es equivalente al método de Euler.}
+%FIGURA! 
+
+Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Obviamente, hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. 
+
 % comparación de plots...
 
 %ejemplo
