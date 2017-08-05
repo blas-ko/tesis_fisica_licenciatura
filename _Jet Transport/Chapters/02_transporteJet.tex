@@ -5,9 +5,11 @@ Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obten
 Sin embargo, no siempre es suficiente obtener la solución de una única condición inicial dada, y muchas veces interesa todo una familia de soluciones alrededor de un punto de interés. Esto puede pasar, por ejemplo, en aceleradores de partículas que disparan paquetes de onda como si fuesen ``gotas" sujetas a algún campo externo. También en mecánica de fluidos es interesante estudiar parcelas de fluidos y, con la representación lagranjiana de las ecuaciones de Navier-Stokes, ver cómo evolucionan estas parcelas en el tiempo. 
 Más general aún, en el mundo de las ecuaciones diferenciales ordinarias (EDO) se han estudiado exhaustivamente los campos vectoriales que generan las ecuaciones. Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa a las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Con esta motivación se han estudiado los comportamientos de familias de soluciones cercanas para entender qué tan sensibles son a las condiciones iniciales del sistema. Indicadores dinámicos como las secciones de Poincaré, la derivada de Lie o la linealización de Grobman-Harbman (¿?) son resultado de dicha motivación, pero existe todavía un mundo gigante de exploración hacia este lado.
 
-Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\mathcal{V}$ alrededor de $\mathbf{x}_0$ y se encuentra e flujo para toda esta parcela. Ésta el principal motivación detrás del Transporte de Jet (TJ). La idea operativa del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$.
+Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\mathcal{V}$ alrededor de $\mathbf{x}_0$ y se encuentra e flujo para toda esta parcela. Ésta el principal motivación detrás del Transporte de Jet (TJ). La idea operativa del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura ? se observa un esquema cualitativo de la idea del transporte de jet.
 
-Merece la pena ilustrar dicha discretización con un método muy directo, aunque no tan preciso.
+%FIGURA!
+
+Merece la pena ilustrar dicha discretización con un método muy directo, aunque, al  no ser tan preciso, se usará otro para el desarrollo de esta tesis.
 
 Sabemos, por definición, que 
 \begin{equation*}
@@ -103,14 +105,10 @@ H(\mathbf{x}) = \frac{1}{2} \left( x_1^2 + x_2^2 \right),
 en la figura ?, se grafica la diferencia entre las solución reales para distintos radios alrededor de $\xo$ y los calculados por el TJ\footnote{Las soluciones para \ref{center} se obtuvieron con el método de Taylor a primer orden que, en este caso, es equivalente al método de Euler.}
 %FIGURA! 
 
-Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Obviamente, hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. 
+Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Obviamente, hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. Se decide usar el método de integración de Taylor ya que éste tiene un paso adaptativo de integración y puede hacerse un buen balance de precisión contra complejidad en relación al orden máximo de expansión de las series de Taylor escogido. 
 
-% comparación de plots...
+\section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 
-%ejemplo
+%choro
 
-Aún cuando Euler es ilustrativo para entender ... , se busca un método con la mayor precisión posible. De hecho, es importante tener un paso de iteración que se adapte a una tolerancia mínima ... Se decide usar el método de Taylor para la implementación del TJ. En la sección \ref{sec:intTaylor} del apéndice \ref{chap:AlgPoli} se desarrolla el método de Taylor a detalle, donde se discute la precisión, la complejidad computacional y la adaptación del TJ a éste.
-
-
-
- 
+\subsection{Tamaño máximo de las vecindades}
