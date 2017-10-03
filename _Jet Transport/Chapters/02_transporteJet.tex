@@ -116,6 +116,7 @@ en la figura \ref{fig:FIGURA!}, se grafica la diferencia entre la solución real
 
 Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Obviamente, hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. En la sección \ref{sec:}, se hace el desarrollo del método de Taylor como integrador computacional adaptativo de sistemas de EDO, y en la sección \ref{sec:ind-dinam} se desarrollan distintos indicadores dinámicos utilizados en el TJ así como sencillos ejemplos ilustrativos para cada uno de ellos.
 
+\section{Método de Taylor}
 
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
