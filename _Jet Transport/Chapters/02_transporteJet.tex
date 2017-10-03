@@ -140,6 +140,15 @@ x_{n+1} = x_n + \sum_{i=1}^N f_i(x_n)h^i + \mathcal{O}(h^{N+1})
 
 el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
 
+Una enorme ventaja de \ref{eq:taylor-rel} sobre el método de Euler, o cualquier método de integración numérica con paso fijo como los Runge-Kutta, es que se puede conocer el residuo $\mathcal{O}(h^{N+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon$, es decir
+\begin{equation*}
+||x_N||_\infty h^N \leq \epsilon \implies h = \left( \frac{\epsilon}{||x_N||_\infty} \right)^{1/N}.
+\end{equation*} 
+
+Para el caso de funciones pares o impares, es probable que el último coeficiente de la serie sea identicamente cero y, para evitar indeterminaciones para encontrar $h$, la elección del paso de integración es
+\begin{equation}
+h = \min_{n \in [N-1,N]}{ \left( \frac{\epsilon}{||x_n||_\infty} \right)^{1/n} }
+\end{equation} 
 
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
