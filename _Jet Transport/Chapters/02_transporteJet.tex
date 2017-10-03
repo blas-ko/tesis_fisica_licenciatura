@@ -118,6 +118,29 @@ Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para pode
 
 \section{Método de Taylor}
 
+Como se observa en \ref{eq:euler}, el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con variaciones de tamaño $h$ dado. El método de Taylor es la generalización de \ref{eq:euler} en el sentido de que, si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
+\begin{equation}
+\mathbf{x}(t + h) = \sum_{i=0}^\infty x_i h^i = \sum_{i=0}^\infty \frac{\mathbf{x}^{(i)}(t)}{i!}h^i 
+= \sum_{i=0}^N \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{N+1})
+\label{eq:anal-exp}
+\end{equation}
+con $x_i := \mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}$ evaluada al tiempo $t$.
+
+Notemos que, por \ref{eq:ode}, se define la relación de recurrencia
+\begin{equation}
+x_{i+1} = \frac{f_i}{i+1}
+\label{eq:rec-rel}
+\end{equation}
+
+obteniendo así 
+\begin{equation}
+x_{n+1} = x_n + \sum_{i=1}^N f_i(x_n)h^i + \mathcal{O}(h^{N+1})
+\label{eq:taylor-rel}
+\end{equation}
+
+el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
+
+
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
 
