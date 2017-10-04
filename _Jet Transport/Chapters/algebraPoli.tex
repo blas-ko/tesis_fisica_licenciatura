@@ -2,7 +2,10 @@
 %% &&&&&&&&&&&&&&&&   01. ÁLGEBRA POLINOMIAL  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 \section{Construcción del Álgebra}
 
-Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\mathcal{U}$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\mathcal{U}$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\bm{x_0} := \bm{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución del polinomio en el paso anterior, el cual se puede sustituir por reales y obtener así puntos de la vecindad de $\bm{x_0}$. \\
+Como se menciona en la introducción, para poder hacer el transporte alrededor de todo una vecindad $\U$ de manera numérica es importante diseñar un integrador de las ecuaciones que cargue toda la información de $\U$ para cada paso temporal. Esto se puede lograr si en lugar de hacer evolucionar al integrador con escalares en $\mathbb{R}$ o $\mathbb{C}$ se hace con un polinomio con centro en la condición inicial $\bm{x_0} := \bm{x}(t=0)$ , de modo que para cada paso se tiene un nuevo polinomio que representa la evolución de la vecindad respecto al paso anterior. Dichos polinomios obtenidos en cada paso pueden evaluarse y obtener así puntos de la vecindad de $\bm{x_0}$.
+
+\subsection{Definición del álgebra y propiedades de campo}
+\label{sec:alg-field}
 
 Dicho lo anterior, es necesario desarrollar un álgebra polinomial que denotaremos como $\algpol$ donde $\pk$ es el conjunto de \textbf{polinomios de orden $n$ con coeficientes en el campo $\mathbb{K}$} tal que, si  $P(x) \in \pk$, éste se define como
 $$P = P(x) := \polk{p_k} $$
@@ -41,6 +44,7 @@ Aún cuando las operaciones están definidas inspiradas en la aritmética de los
 
 \begin{proposicion}
 Para $\mathbb{K} = \mathbb{R}$ o $\mathbb{C}$, $\algpol$ forma un campo.
+\label{prop:alg-field}
 \end{proposicion}
 
 \begin{proof}
@@ -147,7 +151,10 @@ Sean $A$, $B$ y $C \in \pk$
 Así, quedan demostradas todas las propiedades de campo. \qed
 \end{proof}
 
-Visto eso, es práctico definir otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la potencia, la composición y la derivada nuestros ` caballos de batalla '' para el desarrollo de casi cualquier función existente en la aritmética usual.
+\subsection{Definición explicita de operaciones con polinomios}
+\label{sec:alg-operaciones}
+
+Aún con \ref{prop:alg-field} demostrado y con las operaciones básicas $(\cdot,+)$ definidas, es práctico prestar atención a otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la potencia, la composición y la derivada nuestros ``caballos de batalla" para el desarrollo de casi cualquier función existente en la aritmética usual.
 
 Sea $A = A(x) = \polk{a_k} \in \pk$. Si $m \in \mathbb{N}$,
 \begin{align*}
@@ -215,9 +222,12 @@ Se define la \textbf{división} como
  \label{eq:polidiv}
 \end{equation}
 
-Con el mismo espíritu, inspirados por el artículo de Haro ~\cite{Haro2009} podemos definir más relaciones de recurrencia para otras operaciones entre polinomios.
+Con el mismo espíritu, inspirados por el artículo de Haro ~\cite{Haro2009} podemos definir las relaciones de recurrencia para otras operaciones entre polinomios.
 
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
+
+\subsection{Polinomios en varias variables}
+\label{sec:pknN}
 
 Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$. Es decir, nos gustaría trabajar con polinomios cuyos coeficientes sean polinomios, cuyos coeficientes sean, finalmente, números.
 Sea  $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$, entonces, con $P(x) \in \pk$ y $P_k(y) = \sum_{j=0}^n a_{j,k}y^j \in \mathbb{K} \forall k \in [1,n]$
