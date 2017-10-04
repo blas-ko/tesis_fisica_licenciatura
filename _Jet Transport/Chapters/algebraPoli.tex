@@ -220,15 +220,26 @@ Con el mismo espíritu, inspirados por el artículo de Haro ~\cite{Haro2009} pod
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
 
 Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$. Es decir, nos gustaría trabajar con polinomios cuyos coeficientes sean polinomios, cuyos coeficientes sean, finalmente, números.
-Sea  $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$, entonces
+Sea  $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$, entonces, con $P(x) \in \pk$ y $P_k(y) = \sum_{j=0}^n a_{j,k}y^j \in \mathbb{K} \forall k \in [1,n]$
 
-\begin{align*}
- P(x) = \polk{p_k(y)} = \polk{\sum_{j=0}^n p_{kj} y^j}
-\end{align*}
+\begin{equation}
+ P(x) =  \polk{P_k(y)} = \polk{\left( \sum_{j=0}^n a_{j,k} y^j \right)} := \sum_{k+j=0}^n a_{j,k} y^j x^k = P(\mathbf{x}).
+\label{eq:pkn2}
+\end{equation}
 
-así, se observa cómo un polinomio cuyos coeficientes son polinomios es equivalente a un polinomio de dos variables que vive en un espacio que denominaremos, por construcción, $\pkn{2}$.
+Con la definición planteada en la última igualdad de \ref{eq:pkn2} se observa cómo el polinomio $P(x)$ cuyos coeficientes son los polinomios $P_k(y)$ es equivalente a un polinomio de dos variables que vive en un espacio que denominaremos, por construcción, $\pkn{2}$. Se tuvo que imponer la condición de que en el último conjunto de términos $i+j = n$ así $P(x)$  pueda pertenecer, en efecto, a un espacio de polinomios de orden $n$.
 
-Esto último se puede extender inductivamente para construir polinomios de cualquier orden. Para el estudio de esta tesis buscamos construir $\pk$ donde $\mathbb{K} = \pkn{N}$ con $N$ el grado de la ecuación diferencial a desarrollar.
+Inductivamente, se puede construir el espacio $\pkn{N}$ tomando
+\begin{align}
+ P(x_1) = \sum_{k_{1}=0}^n\sum_{k_2=0}^n\cdots\sum_{k_N=0}^n a_{k_{1},k_{2},\cdots,k_{N}}x_N^{k_{N}}x_{N-1}^{k_{N-1}} \cdots x_1^{k_{1}} := \sum_{||\mathbf{k}||_{1}=0}^n a_{\mathbf{k}}\mathbf{x}^{\mathbf{k}}
+\label{eq:pknN}
+\end{align}
+
+con $\mathbf{k} = (k_1,\cdots,k_N)$, $||\mathbf{k}||_1 = k_1+k_2+\cdots+k_N$ la 1-norma de $\mathbf{k}$ y $\mathbf{x} = (x_1,\cdots,x_N)^T$. Así, quedan bien definidos los polinómios de orden $n$ en $N$ variables con coeficientes en $\mathbb{C}$ (y en $\mathbb{R}$, naturalmente) en el espacio $\pkn{N}$ como la suma de polinomios homogeneos desde orden $0$ hasta $N$.
+
+%%Con esto contruido, se puede hablar de los Taylors anidados de manera muy natural, que nacen de NO truncar a orden n el espacio; notar que los espacios $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$ y $\pkn{2}$ son escencialmente distintos ya que no son del mismo orden...
+
+En el caso del transporte de jets se trabaja en el espacio ${^{m}P_{\mathbb{K}}}$, $\mathbb{K} = \pkn{N}$, con $m$ el orden de la expansión temporal del método de Taylor y $n$ el orden de la expansión polinomial de $f$ en \ref{eq:ode} evaluada en $\U_{\xo}$. 
 
 \section{Integrador de Taylor}
 
