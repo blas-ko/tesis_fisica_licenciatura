@@ -159,21 +159,45 @@ P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=1}^M f_i(P_{n,\xo}(\xi),t_n)h^i
 \label{eq:jt-rel}
 \end{equation}
 
-donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall n$. Así, pueden encontrarse las soluciones $\phi(t_n;t_0,\xo) = \mathbf{x}(t_n)$ la solución del sistema \ref{eq:ode} con condición inicial $\xo$ y $\phi(t_n;t_0,\xo) = P_{n,\xo}(\xi)$ la solución de la vecindad $\U_{\xo}$ al tiempo
-$t_n$ del sistema \ref{eq:ode}.
+donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, pueden encontrarse las soluciones $\phi(t_n;t_0,\xo) = \mathbf{x}(t_n)$ con condición inicial $\xo$ y $\phi(t_n;t_0,\U_{\xo}) = P_{n,\xo}(\xi)$ la solución de la vecindad $\U_{\xo}$ al tiempo
+$t_n$ del sistema \ref{eq:ode} usando \ref{eq:taylor-rel} y \ref{eq:jt-rel}, respectivamente.
 
 Aunque la actualización del método de Taylor para el transporte de jets es bastante directa gracias al desarrollo del álgebra polinomial, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo \ref{eq:stepsize}, debemos tomar $||x_m||_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
 
 \begin{definicion}
 Sea $||\cdot|| : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
 \begin{equation}
- ||P(\mathbf{\xi})||_p := \left( \sum_{k} ||a_k||_p \right)^p
+ ||P(\mathbf{\xi})||_p := \left( \sum_{k} ||a_k||_p \right)^{1/p}
  \label{eq:poly-norm}
 \end{equation}  
 donde, si $a_k \in \mathbb{R}$, entonces $||a_k||_p = |a_k|$.
 \end{definicion}
 
-Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma; además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{P-palau}.
+Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{P-palau}.
+
+\subsection{Probando el método de Taylor}
+\label{sec:benchmark-taylor}
+
+Es hora de empezar a poner las manos en la masa y ver si, en efecto, los métodos planteados en \ref{eq:taylor-rel} y \ref{eq:jt-rel} son suficientemente precisos para dejar nuestra conciencia tranquila. 
+
+Tomaremos, a manera de ejemplo, un par de \textbf{sistemas hamiltonianos} de la forma
+\begin{equation}
+ H(\mathbf{p},\mathbf{q}) = \frac{1}{2m}\mathbf{p}^2 + V(\mathbf{q})
+ \label{eq:hamiltonian}
+\end{equation}
+%V = V(p,q) ? 
+
+donde $H: \mathbb{R}^{3N}\times\mathbb{R}^{3N} \to \mathbb{R}$ es el hamiltoniano del sistema y representa la energía, con $N$ la dimensionalidad del espacio. $H$ es una primera integral del sistema
+\begin{align}
+ \dot{\mathbf{p}} &= \frac{\partial{H}}{\partial{\mathbf{q}}} \\
+ \dot{\mathbf{q}} &= \frac{-\partial{H}}{\partial{\mathbf{p}}}
+\end{align}
+
+y su primera integral \ref{eq:hamiltonian} representa una constante de movimiento que, físicamente, representa la conservación de la energía total.
+
+\subsubsection{Péndulo Simple y periódicamente forzado}
+\label{sec:pendulum}
+
 
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
