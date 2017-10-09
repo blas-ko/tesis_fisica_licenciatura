@@ -152,7 +152,7 @@ h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon}{||x_m||_\infty} \right)^{1/m} }
 \end{equation} 
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
-\subsection{Método de Taylor para el Transporte de Jets}
+\subsection{Método de Taylor para el transporte de jets}
 Para el método que se acaba de desarrollar, cada término $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el TJ una vecindad $\U_{\xo}$ se parametriza con el polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$ alrededor de $\xo = \mathbf{x}(t_0)$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \U_{\xo} = \xo + \mathbf{\xi}$, la relación de recurrencia \ref{eq:taylor-rel} puede reescribirse como
 \begin{equation}
 P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=1}^M f_i(P_{n,\xo}(\xi),t_n)h^i 
@@ -189,14 +189,68 @@ Tomaremos, a manera de ejemplo, un par de \textbf{sistemas hamiltonianos} de la 
 
 donde $H: \mathbb{R}^{3N}\times\mathbb{R}^{3N} \to \mathbb{R}$ es el hamiltoniano del sistema y representa la energía, con $N$ la dimensionalidad del espacio. $H$ es una primera integral del sistema
 \begin{align}
- \dot{\mathbf{p}} &= \frac{\partial{H}}{\partial{\mathbf{q}}} \\
- \dot{\mathbf{q}} &= \frac{-\partial{H}}{\partial{\mathbf{p}}}
+ \dot{\mathbf{p}} &= -\frac{\partial{H}}{\partial{\mathbf{q}}} \nonumber \\
+ \dot{\mathbf{q}} &= \frac{\partial{H}}{\partial{\mathbf{p}}}
+\label{eq:ham-rel}
 \end{align}
 
 y su primera integral \ref{eq:hamiltonian} representa una constante de movimiento que, físicamente, representa la conservación de la energía total.
 
-\subsubsection{Péndulo Simple y periódicamente forzado}
-\label{sec:pendulum}
+Así, comprobar los métodos de integración para sistemas conservativos como \ref{eq:hamiltonian} será comparar la energía para cada paso temporal dado en relación a la energía inicial, lo cual debería ser constante. 
+Dado que conozcamos la solución analítica de algún sistema, se puede comparar dicha solución contra la calculada por los diferentes métodos de integración.
+
+\subsubsection{Oscilador armónico}
+\label{sec:oscilador}
+
+\subsubsection{Péndulo simple}
+\label{sec:pendulo}
+Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de longitud $l$ cuya masa es despreciable. Esta varilla está anclada, a su vez, a un punto inmovil. Así, $m$ se mueve bajo la acción de la gravedad $\mathbf{g}$ como se muestra en la figura \ref{fig:pendulo}, ignorando la resistencia del aire.
+
+%FIGURA! 
+
+La forma más natural de trabajar este problema es en coordenadas polares, en donde la masa $m$ se mueve con una velocidad $v = l\dot{\theta}$ con $l$ constante, es decir $r = l \neq r(t) \implies \dot{r} = \dot{p_r} = 0$. Esta constricción reduce en uno los grados de libertad del sistema, haciendo que éste dependa únicamente de $\theta$. 
+
+Tenemos que 
+\begin{align*}
+ K &= \frac{1}{2}m v^2 = \frac{1}{2} m l^2 \dot{\theta}^2 \\
+ U &= mgh(\theta) = mgl\left(1 - \cos{\theta} \right)
+\end{align*}
+son la energía cinética y potencial, respectivamente. 
+
+Así, contruimos el lagranjiano del sistema
+\begin{equation*}
+ \mathcal{L}(\theta,\dot{\theta}) = K - U = \frac{1}{2} m l^2 \dot{\theta}^2 - mgl\left(1 - \cos{\theta} \right).
+\end{equation*}
+Sabemos, por \ref{eq:lagr-ham-rel}, que
+\begin{equation*}
+ \mathbf{p} = \frac{\partial \mathcal{L}}{\partial \mathbf{\dot{q}}} = ml^2\dot{\theta}
+\end{equation*}
+
+obteniendo la coordenada conjugada de momento y así, plantear el hamiltoniano, o energía total del sistema, como
+\begin{equation}
+ H(p,\theta) = K + U = \frac{p_{\theta}}{2ml^2} + mgl\left(1 - \cos{\theta} \right).
+\label{eq:pendulo-ham}
+\end{equation}
+ 
+Las EDO quedan entonces, por \ref{eq:ham-rel}, como
+\begin{align}
+ \dot{\theta} &= \frac{p_{\theta}^2}{ml^2} \nonumber \\
+ \dot{p_{\theta}} &= -mgl\sin{\theta} 
+\label{eq:pendulo-ode}
+\end{align}
+
+en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen tres puntos singulares: $(-\pi,0),(\pi,0), (0,0)$; dos puntos de ``liberación " y otro de ``relajación", respectivamente. En la figura \ref{fig:pendulo-phsp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos.
+
+Si tomamos $l=1 m, m=1 kg, g = 10 \frac{m}{s^2}$ entonces, para las condiciones iniciales $p_{\theta}(0) = 2 N \cdot m$ y $\theta(0) = \pi/3$, la energía total es 
+\begin{equation*}
+E_0 = H(p_{\theta}(0),\theta (0) ) = 7 J$
+\end{equation*}
+
+En la figura \ref{fig:pendulo-energy} se puede ver las variaciones de energía $E(t) - E_0$ en función del tiempo.
+
+%FIGURA! 
+
+\subsubsection{Péndulo periódicamente forzado}
 
 
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
