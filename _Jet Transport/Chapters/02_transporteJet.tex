@@ -60,8 +60,8 @@ Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que mot
 Sea
 \begin{align}
 \dotx = f(t,\mathbf{x}) = \left[ \begin{array}{cc}
- 0 & 1  \\
--1 & 0  \\
+ 0 & -1  \\
+ 1 & 0  \\
 \end{array} \right] \left( x_1, x_2 \right)^T
 \label{eq:center}
 \end{align}
@@ -71,9 +71,9 @@ Si se toma $\U_{\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inici
 
 \begin{align*}
 \mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi)) \\
-&= (x_{1_0} + h x_{2_0}, x_{2_0} - h x_{1_0}) + \left[ \begin{array}{cc}
- 1 & h  \\
--h & 1  \\
+&= (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
+ 1 & -h  \\
+h & 1  \\
 \end{array} \right] (\xi_1,\xi_2)^T.
 \end{align*} 
 
@@ -82,22 +82,22 @@ El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración 
 Se podría seguir haciendo el desarrollo del TJ iterativamente con el método de Euler. Por ejemplo, el segundo paso quedaría como 
 \begin{align*}
 \mathbf{x}_2 =& P_{2,\xo}(\xi) = P_{1,\xo}(\xi) + h f(P_{1,\xo}(\xi)) \\
-=& (x_{1_0} + h x_{2_0}, x_{2_0} - h x_{1_0}) + \left[ \begin{array}{cc}
- 1 & h  \\
--h & 1  \\
+=& (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
+ 1 & -h  \\
+h & 1  \\
 \end{array} \right] (\xi_1,\xi_2)^T \\ 
 &+ h \left( \left[ \begin{array}{cc}
- 0 & 1  \\
--1 & 0  \\
-\end{array} \right] \left( x_{1_0} + h x_{2_0}, x_{2_0} - h x_{1_0}) + \left[ \begin{array}{cc}
- 1 & h  \\
--h & 1  \\
+ 0 & -1  \\
+ 1 &  0  \\
+\end{array} \right] \left( (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
+ 1 & -h  \\
+h & 1  \\
 \end{array} \right] (\xi_1,\xi_2)^T \right) \right) \\
 =& \left[ \begin{array}{c}
-x_{1_0} + 2h x_{2_0} - h^2x_{1_0}  \\
-x_{2_0} - 2h x_{1_0} - h^2x_{2_0}  \\
+x_{1_0} - h^2x_{1_0} - 2h x_{2_0}  \\
+2h x_{1_0} + x_{2_0}  - h^2x_{2_0}  \\
 \end{array} \right] + \left[ \begin{array}{cc}
- 1-h^2 & 2h  \\
+ 1-h^2 & -2h  \\
 2h & 1-h^2  \\
 \end{array} \right] (\xi_1,\xi_2)^T
 \end{align*}
