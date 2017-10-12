@@ -5,10 +5,10 @@ Consideremos un sistema de ecuaciones diferenciales ordinarias (EDO) descrito po
 \end{equation}
 con $t$ el parametro que describe la evolución del sistema y $\flowci$ la trayectoria de la solución que en $t_0$ se encuentra en $\xo$. En la mayoría de los sistemas físicos, el parámetro $t$ describe al tiempo, ie, $t \in \mathbb{R}^+$, y al sistema de ODE se le conoce como sistema dinámico.
 
-Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obtener de manera analítica y, por tanto, estudiar las familias de soluciones para diferentes condiciones iniciales termina siendo, casi siempre, un estudio indirecto o aproximado. Se han enfrentado varias formas para darle la vuelta a este problema y, en los esfuerzos de lo aproximado, una de las soluciones más prácticas ha sido discretizar al parámetro temporal $t$ de \ref{eq:ode} y encontrar, en saltos discretos de $t$, el ``estado actual" del sistema dado un ``estado anterior".
+Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obtener de manera analítica y, por tanto, estudiar las familias de soluciones para diferentes condiciones iniciales termina siendo, casi siempre, un estudio indirecto o aproximado. Se han enfrentado varias formas para darle la vuelta a este problema y, en los esfuerzos de lo aproximado, una de las soluciones más prácticas ha sido discretizar al parámetro temporal $t$ de (\ref{eq:ode}) y encontrar, en saltos discretos de $t$, el ``estado actual'' del sistema dado un ``estado anterior''.
 
 Gracias a que hoy en día existe poder de cómputo para hacer muchas operaciones simples en relativamente poco tiempo, se ha explotado el estudio y uso de métodos iterativos para obtener $\flowci$, siendo de gran utilidad en los últimos años. Éstos se conocen como \textbf{métodos numéricos de integración de ecuaciones diferenciales}. Con estos métodos se puede, en la mayoría de los casos, definir una condición inicial $\xo := \mathbf{x}(t_0)$ y obtener la solución para esta condición particular. Sin embargo, no siempre es suficiente obtener la solución de una única condición inicial dada y, muchas veces, interesa todo una familia de soluciones alrededor de un punto $\xo$ de interés. Esto puede pasar, por ejemplo, en aceleradores de partículas que disparan paquetes de onda como si fuesen ``gotas" sujetas a algún campo externo. En mecánica de fluidos es interesante estudiar parcelas de fluidos y, con la representación lagranjiana de las ecuaciones de Navier-Stokes, ver cómo evolucionan estas parcelas en el tiempo; esta es una rama muy utilizada por los métodos computacionales, ya que por las no linealidades de las ecuaciones de Navier-Stokes, ha sido muy difícil obtener soluciones analíticas sin hacer un montón de aproximaciones previas. En sistemas de muchos cuerpos también se ha pensado en familias de soluciones cercanas, ya que dificilmente se conocen las condiciones iniciales de todo el sistema con una precisión profunda, de hecho, en todos los sistemas donde las condiciones iniciales pueden no saberse con exactitud, un método exhaustivo sería el conseguir todas las soluciones de las posibles condiciones iniciales para estos sistemas. Una rama muy relacionada a lo anterior son los métodos de Montecarlo, donde, en el caso de las EDO, se consigue una distribución inicial de condiciones iniciales y se obtiene cada una de las soluciones para éstas. 
-En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de \ref{eq:ode}. Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa a las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que describe la separación de soluciones cercanas a órbitas periódicas, la derivada de Lie, que compara al campo vectorial de \ref{eq:ode} con un sistema hamiltoniano representado por curvas de nivel, la linealización de Grobman-Harbman (¿?), que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas, entre otras. 
+En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de (\ref{eq:ode}). Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa a las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que describe la separación de soluciones cercanas a órbitas periódicas, la derivada de Lie, que compara al campo vectorial de (\ref{eq:ode}) con un sistema hamiltoniano representado por curvas de nivel, la linealización de Grobman-Harbman (¿?), que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas, entre otras. 
 
 Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ y se encuentra el flujo para toda esta parcela. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\mathcal{U}$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowU$, el estado de $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
 
@@ -33,7 +33,7 @@ que, si tomamos en cuenta que $\dot{\mathbf{x}(t)} = f(\mathbf{x}(t),t)$ y que $
 \label{eq:euler} 
 \end{equation}
 
-que se conoce como el \textbf{Método de Euler}. Así, dada $\xo$ se puede obtener $\flowci$ iterando \ref{euler} hasta llegar a $t$ en pasos de $h$.
+que se conoce como el \textbf{Método de Euler}. Así, dada $\xo$ se puede obtener $\flowci$ iterando (\ref{eq:euler}) hasta llegar a $t$ en pasos de $h$.
 
 Ahora, para la evolución del TJ se parametriza a la vecindad $\U$ con algún polinomio $P_{t_0,\xo}(\xi)$ alrededor de $\xo \in \mathbb{R}^n$ 
 \begin{equation*}
@@ -67,7 +67,7 @@ Sea
 \end{align}
 un campo vectorial que describe centros alrededor de $x_0 = (0,0)$. 
 
-Si se toma $\U_{\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inicial, podemos desarrollar ``a mano´´ el transporte de Jet, donde, por Euler
+Si se toma $\U_{\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inicial, podemos desarrollar ``a mano'' el transporte de Jet, donde, por Euler
 
 \begin{align*}
 \mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi)) \\
@@ -106,19 +106,26 @@ y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarl
 
 %FIGURA!
 
-Notemos que \ref{center} es una ecuación hamiltoniana cuyas soluciones en el espacio fase están dadas por las curvas de nivel de
+Notemos que (\ref{eq:center}) es una sistema hamiltoniano cuyas soluciones en el espacio fase viven en las curvas de nivel dadas por
 \begin{equation*}
 H(\mathbf{x}) = \frac{1}{2} \left( x_1^2 + x_2^2 \right),
 \end{equation*} 
-en la figura \ref{fig:FIGURA!}, se grafica la diferencia entre la solución real para distintos radios alrededor de $\xo$ y los calculados por el TJ\footnote{Las soluciones para \ref{center} se obtuvieron con el método de Euler, para $h=10^{-4}$.}
+con solución explícita
+\begin{align*}
+ x_1(t) &= x_{01}\cos{(t)} - x_{02}\sin{(t)} \\
+ x_2(t) &= x_{01}\sin{(t)} + x_{02}\cos{(t)}.
+\end{align*}
+
+En la figura \ref{fig:FIGURA!}, se grafica la diferencia entre las soluciones real para distintos radios alrededor de $\xo$ y los calculados por el TJ\footnote{Las soluciones para (\ref{eq:center}) se obtuvieron con el método de Euler, para $h=10^{-4}$.}
 
 %FIGURA! 
 
-Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. En la sección \ref{sec:}, se hace el desarrollo del método de Taylor como integrador computacional adaptativo de sistemas de EDO, y en la sección \ref{sec:ind-dinam} se desarrollan distintos indicadores dinámicos utilizados en el TJ así como sencillos ejemplos ilustrativos para cada uno de ellos.
+Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. En la sección \ref{sec:taylor-metodo} se hace el desarrollo del método de Taylor como integrador computacional adaptativo de sistemas de EDO, y en la sección \ref{sec:ind-dinam} se desarrollan distintos indicadores dinámicos utilizados en el TJ así como sencillos ejemplos ilustrativos para cada uno de ellos.
 
 \section{Método de Taylor}
+\label{sec:taylor-metodo}
 
-Como se observa en \ref{eq:euler}, el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con variaciones de tamaño $h$ dado. El método de Taylor es la generalización de \ref{eq:euler} en el sentido de que, si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
+Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con variaciones de tamaño $h$ dado. El método de Taylor es la generalización del de Euler en el sentido de que, si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
 \begin{equation}
 \mathbf{x}(t + h) = \sum_{i=0}^\infty x_i h^i = \sum_{i=0}^\infty \frac{\mathbf{x}^{(i)}(t)}{i!}h^i 
 = \sum_{i=0}^M \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{M+1})
@@ -126,7 +133,7 @@ Como se observa en \ref{eq:euler}, el método de Euler es la aproximación linea
 \end{equation}
 la expansión de orden $M$ en $h$ con $x_i := \mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}$ evaluada al tiempo $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i := ||\mathbf{i}||_1 = i_1 + \cdots + i_d$ y $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}$, compactando así la notación para dimensiones $d > 1$.
 
-Notemos que, por \ref{eq:ode}, se define la relación de recurrencia
+Notemos que, por (\ref{eq:ode}), se define la relación de recurrencia
 \begin{equation}
 x_{i+1} = \frac{f_i}{i+1}
 \label{eq:rec-rel}
@@ -140,7 +147,7 @@ obteniendo así
 
 el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
 
-Una enorme ventaja de \ref{eq:taylor-rel} sobre el método de Euler, o cualquier método de integración numérica con paso fijo como los Runge-Kutta, es que se puede conocer el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon$, es decir
+Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como los Runge-Kutta, es que se puede conocer el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon$, es decir
 \begin{equation*}
 ||x_M||_\infty h^M \leq \epsilon \implies h = \left( \frac{\epsilon}{||x_M||_\infty} \right)^{1/M}.
 \end{equation*} 
@@ -153,16 +160,16 @@ h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon}{||x_m||_\infty} \right)^{1/m} }
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
 \subsection{Método de Taylor para el transporte de jets}
-Para el método que se acaba de desarrollar, cada término $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el TJ una vecindad $\U_{\xo}$ se parametriza con el polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$ alrededor de $\xo = \mathbf{x}(t_0)$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \U_{\xo} = \xo + \mathbf{\xi}$, la relación de recurrencia \ref{eq:taylor-rel} puede reescribirse como
+Para el método que se acaba de desarrollar, cada término $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el TJ una vecindad $\U_{\xo}$ se parametriza con el polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$ alrededor de $\xo = \mathbf{x}(t_0)$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \U_{\xo} = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
 \begin{equation}
 P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=1}^M f_i(P_{n,\xo}(\xi),t_n)h^i 
 \label{eq:jt-rel}
 \end{equation}
 
 donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, pueden encontrarse las soluciones $\phi(t_n;t_0,\xo) = \mathbf{x}(t_n)$ con condición inicial $\xo$ y $\phi(t_n;t_0,\U_{\xo}) = P_{n,\xo}(\xi)$ la solución de la vecindad $\U_{\xo}$ al tiempo
-$t_n$ del sistema \ref{eq:ode} usando \ref{eq:taylor-rel} y \ref{eq:jt-rel}, respectivamente.
+$t_n$ del sistema (\ref{eq:ode}) usando (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}), respectivamente.
 
-Aunque la actualización del método de Taylor para el transporte de jets es bastante directa gracias al desarrollo del álgebra polinomial, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo \ref{eq:stepsize}, debemos tomar $||x_m||_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
+Aunque la actualización del método de Taylor para el transporte de jets es bastante directa gracias al desarrollo del álgebra polinomial, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $||x_m||_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
 
 \begin{definicion}
 Sea $||\cdot|| : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
@@ -178,7 +185,7 @@ Así, la elección del paso de integración tiene sentido ahora también para po
 \subsection{Probando el método de Taylor}
 \label{sec:benchmark-taylor}
 
-Es hora de empezar a poner las manos en la masa y ver si, en efecto, los métodos planteados en \ref{eq:taylor-rel} y \ref{eq:jt-rel} son suficientemente precisos para dejar nuestra conciencia tranquila. 
+Es hora de empezar a poner las manos en la masa y ver si, en efecto, los métodos planteados en (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisos para dejar nuestra conciencia tranquila. 
 
 Tomaremos, a manera de ejemplo, un par de \textbf{sistemas hamiltonianos} de la forma
 \begin{equation}
@@ -194,9 +201,9 @@ donde $H: \mathbb{R}^{3N}\times\mathbb{R}^{3N} \to \mathbb{R}$ es el hamiltonian
 \label{eq:ham-rel}
 \end{align}
 
-y su primera integral \ref{eq:hamiltonian} representa una constante de movimiento que, físicamente, representa la conservación de la energía total.
+y su primera integral (\ref{eq:hamiltonian}) representa una constante de movimiento que, físicamente, representa la conservación de la energía total.
 
-Así, comprobar los métodos de integración para sistemas conservativos como \ref{eq:hamiltonian} será comparar la energía para cada paso temporal dado en relación a la energía inicial, lo cual debería ser constante. 
+Así, comprobar los métodos de integración para sistemas conservativos como (\ref{eq:hamiltonian}) será comparar la energía para cada paso temporal dado en relación a la energía inicial, lo cual debería ser constante. 
 Dado que conozcamos la solución analítica de algún sistema, se puede comparar dicha solución contra la calculada por los diferentes métodos de integración.
 
 \subsubsection{Oscilador armónico}
@@ -221,32 +228,34 @@ Así, contruimos el lagranjiano del sistema
 \begin{equation*}
  \mathcal{L}(\theta,\dot{\theta}) = K - U = \frac{1}{2} m l^2 \dot{\theta}^2 - mgl\left(1 - \cos{\theta} \right).
 \end{equation*}
-Sabemos, por \ref{eq:lagr-ham-rel}, que
+Sabemos, por (\ref{eq:lagr-ham-rel}), que
 \begin{equation*}
  \mathbf{p} = \frac{\partial \mathcal{L}}{\partial \mathbf{\dot{q}}} = ml^2\dot{\theta}
 \end{equation*}
 
 obteniendo la coordenada conjugada de momento y así, plantear el hamiltoniano, o energía total del sistema, como
 \begin{equation}
- H(p,\theta) = K + U = \frac{p_{\theta}}{2ml^2} + mgl\left(1 - \cos{\theta} \right).
+ H(p,\theta) = K + U = \frac{p_{\theta}^2}{2ml^2} + mgl\left(1 - \cos{\theta} \right).
 \label{eq:pendulo-ham}
 \end{equation}
  
-Las EDO quedan entonces, por \ref{eq:ham-rel}, como
+Las EDO quedan entonces, por (\ref{eq:ham-rel}), como
 \begin{align}
- \dot{\theta} &= \frac{p_{\theta}^2}{ml^2} \nonumber \\
+ \dot{\theta} &= \frac{p_{\theta}}{ml^2} \nonumber \\
  \dot{p_{\theta}} &= -mgl\sin{\theta} 
 \label{eq:pendulo-ode}
 \end{align}
 
-en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen tres puntos singulares: $(-\pi,0),(\pi,0), (0,0)$; dos puntos de ``liberación " y otro de ``relajación", respectivamente. En la figura \ref{fig:pendulo-phsp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos.
+en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen tres puntos singulares: $(-\pi,0),(\pi,0), (0,0)$; dos puntos de ``liberación" y otro de ``relajación", respectivamente. En la figura \ref{fig:pendulo-phsp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos.
 
-Si tomamos $l=1 m, m=1 kg, g = 10 \frac{m}{s^2}$ entonces, para las condiciones iniciales $p_{\theta}(0) = 2 N \cdot m$ y $\theta(0) = \pi/3$, la energía total es 
+%FIGURA!
+
+Si viajamos a un planeta en donde $g = 10 \ \frac{m}{s^2}$ \footnote{A veces, para la física, es más fácil viajar a un planeta donde exista la atracción gravitacional que más nos gusta que hacer a un péndulo girar en la Tierra; qué comodo.} y tomamos una varilla de longitud $l=1$ m y una masa $m=1$ kg,  entonces, para las condiciones iniciales $p_{\theta}(0) = 0 \ N \cdot m$ y $\theta(0) = \pi/2$, la energía total es 
 \begin{equation*}
-E_0 = H(p_{\theta}(0),\theta (0) ) = 7 J$
+E_0 = H(p_{\theta}(0),\theta (0) ) = 1 \text{ J.}
 \end{equation*}
 
-En la figura \ref{fig:pendulo-energy} se puede ver las variaciones de energía $E(t) - E_0$ en función del tiempo.
+En la figura \ref{fig:pendulo-energy} se puede ver cómo las variaciones de energía $E(t) - E_0$  son del orden de $a\times10^{-16}$, que corresponde a unas $x$ veces la distancia mínima entre puntos flotantes de la máquina. Además, el promedio de estas variaciones es $(E(t)-E_0)_{avg} = a \approx 0$, lo cual indica que no existe hay un movimiento browniano de las pequeñas variaciones de energía alrededor de la energía total del sistema.
 
 %FIGURA! 
 
