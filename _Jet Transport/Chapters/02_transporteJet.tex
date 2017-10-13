@@ -102,23 +102,49 @@ x_{1_0} - h^2x_{1_0} - 2h x_{2_0}  \\
 \end{array} \right] (\xi_1,\xi_2)^T
 \end{align*}
  
-y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores $\mathbb{\xi}$ \textit{suficientemente pequeños} para encontrar las soluciones en la vecindad de $\xo$. En la figura \ref{fig:FIGURA!} se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_n$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
+y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores $\mathbb{\xi}$ \textit{suficientemente pequeños} para encontrar las soluciones en la vecindad de $\xo$. En la figura \ref{fig:center-evals} se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_n$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
 
 %FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{euler-jt-evaluations-center}
+ \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-3}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+ \label{fig:center-evals}
+\end{figure}
 
 Notemos que (\ref{eq:center}) es una sistema hamiltoniano cuyas soluciones en el espacio fase viven en las curvas de nivel dadas por
 \begin{equation*}
 H(\mathbf{x}) = \frac{1}{2} \left( x_1^2 + x_2^2 \right),
 \end{equation*} 
-con solución explícita
-\begin{align*}
- x_1(t) &= x_{01}\cos{(t)} - x_{02}\sin{(t)} \\
+con solución analítica
+\begin{align}
+ x_1(t) &= x_{01}\cos{(t)} - x_{02}\sin{(t)} \nonumber \\
  x_2(t) &= x_{01}\sin{(t)} + x_{02}\cos{(t)}.
-\end{align*}
+ \label{eq:center_analytical}
+\end{align}
 
-En la figura \ref{fig:FIGURA!}, se grafica la diferencia entre las soluciones real para distintos radios alrededor de $\xo$ y los calculados por el TJ\footnote{Las soluciones para (\ref{eq:center}) se obtuvieron con el método de Euler, para $h=10^{-4}$.}
+Enla figura \ref{fig:center_anal_comparison} se muestran distintas comparaciones de la integración numérica contra las soluciones analíticas de (\ref{eq:center_analytical}).
 
 %FIGURA! 
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{euler-vs-analytical_center}
+	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
+	\label{fig:center-eu_vs_anal}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{euler-method_error}
+	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
+	\label{fig:center_not-closed}
+\end{subfigure}
+\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}}
+\label{fig:center_anal_comparison}
+\end{figure}
+
 
 Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. En la sección \ref{sec:taylor-metodo} se hace el desarrollo del método de Taylor como integrador computacional adaptativo de sistemas de EDO, y en la sección \ref{sec:ind-dinam} se desarrollan distintos indicadores dinámicos utilizados en el TJ así como sencillos ejemplos ilustrativos para cada uno de ellos.
 
