@@ -108,7 +108,7 @@ y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarl
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{euler-jt-evaluations-center}
- \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-3}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+ \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
  \label{fig:center-evals}
 \end{figure}
 
@@ -200,7 +200,7 @@ Aunque la actualización del método de Taylor para el transporte de jets es bas
 \begin{definicion}
 Sea $||\cdot|| : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
 \begin{equation}
- ||P(\mathbf{\xi})||_p := \left( \sum_{k} ||a_k||_p \right)^{1/p}
+ ||P(\mathbf{\xi})||_p := \left( \sum_{k} ||a_k||_p^p \right)^{1/p}
  \label{eq:poly-norm}
 \end{equation}  
 donde, si $a_k \in \mathbb{R}$, entonces $||a_k||_p = |a_k|$.
@@ -234,6 +234,35 @@ Dado que conozcamos la solución analítica de algún sistema, se puede comparar
 
 \subsubsection{Oscilador armónico}
 \label{sec:oscilador}
+Sea un sistema que, al desplazarlo de su estado de equilibrio por una cantidad $\mathbf{x}$, siente una fuerza restitutiva proporcional a dicho desplazamiento
+\begin{equation}
+ \mathbf{F}(\mathbf{x}) = m \ddot{\mathbf{x}} = - k\mathbf{x}
+ \label{eq:oscilador_force}
+\end{equation}
+con $[k] = \frac{Kg}{s^2}$  y $k>0$. 
+
+Tomando $\mathbf{v} = \dot{\mathbf{x}}$ se obtiene
+\begin{align}
+ \dot{\mathbf{x}} &= \frac{k}{m} \mathbf{p} \nonumber \\
+ \dot{\mathbf{v}} &= - \frac{k}{m} \mathbf{x}
+ \label{eq:oscilador_ode}
+\end{align}
+las EDO para el \textbf{oscilador armónico}, las cuales son equivalentes, para $\omega^2 := \frac{k}{m} = 1$ y $\mathbf{x} \in \mathbb{R},\ \mathbf{p} \in \mathbb{R}$, a (\ref{eq:center}). 
+
+La primera integral de (\ref{eq:oscilador_ode})
+\begin{equation}
+ H(\mathbf{p},\mathbf{x}) = \frac{1}{2m}p^2 + \omega^2 x^2
+ \label{eq:oscilador_ham}
+\end{equation}
+con $p=mv$, cumple con las ecuaciones de (\ref{eq:ham-rel}), una constante de movimiento que representa la energía.
+
+Así, tenemos que las soluciones analíticas son de la forma 
+\begin{align}
+ v(t) &= v_{0}\cos{(\omega t)} - x_{0}\sin{(\omega t)} \nonumber \\
+ x(t) &= v_{0}\sin{(\omega t)} + x_{0}\cos{(\omega t)}.
+ \label{eq:oscilador_analytical}
+\end{align}
+
 
 \subsubsection{Péndulo simple}
 \label{sec:pendulo}
@@ -244,10 +273,10 @@ Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de lon
 La forma más natural de trabajar este problema es en coordenadas polares, en donde la masa $m$ se mueve con una velocidad $v = l\dot{\theta}$ con $l$ constante, es decir $r = l \neq r(t) \implies \dot{r} = \dot{p_r} = 0$. Esta constricción reduce en uno los grados de libertad del sistema, haciendo que éste dependa únicamente de $\theta$. 
 
 Tenemos que 
-\begin{align*}
- K &= \frac{1}{2}m v^2 = \frac{1}{2} m l^2 \dot{\theta}^2 \\
+\begin{align}
+ K &= \frac{1}{2}m v^2 = \frac{1}{2} m l^2 \dot{\theta}^2 \nonumber \\
  U &= mgh(\theta) = mgl\left(1 - \cos{\theta} \right)
-\end{align*}
+\end{align}
 son la energía cinética y potencial, respectivamente. 
 
 Así, contruimos el lagranjiano del sistema
@@ -259,7 +288,7 @@ Sabemos, por (\ref{eq:lagr-ham-rel}), que
  \mathbf{p} = \frac{\partial \mathcal{L}}{\partial \mathbf{\dot{q}}} = ml^2\dot{\theta}
 \end{equation*}
 
-obteniendo la coordenada conjugada de momento y así, plantear el hamiltoniano, o energía total del sistema, como
+obteniendo la coordenada conjugada de momento y, así, plantear el hamiltoniano, o energía total del sistema, como
 \begin{equation}
  H(p,\theta) = K + U = \frac{p_{\theta}^2}{2ml^2} + mgl\left(1 - \cos{\theta} \right).
 \label{eq:pendulo-ham}
@@ -272,18 +301,52 @@ Las EDO quedan entonces, por (\ref{eq:ham-rel}), como
 \label{eq:pendulo-ode}
 \end{align}
 
-en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen tres puntos singulares: $(-\pi,0),(\pi,0), (0,0)$; dos puntos de ``liberación" y otro de ``relajación", respectivamente. En la figura \ref{fig:pendulo-phsp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos.
+en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen tres puntos singulares: $(-\pi,0),(\pi,0), (0,0)$; dos puntos de ``liberación'' y otro de ``relajación'', respectivamente. En la figura \ref{fig:pendulum_pshp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos.
 
 %FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{pendulum_phsp}
+ \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-3}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+\label{fig:pendulum_pshp}
+\end{figure}
 
-Si viajamos a un planeta en donde $g = 10 \ \frac{m}{s^2}$ \footnote{A veces, para la física, es más fácil viajar a un planeta donde exista la atracción gravitacional que más nos gusta que hacer a un péndulo girar en la Tierra; qué comodo.} y tomamos una varilla de longitud $l=1$ m y una masa $m=1$ kg,  entonces, para las condiciones iniciales $p_{\theta}(0) = 0 \ N \cdot m$ y $\theta(0) = \pi/2$, la energía total es 
+Si viajamos a un planeta en donde $g = 1 \ \frac{m}{s^2}$ \footnote{A veces, para la física, es más fácil viajar a un planeta donde exista la atracción gravitacional que más nos gusta que hacer a un péndulo girar en la Tierra; qué comodo.} y tomamos una varilla de longitud $l=1$ m y una masa $m=1$ kg,  entonces, para las condiciones iniciales $p_{\theta}(0) = 0 \ N \cdot m$ y $\theta(0) = \pi/2$, la energía total es 
 \begin{equation*}
 E_0 = H(p_{\theta}(0),\theta (0) ) = 1 \text{ J.}
 \end{equation*}
 
-En la figura \ref{fig:pendulo-energy} se puede ver cómo las variaciones de energía $E(t) - E_0$  son del orden de $a\times10^{-16}$, que corresponde a unas $x$ veces la distancia mínima entre puntos flotantes de la máquina. Además, el promedio de estas variaciones es $(E(t)-E_0)_{avg} = a \approx 0$, lo cual indica que no existe hay un movimiento browniano de las pequeñas variaciones de energía alrededor de la energía total del sistema.
+Para dichas condiciones, se puede integrar el transporte de jets y además, evaluarlo para condiciones cercanas y ver cómo se comportan éstas soluciones en el espacio fase, que deben, en teoría, moverse por las curvas de (\ref{eq:pendulo-ham}). Se puede observar de la figura \ref{fig:pendulum_jt} cómo para jets de orden 4, las soluciones se quedan sobre las curvas de nivel del hamiltoniano.
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{pendulum_jt_O1}
+	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
+	\label{fig:pendulum_jt_O1}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{pendulum_jt_O4}
+	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
+	\label{fig:pendulum_jt_O4}
+\end{subfigure}
+\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}}
+\label{fig:pendulum_jt}
+\end{figure}
+
+En cuanto a las constantes de movimiento del sistema, la figura \ref{fig:pendulum_dE} muestra cómo las variaciones de energía $E(t) - E_0$  son del orden de $a\times10^{-16}$, que corresponde a unas $x$ veces la distancia mínima entre puntos flotantes de la máquina. Además, el promedio de estas variaciones es $(E(t)-E_0)_{avg} = a \approx 0$, lo cual indica que no existe hay un movimiento browniano de las pequeñas variaciones de energía alrededor de la energía total del sistema. %Redactar bien esto... 
 
 %FIGURA! 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{pendulum_dE}
+ \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+ \label{fig:pendulum_dE}
+\end{figure}
 
 \subsubsection{Péndulo periódicamente forzado}
 
