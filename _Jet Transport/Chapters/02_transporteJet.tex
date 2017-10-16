@@ -260,7 +260,7 @@ con $p=mv$, cumple con las ecuaciones de (\ref{eq:ham-rel}), una constante de mo
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{oscillator_phsp}
- \caption{Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+ \caption{Espacio fase para el oscilador armónico representado por la ecuación \ref{eq:oscilador_ham}. En negro aparece la solución calculada con el método de Taylor para jets con $\xo = (1,0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$. Los jets fueron evaluados para la vecindad parametrizada por $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$, mientras que la solución en gris representa la variación $\xi = (-0.1,0)^T$.}
  \label{fig:oscilador_phsp}
 \end{figure}
 
@@ -281,17 +281,17 @@ Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \ Kg$, $k = 1 \frac{
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{oscillator_dE}
-	\caption{}
+	\caption{Variación $\delta E(t_n) = \frac{E(t_n)-E_0}{\epsilon_{machine}}$ de la energía respecto a la energía inicial $E_0 = 1$ Joule.}
 	\label{fig:pendulum_jt_O1}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{oscillator_dx}
-	\caption{}
+	\caption{Variación $\delta \mathbf{x}(t) =  \frac{||\mathbf{x}(t_n) - \mathbf{x_n}||_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
 	\label{fig:pendulum_jt_O4}
 \end{subfigure}
-\caption{Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+\caption{Variaciones de la energía y la trayectoria en cada uno de los pasos temporales de la solución para el oscilador armónico con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$.}
 \label{fig:pendulum_jt}
 \end{figure}
 
