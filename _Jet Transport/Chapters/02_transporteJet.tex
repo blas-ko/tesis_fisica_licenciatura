@@ -234,7 +234,7 @@ Dado que conozcamos la solución analítica de algún sistema, se puede comparar
 
 \subsubsection{Oscilador armónico}
 \label{sec:oscilador}
-Sea un sistema que, al desplazarlo de su estado de equilibrio por una cantidad $\mathbf{x}$, siente una fuerza restitutiva proporcional a dicho desplazamiento
+Sea un sistema dado por una masa $m$ que, al desplazarlo de su estado de equilibrio por una cantidad $\mathbf{x}$, siente una fuerza restitutiva proporcional a dicho desplazamiento
 \begin{equation}
  \mathbf{F}(\mathbf{x}) = m \ddot{\mathbf{x}} = - k\mathbf{x}
  \label{eq:oscilador_force}
@@ -251,19 +251,51 @@ las EDO para el \textbf{oscilador armónico}, las cuales son equivalentes, para 
 
 La primera integral de (\ref{eq:oscilador_ode})
 \begin{equation}
- H(\mathbf{p},\mathbf{x}) = \frac{1}{2m}p^2 + \omega^2 x^2
+ H(\mathbf{p},\mathbf{x}) = \frac{1}{2m}p^2 + \frac{\omega^2}{2} x^2
  \label{eq:oscilador_ham}
 \end{equation}
 con $p=mv$, cumple con las ecuaciones de (\ref{eq:ham-rel}), una constante de movimiento que representa la energía.
 
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{oscillator_phsp}
+ \caption{Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+ \label{fig:oscilador_phsp}
+\end{figure}
+
 Así, tenemos que las soluciones analíticas son de la forma 
 \begin{align}
- v(t) &= v_{0}\cos{(\omega t)} - x_{0}\sin{(\omega t)} \nonumber \\
- x(t) &= v_{0}\sin{(\omega t)} + x_{0}\cos{(\omega t)}.
+ x(t) &= v_{0}\sin{(\omega t)} + x_{0}\cos{(\omega t)} \nonumber \\ 
+ v(t) &= v_{0}\omega\cos{(\omega t)} - x_{0}\omega\sin{(\omega t)}. 
  \label{eq:oscilador_analytical}
 \end{align}
 
+La figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico, junto con una solución calculada con el transporte de jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la figura la estructura de centros alrededor del único punto singular $(0,0)^T$.
 
+Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \ Kg$, $k = 1 \frac{Kg}{s^2}$, tenemos que el oscilador con energía total de $E_0 = H(\xo) = 1$ Joule. En la figura \ref{fig:} se pueden ver las variaciones $\delta E$ de la energía en cada paso de integración así como la diferencia $\delta \mathbf{x}$ de las soluciones de jet calculadas por el método de Taylor evaluadas en diferentes $\xi$s y las soluciones analíticas del oscilador armónico correspondientes al desplazamiento dado por las $\xi$s.
+
+%FIGURA!
+ \begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{oscillator_dE}
+	\caption{}
+	\label{fig:pendulum_jt_O1}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{oscillator_dx}
+	\caption{}
+	\label{fig:pendulum_jt_O4}
+\end{subfigure}
+\caption{Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+\label{fig:pendulum_jt}
+\end{figure}
+
+\cleardoublepage
 \subsubsection{Péndulo simple}
 \label{sec:pendulo}
 Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de longitud $l$ cuya masa es despreciable. Esta varilla está anclada, a su vez, a un punto inmovil. Así, $m$ se mueve bajo la acción de la gravedad $\mathbf{g}$ como se muestra en la figura \ref{fig:pendulo}, ignorando la resistencia del aire.
