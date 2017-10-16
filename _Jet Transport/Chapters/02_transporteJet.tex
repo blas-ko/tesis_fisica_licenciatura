@@ -173,14 +173,14 @@ obteniendo así
 
 el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
 
-Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como los Runge-Kutta, es que se puede conocer el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon$, es decir
+Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como los Runge-Kutta, es que se puede conocer el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon_{Taylor}$, es decir
 \begin{equation*}
-||x_M||_\infty h^M \leq \epsilon \implies h = \left( \frac{\epsilon}{||x_M||_\infty} \right)^{1/M}.
+||x_M||_\infty h^M \leq \epsilon_{Taylor} \implies h = \left( \frac{\epsilon_{Taylor}}{||x_M||_\infty} \right)^{1/M}.
 \end{equation*} 
 
 Para el caso de funciones pares o impares, es probable que el último coeficiente de la serie sea identicamente cero y, para evitar indeterminaciones al encontrar $h$, se busca la mínima $h$ entre los dos últimos coeficientes de la expansión de $\mathbf{x}(t+h)$
 \begin{equation}
-h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon}{||x_m||_\infty} \right)^{1/m} }
+h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{||x_m||_\infty} \right)^{1/m} }
 \label{eq:stepsize}
 \end{equation} 
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
@@ -270,6 +270,7 @@ Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de lon
 
 %FIGURA! 
 
+
 La forma más natural de trabajar este problema es en coordenadas polares, en donde la masa $m$ se mueve con una velocidad $v = l\dot{\theta}$ con $l$ constante, es decir $r = l \neq r(t) \implies \dot{r} = \dot{p_r} = 0$. Esta constricción reduce en uno los grados de libertad del sistema, haciendo que éste dependa únicamente de $\theta$. 
 
 Tenemos que 
@@ -307,7 +308,7 @@ en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subs
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{pendulum_phsp}
- \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-3}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+ \caption{Espacio fase para el péndulo simple representado por la ecuación \ref{eq:pendulo-ham}. En negro salen puntos de la trayectoria calculada con el método de Taylor para Jets con $\xo = (\frac{\pi}{2},0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y sus vecindades (jets) evaluadas para $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$.}
 \label{fig:pendulum_pshp}
 \end{figure}
 
@@ -324,27 +325,27 @@ Para dichas condiciones, se puede integrar el transporte de jets y además, eval
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{pendulum_jt_O1}
-	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
+	\caption{Jet de orden $1$ después de dos periodos desde $\xo$.}
 	\label{fig:pendulum_jt_O1}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{pendulum_jt_O4}
-	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
+	\caption{Jet de orden $4$ después de dos periodos desde $\xo$.}
 	\label{fig:pendulum_jt_O4}
 \end{subfigure}
-\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}}
+\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\tau) = 0.1\left( \cos(\tau),\sin(\tau) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
 \label{fig:pendulum_jt}
 \end{figure}
 
-En cuanto a las constantes de movimiento del sistema, la figura \ref{fig:pendulum_dE} muestra cómo las variaciones de energía $E(t) - E_0$  son del orden de $a\times10^{-16}$, que corresponde a unas $x$ veces la distancia mínima entre puntos flotantes de la máquina. Además, el promedio de estas variaciones es $(E(t)-E_0)_{avg} = a \approx 0$, lo cual indica que no existe hay un movimiento browniano de las pequeñas variaciones de energía alrededor de la energía total del sistema. %Redactar bien esto... 
+Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fig:pendulum_dE} cómo $\delta E(t)$ varía alrededor de cero como un movimiento browniano. Éste último se relaciona con los errores de redondeo de puntos flotantes de la máquina y no con el método de Taylor en sí, a diferencia del método de Euler, como se observa en la figura \ref{fig:center_anal_comparison}, donde el error crece de manera lineal. La máxima variación respecto a la energía inicial es de $2.28\times10^{-14}$, lo cual corresponde a $103 \epsilon_{machine}$ (sin redondear).
 
 %FIGURA! 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{pendulum_dE}
- \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+ \caption{Diferencia $\delta E(t_n) := \frac{E(t_n) - E_0}{\epsilon_{machine}}$ de la energía del péndulo simple con condición inicial $\xo = (\frac{\pi}{2},0)$, tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
  \label{fig:pendulum_dE}
 \end{figure}
 
