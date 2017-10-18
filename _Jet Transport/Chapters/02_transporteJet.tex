@@ -400,28 +400,95 @@ el hamiltoniano del sistema cuyas curvas de nivel representan las soluciones par
  \label{eq:artificial_ode}
 \end{align}
 
-Notemos que el sistema anterior tiene un único punto singular $(0,0)^T$ que corresponde a una energía de $H(0,0) = 0$. Con esto, podemos obtener la condición para que las soluciones estén sobre la curva límite que divide diferentes regiones del espacio. Vemos que si
+
+Notemos que el sistema anterior tiene un único punto singular $(0,0)^T$ que corresponde a una energía de $H(0,0) = 0$. Con esto, podemos obtener la condición para que las soluciones estén sobre dicho curva límite o separatriz que divide diferentes regiones del espacio. Vemos que si
 \begin{equation*}
- H(q,p) = qp^2 - \frac{1}{2}q^2 \implies p = \pm \sqrt{q/2} 
+ H(q,p) = qp^2 - \frac{1}{2}q^2 = 0 \implies p = \pm \sqrt{\frac{q}{2}} 
 \end{equation*}
 
-entonces las condiciones iniciales tipo $\xo = \left( q, -\sqrt{q/2} \right)$ vivirán sobre una curva límite. 
-
-Se muestra en la figura \ref{fig:} el espacio fase dado por el hamiltoniano del sistema. Notemos que dicha curva límite se puede observar formando una especie de ``C'' en el lado positivo de $q$.
+entonces las condiciones iniciales tipo $\xo = \left( q, -\sqrt{\frac{q}{2}} \right)$ vivirán sobre la separatriz. 
 
 %FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width= 0.8\linewidth]{artificial_phsp}
+ \caption{}
+ \label{fig:artificial_phsp}
+\end{figure}
 
-Si tomamos $q_0 = 0.7$ con la condición anterior, y hacemos un transporte de jets alrededor de dicha condición inicial podríamos ver, en teoría, las trayectorias que toman las soluciones cercanas a la curva límite en cada lado de la frontera que ésta impone. En la figura \ref{fig:} se observa la deformación de estos jets conforme pasa el tiempo y, aunque la evolución temporal es un intervalo relativamente corto, es evidente la tendencia que tienen las soluciones cercanas a diverger.
+Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el hamiltoniano del sistema. Notemos que dicha separatriz se puede observar como una especie de parábola horizontal positiva con centro en el punto singular.
 
 %FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width= 0.8\linewidth]{artificial_jt_O16}
+ \caption{}
+ \label{fig:artificial_jt}
+\end{figure}
 
-En este problema se vuelve importante muy rápidamente la precisión con la que los jets nos dan soluciones cercanas ya que la deformación de la vecindad inicial $\U_{\xo}$ es muy grande. Por esto, se muestran la figura \ref{fig:} y la tabla \ref{table:} para ver la diferencia entre evaluar el jet en $\xi = (0,-0.1)^T$ y hacer el método de Taylor convencional partiendo de ese punto. 
+Si tomamos $q_0 = 0.7$ con la condición anterior, y hacemos un transporte de jets alrededor de dicha condición inicial podríamos ver, en teoría, las trayectorias que toman las soluciones cercanas a la curva límite en cada lado de la frontera que ésta impone. En la figura \ref{fig:artificial_jt} se observa la deformación de estos jets conforme pasa el tiempo y, aunque la evolución temporal es un intervalo relativamente corto, es evidente la tendencia que tienen las soluciones cercanas a diverger.
 
-%FIGURA!
+En este problema se vuelve importante muy rápidamente la precisión con la que los jets nos dan soluciones cercanas ya que la deformación de la vecindad inicial $\U_{\xo}$ es muy grande. Por esto, se muestra en la tabla \ref{table:djet_artificial} la diferencia entre evaluar el jet en $\xi = (0,-0.1)^T$ y hacer el método de Taylor convencional partiendo de ese punto. De hecho, se observan en la figura \ref{fig:artificial_jO2_jO16} la evaluación de jets de distinto orden para la misma vecindad inicial alrededor de $\xo$.
 
 %TABLA!
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|ccccc}
+\toprule
+               & \textbf{$ M = 1 $} & \textbf{$M = 2 $} & \textbf{$ M = 4$} & \textbf{$ M = 8 $} & \textbf{$ M = 16 $} \\ \cmidrule(l){1-6} 
+\textbf{$t_0$} & -Inf                       & -Inf                       & -Inf                       & -Inf                       & -Inf                          \\
+\textbf{$t_1$} & -2.42                      & -3.97                      & -7.07                      & -13.28                     & -15.95                        \\
+\textbf{$t_2$} & -1.92                      & -3.1                       & -5.47                      & -10.22                     & -15.95                        \\
+\textbf{$t_3$} & -1.54                      & -2.48                      & -4.37                      & -8.15                      & -15.91                        \\
+\textbf{$t_4$} & -1.21                      & -1.96                      & -3.47                      & -6.49                      & -12.53                        \\
+\textbf{$t_5$} & -0.91                      & -1.49                      & -2.68                      & -5.05                      & -9.79                         \\
+\textbf{$t_6$} & -0.61                      & -1.05                      & -1.95                      & -3.74                      & -7.34                         \\
+\textbf{$t_7$} & -0.29                      & -0.6                       & -1.24                      & -2.52                      & -5.08                         \\ \bottomrule 
+\end{tabular}
+\caption{Diferencia logarítmica de $\delta \mathbf{x} = || \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) ||$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden en $\xi$.}
+\label{table:djet_artificial}
+\end{table}
 
-Para todos los ejemplos construidos hemos usado una vecindad con un radio de $r = 0.1$ alrededor de $\xo$, pero nada asegura que esta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en este ejemplo en particular cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. Estos y otros puntos se tratan en la sección que prosigue. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que este tipo de indicadores se vuelven importantes en cualquier caso.
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width= 0.7\linewidth]{artificial_jO2_jO16}
+ \caption{}
+ \label{fig:artificial_jO2_jO16}
+\end{figure}
+
+Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano entonces deberá conservar la energía. En la figura \ref{fig:artificial_dE} se observa la variación de la energía para cada paso temporal con el jet evaluado en $\xi = (0,\pm 0.1)^T$, así como en $\xo$, i.e., para el método de Taylor sin jets. Notemos cómo al principio (figura \ref{fig:}) la energía sí se conserva, i.e, las evaluaciones del TJ se mantienen sobre las superficies de nivel del hamiltoniano, sin embargo, cuando la vecindad se empieza a deformar más, la energía empieza a variar más respecto a la de su condición inicial. Notemos que aunque esta variación es de $\approx 10^8 \epsilon_{machine}$, el error en la energía es en la octava cifra significativa, dado que $\epsilon_{machine} = 2.22\times 10^{-16}$.
+
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.7\linewidth]{artificial_dE}
+ \caption{}%Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} sin transporte de jets, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $8000$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+ \label{fig:artificial_dE}
+\end{figure}
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{artificial_dEjets_half}
+	\caption{Jet de orden $1$ después de dos periodos desde $\xo$.}
+	\label{fig:artificial_dEjets_half}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{artificial_dEjets_all}
+	\caption{Jet de orden $4$ después de dos periodos desde $\xo$.}
+	\label{fig:artificial_dEjets_all}
+\end{subfigure}
+\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\tau) = 0.1\left( \cos(\tau),\sin(\tau) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+\label{fig:pendulum_jt}
+\end{figure}
+
+
+Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en éste último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $xo$ y observamos en qué tiempo cruzan las vecindades esta sección. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que estos indicadores servirán para darnos información sobre el espacio fase sin conocerlo del todo. 
 
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
