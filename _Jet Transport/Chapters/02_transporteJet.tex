@@ -412,7 +412,7 @@ entonces las condiciones iniciales tipo $\xo = \left( q, -\sqrt{\frac{q}{2}} \ri
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.8\linewidth]{artificial_phsp}
- \caption{}
+ \caption{Espacio fase de \ref{eq:artificial_ode}.}
  \label{fig:artificial_phsp}
 \end{figure}
 
@@ -422,7 +422,7 @@ Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el ha
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.8\linewidth]{artificial_jt_O16}
- \caption{}
+ \caption{Solución para \ref{eq:artificial_ode}, con condición inicial sobre la separatriz, donde $q0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, con tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=28$. En gris están las soluciones a $\xo + \xi$ sin utilizar TJ.}
  \label{fig:artificial_jt}
 \end{figure}
 
@@ -445,7 +445,7 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
 \textbf{$t_6$} & -0.61                      & -1.05                      & -1.95                      & -3.74                      & -7.34                         \\
 \textbf{$t_7$} & -0.29                      & -0.6                       & -1.24                      & -2.52                      & -5.08                         \\ \bottomrule 
 \end{tabular}
-\caption{Diferencia logarítmica de $\delta \mathbf{x} = || \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) ||$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden en $\xi$.}
+\caption{Diferencia logarítmica de $\delta \mathbf{x} = || \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) ||$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden $M$ en $\xi$.}
 \label{table:djet_artificial}
 \end{table}
 
@@ -453,7 +453,7 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.7\linewidth]{artificial_jO2_jO16}
- \caption{}
+ \caption{Diferencia gráfica entre un jet de orden $M=2$ contra uno de orden $M=16$ para las mismas condiciones.}
  \label{fig:artificial_jO2_jO16}
 \end{figure}
 
@@ -463,7 +463,7 @@ Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano en
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{artificial_dE}
- \caption{}%Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} sin transporte de jets, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $8000$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+ \caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} sin transporte de jets, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $8000$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
  \label{fig:artificial_dE}
 \end{figure}
 
@@ -473,17 +473,17 @@ Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano en
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{artificial_dEjets_half}
-	\caption{Jet de orden $1$ después de dos periodos desde $\xo$.}
+	\caption{Diferencias de energía $\delta E$ respecto a la energía inicial en la primera mitad de la integración.}
 	\label{fig:artificial_dEjets_half}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{artificial_dEjets_all}
-	\caption{Jet de orden $4$ después de dos periodos desde $\xo$.}
+	\caption{Logaritmo de las diferencias de energía $\delta E$ respecto a la energía inicial en toda la integración.}
 	\label{fig:artificial_dEjets_all}
 \end{subfigure}
-\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\tau) = 0.1\left( \cos(\tau),\sin(\tau) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+\caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} con jets de orden $M=16$ evaluados en $\xi$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
 \label{fig:pendulum_jt}
 \end{figure}
 
