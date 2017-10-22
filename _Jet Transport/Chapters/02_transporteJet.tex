@@ -221,7 +221,7 @@ Hemos trabajado, con intención de entender la escencia del transporte de jets, 
 
 Tomaremos, a manera de ejemplo, un par de \textbf{sistemas hamiltonianos} de la forma
 \begin{equation}
- H(\mathbf{p},\mathbf{q}) = \frac{1}{2m}\mathbf{p}^2 + V(\mathbf{q})
+ H(\mathbf{p},\mathbf{q}) = \frac{1}{2m}\mathbf{p}^2 + V(\mathbf{q},\mathbf{p})
  \label{eq:hamiltonian}
 \end{equation}
 %V = V(p,q) ? 
@@ -233,10 +233,11 @@ donde $H: \mathbb{R}^{3N}\times\mathbb{R}^{3N} \to \mathbb{R}$ es el hamiltonian
 \label{eq:ham-rel}
 \end{align}
 
-y su primera integral (\ref{eq:hamiltonian}) representa una constante de movimiento que, físicamente, representa la conservación de la energía total.
+y representa una constante de movimiento que, físicamente, corresponde a la conservación de la energía total.
 
 Así, comprobar los métodos de integración para sistemas conservativos como (\ref{eq:hamiltonian}) será comparar la energía para cada paso temporal dado en relación a la energía inicial, lo cual debería ser constante. 
 Dado que conozcamos la solución analítica de algún sistema, se puede comparar dicha solución contra la calculada por los diferentes métodos de integración.
+%Otra propiedad importante de los sistemas hamiltonianos es la conservación de la estructura simpléctica, que no es más que ... [ref:chaos]
 
 \subsubsection{Oscilador armónico}
 \label{sec:oscilador}
@@ -494,11 +495,63 @@ Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano en
 \end{figure}
 
 
-Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en éste último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $xo$ y observamos en qué tiempo cruzan las vecindades esta sección. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que estos indicadores servirán para darnos información sobre el espacio fase sin conocerlo del todo. 
+Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en éste último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $xo$ y observamos en qué tiempo cruzan las vecindades ésta sección. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que estos indicadores servirán para darnos información sobre el espacio fase sin conocerlo del todo. 
 
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
 
-%choro
+En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias como órbitas periódicas, atractores o atractores extraños \cite{Perez2015}. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}). La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
+
+El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados en saber qué pasa en la vecindad de una condición inicial bajo la aproximación lineal del campo vectorial que define la trayectoria. De aquí, surge la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar en el espacio fase componentes de caos \cite{Perez2015} o estructuras lagrangianas y separatrices \cite{Perez2015}. 
+
+Sea $\dot{\mathbf{x}}(t) = \mathbf{f}(\mathbf{x}(t),t) = A\mathbf{x}+\mathcal{O}(\mathbf{x}^2)$ un sistema de $d$ grados de libertad que describe un campo vectorial con parte lineal $A \mathbf{x}$. Si nos quedamos con la parte lineal de $f$, podemos encontrar la solución explícita al sistema
+\begin{equation*}
+ \mathbf{y}(t) = \mathbf{y}_0 e^{\Lambda t}
+\end{equation*}
+
+con $\Lambda = [\lambda_i]$ una matriz diagonal con las $d$ raíces del polinomio característico $P(\lambda) = \det(A - \lambda \mathbf{1})$ y $\mathbf{x} = P \mathbf{y}$, con $P = [\mathbf{v_i}]$, la matriz simétrica de $[d \times d]$ de cambio de coordenadas formada por los eigenvectores asociados a $\lambda_i$, $\mathbf{v}_i$.
+Dada ésta solución, vemos que soluciones vecinas son simplemente 
+\begin{equation*}
+ (\mathbf{y} + \mathbf{\delta y})(t) = (\mathbf{y}_0 + \mathbf{\delta y}_0) e^{\Lambda t}
+\end{equation*}
+
+y luego regresar al sistema de coordenadas original. Para esto, buscamos eigenvectores tales que $\det(P) = 1$, de modo que la transformación preserve área y orientación.
+
+Con lo anterior podemos plantear una forma intuitiva en la que se separan dos soluciones cercanas
+\begin{equation}
+ || \mathbf{\delta x}(t) || = e^{\lambda t} || \mathbf{\delta x}_0 ||
+ \label{eq:lyap-sep}
+\end{equation}
+dada la solución a un campo vectorial con parte lineal $A$. $\lambda$ aquí es el máximo eigenvalor de todos los $\lambda_i$'s. Necesariamente, la variación $\delta x$ debe ser suficientemente pequeña para que $A\mathbf{x}$ sea el término dominante de $f$ aunque, en el límite $\delta x \to 0$, esto es cierto por completo. 
+
+Los ELTF son, en escencia, indicadores escalares que, para cada punto $\mathbf{x}$ del espacio fase, nos dice qué tan grande será la tasa de separación con soluciones cercanas. Estos se obtienen de despejar \ref{eq:lyap-sep}
+\begin{equation}
+ \lambda_{\xo}^t = \frac{1}{t}\ln \left( \frac{||\mathbf{ \delta x(t)} ||_2}{|| \mathbf{\delta x}_0 ||_2} \right)
+ \label{eq:lyap-exp}
+\end{equation}
+y hacer un análisis (lineal) un poco más riguroso sobre las variaciones $\delta \mathbf{x}$.
+
+Sea $\phi: \mathbb{R} \times \mathbb{R} \times \mathcal{D} \to \mathcal{D}$, $\mathcal{D} \subset \mathbb{C}^d$ el flujo de $\dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)$, donde
+
+\begin{equation*}
+ \phi(t;t_0,\xo + \delta \xo) = (\mathbf{x + \delta x})(t) = \phi(t;t_0,\xo) + \sum_{j=1}^d \frac{\partial \mathbf{x}(t)}{\partial \mathbf{x}_{0_j}}\delta \mathbf{x}_{0_j} + ...
+\end{equation*}
+
+es la expansión en serie de Taylor de $\phi$ alrededor de $\xo$, entonces 
+\begin{equation}
+ \delta \mathbf{x}(t) = J^t(\xo) \cdot \delta \xo
+\end{equation}
+
+donde $J^t(\xo) = \frac{\partial \phi(t;t_0,\xo)}{\partial \mathbf{x}_{0_j}}$.
+ 
+Con esto, obtenemos una forma más práctica de obtener los ELTF
+\begin{equation}
+ \lambda_{\xo}^t = \frac{1}{t}\ln \left( ||J^t(\xo) ||_2 \right)
+\end{equation}
+%Detalles técnicos para "computar" el campo de ELTFs; grid de puntos, qué se calcula, etc 
+
+
+
+%choro: Intro de algunos de los métodos para detectar LCS y separatrices sin usar JT, hablar del FTLE y del PS (Poincaré Sections) y así ... 
 
 \subsection{Tamaño máximo de las vecindades}
