@@ -11,7 +11,7 @@ Gracias a que hoy en día existe poder de cómputo para hacer muchas operaciones
 En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de la forma (\ref{eq:ode}). Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa las soluciones de las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que son representaciones de la solución en un espacio de menor dimensionalidad, donde normalmente se busca que no sea tangente a las soluciones para entender cómo éstas cruzan dichas secciones que describe, los exponentes de Lyapunov, que estudia la separación de soluciones cercanas a una condición inicial dada, la derivada de Lie, que compara al campo vectorial de (\ref{eq:ode}) contra otro campo vectorial, la linealización de Grobman-Hartman, que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas y analiza qué quiere decir ``suficientemente'', entre otras. 
 %%REFERENCIAS NECESARIAS EN EL PÄRRAFO ANTERIOR.
 
-Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ y se encuentra el flujo para toda esta parcela. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\mathcal{U_{xo}}$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowU$, el estado de $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
+Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta parcela. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
 
 %FIGURA!
 
@@ -30,7 +30,7 @@ Si tomamos $h$ \textit{suficientemente pequeña}, aunque finita, podemos aproxim
 que, si tomamos en cuenta que $\dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)$ y que $h$ es un paso de integración, se obtiene
  
 \begin{equation}
- \mathbf{x}_{n+1} = \mathbf{x}_n + h f(\mathbf{x}_n)
+ \mathbf{x}_{n+1} = \mathbf{x}_n + h f(\mathbf{x}_n,t_n)
  \label{eq:euler} 
 \end{equation}
 
@@ -38,21 +38,21 @@ que se conoce como el \textbf{Método de Euler}. Así, dada $\xo$ se puede obten
 
 Ahora, para la evolución del TJ se parametriza a la vecindad $\U_{xo}$ usando un polinomio $P_{t_0,\xo}(\xi)$ alrededor de $\xo \in \mathbb{R}^n$ 
 \begin{equation*}
- P_{t_0,\xo}(\xi) = \xo + \xi = \xo + \left( \xi_1, \xi_2, ..., \xi_n \right)^T
+ P_{t_0,\xo}(\xi) = P_{0,\xo}(\xi) = \xo + \xi = \xo + \left( \xi_1, \xi_2, ..., \xi_n \right)^T
 \end{equation*} 
 
-y se evalúa con el método de Euler (o cualquier otro) para obtener el flujo de $\U$ en algún tiempo $t$ posterior $\flowU$
+y se evalúa con el método de Euler (o cualquier otro) para obtener el flujo de $\Uxo$ en algún tiempo $t$ posterior $\flowU$
 \begin{equation*}
-P_{1,\xo}(\xi) := P_{t_0+h,\xo}(\xi) = P_{t_0,\xo}(\xi) + h f(P_{t_0,\xo}) = \xo + \xi + h f(\xo + \xi).
+P_{1,\xo}(\xi) := P_{t_0+h,\xo}(\xi) = P_{t_0,\xo}(\xi) + h f(P_{0,\xo},t_0) = \xo + \xi + h f(\xo + \xi).
 \end{equation*}
 
 Así, se puede extender el método de Euler al TJ 
 \begin{equation}
- P_{n,\xo}(\xi) = P_{t_n,\xo}(\xi) = P_{n-1,\xo}(\xi) + h f(P_{n-1,\xo}(\xi))
+ P_{t_n,\xo}(\xi) = P_{n,\xo}(\xi) = P_{n-1,\xo}(\xi) + h f(P_{n-1,\xo}(\xi),t_{n-1})
  \label{eq:eulerU}
 \end{equation}
 
-donde $P_{n,\xo}(\xi)$ representa al flujo $\flowU$ para la vecindad $U_{\xo}$.
+donde $P_{n,\xo}(\xi)$ representa al flujo $\flowxi$. Basta evaluar éste polinomio en $\Uxo$ para obtener $\flowU$\footnote{$\flowxi$ no necesariamente debe ser evaluado en toda una vecindad $\Uxo$; puede, también, ser en un único punto $\xi =\delta \mathbf{x}$ y obtener el flujo para $\phi(t;t_0,\xo + \delta \mathbf{x})$}.
 
 Es importante notar que la solución $\flowci$ o el conjunto de soluciones $\flowU$ son sensibles al método de integración utilizado para encontrarlas dado que la solución construida es una aproximación. Se recomienda al lector, si le interesa, leer el desarrollo explícito en \cite{p-palau} para ver estas diferencias.
 
@@ -60,7 +60,7 @@ Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que mot
 
 Sea
 \begin{align}
-\dotx = f(t,\mathbf{x}) = \left[ \begin{array}{cc}
+\dotx = f(\mathbf{x},t) = \left[ \begin{array}{cc}
  0 & -1  \\
  1 & 0  \\
 \end{array} \right] \left( x_1, x_2 \right)^T
@@ -71,18 +71,18 @@ un campo vectorial que describe centros alrededor de $x_0 = (0,0)$.
 Si se toma $P_{0,\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inicial, podemos desarrollar ``a mano'' el transporte de Jet, donde, usando el método de Euler tenemos
 
 \begin{align*}
-\mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi)) \\
+\mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi),t_0) \\
 &= (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
  1 & -h  \\
 h & 1  \\
 \end{array} \right] (\xi_1,\xi_2)^T.
 \end{align*} 
 
-El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin la expansión de la vecindad $\U_{\xo}$. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$'s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}$. De este modo, el TJ se plantea a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$, al operar siempre con polinomios y no con números, suele ser más lenta que la de una única trayectoria que pasa por $\xo$ en $t_0$. Naturalmente, el tiempo en donde uno u otro método es mejor es discutible y dependerá fuertemente de la complejidad y la dimensionalidad de las ecuaciones presentes en el sistema\footnote{Para una discusión más a fondo sobre este tema, revisar la sección \ref{sec:}, donde se hacen varios benchmarks en relación al tiempo de cómputo y la memoria utilizada.}.
+El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin el transporte de jets. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$'s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}(\xi)$. De este modo, el TJ se plantea a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$, al operar siempre con polinomios y no con números, suele ser más lenta que la de una única trayectoria que pasa por $\xo$ en $t_0$. Naturalmente, el tiempo en donde uno u otro método es mejor es discutible y dependerá fuertemente de la complejidad y la dimensionalidad de las ecuaciones presentes en el sistema\footnote{Para una discusión más a fondo sobre este tema, revisar la sección \ref{sec:}, donde se hacen varios benchmarks en relación al tiempo de cómputo y la memoria utilizada.}.
 
 Se podría seguir haciendo el desarrollo del TJ iterativamente con el método de Euler. Por ejemplo, el segundo paso quedaría como 
 \begin{align*}
-\mathbf{x}_2 =& P_{2,\xo}(\xi) = P_{1,\xo}(\xi) + h f(P_{1,\xo}(\xi)) \\
+\mathbf{x}_2 =& P_{2,\xo}(\xi) = P_{1,\xo}(\xi) + h f(P_{1,\xo}(\xi),t_n) \\
 =& (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
  1 & -h  \\
 h & 1  \\
@@ -103,13 +103,15 @@ x_{1_0} - h^2x_{1_0} - 2h x_{2_0}  \\
 \end{array} \right] (\xi_1,\xi_2)^T
 \end{align*}
  
-y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores $\mathbb{\xi}$ \textit{suficientemente pequeños} para encontrar las soluciones en la vecindad de $\xo$. En la figura \ref{fig:center-evals} se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_n$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
+y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores $\mathbb{\xi}$ \textit{suficientemente pequeños} para encontrar las soluciones en la vecindad de $\xo$. En la figura \ref{fig:center-evals} se evalúa $\flowxi$ para distintos valores de $t$ en vecindades $\Uxo$ dadas por círculos de distinto radio.
+
+se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_n$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{euler-jt-evaluations-center}
- \caption{Transporte de jets para la ecuación \ref{eq:center} con vecindad inicial $\U_{\xo} = (0,0)^T + \xi$ usando el método de Euler en el intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $\xi$ marcados en la gráfica, en intervalos de $1000h$.}
+ \caption{Transporte de jets para la ecuación \ref{eq:center} con condición inicial $\xo = (0,0)^T$ usando el método de Euler para $\Uxo$ parametrizada en un círculo $\xi(\tau) = r\left( \cos(\tau),\sin(\tau) \right)$ en un intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $r$'s marcados en la gráfica, en intervalos de $1000h$.}
  \label{fig:center-evals}
 \end{figure}
 
@@ -497,12 +499,14 @@ Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano en
 
 Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en éste último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $xo$ y observamos en qué tiempo cruzan las vecindades ésta sección. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que estos indicadores servirán para darnos información sobre el espacio fase sin conocerlo del todo. 
 
+Los siguientes indicadores están motivados fuertemente en lo discutido en \cite{Perez2015}, \cite{Perez2015}, \cite{Haro2009}.
+
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
 
 En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias como órbitas periódicas, atractores o atractores extraños \cite{Perez2015}. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}). La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
-\subsection{Un poco de motivación vía Exponentes de Lyapunov}
+\subsection{Un poco de motivación vía exponentes de Lyapunov}
 
 El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados en saber qué pasa en la vecindad de una condición inicial bajo la aproximación lineal del campo vectorial que define la trayectoria. De aquí, surge la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar en el espacio fase componentes de caos \cite{Perez2015} o estructuras lagrangianas y separatrices \cite{Perez2015}. 
 
@@ -579,4 +583,20 @@ Geométricamente, (\ref{eq:jac_jt}) representa la deformación lineal de una var
 
 Para la figura \ref{fig:ftle_pendulum} podemos ver el campo escalar de los ELTF calculados a partir de (\ref{eq:lyap-exp}) para el péndulo simple descrito por (\ref{eq:pendulo-ode}). Es interesante notar cómo éste percibe, por llamarlo de alguna manera, la presencia de separatrices en el espacio fase, ya que en estas las soluciones cercanas se alejan mucho de la separatriz. En \cite{Haller2011}, se hace un análisis profundo sobre detectar diferentes regiones en el espacio fase, que ahí las llama \textit{Estructuras Lagrangianas Coherentes}, motivado en la parcelas lagrangianas de la mecánica de fluidos. Como se muestra en la referencia anterior, no necesariamente el campo escalar de ELTF va a encontrar separatrices, sino puntos cuyas soluciones vecinas se alejan rápidamente en el tiempo; esto puede indicar, sí, separatrices, pero también caos, o grandes gradientes de velocidad en el espacio fase.
 
+%Casos donde esto falla o donde el jacobiano no es suficientemente buena aproximación... 
 \subsection{Tamaño máximo de las vecindades}
+
+Vimos, en el caso anterior, cómo el jacobiano $J^{t_n}(\xi)$ representa la deformación lineal de las trayectorias vecinas a $\xo$ al tiempo $t_n$ y cómo, con éste, se puede calcular el campo escalar de los ELTF. Sin embargo, en los ejemplos XXX se observa que a veces la aproximación lineal de las deformaciones no es suficiente para sacar conclusiones contundentes sobre el sistema de EDO. De hecho, por el teorema de Grobman-Hartman, existen casos donde las ecuaciones no son siquiera topológicamente equivalentes a su aproximación lineal. 
+%Trabajar los ejemplos XXX.
+
+Para el TJ no tenemos, a priori, la restricción de la linealidad. Lo único que se hizo para adaptar el TJ al campo de ELTF fue tomar una expansión a primer orden de las soluciones de un campo vectorial dado. Sin embargo, si las expansiones de los polinomios son de orden $N > 1$, entonces las deformaciones en las vecindades de $\xo$ exhibirán términos no lineales para cada término del flujo y, así, se puede obtener información más precisa en los indicadores pertinentes\footnote{La figura \ref{fig:pendulum_jt} es un buen ejemplo de cómo no siempre las deformaciones lineales son suficientes.}. Intuitivamente, entre mayor sea el orden de expansión de los jets, mejor será la aproximación a la solución real en las vecindades de $\xo$; sin embargo, no se ha analizado \textit{que tan grandes} deben ser dichas variaciones para estar bajo una tolerancia controlada.
+
+Intuitivamente, y suponiendo que la expansión en series de $\flowxi$ corresponde a una expansión analítica, los coeficientes de la expansión serán menores entre mayor sea el orden. Dicho esto, una forma de controlar qué tan grandes pueden ser las variaciones en las vecindades alrededor de $\xo$ es acotar la contribución del último término y pedir que
+\begin{equation*}
+ a_{m,k}\xi_{max}^k \leq \epsilon_{jet}
+\end{equation*}
+%Ver notación y redacción de este último párrafo.
+
+
+
+
