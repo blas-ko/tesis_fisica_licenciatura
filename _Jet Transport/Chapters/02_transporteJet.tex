@@ -111,7 +111,7 @@ se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{euler-jt-evaluations-center}
- \caption{Transporte de jets para la ecuación \ref{eq:center} con condición inicial $\xo = (0,0)^T$ usando el método de Euler para $\Uxo$ parametrizada en un círculo $\xi(\tau) = r\left( \cos(\tau),\sin(\tau) \right)$ en un intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $r$'s marcados en la gráfica, en intervalos de $1000h$.}
+ \caption{Transporte de jets para la ecuación (\ref{eq:center}) con condición inicial $\xo = (0,0)^T$ usando el método de Euler para $\Uxo$ parametrizada en un círculo $\xi(\tau) = r\left( \cos(\tau),\sin(\tau) \right)$ para un intervalo temporal $[0,2\pi]$ en pasos de $h=10^{-4}$. Se evaluó la solución para los distintos $r$'s marcados en la gráfica, en intervalos de $1000h$.}
  \label{fig:center-evals}
 \end{figure}
 
@@ -160,7 +160,7 @@ Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lin
 = \sum_{i=0}^M \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{M+1})
 \label{eq:anal-exp}
 \end{equation}
-la expansión de orden $M$ en $h$ donde $x_i$ es la i-ésima derivada normalizada $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}$ e $i :=||\mathbf{i}||_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1}$ corresponde al residuo de la expansión y, en caso de funciones analíticas, son términos de menor corrección a la función expandida dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método.
+la expansión de orden $M$ en $h$ donde $x_i$ es la i-ésima derivada normalizada $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1})$ corresponde al residuo de la expansión y, en caso de funciones analíticas, son términos de menor corrección a la función expandida dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método.
 
 Notemos que comparando ambas expansiones en series de potencias de (\ref{eq:ode}) y notando que $ \frac{d}{dt} \left( \sum_{k=0} a_k t^k \right) = \sum_{k=1} k a_k t^{k-1}$,   
 \begin{equation*}
@@ -183,12 +183,12 @@ el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
 
 Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como varios de los Runge-Kutta, es que se puede acotar el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon_{Taylor}$, es decir
 \begin{equation*}
-||x_M||_\infty h^M \leq \epsilon_{Taylor} \implies h = \left( \frac{\epsilon_{Taylor}}{||x_M||_\infty} \right)^{1/M}.
+\norm{x_M}_\infty h^M \leq \epsilon_{Taylor} \implies h = \left( \frac{\epsilon_{Taylor}}{\norm{x_M}_\infty} \right)^{1/M}.
 \end{equation*} 
 
 Para el caso de funciones pares o impares, es probable que el último coeficiente de la serie sea identicamente cero y, para evitar indeterminaciones al encontrar $h$, se busca la mínima $h$ entre los dos últimos coeficientes de la expansión de $\mathbf{x}(t+h)$
 \begin{equation}
-h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{||x_m||_\infty} \right)^{1/m} }.
+h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_m}_\infty} \right)^{1/m} }.
 \label{eq:stepsize}
 \end{equation} 
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
@@ -203,15 +203,15 @@ P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=1}^M f_i(P_{n,\xo}(\xi),t_n)h^i
 donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, pueden encontrarse las soluciones $\phi(t_n;t_0,\xo) = \mathbf{x}(t_n)$ con condición inicial $\xo$ y $\phi(t_n;t_0,\U_{\xo}) = P_{n,\xo}(\xi)$ la solución de la vecindad $\U_{\xo}$ al tiempo
 $t_n$ del sistema (\ref{eq:ode}) usando (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}), respectivamente.
 
-Aunque la actualización del método de Taylor para el transporte de jets es bastante directa gracias al desarrollo del álgebra polinomial, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $||x_m||_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
+Aunque la actualización del método de Taylor para el transporte de jets es bastante directa gracias al desarrollo del álgebra polinomial, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
 
 \begin{definicion}
-Sea $||\cdot|| : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
+Sea $\norm{\cdot} : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
 \begin{equation}
- ||P(\mathbf{\xi})||_p := \left( \sum_{k} ||a_k||_p^p \right)^{1/p}
+ \norm{P(\mathbf{\xi})}_p := \left( \sum_{k} \norm{a_k}_p^p \right)^{1/p}
  \label{eq:poly-norm}
 \end{equation}  
-donde, si $a_k \in \mathbb{R}$, entonces $||a_k||_p = |a_k|$.
+donde, si $a_k \in \mathbb{R}$, entonces $\norm{a_k}_p = |a_k|$.
 \end{definicion}
 
 Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{P-palau}.
@@ -297,7 +297,7 @@ Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \ Kg$, $k = 1 \frac{
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{oscillator_dx}
-	\caption{Variación $\delta \mathbf{x}(t) =  \frac{||\mathbf{x}(t_n) - \mathbf{x_n}||_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
+	\caption{Variación $\delta \mathbf{x}(t) =  \frac{\norm{\mathbf{x}(t_n) - \mathbf{x_n}}_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
 	\label{fig:oscillator_dx}
 \end{subfigure}
 \caption{Variaciones de energía y trayectoria para el oscilador armónico en cada uno de los pasos temporales de la solución con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$.}
@@ -394,6 +394,8 @@ Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fi
 
 \clearpage
 \subsubsection{Hamiltoniano Artificial}
+\label{sec:artificial_ham}
+
 Inventemos un hamiltoniano que no necesariamente represente un sistema físico. Éste último ejemplo servirá como motivación de la sección siguiente, ya que estaremos analizando las soluciones cerca de una curva límite y se podrá extender un poco la discusión sobre los jets y la necesidad de contruir algunos indicadores dinámicos relevantes. 
 
 Sea 
@@ -431,7 +433,7 @@ Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el ha
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.8\linewidth]{artificial_jt_O16}
- \caption{Solución para \ref{eq:artificial_ode}, con condición inicial sobre la separatriz, donde $q0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, con tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=28$. En gris están las soluciones a $\xo + \xi$ sin utilizar TJ.}
+ \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, con tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=28$. En gris están las soluciones a $\xo + \xi$ sin utilizar TJ.}
  \label{fig:artificial_jt}
 \end{figure}
 
@@ -454,7 +456,7 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
 \textbf{$t_6$} & -0.61                      & -1.05                      & -1.95                      & -3.74                      & -7.34                         \\
 \textbf{$t_7$} & -0.29                      & -0.6                       & -1.24                      & -2.52                      & -5.08                         \\ \bottomrule 
 \end{tabular}
-\caption{Diferencia logarítmica de $\delta \mathbf{x} = || \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) ||$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden $M$ en $\xi$.}
+\caption{Diferencia logarítmica de $\delta \mathbf{x} = \norm{ \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) }$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden $M$ en $\xi$.}
 \label{table:djet_artificial}
 \end{table}
 
@@ -492,7 +494,7 @@ Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano en
 	\caption{Logaritmo de las diferencias de energía $\delta E$ respecto a la energía inicial en toda la integración.}
 	\label{fig:artificial_dEjets_all}
 \end{subfigure}
-\caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} con jets de orden $M=16$ evaluados en $\xi$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+\caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema (\ref{eq:artificial_ode}) con jets de orden $M=16$ evaluados en $\xi$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
 \label{fig:pendulum_jt}
 \end{figure}
 
@@ -504,11 +506,11 @@ Los siguientes indicadores están motivados fuertemente en lo discutido en \cite
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
 
-En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias como órbitas periódicas, atractores o atractores extraños \cite{Perez2015}. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}). La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
+En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
 \subsection{Un poco de motivación vía exponentes de Lyapunov}
 
-El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados en saber qué pasa en la vecindad de una condición inicial bajo la aproximación lineal del campo vectorial que define la trayectoria. De aquí, surge la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar en el espacio fase componentes de caos \cite{Perez2015} o estructuras lagrangianas y separatrices \cite{Perez2015}. 
+El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad $\Uxo$ en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados por saber qué pasa en la vecindad de una condición inicial $\xo$ bajo la aproximación lineal del campo vectorial que define su trayectoria. Surge de aquí la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar cómo se separan dos soluciones cercanas dadas por las trayectorias de $\xo$ y la aproximación lineal de la trayectoria de $\xo + \delta\xo$. Esto permitirá encontrar componentes de caos \cite{Perez2015}, estructuras lagrangianas, separatrices \cite{Perez2015}, ciclos límite, entre otras. 
 
 Sea $\dot{\mathbf{x}}(t) = \mathbf{f}(\mathbf{x}(t),t) = A\mathbf{x}+\mathcal{O}(\mathbf{x}^2)$ un sistema de $d$ grados de libertad que describe un campo vectorial con parte lineal $A \mathbf{x}$. Si nos quedamos únicamente con ésta, podemos encontrar la solución explícita al sistema
 \begin{equation*}
@@ -521,21 +523,29 @@ Dada ésta solución, vemos que las soluciones vecinas son simplemente
  (\mathbf{y} + \mathbf{\delta y})(t) = (\mathbf{y}_0 + \mathbf{\delta y}_0) e^{\Lambda t}
 \end{equation*}
 
-y luego regresar al sistema de coordenadas original bajo $P$. Para esto, buscamos eigenvectores tales que $\det(P) = 1$, de modo que la transformación preserve área y orientación.
+y luego regresar al sistema de coordenadas original bajo $P$\footnote{Buscamos eigenvectores $\mathbf{v}_i$ tales que $\det(P) = 1$, de modo que la transformación $\mathbf{x} = P \mathbf{y}$ preserve área y orientación.}. 
 
 Con lo anterior podemos plantear una forma intuitiva en la que se separan dos soluciones cercanas
 \begin{equation}
- || \mathbf{\delta x}(t) || = e^{\lambda t} || \mathbf{\delta x}_0 ||.
+ \norm{ \mathbf{\delta x}(t) \norm{ = e^{\lambda t} } \mathbf{\delta x}_0 }.
  \label{eq:lyap-sep}
 \end{equation}
-$\lambda$ es el máximo eigenvalor de todos los $\lambda_i$'s de $\Lambda$. Notemos que la variación $\delta x$ debe ser suficientemente pequeña para que $A\mathbf{x}$ sea el término dominante de $f$ aunque, en el límite $\delta x \to 0$, esto es cierto por completo. 
+donde $\lambda$ es el máximo eigenvalor de todos los $\lambda_i$'s de $\Lambda$. Notemos que la variación $\delta x$ debe ser suficientemente pequeña para que $A\mathbf{x}$ sea el término dominante de $f$ aunque, en el límite $\delta x \to 0$, esto es cierto por completo. 
 
 Los ELTF son, en escencia, indicadores escalares que, para cada punto $\mathbf{x}$ del espacio fase, nos dice qué tan grande será la tasa de separación a soluciones cercanas. Estos se obtienen de despejar (\ref{eq:lyap-sep})
 \begin{equation}
- \lambda_{\xo}^t = \frac{1}{t}\ln \left( \frac{||\mathbf{ \delta x(t)} ||_2}{|| \mathbf{\delta x}_0 ||_2} \right)
+ \lambda_{\xo}^t = \frac{1}{t}\ln \left( \frac{\norm{\mathbf{ \delta x(t)} }_2}{\norm{ \mathbf{\delta x}_0 }_2} \right)
  \label{eq:lyap-exp}
 \end{equation}
 y hacer un análisis (lineal) un poco más riguroso sobre las variaciones $\delta \mathbf{x}$.
+
+Es importante resaltar que en los casos donde $\delta \xo$ se aleja de $\xo$ en el tiempo, la separación puede volverse tan grande que la aproximación lineal planteada por (\ref{eq:lyap-sep}) no es válida. Por esto, como se sugiere en \cite{ChaosBook}, es conveniente, dada la separación  $\delta \mathbf{x}(\Delta t_1)$ en un intervalo $\Delta t_1$ donde valga la aproximación lineal, encontrar $\lambda_1 = \lambda_{\xo}^{\Delta t_1}$ para éste intervalo y luego reescalar $\delta \mathbf{x}(\Delta t_1)$ en un factor de $\norm{ \delta \xo / \delta \mathbf{x}(\Delta t_1) }$ para que la magnitud de la separación después de éste intervalo de tiempo sea igual que la inicial $\delta \xo$. Con esto, se puede encontrar el exponente (\ref{eq:lyap-exp}) para tiempos largos con
+\begin{equation*}
+ \lambda_{\xo}^t = \frac{1}{t} \sum_{i} \Delta t_i \lambda_i
+    \quad\text{,}\quad 
+ \sum_i \Delta t_i = t
+\end{equation*}
+evitando así problemas en las no linealidades\footnote{Suena muy lindo pero no es cierto siempre; ver \ref{eq:} } y tomando en cuenta, además, los casos donde $\mathbf{f}(\mathbf{x}(t),t) = A(t)\mathbf{x} + \ldots $, ya que cada exponente $\lambda_i$ se haría en relación a $A(t_i)$.
 
 Sea $\phi: \mathbb{R} \times \mathbb{R} \times \mathcal{D} \to \mathcal{D}$, $\mathcal{D} \subset \mathbb{C}^d$ el flujo de $\dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)$, donde
 
@@ -545,17 +555,17 @@ Sea $\phi: \mathbb{R} \times \mathbb{R} \times \mathcal{D} \to \mathcal{D}$, $\m
 
 es la expansión en serie de Taylor de $\phi$ alrededor de $\xo$, entonces 
 \begin{equation*}
- \delta \mathbf{x}(t) = J^t(\xo) \cdot \delta \xo
+ \delta \mathbf{x}(t) \approx J^t(\xo) \cdot \delta \xo
 \end{equation*}
 
 con 
 \begin{equation}
- J^t(\xo) = \frac{\partial \phi(t;t_0,\xo)}{\partial \mathbf{x}_{0_j}}
+ J^t(\xo) = \frac{\partial \phi(t;t_0,\xo)}{\partial \mathbf{x}_{0}}
  \label{eq:jacobian}
 \end{equation}
 la matriz jacobiana para $\flowci$ alrededor de $\xo$. Con esto, obtenemos una forma más práctica de obtener los ELTF
 \begin{equation}
- \lambda_{\xo}^t = \frac{1}{t}\ln \left( ||J^t(\xo) ||_2 \right)
+ \lambda_{\xo}^t = \frac{1}{t}\ln \left( \norm{J^t(\xo) }_2 \right)
 \end{equation}
 ya que, por la construcción del álgebra polinomial, podemos calcular $J^t(\mathbf{x})$ para cada paso de una integración de jets en polinomios de orden $N=1$ y obtener, naturalmente, los ELTF.
 
@@ -569,7 +579,7 @@ En el caso de dos grados de libertad\footnote{El caso de $d$ grados de libertad 
  \label{eq:jac_jt}
 \end{align}
 
-Geométricamente, (\ref{eq:jac_jt}) representa la deformación lineal de una variación $\delta \mathbf{x}$ respecto de $\xo$ para cada paso en $t$. Notemos que para $t = t_0$, $J^0(\xi) = \mathbf{1}$.
+Geométricamente, (\ref{eq:jac_jt}) representa la deformación lineal de una variación $\delta \mathbf{x}$ respecto de $\xo$ para cada paso en $t$ donde, para $t = t_0$, $J^0(\xi) = \mathbf{1}$.
 
 %Detalles técnicos para "computar" el campo de ELTFs; grid de puntos, qué se calcula, etc 
 
@@ -577,11 +587,14 @@ Geométricamente, (\ref{eq:jac_jt}) representa la deformación lineal de una var
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{ftle_pendulum}
- \caption{Campo escalar de los ELTF para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $40$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $M = 25$.}
+ \caption{Campo escalar de los ELTF para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $100$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $M = 25$.}
  \label{fig:ftle_pendulum}
 \end{figure}
 
-Para la figura \ref{fig:ftle_pendulum} podemos ver el campo escalar de los ELTF calculados a partir de (\ref{eq:lyap-exp}) para el péndulo simple descrito por (\ref{eq:pendulo-ode}). Es interesante notar cómo éste percibe, por llamarlo de alguna manera, la presencia de separatrices en el espacio fase, ya que en estas las soluciones cercanas se alejan mucho de la separatriz. En \cite{Haller2011}, se hace un análisis profundo sobre detectar diferentes regiones en el espacio fase, que ahí las llama \textit{Estructuras Lagrangianas Coherentes}, motivado en la parcelas lagrangianas de la mecánica de fluidos. Como se muestra en la referencia anterior, no necesariamente el campo escalar de ELTF va a encontrar separatrices, sino puntos cuyas soluciones vecinas se alejan rápidamente en el tiempo; esto puede indicar, sí, separatrices, pero también caos, o grandes gradientes de velocidad en el espacio fase.
+En la figura \ref{fig:ftle_pendulum} podemos ver el campo escalar de los ELTF calculados a partir de (\ref{eq:lyap-exp}) para el péndulo simple descrito por (\ref{eq:pendulo-ode}). Es interesante notar cómo éste percibe, por llamarlo de alguna manera, la presencia de separatrices en el espacio fase, ya que en estas las soluciones cercanas se alejan mucho de la separatriz. En \cite{Haller2011}, se hace un análisis profundo sobre detectar diferentes regiones en el espacio fase, que ahí las llama \textit{Estructuras Lagrangianas Coherentes}, motivado en la parcelas lagrangianas de la mecánica de fluidos. Como se muestra en la referencia anterior, no necesariamente el campo escalar de ELTF va a encontrar separatrices, sino puntos cuyas soluciones vecinas se alejan rápidamente en el tiempo; esto puede indicar, sí, separatrices, pero también caos, o grandes gradientes de velocidad en el espacio fase.
+%Un par más de ejemplos
+
+Hemos visto cómo el campo escalar de ELTF proporciona un buen indicador de la estructura de los campos vectoriales en relación con qué pasa linealmente en la vecindad de diferentes puntos del espacio fase. Sin embargo, Existen casos donde éste no es suficiente para entenderlos o clasificarlos. 
 
 %Casos donde esto falla o donde el jacobiano no es suficientemente buena aproximación... 
 \subsection{Tamaño máximo de las vecindades}
@@ -591,12 +604,71 @@ Vimos, en el caso anterior, cómo el jacobiano $J^{t_n}(\xi)$ representa la defo
 
 Para el TJ no tenemos, a priori, la restricción de la linealidad. Lo único que se hizo para adaptar el TJ al campo de ELTF fue tomar una expansión a primer orden de las soluciones de un campo vectorial dado. Sin embargo, si las expansiones de los polinomios son de orden $N > 1$, entonces las deformaciones en las vecindades de $\xo$ exhibirán términos no lineales para cada término del flujo y, así, se puede obtener información más precisa en los indicadores pertinentes\footnote{La figura \ref{fig:pendulum_jt} es un buen ejemplo de cómo no siempre las deformaciones lineales son suficientes.}. Intuitivamente, entre mayor sea el orden de expansión de los jets, mejor será la aproximación a la solución real en las vecindades de $\xo$; sin embargo, no se ha analizado \textit{que tan grandes} deben ser dichas variaciones para estar bajo una tolerancia controlada.
 
-Intuitivamente, y suponiendo que la expansión en series de $\flowxi$ corresponde a una expansión analítica, los coeficientes de la expansión serán menores entre mayor sea el orden. Dicho esto, una forma de controlar qué tan grandes pueden ser las variaciones en las vecindades alrededor de $\xo$ es acotar la contribución del último término y pedir que
+%FIGURA!
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{xi_precision_pendulum}
+	\caption{Diferencia de energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema (\ref{eq:artificial_ode}) con jets de orden $M=16$ evaluados en $\xi_{max} = 0.0235$, el cual se calculó con $\epsilon_{jet} = 10^{-14}$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-10}$, orden de expansión $N = 25$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+	\label{fig:xi_precision_pendulum}
+\end{figure}
+
+%FIGURA! 
+%\begin{figure}[h!]
+%\centering
+%\begin{subfigure}{0.49\textwidth}
+%	\centering
+%	\includegraphics[width = \textwidth]{euler-vs-analytical_center}
+%	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
+%	\label{fig:center-eu_vs_anal}
+%\end{subfigure}
+%%
+%\begin{subfigure}{0.49\textwidth}
+%	\centering
+%	\includegraphics[width = \textwidth]{euler-method_error}
+%	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
+
+Suponiendo que la expansión en series de $\flowxi$ corresponde a una expansión analítica, los coeficientes de la expansión irán convergiendo en cuanto crezca el orden. Así, una forma de controlar qué tan grandes pueden ser las variaciones alrededor de $\xo$ es acotar la contribución del último término a una tolerancia dada; es decir,
 \begin{equation*}
- a_{m,k}\xi_{max}^k \leq \epsilon_{jet}
+ a_{M}^{(n)}\xi_{max}^n \leq \epsilon_{jet}
 \end{equation*}
-%Ver notación y redacción de este último párrafo.
+donde $\flowxi = P_{n,\xo}(\xi) = \sum_{|m|=1}^M  a_{m}^{(n)} \xi^m$, con $a_{m}^{(n)}$ el polinomio de orden $m = \norm{\mathbf{m}}_1$ del jet al tiempo $t_n$.
 
+Se busca controlar el máximo de estos coeficientes, de modo que 
+\begin{align}
+ \xi_{max} = \min_{|m|=M} \left( \frac{\epsilon_{jet}}{a_{m}^{(n)}} \right)^{\frac{1}{m}}.
+\end{align}
+es el radio máximo que la vecindad $\Uxo$ puede tomar para estar debajo de la tolerancia controlada. 
 
+Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin que las deformaciones del jet repercutan de manera drástica en las soluciones evaluadas. La sección \ref{sec:artificial_ham} muestra cómo la dinámica del campo vectorial exige que las deformaciones de $\Uxo$ sean muy grandes y, como se observó en la figura \ref{fig:artificial_dEjets_all}, después de cierto tiempo la energía deja de conservarse, lo cual implica que la solución ya no vive en la curva de nivel del hamiltoniano y, por tanto, el TJ no es suficiente preciso para determinar soluciones cercanas o, visto de otro ángulo, la vecindad en la que se evaluó era demasiado grande para conservar la energía en toda la trayectoria del flujo.
 
+%FIGURA!
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{dE_ximax_ah}
+	\caption{Diferencia de energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema (\ref{eq:artificial_ode}) con jets de orden $M=16$ evaluados en $\xi_{max} = 0.0235$, el cual se calculó con $\epsilon_{jet} = 10^{-14}$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-10}$, orden de expansión $N = 25$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+	\label{fig:dE_ximax_ah}
+\end{figure}
 
+En la figura \ref{fig:dE_ximax_ah} podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido aleatoriamente en la sección \ref{sec:benchmark-taylor}. 
+
+$\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importante, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en \textbf{órdenes no lineales de la vecindad de las soluciones}. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
+
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.7\linewidth]{jt_ximax_ah}
+ \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, evaluados para $\xi_{max} = 0.025$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=25$. En gris están las soluciones a $\xo + \xi_{max}$ sin utilizar TJ.}
+ \label{fig:jt_ximax_ah}
+\end{figure}
+
+Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (`` '') y la zona donde el péndulo completará períodos completos de oscilación (``libración'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, en este caso, esta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información. 
+
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.7\linewidth]{ximax_pendulum}
+ \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $60$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $M = 25$.}
+ \label{fig:ximax_pendulum}
+\end{figure}
+
+%Hacer más ejemplo(s) con esto
