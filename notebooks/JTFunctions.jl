@@ -1,12 +1,17 @@
 module JTFunctions
 
-    using TaylorSeries, TaylorIntegration
+    ######
+    using TaylorSeries, TaylorIntegration, Plots
+    pyplot()
     import TaylorSeries: NumberNotSeries
 
     export evaluate_neighborhood, circle2, square2,
            ξmax, anal_vs_taylor2D, area_of_polygon,
-           grid_ξmax, vectorField_plot
+           grid_ξmax, grid_FTLE, vectorField_plot,
+           harmonic_oscillator!, simple_pendulum!, artificial_ode!
+    ######
 
+    ##### Functions & Indicators ####
     # Neighborhood Evaluation
     function evaluate_neighborhood{T<:NumberNotSeries}(δU::Function,ϕ::Taylor1{T},num_vals=100)
         τrange = linspace(0,1,num_vals)
@@ -15,20 +20,20 @@ module JTFunctions
         return evaluate.(ϕ, δU.(τrange))
     end
 
-    function evaluate_neighborhood{T<:NumberNotSeries}(δU::Function,ϕ::TaylorN{T},num_vals=100)
+    function evaluate_neighborhood{T<:NumberNotSeries}(δU::Function,ϕ::TaylorN{T},num_vals::Integer=100,ξ::Real=0.1)
         τrange = linspace(0,1,num_vals)
         length(δU(τrange[1])) != get_numvars() ? error("δU is not of the same dimension of the phase space.") : nothing
         !(δU(τrange[1]) ≈ δU(τrange[end])) ? error("δU is not a closed surface in the range given.") : nothing
 
-        return evaluate.(ϕ, δU.(τrange))
+        return evaluate.(ϕ, δU.(τrange,r=ξ))
         end
 
-    function evaluate_neighborhood{T<:AbstractSeries}(δU::Function,ϕ::Array{T,1},num_vals=100)
-        return evaluate_neighborhood.(δU,ϕ,num_vals)
+    function evaluate_neighborhood{T<:AbstractSeries}(δU::Function,ϕ::Array{T,1};num_vals::Integer=100,ξ::Real=0.1)
+        return evaluate_neighborhood.(δU,ϕ,num_vals,ξ)
     end
 
     # Some Neighborhood Parametrization (this should deserve a special type Neighborhood)
-    circle2(τ,r=0.1) = [r*cos(2π*τ),r*sin(2π*τ)]
+    circle2(τ;r=0.1) = [r*cos(2π*τ),r*sin(2π*τ)]
     square2(τ) = nothing
 
     # Area of Neighborhood
@@ -87,15 +92,19 @@ module JTFunctions
     anal_vs_taylor2D(x,y,xa) = sqrt.((x - xa[:,1]).^2 + (y - xa[:,2]).^2)
 
 
-    ## PLOTTING & GRIDS
+    #### PLOTTING & GRIDS ####
     #No parallelization is done yet.
 
     #ξmax grid without the plot.. should the plot be included?
+    #### This should be eliminated after PR is merged
+    import TaylorSeries: get_variables
+    get_variables(order) = [TaylorN(i,order=order) for i in 1:get_numvars()]
+    ####
     function grid_ξmax{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
                         xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
                         order_jet::Integer=3,order_taylor::Integer=25,abstol=1e-10)
         @assert get_numvars() == 2 "ξmax must be 2-dimensional."
-        δx,δy = get_variables()
+        δx,δy = get_variables(order_jet)
 
         xgrid= linspace(xlim...,num_points)
         ygrid= linspace(ylim...,num_points)
@@ -141,7 +150,8 @@ module JTFunctions
 
     #2D vector Field plotting for an TaylorIntegration defined eqs_motion!
     #See some options for beautifying (optional)
-    function vectorField_plot(vecField!::Function,t0=0.0;xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Int=15)
+    function vectorField_plot(vecField!::Function,t0=0.0;xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),
+                              num_points::Int=15,arrowsize::Real=1.2,gridlog::Bool=false)
         X = linspace(xlim...,num_points)
         Y = linspace(ylim...,num_points)
 
@@ -161,9 +171,16 @@ module JTFunctions
                 vgrid[k] = (x_,y_)
                 vecField!(t0,vgrid[k],dx)
                 normFactor = max(normFactor, norm(dx))
-                f_norm[k] = Tuple(1.5 * Δr * dx)
+                f_norm[k] = Tuple(arrowsize^2 * Δr * dx)
+                if gridlog
+                    f_norm[k] = sign.(f_norm[k]).*log.(norm.(f_norm[k]).+1)
+                end
 
             end
+        end
+
+        if gridlog
+            normFactor = log(normFactor+1)
         end
 
         f_norm = [f_norm[i]./normFactor for i in eachindex(f_norm)]
@@ -173,5 +190,28 @@ module JTFunctions
         xlims!(xlim...)
         ylims!(ylim...)
     end
+
+
+    #### ODE systems ####
+    function harmonic_oscillator!(t,x,dx)
+        dx[1] = -x[2]
+        dx[2] = x[1]
+        nothing
+    end
+
+    function simple_pendulum!(t,x,dx)
+        θ,p = (x[1],x[2])
+        dx[1] = p/(m*l^2)
+        dx[2] = -m*g*l*sin(θ)
+        nothing
+    end
+    m,g,l = 1.0,1.0,1.0
+
+    function artificial_ode!(t,x,dx)
+        dx[1] = 2.0*x[1]*x[2]
+        dx[2] = -x[2]^2 + x[1]
+        nothing
+    end
+
 
 end #module
