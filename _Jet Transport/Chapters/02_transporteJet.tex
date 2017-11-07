@@ -525,6 +525,8 @@ Dada ésta solución, vemos que las soluciones vecinas son simplemente
 
 y luego regresar al sistema de coordenadas original bajo $P$\footnote{Buscamos eigenvectores $\mathbf{v}_i$ tales que $\det(P) = 1$, de modo que la transformación $\mathbf{x} = P \mathbf{y}$ preserve área y orientación.}. 
 
+%Valdrá la pena mencionar aquí algo sobre  el ESPECTRO DE LYAPUNOV? Yo creo que sí, ya que, en sistemas hamiltonianos TR(\Lambda) == 1 y, además, habla un poco de cómo se deforman las soluciones linealmente alrededor de un punto en todas las direcciones 
+
 Con lo anterior podemos plantear una forma intuitiva en la que se separan dos soluciones cercanas
 \begin{equation}
  \norm{ \mathbf{\delta x}(t) \norm{ = e^{\lambda t} } \mathbf{\delta x}_0 }.
@@ -594,7 +596,7 @@ Geométricamente, (\ref{eq:jac_jt}) representa la deformación lineal de una var
 En la figura \ref{fig:ftle_pendulum} podemos ver el campo escalar de los ELTF calculados a partir de (\ref{eq:lyap-exp}) para el péndulo simple descrito por (\ref{eq:pendulo-ode}). Es interesante notar cómo éste percibe, por llamarlo de alguna manera, la presencia de separatrices en el espacio fase, ya que en estas las soluciones cercanas se alejan mucho de la separatriz. En \cite{Haller2011}, se hace un análisis profundo sobre detectar diferentes regiones en el espacio fase, que ahí las llama \textit{Estructuras Lagrangianas Coherentes}, motivado en la parcelas lagrangianas de la mecánica de fluidos. Como se muestra en la referencia anterior, no necesariamente el campo escalar de ELTF va a encontrar separatrices, sino puntos cuyas soluciones vecinas se alejan rápidamente en el tiempo; esto puede indicar, sí, separatrices, pero también caos, o grandes gradientes de velocidad en el espacio fase.
 %Un par más de ejemplos
 
-Hemos visto cómo el campo escalar de ELTF proporciona un buen indicador de la estructura de los campos vectoriales en relación con qué pasa linealmente en la vecindad de diferentes puntos del espacio fase. Sin embargo, Existen casos donde éste no es suficiente para entenderlos o clasificarlos. 
+Hemos visto cómo el campo escalar de ELTF proporciona un buen indicador de la estructura de los campos vectoriales en relación con qué pasa linealmente en la vecindad de diferentes puntos del espacio fase. Sin embargo, existen casos donde éste no es suficiente para entenderlos o clasificarlos. 
 
 %Casos donde esto falla o donde el jacobiano no es suficientemente buena aproximación... 
 \subsection{Tamaño máximo de las vecindades}
@@ -651,7 +653,7 @@ Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin 
 
 En la figura \ref{fig:dE_ximax_ah} podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido aleatoriamente en la sección \ref{sec:benchmark-taylor}. 
 
-$\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importante, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en \textbf{órdenes no lineales de la vecindad de las soluciones}. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
+$\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importantemente, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en \textbf{órdenes no lineales de la vecindad de las soluciones}. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -661,7 +663,7 @@ $\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, m�
  \label{fig:jt_ximax_ah}
 \end{figure}
 
-Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (`` '') y la zona donde el péndulo completará períodos completos de oscilación (``libración'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, en este caso, esta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información. 
+Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (`` '') y la zona donde el péndulo completará períodos completos de oscilación (``libración'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, en este caso, ésta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información. 
 
 %FIGURA!
 \begin{figure}[h!]
@@ -672,3 +674,42 @@ Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, 
 \end{figure}
 
 %Hacer más ejemplo(s) con esto
+
+\pagebreak
+\subsection{Tasa de expansión y contracción}
+\label{sec:contraccion_expansion}
+
+Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. Este indicador se relaciona con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crecen o se contraen las soluciones de $\dotx = Ax$ bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
+
+Para obtener dicho indicador se hace el TJ del orden $M$ deseado integrando hasta $t = t_n$, se obtiene el radio máximo de la vecindad con el método de la sección anterior y se evalúa la frontera de $\Uxo$ en $P_{n,\xo}(\xi(\theta))$. Una vez evaluada, se encuentra el ángulo de máxima (mínima) separación 
+\begin{equation}
+ \theta_{+} = \max_{\theta \in [0,2\pi)} \norm{ P_{n,\xo}(\xi(\theta)) - P_{n,\xo}(0) }
+\end{equation} 
+y se calcula 
+\begin{equation}
+ \zeta_{\pm} = \frac{ P_{n,\xo}(\xi(\theta_{\pm})) }{\xi_{max}}.
+ \label{eq:max_min_rate}
+\end{equation}
+
+En el caso de dos grados de libertad, como los ejemplos hasta ahora planteados, se ha parametrizado dicha frontera con $\xi(\theta) = \xi_{max} \left( \cos(\theta), \sin(\theta) \right)^T, \theta \in [0,2\pi]$. Evidentemente no se puede evaluar la frontera de $\Uxo$ en un continuo de puntos en la computadora, así que hay dos maneras de tener buena precisión sobre los máximos y mínimos reales: 
+\begin{itemize}
+\item Aumentar el número de puntos con los cuales se evalúa $\delta \Uxo$
+\item Encontrar $\theta_{\pm}$ de los puntos disponibles y luego hacer un Newton-Rapson con $P_{n,\xo}$. 
+\end{itemize} 
+
+%Teniendo xi_max se puede ver en qué dirección se expande más (menos) la deformación de de dx. ESte se hace encontrando el máximo y mínimo en la vecindad evaluada. ¿Cómo serviría esto? 
+
+\subsection{Formas Simplécticas}
+\label{sec:formas-simplecticas}
+
+%Construir la forma simpléctica para hamiltoniano y llegar a A^T w + w A = 0. Hacer notar que se puede constuir un simil para cualquier EDO y estuidar tantio esto. Esto se puede hacer con JT de orden 1. Probarlo en hamiltonianos y no hamiltonianos también! Se puede hacer un campo escalar de esto? 
+
+\subsection{Evaluaciones de Montecarlo}
+\label{sec:montecarlo}
+
+%Mostrar que, dado un JT, se pueden simplemente evaluar los polinomios (usando xi_max) y tener un Montecarlo relativamente rápido. Hacer benchmarks de velocidad y precición con el montecarlo normal. Preguntar sobre un buen ejemplo de esto. 
+
+\subsection{Secciones de Poincaré}
+
+%Cuales son las condiciones para cruzar una sección de Poincaré? Para que sírven estas? De que sirve reducir el espacio ? Cómo se usan en ciclos límite? Se pueden usar fuera de estos? 
+
