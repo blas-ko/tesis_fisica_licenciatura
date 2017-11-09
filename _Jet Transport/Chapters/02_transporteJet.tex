@@ -569,7 +569,7 @@ la matriz jacobiana para $\flowci$ alrededor de $\xo$. Con esto, obtenemos una f
 \begin{equation}
  \lambda_{\xo}^t = \frac{1}{t}\ln \left( \norm{J^t(\xo) }_2 \right)
 \end{equation}
-ya que, por la construcción del álgebra polinomial, podemos calcular $J^t(\mathbf{x})$ para cada paso de una integración de jets en polinomios de orden $N=1$ y obtener, naturalmente, los ELTF.
+ya que, por la construcción del álgebra polinomial, podemos calcular $J^t(\mathbf{x})$ para cada paso de una integración de jets en polinomios de orden $M=1$ y obtener, naturalmente, los ELTF.
 
 En el caso de dos grados de libertad\footnote{El caso de $d$ grados de libertad es idéntico y más aparatoso en notación y, por tanto, no lo voy a hacer.}, el flujo obtenido al integrar alrededor de $P_{0,\xo} = (x_{1_0} + \xi_1, x_{2_0} + \xi_2 )^T$ al tiempo $t=t_n$ se ve como $P_{n,\xo} = (x_1(t_n) + \alpha_1^{(n)} \xi_1 + \beta_1^{(n)} \xi_2, x_2(t_n) + \alpha_2^{(n)} \xi_1 + \beta_2^{(n)} \xi_2)^T$ y, por tanto, 
 
@@ -631,7 +631,7 @@ Para el TJ no tenemos, a priori, la restricción de la linealidad. Lo único que
 
 Suponiendo que la expansión en series de $\flowxi$ corresponde a una expansión analítica, los coeficientes de la expansión irán convergiendo en cuanto crezca el orden. Así, una forma de controlar qué tan grandes pueden ser las variaciones alrededor de $\xo$ es acotar la contribución del último término a una tolerancia dada; es decir,
 \begin{equation*}
- a_{M}^{(n)}\xi_{max}^n \leq \epsilon_{jet}
+ a_{M}^{(n)}\xi_{max}^M \leq \epsilon_{jet}
 \end{equation*}
 donde $\flowxi = P_{n,\xo}(\xi) = \sum_{|m|=1}^M  a_{m}^{(n)} \xi^m$, con $a_{m}^{(n)}$ el polinomio de orden $m = \norm{\mathbf{m}}_1$ del jet al tiempo $t_n$.
 
@@ -651,7 +651,7 @@ Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin 
 	\label{fig:dE_ximax_ah}
 \end{figure}
 
-En la figura \ref{fig:dE_ximax_ah} podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido aleatoriamente en la sección \ref{sec:benchmark-taylor}. 
+En la figura \ref{fig:dE_ximax_ah} retomamos al sistema \ref{eq:artifical_ode} que, en su momento, vimos cómo su energía divirgió; ahora podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido aleatoriamente en la sección \ref{sec:benchmark-taylor}. 
 
 $\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importantemente, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en \textbf{órdenes no lineales de la vecindad de las soluciones}. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
 
@@ -659,11 +659,11 @@ $\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, m�
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{jt_ximax_ah}
- \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, evaluados para $\xi_{max} = 0.025$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=25$. En gris están las soluciones a $\xo + \xi_{max}$ sin utilizar TJ.}
+ \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, evaluados para $\xi_{max} = 0.025$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=25$. En gris están las soluciones a $\xo \pm \xi_{max}$ sin utilizar TJ.}
  \label{fig:jt_ximax_ah}
 \end{figure}
 
-Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (`` '') y la zona donde el péndulo completará períodos completos de oscilación (``libración'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, en este caso, ésta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información. 
+Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (`` '') y la zona donde el péndulo completará períodos completos de oscilación (``libración'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, ésta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información y nos indica sobre la presencia de la separatriz. 
 
 %FIGURA!
 \begin{figure}[h!]
@@ -679,7 +679,7 @@ Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, 
 \subsection{Tasa de expansión y contracción}
 \label{sec:contraccion_expansion}
 
-Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. Este indicador se relaciona con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crecen o se contraen las soluciones de $\dotx = Ax$ bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
+Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. La ventaja sobre el campo escalar de ELTF o del tamaño máximo de vecindades es que aquí es posible saber \textbf{en qué dirección} se tienen la mayor y menor deformación respecto a un punto en el espacio fase. Este indicador se relaciona con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crecen o se contraen las soluciones de $\dotx = Ax$ bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
 
 Para obtener dicho indicador se hace el TJ del orden $M$ deseado integrando hasta $t = t_n$, se obtiene el radio máximo de la vecindad con el método de la sección anterior y se evalúa la frontera de $\Uxo$ en $P_{n,\xo}(\xi(\theta))$. Una vez evaluada, se encuentra el ángulo de máxima (mínima) separación 
 \begin{equation}
@@ -687,18 +687,63 @@ Para obtener dicho indicador se hace el TJ del orden $M$ deseado integrando hast
 \end{equation} 
 y se calcula 
 \begin{equation}
- \zeta_{\pm} = \frac{ P_{n,\xo}(\xi(\theta_{\pm})) }{\xi_{max}}.
+ \zeta_{\pm} = \frac{ \norm{P_{n,\xo}(\xi(\theta_{\pm})) - P_{n,\xo}(0)} }{\xi_{max}}.
  \label{eq:max_min_rate}
 \end{equation}
 
-En el caso de dos grados de libertad, como los ejemplos hasta ahora planteados, se ha parametrizado dicha frontera con $\xi(\theta) = \xi_{max} \left( \cos(\theta), \sin(\theta) \right)^T, \theta \in [0,2\pi]$. Evidentemente no se puede evaluar la frontera de $\Uxo$ en un continuo de puntos en la computadora, así que hay dos maneras de tener buena precisión sobre los máximos y mínimos reales: 
+En el caso de dos grados de libertad, como los ejemplos hasta ahora planteados, se ha parametrizado dicha frontera con $\xi(\theta) = \xi_{max} \left( \cos(\theta), \sin(\theta) \right)^T, \theta \in [0,2\pi]$. Evidentemente no se puede evaluar la frontera de $\Uxo$ en un continuo de puntos en la computadora, así que hay dos maneras de obtener buena precisión sobre los máximos y mínimos reales: 
 \begin{itemize}
 \item Aumentar el número de puntos con los cuales se evalúa $\delta \Uxo$
 \item Encontrar $\theta_{\pm}$ de los puntos disponibles y luego hacer un Newton-Rapson con $P_{n,\xo}$. 
 \end{itemize} 
 
+Se pueden encontrar $\theta_\pm$ y $\zeta_\pm$ para todo una rejilla de puntos y obtener dos campos vectorial y dos escalares, respectivamente. Los campos vectoriales indican, para cada punto, la dirección de mayor y menor separación de la condición $\xo$ dada; los campos escalares indican la magnitud de esto último. En la figura \ref{fig:seprate_pendulum} se pueden ver ambos campos encimados para el péndulo simple donde, para cada punto de la rejilla, hay un vector en la dirección de máxima (mínima) separación y en color se indica la magnitud de dicha separación.
+
+%FIGURA! 
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{seprate_max_pendulum}
+	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
+	\label{fig:seprate_max_pendulum}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{seprate_min_pendulum}
+	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
+	\label{fig:seprate_min_pendulum}
+\end{subfigure}
+\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}}
+\label{fig:seprate_pendulum}
+\end{figure}
+
+Es curioso ver que, para los campos escalares de $\zeta_\pm$, se detecta la presencia de la separatriz en un modo similar que en las dos subsecciones anteriores. De hecho, $\zeta_\pm$ puede utilizarse también como un indicador de separatrices, caos y grandes gradientes de velocidad. La figura \ref{fig:seprate_scalar_pendulum} nos muestra una versión más refinada de los campos escalares correspondientes. 
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{seprate_max_scalar_pendulum}
+	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
+	\label{fig:seprate_max_scalar_pendulum}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{seprate_min_scalar_pendulum}
+	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
+	\label{fig:seprate_min_scalar_pendulum}
+\end{subfigure}
+\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}}
+\label{fig:seprate_scalar_pendulum}
+\end{figure}
+
 %Teniendo xi_max se puede ver en qué dirección se expande más (menos) la deformación de de dx. ESte se hace encontrando el máximo y mínimo en la vecindad evaluada. ¿Cómo serviría esto? 
 
+\pagebreak
 \subsection{Formas Simplécticas}
 \label{sec:formas-simplecticas}
 

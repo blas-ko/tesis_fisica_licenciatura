@@ -6,8 +6,8 @@ module JTFunctions
     import TaylorSeries: NumberNotSeries
 
     export evaluate_neighborhood, circle2, square2,
-           ξmax, anal_vs_taylor2D, area_of_polygon,
-           grid_ξmax, grid_FTLE, vectorField_plot,
+           ξmax, anal_vs_taylor2D, area_of_polygon, separation_rate,
+           grid_ξmax, grid_FTLE, grid_seprate, vectorField_plot,
            harmonic_oscillator!, simple_pendulum!, artificial_ode!
     ######
 
@@ -87,7 +87,7 @@ module JTFunctions
         return ξ
     end
 
-    function θ_maxmin(ϕN;neighborhood_vals::Integer=100)
+    function separation_rate(ϕN;neighborhood_vals::Integer=100)
 
         ξ_max = ξmax(ϕN) #should ξ_max be an argument?
         qjet = evaluate_neighborhood(circle2,ϕN[end,1],neighborhood_vals,ξ_max) .- evaluate(ϕN[end,1])
@@ -189,7 +189,7 @@ module JTFunctions
     function grid_seprate{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
                         xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
                         order_jet::Integer=3,order_taylor::Integer=25,abstol=1e-10,
-                        neighborhood_vals::Integer=100,vecField::Bool=true)
+                        neighborhood_vals::Integer=100)
         @assert get_numvars() == 2 "ξmax must be 2-dimensional."
         δx,δy = get_variables(order_jet)
 
@@ -203,14 +203,12 @@ module JTFunctions
         heatgrid_sepRate_max = zeros(length(xgrid),length(ygrid))
         heatgrid_sepRate_min = zeros(length(xgrid),length(ygrid))
 
-        if vecField
-            k  = 0
-            Δr = max(xgrid.step.hi,ygrid.step.hi)
-            #grid allocation for separation rates vector field
-            xy_grid = Vector{Tuple{Float64,Float64}}(num_points^2)
-            vecField_sepRate_max = Vector{Tuple{Float64,Float64}}(num_points^2)
-            vecField_sepRate_min = Vector{Tuple{Float64,Float64}}(num_points^2)
-        end
+        k  = 0
+        Δr = max(xgrid.step.hi,ygrid.step.hi)
+        #grid allocation for separation rates vector field
+        xy_grid = Vector{Tuple{Float64,Float64}}(num_points^2)
+        vecField_sepRate_max = Vector{Tuple{Float64,Float64}}(num_points^2)
+        vecField_sepRate_min = Vector{Tuple{Float64,Float64}}(num_points^2)
 
         #FTLE is missing...
 
@@ -224,15 +222,13 @@ module JTFunctions
                 _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
                 #indicators' evaluations
                 ξ_max = ξmax(ϕN)
-                P_max,P_min,θ_max,θ_min = θ_maxmin(ϕN,neighborhood_vals=neighborhood_vals)
+                P_max,P_min,θ_max,θ_min = separation_rate(ϕN,neighborhood_vals=neighborhood_vals)
 
-                if vecField
-                    #vector field grids as series of tuples
-                    k = num_points*(i-1)+j
-                    xy_grid[k] = (x,y)
-                    vecField_sepRate_max[k] = (0.45 * Δr) .* ( cos(θ_max), sin(θ_max) )
-                    vecField_sepRate_min[k] = (0.45 * Δr) .* ( cos(θ_min), sin(θ_min) )
-                end
+                #vector field grids as series of tuples
+                k = num_points*(i-1)+j
+                xy_grid[k] = (x,y)
+                vecField_sepRate_max[k] = (0.45 * Δr) .* ( cos(θ_max), sin(θ_max) )
+                vecField_sepRate_min[k] = (0.45 * Δr) .* ( cos(θ_min), sin(θ_min) )
 
                 #heatmap matrices
                 heatgrid_ξmax[i,j] = ξ_max
