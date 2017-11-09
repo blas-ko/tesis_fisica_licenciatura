@@ -87,6 +87,43 @@ module JTFunctions
         return ξ
     end
 
+    function θ_maxmin(ϕN;neighborhood_vals::Integer=100)
+
+        ξ_max = ξmax(ϕN) #should ξ_max be an argument?
+        qjet = evaluate_neighborhood(circle2,ϕN[end,1],neighborhood_vals,ξ_max) .- evaluate(ϕN[end,1])
+        pjet = evaluate_neighborhood(circle2,ϕN[end,2],neighborhood_vals,ξ_max) .- evaluate(ϕN[end,2])
+
+        P_n = hcat(qjet,pjet)
+
+        P_max = -Inf
+        P_min =  Inf
+
+        τ = linspace(0,1,neighborhood_vals)
+        θ_max = 0.0
+        θ_min = 0.0
+
+        #i_min = 0
+        #i_max = 0
+
+        for i in 1:length(qjet)
+            P_n_norm = norm(P_n[i,:])
+
+            if P_n_norm > P_max
+                P_max = P_n_norm
+                θ_max = τ[i]*2π
+                #i_max = i
+            end
+
+            if P_n_norm < P_min
+                P_min = P_n_norm
+                θ_min = τ[i]*2π
+                #i_min = i
+            end
+        end
+
+        return P_max/ξ_max, P_min/ξ_max, θ_max, θ_min #, i_max, i_min
+    end
+
 
     # Compare taylorinteg solution `x,y` vs analytical ones `xa`
     anal_vs_taylor2D(x,y,xa) = sqrt.((x - xa[:,1]).^2 + (y - xa[:,2]).^2)
