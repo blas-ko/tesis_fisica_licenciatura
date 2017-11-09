@@ -100,6 +100,7 @@ module JTFunctions
     import TaylorSeries: get_variables
     get_variables(order) = [TaylorN(i,order=order) for i in 1:get_numvars()]
     ####
+
     function grid_ξmax{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
                         xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
                         order_jet::Integer=3,order_taylor::Integer=25,abstol=1e-10)
@@ -148,6 +149,64 @@ module JTFunctions
         return qgrid, pgrid, FTLE'
     end
 
+    function grid_seprate{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
+                        xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
+                        order_jet::Integer=3,order_taylor::Integer=25,abstol=1e-10,
+                        neighborhood_vals::Integer=100,vecField::Bool=true)
+        @assert get_numvars() == 2 "ξmax must be 2-dimensional."
+        δx,δy = get_variables(order_jet)
+
+        #allocation
+        #grid for heatmap allocation
+        xgrid = linspace(xlim...,num_points)
+        ygrid = linspace(ylim...,num_points)
+        #matrix allocation for ξmax
+        heatgrid_ξmax = zeros(length(xgrid),length(ygrid))
+        #matrix allocation for separation rates
+        heatgrid_sepRate_max = zeros(length(xgrid),length(ygrid))
+        heatgrid_sepRate_min = zeros(length(xgrid),length(ygrid))
+
+        if vecField
+            k  = 0
+            Δr = max(xgrid.step.hi,ygrid.step.hi)
+            #grid allocation for separation rates vector field
+            xy_grid = Vector{Tuple{Float64,Float64}}(num_points^2)
+            vecField_sepRate_max = Vector{Tuple{Float64,Float64}}(num_points^2)
+            vecField_sepRate_min = Vector{Tuple{Float64,Float64}}(num_points^2)
+        end
+
+        #FTLE is missing...
+
+        #Parallelize here!
+        for (i,x) in enumerate(xgrid)
+
+            for (j,y) in enumerate(ygrid)
+                #initial TaylorN condition
+                q0TN = [x+δx,y+δy]
+                #Jet Trasnport Integration
+                _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
+                #indicators' evaluations
+                ξ_max = ξmax(ϕN)
+                P_max,P_min,θ_max,θ_min = θ_maxmin(ϕN,neighborhood_vals=neighborhood_vals)
+
+                if vecField
+                    #vector field grids as series of tuples
+                    k = num_points*(i-1)+j
+                    xy_grid[k] = (x,y)
+                    vecField_sepRate_max[k] = (0.45 * Δr) .* ( cos(θ_max), sin(θ_max) )
+                    vecField_sepRate_min[k] = (0.45 * Δr) .* ( cos(θ_min), sin(θ_min) )
+                end
+
+                #heatmap matrices
+                heatgrid_ξmax[i,j] = ξ_max
+                heatgrid_sepRate_max[i,j] = P_max
+                heatgrid_sepRate_min[i,j] = P_min
+            end
+
+        end
+        return xgrid, ygrid, heatgrid_ξmax', heatgrid_sepRate_max', heatgrid_sepRate_min', xy_grid, vecField_sepRate_max, vecField_sepRate_min
+    end
+
     #2D vector Field plotting for an TaylorIntegration defined eqs_motion!
     #See some options for beautifying (optional)
     function vectorField_plot(vecField!::Function,t0=0.0;xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),
@@ -159,8 +218,8 @@ module JTFunctions
         sizeGrid = num_points^2
 
         #allocation
-        vgrid = Vector{Tuple{Float64,Float64}}(sizeGrid)
-        f_norm = Vector{Tuple{Float64,Float64}}(sizeGrid)
+        xy_grid = Vector{Tuple{Float64,Float64}}(sizeGrid)
+        vecField_normed = Vector{Tuple{Float64,Float64}}(sizeGrid)
         normFactor = -Inf
         dx = zeros(Float64,2)
 
@@ -168,12 +227,13 @@ module JTFunctions
             for (j,y_) in enumerate(Y)
 
                 k = num_points*(i-1)+j
-                vgrid[k] = (x_,y_)
-                vecField!(t0,vgrid[k],dx)
+                xy_grid[k] = (x_,y_)
+                vecField!(t0,xy_grid[k],dx)
                 normFactor = max(normFactor, norm(dx))
-                f_norm[k] = Tuple(arrowsize^2 * Δr * dx)
-                if gridlog
-                    f_norm[k] = sign.(f_norm[k]).*log.(norm.(f_norm[k]).+1)
+                vecField_normed[k] = Tuple(arrowsize^2 * Δr * dx)
+
+                if gridlog #sign(f) is because log(-a) not in Real
+                    vecField_normed[k] = sign.(vecField_normed[k]).*log.(norm.(vecField_normed[k]).+1)
                 end
 
             end
@@ -183,10 +243,10 @@ module JTFunctions
             normFactor = log(normFactor+1)
         end
 
-        f_norm = [f_norm[i]./normFactor for i in eachindex(f_norm)]
+        vecField_normed = [vecField_normed[i]./normFactor for i in eachindex(vecField_normed)]
 
         #Plotting
-        quiver(vgrid, quiver=f_norm)
+        quiver(xy_grid, quiver=vecField_normed)
         xlims!(xlim...)
         ylims!(ylim...)
     end
