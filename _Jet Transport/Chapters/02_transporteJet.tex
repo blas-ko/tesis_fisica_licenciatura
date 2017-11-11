@@ -754,10 +754,97 @@ Es curioso ver que, para los campos escalares de $\zeta_\pm$, se detecta la pres
 \pagebreak
 \subsection{Formas Simplécticas}
 \label{sec:formas-simplecticas}
+%Motivar un poco porqué hablaríamos de formas simpléticas y decir que el desarrollo viene motivado del chaosbook... si se puede encontrar algún otro libro para complementar estaría muy bien. 
 
+Tenemos, de (\ref{eq:hamiltonian}), que
+\begin{align*}
+H: \mathcal{M} \subset \mathbb{R}^d\times\mathbb{R}^d &\to \mathbb{R} \\ 
+	(\mathbf{q},\mathbf{p}) &\to H(\mathbf{q},\mathbf{p})
+\end{align*}
 
+es el hamiltoniano que define al sistema de ecuaciones diferenciales ordinarias
 
-%Construir la forma simpléctica para hamiltoniano y llegar a A^T w + w A = 0. Hacer notar que se puede constuir un simil para cualquier EDO y estuidar tantio esto. Esto se puede hacer con JT de orden 1. Probarlo en hamiltonianos y no hamiltonianos también! Se puede hacer un campo escalar de esto? 
+\begin{align*}
+ \dot{\mathbf{q}} &= \ \pder{H}{\mathbf{p}} \\
+ \dot{\mathbf{p}} &= - \pder{H}{\mathbf{q}}. 
+\end{align*}
+
+Si definimos $\mathbf{x} := (\mathbf{q},\mathbf{p}) = (x_1,\ldots,x_{2d})^T$, entonces
+\begin{equation}
+ \dot{x_i} = \omega_{i,j} \pder{H(\mathbf{x})}{x_j}
+ \label{eq:symplectic_ham_ode}
+\end{equation}
+
+donde
+\begin{equation}
+ \omega = 
+    \begin{bmatrix}
+    \mathbf{0} & \mathbf{I} \\
+    -\mathbf{I} & \mathbf{0}
+  \end{bmatrix}
+ \label{eq:symplectic_omega}
+\end{equation}
+
+es una matriz de $2d\times 2d$, $\mathbf{0}$ es una matriz de ceros de $d\times d$ y $\mathbf{I}$ es la matriz identidad de $d\times d$. Notemos que (\ref{eq:symplectic_omega}) cumple
+\begin{align}
+ \omega^2 &= -\mathbf{I}  \nonumber \\
+ \omega^T &= -\omega
+ \label{eq:omega_properties}
+\end{align}
+para cualquier $d$.
+
+\begin{definicion}
+Sea $\omega$ una matriz que cumple las propiedades (\ref{eq:omega_properties}). Se dice que una matriz $g$ es \textbf{simpléctica} si
+\begin{equation}
+ g^T \omega g = \omega
+ \label{eq:symplectic_condition}
+\end{equation}
+%Ver lo de las formas bilineales... Posiblemente se pueda partir de una definición más formal/general y concluir esto para g. 
+\end{definicion}
+
+Las matrices simplécticas $g$ que cumplen la definición anterior forman un \textbf{grupo simpléctico} denotado $Sd(d)$, donde $d$ es la dimensión de las variables del grupo, que son un caso particular de los grupos de Lie.
+
+Los \textbf{grupos de Lie} son un grupo cuyos elementos dependen de un número finito de parámetros, i.e., $g = g(\eta) = g(\eta_1,\ldots,\eta_N)$. Dicho esto, y como se menciona en \cite{ChaosBook}, para los cálculos se suele escoger una base para operar dichas matrices y, para transformaciones infinitesimales del espacio fase, éstas toman la forma
+\begin{equation}
+ g(\delta \eta) := \mathbf{1} + \delta \eta \mathbf{T}
+ \label{eq:symp_infinit_rotation}
+\end{equation}
+
+con $\lbrace T_1, \ldots, T_N \rbrace$ un conjunto de rotaciones\footnote{Dichas rotaciones representan las deformaciones infinitesimales de las transformaciones de $g$.} sobre el espacio fase.
+
+Notemos que si al grupo de rotaciones (\ref{eq:symp_infinit_rotation}) le imponemos la condición (\ref{eq:symplectic_condition}) de simplecticidad
+
+\begin{align*}
+  \left( \mathbf{1} + \delta \eta \mathbf{T} \right)^T \omega \left( \mathbf{1} + \delta \eta \mathbf{T} \right) = \omega \implies 
+  \cancel{\omega} + (\delta \eta \mathbf{T})^T \omega + \omega \delta \eta \mathbf{T} + \cancelto{\mathcal{O}(\norm{\delta \eta \mathbf{T}}^2)} {(\delta \eta \mathbf{T})^T \omega \delta \eta \mathbf{T}} = \cancel{\omega}  
+\end{align*}
+
+obtenemos una forma explícita para que éste sea simpléctico
+\begin{equation}
+  (\delta \eta \mathbf{T})^T \omega + \omega \delta \eta \mathbf{T} = \mathbf{0}.
+  \label{eq:eq:symplectic_condition2}
+\end{equation}
+
+En el caso de tener un hamiltoniano $H(\mathbf{x})$, basta darse cuenta que
+\begin{itemize}
+\item $H(\mathbf{x})$ es, al menos, $\mathcal{C}^2(\mathcal{M})$; esto es, $\frac{\partial^2 H}{\partial x_i \partial x_j} = \frac{\partial^2 H}{\partial x_j \partial x_i}$.
+
+\item Los generadores de las transformaciones infinitesimales del sistema de EDO (\ref{eq:ode}) están dadas por $A_{i,j}(\mathbf{x}) := \pder{f_i(\mathbf{x})}{x_j}$\footnote{Es importante observar que, como el sistema es hamiltoniano, $f(\mathbf{x}(t),t) = f(\mathbf{x})$.}. $A_{i,j}(\mathbf{x})$ son los elementos de matriz de $A(\mathbf{x})$, la cual se conoce como \textbf{matriz de estabilidad} del sistema.
+
+\item La matriz de estabilidad puede representarse en términos de $\omega$ como $A(\mathbf{x}) = \omega \Xi(\mathbf{x})$, donde $\Xi(\mathbf{x}) = \left[ \frac{\partial^2 H(\mathbf{x})}{\partial x_i \partial x_j} \right]$ es el \textbf{hessiano}, o matriz de segundas derivadas, de $H$.
+
+\item Como $H$ es $\mathcal{C}^2(\mathcal{M})$, entonces $\Xi$ es simétrica y, por tanto, $\Xi = \Xi^T$.
+\end{itemize}
+
+Con las observaciones anteriores podemos ver que
+\begin{align*}
+ A(\mathbf{x})^T \omega + \omega A(\mathbf{x}) = \Xi(\mathbf{x})^T \cancelto{\mathbf{I}}{\omega^T \omega} + \cancelto{-\mathbf{I}}{\omega \omega}\Xi(\mathbf{x}) = \Xi(\mathbf{x})^T - \Xi(\mathbf{x}) = 0.
+\end{align*}
+
+Así, cualquier sistema hamiltoniano es un sistema simpléctico.
+%Meterlo como corolario o teorema? Chance es más eñegante.
+
+%Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
 
 \pagebreak
 \subsection{Evaluaciones de Montecarlo}
