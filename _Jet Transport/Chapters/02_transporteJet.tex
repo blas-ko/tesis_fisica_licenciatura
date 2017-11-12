@@ -895,6 +895,56 @@ entonces
 
 probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del transporte de jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$, la cual corresponde a una serie de derivaciones parciales de polinomios, las cuales están bien definidas en el apéndice \ref{sec:poliAlg}.
 
+Ahora, el gran problema de probar la simplecticidad de esta manera es que la expansión $P_{0,(0,0)}(\xi)$ es una expansión finita y no representa necesariamente a $f(\xi)$. Sin embargo, resulta ser que si un sistema es hamiltoniano, el correspondiente sistema dado por la expansión de sus funciones en series de Taylor hasta orden $M < \infty$ también lo es.
+
+\begin{teorema}
+Sea 
+\begin{align*}
+  H: \mathcal{M} \subset \mathbb{R} \times\mathbb{R} &\to \mathbb{R} \\ 
+  (q,p) &\to H(q,p)
+\end{align*}
+una función escalar que define al sistema
+\begin{align}
+ \dot{q} &= \ \pder{H}{p} = f_1(q,p) \nonumber \\
+ \dot{p} &= - \pder{H}{q} = f_2(q,p).
+ \label{eq:theorem_ode}
+\end{align}
+Si $f_i$ es $\mathcal{C}^\omega(\mathcal{M}) \ \forall i$, entonces $\exists! \  \mathcal{H}: \mathcal{M} \to \mathbb{R}$ que define a
+\begin{align*}
+ \dot{q} &= \ \pder{\mathcal{H}}{p} = P_{f_1}^M(q,p) \\
+ \dot{p} &= - \pder{\mathcal{H}}{q} = P_{f_2}^M(q,p)
+\end{align*}
+con $P_{f_i}^M(q,p)$ la expansión de Taylor de orden $M$ de $f_i$.
+\footnote{El teorema es generalizable para $\mathcal{M} \subset \mathbb{R}^d \times \mathbb{R}^d$. La demostración queda como ejercicio para el lector.}
+\end{teorema}
+
+\begin{proof}
+Como $f_i$ es $\mathcal{C}^\omega(\mathcal{M}) \ \forall i$, pueden expresarse como
+\begin{align*}
+ f_1(q,p) &= \sum_{i,j = 0}^\infty a_{i,j} q^i p^j \\
+ f_2(q,p) &= \sum_{i,j = 0}^\infty b_{i,j} q^i p^j. 
+\end{align*}
+Así, por (\ref{eq:theorem_ode}), resolvemos $H(q,p)$ integrando
+\begin{align*}
+ H(q,p) &= \int f_1(q,p) dp = \sum_{i,j = 0}^\infty \frac{a_{i,j}}{j+1} q^i p^{j+1} + \ell_1(q) \\
+ H(q,p) &= -\int f_2(q,p) dq = -\sum_{i,j = 0}^\infty \frac{b_{i,j}}{i+1} q^{i+1} p^j + \ell_2(p)
+\end{align*}
+encontrando la relación 
+\begin{equation*}
+ \frac{a_{i+1,j}}{j+1} = - \frac{b_{i,j+1}}{i+1} 
+\end{equation*}
+y la forma explícita de $\ell_i$
+\begin{align*}
+ \ell_1(q) &= \sum_{i=0}^\infty \frac{b_{i,0}}{i+1} q^i \\
+ \ell_2(p) &= \sum_{i=0}^\infty \frac{-a_{0,i}}{i+1} p^i.
+\end{align*}
+Como todo lo anterior es cierto término a término, podemos truncar a cualquier orden $M < \infty$ y construir $\mathcal{H}$ con las expansiones truncas $P_{f_1}^M(q,p)$ y $P_{f_2}^M(q,p)$. \qed
+\end{proof}
+
+\begin{corolario}
+Si $H$ define un sistema hamiltoniano, entonces $\mathcal{H}$ es simpléctico. 
+\end{corolario}
+
 %Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
 
 %\pagebreak
