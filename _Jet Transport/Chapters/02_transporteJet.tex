@@ -841,12 +841,63 @@ Con las observaciones anteriores podemos ver que
  A(\mathbf{x})^T \omega + \omega A(\mathbf{x}) = \Xi(\mathbf{x})^T \cancelto{\mathbf{I}}{\omega^T \omega} + \cancelto{-\mathbf{I}}{\omega \omega}\Xi(\mathbf{x}) = \Xi(\mathbf{x})^T - \Xi(\mathbf{x}) = 0.
 \end{align*}
 
-Así, cualquier sistema hamiltoniano es un sistema simpléctico.
-%Meterlo como corolario o teorema? Chance es más eñegante.
+Así, cualquier sistema hamiltoniano es un sistema simpléctico y cumple
+\begin{equation}
+ A^T\omega + \omega A = 0
+ \label{eq:symplectic_hamiltonian}
+\end{equation}
+%Meterlo como corolario o teorema? Chance es más elegante.
+
+%Valdrá la pena hablar/demostrar que la simplecticidad implica la conservación de volumen? 
+
+Regresemos, como siempre, al caso del péndulo simple. Sabemos, por (\ref{eq:pendulo-ham}), que es un sistema hamiltoniano y, por tanto, debe de cumplir (\ref{eq:symplectic_hamiltonian}). La matriz de estabilidad de éste\footnote{Se toma, sin pérdida de generalidad, $g = m = l = 1$.} está dada por
+\begin{equation*}
+  A_{pend}(\theta,p_\theta) =
+  \begin{bmatrix}
+    0             & 1 \\
+    -\cos(\theta) & 0
+  \end{bmatrix},
+\end{equation*}
+
+entonces
+
+\begin{align*}
+  A_{pend}^T \omega + \omega A_{pend} &=
+  \begin{bmatrix}
+    0 & -\cos(\theta) \\
+    1 & 0
+  \end{bmatrix}   
+  \begin{bmatrix}
+    0  & 1 \\
+    -1 & 0
+  \end{bmatrix} 
+  +
+  \begin{bmatrix}
+    0  & 1 \\
+    -1 & 0
+  \end{bmatrix} 
+  \begin{bmatrix}
+    0             & 1 \\
+    -\cos(\theta) & 0
+  \end{bmatrix} \\
+  &=
+  \begin{bmatrix}
+    \cos(\theta)  & 0 \\
+    0             & 1
+  \end{bmatrix}
+  +
+  \begin{bmatrix}
+    -\cos(\theta)  & 0 \\
+    0              & -1
+  \end{bmatrix}
+  = 0 
+\end{align*}
+
+probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del transporte de jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$, la cual corresponde a una serie de derivaciones parciales de polinomios, las cuales están bien definidas en el apéndice \ref{sec:poliAlg}.
 
 %Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
 
-\pagebreak
+%\pagebreak
 \subsection{Evaluaciones de Montecarlo}
 \label{sec:montecarlo}
 
