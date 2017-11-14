@@ -151,7 +151,6 @@ En la figura \ref{fig:center_anal_comparison} se muestran distintas comparacione
 
 Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para poder evaluar los distintos $P_{j,\xo}(\xi)$ que definen al campo vectorial en cada uno de sus pasos. El problema de evolucionar una vecindad $\U_{\xo}$ dado un sistema dinámico $\dot{\mathbf{x}}(t) = f(t,\mathbf{x}(t))$ se reduce al problema de saber cómo se evalúan distintos polinomios en cada paso de integración, así como la definición computacional de sus operaciones. Hay muchos detalles a considerar en este problema: ¿Qué paso de integración se deberá usar para conseguir la evolución temporal de las soluciones? ¿Cómo medimos el error respecto a la solución real? ¿Existe alguna forma de controlar el error que arrojan el método de integración y la propagación de jets del TJ? ¿Cuál es la complejidad de las operaciones para la aritmética de polinomios? En el apéndice \ref{chap:AlgPoli} se desarrolla el álgebra polinomial y sus operaciones tal como son implementadas en el TJ y se ahonda en esta discusión. En la sección \ref{sec:taylor-metodo} se hace el desarrollo del método de Taylor como integrador computacional adaptativo de sistemas de EDO, y en la sección \ref{sec:ind-dinam} se desarrollan distintos indicadores dinámicos utilizados en el TJ así como sencillos ejemplos ilustrativos para cada uno de ellos.
 
-\pagebreak
 \section{Método de Taylor}
 \label{sec:taylor-metodo}
 
@@ -194,7 +193,6 @@ h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_m}_\infty} \ri
 \end{equation} 
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
-\pagebreak
 \subsection{Método de Taylor para el transporte de jets}
 Para el método que se acaba de desarrollar, cada término satisface que $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el TJ una vecindad $\U_{\xo}$ se parametriza con el polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$ alrededor de $\xo = \mathbf{x}(t_0)$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \U_{\xo} = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
 \begin{equation}
@@ -218,7 +216,6 @@ donde, si $a_k \in \mathbb{R}$, entonces $\norm{a_k}_p = |a_k|$.
 
 Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{P-palau}.
 
-\pagebreak
 \subsection{Probando el método de Taylor}
 \label{sec:benchmark-taylor}
 
@@ -244,7 +241,6 @@ Así, comprobar los métodos de integración para sistemas conservativos como (\
 Dado que conozcamos la solución analítica de algún sistema, se puede comparar dicha solución contra la calculada por los diferentes métodos de integración.
 %Otra propiedad importante de los sistemas hamiltonianos es la conservación de la estructura simpléctica, que no es más que ... [ref:chaos]
 
-\pagebreak
 \subsubsection{Oscilador armónico}
 \label{sec:oscilador}
 Sea un sistema dado por una masa $m$ que, al desplazarlo de su estado de equilibrio por una cantidad $\mathbf{x}$, siente una fuerza restitutiva proporcional a dicho desplazamiento
@@ -310,7 +306,6 @@ Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \ Kg$, $k = 1 \frac{
 
 Es interesante notar que (\ref{eq:oscilador_ode}) es un sistema lineal de ecuaciones y, por tanto, basta con un jet de orden $1$ para obtener la mejor aproximación de las vecindades de $\xo$. De hecho, evaluar $\U_{\xo}$ en $f(\mathbf{x})$ de (\ref{eq:ode}) siempre regresa una cantidad lineal y por tanto, nunca aparecen términos de orden mayor en las variables del sistema de EDO.
 
-\pagebreak
 \subsubsection{Péndulo simple}
 \label{sec:pendulo}
 Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de longitud $l$ cuya masa es despreciable. Esta varilla está anclada, a su vez, a un punto inmovil. Así, $m$ se mueve bajo la acción de la gravedad $\mathbf{g}$ como se muestra en la figura \ref{fig:pendulo}, ignorando la resistencia del aire.
@@ -396,7 +391,6 @@ Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fi
  \label{fig:pendulum_dE}
 \end{figure}
 
-\pagebreak
 \subsubsection{Hamiltoniano Artificial}
 \label{sec:artificial_ham}
 
@@ -507,13 +501,11 @@ Todos los ejemplos construidos en la última sección han sido evaluados en una 
 
 Los siguientes indicadores están motivados fuertemente en lo discutido en \cite{Perez2015}, \cite{Perez2015}, \cite{Haro2009}.
 
-\pagebreak
 \section{Indicadores dinámicos de campos vectoriales con base en el transporte de jet}
 \label{sec:ind-dinam}
 
 En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
-\pagebreak
 \subsection{Un poco de motivación vía exponentes de Lyapunov}
 
 El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad $\Uxo$ en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados por saber qué pasa en la vecindad de una condición inicial $\xo$ bajo la aproximación lineal del campo vectorial que define su trayectoria. Surge de aquí la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar cómo se separan dos soluciones cercanas dadas por las trayectorias de $\xo$ y la aproximación lineal de la trayectoria de $\xo + \delta\xo$. Esto permitirá encontrar componentes de caos \cite{Perez2015}, estructuras lagrangianas, separatrices \cite{Perez2015}, ciclos límite, entre otras. 
@@ -606,7 +598,6 @@ Hemos visto cómo el campo escalar de ELTF proporciona un buen indicador de la e
 
 %Casos donde esto falla o donde el jacobiano no es suficientemente buena aproximación... 
 
-\pagebreak
 \subsection{Tamaño máximo de las vecindades}
 
 Vimos, en el caso anterior, cómo el jacobiano $J^{t_n}(\xi)$ representa la deformación lineal de las trayectorias vecinas a $\xo$ al tiempo $t_n$ y cómo, con éste, se puede calcular el campo escalar de los ELTF. Sin embargo, en los ejemplos XXX se observa que a veces la aproximación lineal de las deformaciones no es suficiente para sacar conclusiones contundentes sobre el sistema de EDO. De hecho, por el teorema de Grobman-Hartman, existen casos donde las ecuaciones no son siquiera topológicamente equivalentes a su aproximación lineal. 
@@ -683,11 +674,10 @@ Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, 
 
 %Hacer más ejemplo(s) con esto
 
-\pagebreak
 \subsection{Tasa de expansión y contracción}
 \label{sec:contraccion_expansion}
 
-Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. La ventaja sobre el campo escalar de ELTF o del tamaño máximo de vecindades es que aquí es posible saber \textbf{en qué dirección} se tienen la mayor y menor deformación respecto a un punto en el espacio fase. Este indicador se relaciona con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crecen o se contraen las soluciones de $\dotx = Ax$ bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
+Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. La ventaja de esto sobre el campo escalar de ELTF o del tamaño máximo de vecindades es que aquí es posible saber \textbf{en qué dirección} se tienen la mayor y menor deformación respecto a un punto en el espacio fase. Este indicador se relaciona, en este sentido, con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crece o se contrae la aproximación lineal de las soluciones bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
 
 Para obtener dicho indicador se hace el TJ del orden $M$ deseado integrando hasta $t = t_n$, se obtiene el radio máximo de la vecindad con el método de la sección anterior y se evalúa la frontera de $\Uxo$ en $P_{n,\xo}(\xi(\theta))$. Una vez evaluada, se encuentra el ángulo de máxima (mínima) separación 
 \begin{equation}
@@ -699,13 +689,13 @@ y se calcula
  \label{eq:max_min_rate}
 \end{equation}
 
-En el caso de dos grados de libertad, como los ejemplos hasta ahora planteados, se ha parametrizado dicha frontera con $\xi(\theta) = \xi_{max} \left( \cos(\theta), \sin(\theta) \right)^T, \theta \in [0,2\pi]$. Evidentemente no se puede evaluar la frontera de $\Uxo$ en un continuo de puntos en la computadora, así que hay dos maneras de obtener buena precisión sobre los máximos y mínimos reales: 
+En el caso de dos grados de libertad, como los ejemplos hasta ahora planteados, se ha parametrizado dicha frontera con $\xi(\theta) = \xi_{max} \left( \cos(\theta), \sin(\theta) \right)^T, \theta \in [0,2\pi]$. Evidentemente no se puede evaluar la frontera de $\Uxo$ en un continuo de puntos en la computadora, así que se plantean dos maneras de mejorar la precisión sobre dichos máximos y mínimos: 
 \begin{itemize}
 \item Aumentar el número de puntos con los cuales se evalúa $\delta \Uxo$
 \item Encontrar $\theta_{\pm}$ de los puntos disponibles y luego hacer un Newton-Rapson con $P_{n,\xo}$. 
 \end{itemize} 
 
-Se pueden encontrar $\theta_\pm$ y $\zeta_\pm$ para todo una rejilla de puntos y obtener dos campos vectorial y dos escalares, respectivamente. Los campos vectoriales indican, para cada punto, la dirección de mayor y menor separación de la condición $\xo$ dada; los campos escalares indican la magnitud de esto último. En la figura \ref{fig:seprate_pendulum} se pueden ver ambos campos encimados para el péndulo simple donde, para cada punto de la rejilla, hay un vector en la dirección de máxima (mínima) separación y en color se indica la magnitud de dicha separación.
+Se pueden encontrar $\theta_\pm$ y $\zeta_\pm$ para todo una rejilla de puntos y obtener dos campos vectoriales y dos escalares, respectivamente. Los campos vectoriales indican, para cada punto, la dirección de mayor y menor separación de la condición $\xo$ dada; los campos escalares indican la magnitud de esto último. En la figura \ref{fig:seprate_pendulum} se pueden ver ambos campos encimados para el péndulo simple donde, para cada punto de la rejilla, hay un vector en la dirección de máxima (mínima) separación y en color se indica la magnitud de dicha separación.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -751,7 +741,6 @@ Es curioso ver que, para los campos escalares de $\zeta_\pm$, se detecta la pres
 
 %Teniendo xi_max se puede ver en qué dirección se expande más (menos) la deformación de de dx. ESte se hace encontrando el máximo y mínimo en la vecindad evaluada. ¿Cómo serviría esto? 
 
-\pagebreak
 \subsection{Formas Simplécticas}
 \label{sec:formas-simplecticas}
 %Motivar un poco porqué hablaríamos de formas simpléticas y decir que el desarrollo viene motivado del chaosbook... si se puede encontrar algún otro libro para complementar estaría muy bien. 
@@ -796,15 +785,15 @@ para cualquier $d$.
 \begin{definicion}
 Sea $\omega$ una matriz que cumple las propiedades (\ref{eq:omega_properties}). Se dice que una matriz $g$ es \textbf{simpléctica} si
 \begin{equation}
- g^T \omega g = \omega
+ g^T \omega g = \omega.
  \label{eq:symplectic_condition}
 \end{equation}
 %Ver lo de las formas bilineales... Posiblemente se pueda partir de una definición más formal/general y concluir esto para g. 
 \end{definicion}
 
-Las matrices simplécticas $g$ que cumplen la definición anterior forman un \textbf{grupo simpléctico} denotado $Sd(d)$, donde $d$ es la dimensión de las variables del grupo, que son un caso particular de los grupos de Lie.
+Las matrices que cumplen la definición anterior forman un \textbf{grupo simpléctico} denotado $Sd(d)$, que son un caso particular de los grupos de Lie.
 
-Los \textbf{grupos de Lie} son un grupo cuyos elementos dependen de un número finito de parámetros, i.e., $g = g(\eta) = g(\eta_1,\ldots,\eta_N)$. Dicho esto, y como se menciona en \cite{ChaosBook}, para los cálculos se suele escoger una base para operar dichas matrices y, para transformaciones infinitesimales del espacio fase, éstas toman la forma
+Los \textbf{grupos de Lie} son grupos cuyos elementos dependen de un número finito de parámetros, i.e., $g = g(\eta) = g(\eta_1,\ldots,\eta_N)$. Dicho esto, y como se menciona en \cite{ChaosBook}, para los cálculos se suele escoger una base para operar dichas matrices y, para transformaciones infinitesimales del espacio fase, éstas toman la forma
 \begin{equation}
  g(\delta \eta) := \mathbf{1} + \delta \eta \mathbf{T}
  \label{eq:symp_infinit_rotation}
@@ -893,9 +882,9 @@ entonces
   = 0 
 \end{align*}
 
-probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del transporte de jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$, la cual corresponde a una serie de derivaciones parciales de polinomios, las cuales están bien definidas en el apéndice \ref{sec:poliAlg}.
+probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del transporte de jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$, la cual corresponde a una serie de derivadas parciales de los polinomios resultantes, las cuales están bien definidas y son desarrolladas en el apéndice \ref{sec:poliAlg}.
 
-Ahora, el gran problema de probar la simplecticidad de esta manera es que la expansión $P_{0,(0,0)}(\xi)$ es una expansión finita y no representa necesariamente a $f(\xi)$. Sin embargo, resulta ser que si un sistema es hamiltoniano, el correspondiente sistema dado por la expansión de sus funciones en series de Taylor hasta orden $M < \infty$ también lo es.
+Ahora, el problema de probar la simplecticidad de esta manera es que la expansión $P_{0,(0,0)}(\xi)$ es una expansión finita y no representa necesariamente a $f(\xi)$. Sin embargo, resulta ser que si un sistema es hamiltoniano, el correspondiente sistema dado por la expansión de sus funciones en series de Taylor hasta orden $M < \infty$ también lo es.
 
 \begin{teorema}
 Sea 
@@ -945,15 +934,14 @@ Como todo lo anterior es cierto término a término, podemos truncar a cualquier
 Si $H$ define un sistema hamiltoniano, entonces $\mathcal{H}$ es simpléctico. 
 \end{corolario}
 
+
 %Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
 
-%\pagebreak
 \subsection{Evaluaciones de Montecarlo}
 \label{sec:montecarlo}
 
 %Mostrar que, dado un JT, se pueden simplemente evaluar los polinomios (usando xi_max) y tener un Montecarlo relativamente rápido. Hacer benchmarks de velocidad y precición con el montecarlo normal. Preguntar sobre un buen ejemplo de esto. 
 
-\pagebreak
 \subsection{Secciones de Poincaré}
 
 %Cuales son las condiciones para cruzar una sección de Poincaré? Para que sírven estas? De que sirve reducir el espacio ? Cómo se usan en ciclos límite? Se pueden usar fuera de estos? 
