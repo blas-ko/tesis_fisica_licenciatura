@@ -20,4 +20,28 @@ Dada la naturaleza del sistema, a veces es posible describir un sistema de N par
 \subsubsection{Principio de Mínima Acción}
 \label{sec:least_action}
 
+Un sistema tiene, en general, $s \leq N$ grados de libertad. Esto significa que se puede describir con $s$ cantidades independientes $\lbrace q_1, \ldots, q_s \rbrace$ que definen completamente la posición de todas las partículas. A estas cantidades se le llaman las \textit{coordenadas generalizadas} del sistema, y asociadas a ellas están las \textit{velocidades generalizadas} $\dot{q_i} = \frac{dq_i}{dt} \  \forall \ i \in [1,s]$. Parece ser que a la naturaleza\footnote{al menos a este nivel} le gusta seguir los caminos en los que la \textit{acción} sea mínima. Es decir, si a un instante $t_1$ el sistema ocupa las posiciones $q^{(1)} := (q_1(t_1), \ldots, q_s(t_1))$ y al instante $t_2$ las posiciones $q^{(2)}$,  debe existir una función $L$ con unidades de energía que dependa de las cantidades $q$, $\dot{q}$ y el tiempo tal que la integral 
+\begin{equation}
+ S = \int_{t_1}^{t_2} L(q,\dot{q},t) dt
+ \label{eq:action}
+\end{equation}
+sea mínima.\footnote{Notemos que $S$ tiene unidades de acción: $[ S ] = [energía \times tiempo]$.} Esta condición se conoce como el \textit{principio de mínima acción} o de \textit{principio de Hamilton}.
 
+Supongamos que $q = q(t)$ es la trayectoria que minimiza a \ref{eq:action}, entonces cualquier variación $\delta q(t)$ a $q(t)$ hace que $S$ incremente. Tomaremos, sin pérdida de generalidad, el caso $s = 1$. Obviamente, $\delta q(t_1) = \delta q(t_2) = 0$ ya que, aunque queremos que la trayectoria tome un camino alternativo, éste debe empezar y terminar en los mismos puntos que $q(t)$. 
+
+Con esto, la variación en $S$ será 
+\begin{align*}
+ \delta S = \int_{t_1}^{t_2} \delta L dt = \int_{t_1}^{t_2} \left( \pder{L}{q} \delta q + \pder{L}{ \dot{q} } \delta \dot{q} + \cancelto{0}{\mathcal{O}(\delta q^2)} \right) dt
+\end{align*}
+
+donde buscamos $\delta S = 0$ para que $S$ sea mínimo. Observando que $\delta \dot{q} = \delta \frac{dq}{dt}$ e integrando por partes, tenemos que 
+
+\begin{align*}
+ \delta S &= \int_{t_1}^{t_2} \pder{L}{q} \delta q dt + \pder{L}{\dot{q}} \cancelto{0}{\delta q} \rvert_{t_1}^{t_2} - \int_{t_1}^{t_2} \frac{d}{dt} \left( \pder{L}{\dot{q}} \right) \delta q dt\\ 
+ &= \int_{t_1}^{t_2} \left( \pder{L}{q} - \frac{d}{dt} \left( \pder{L}{ \dot{q} } \right) \delta q dt \right) = 0.
+\end{align*}
+
+Así, imponiendo la condición de que el integrando sea idénticamente cero, obtenemos las \textit{ecuaciones de Lagrange}
+\begin{equation}
+ \pder{L}{d q_i} - \frac{d}{dt} \left( \pder{L}{ \dot{q_i} } \right) = 0 \ \forall \ i \in [1, \ldots, s].
+\end{equation}
