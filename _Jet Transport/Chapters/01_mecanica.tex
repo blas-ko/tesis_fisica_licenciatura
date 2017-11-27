@@ -25,7 +25,7 @@ Un sistema tiene, en general, $s \leq N$ grados de libertad. Esto significa que 
  S = \int_{t_1}^{t_2} L(q,\dot{q},t) dt
  \label{eq:action}
 \end{equation}
-sea mínima.\footnote{Notemos que $S$ tiene unidades de acción: $[ S ] = [energía \times tiempo]$.} Esta condición se conoce como el \textit{principio de mínima acción} o de \textit{principio de Hamilton}.
+sea mínima.\footnote{Notemos que $S$ tiene unidades de acción: $[ S ] = [energía \times tiempo]$.} Esta condición se conoce como el \textit{principio de mínima acción} o de \textit{principio de Hamilton}. A $L$ se le conoce como el \textit{lagrangiano} del sistema.
 
 Supongamos que $q = q(t)$ es la trayectoria que minimiza a \ref{eq:action}, entonces cualquier variación $\delta q(t)$ a $q(t)$ hace que $S$ incremente. Tomaremos, sin pérdida de generalidad, el caso $s = 1$. Obviamente, $\delta q(t_1) = \delta q(t_2) = 0$ ya que, aunque queremos que la trayectoria tome un camino alternativo, éste debe empezar y terminar en los mismos puntos que $q(t)$. 
 
@@ -41,7 +41,55 @@ donde buscamos $\delta S = 0$ para que $S$ sea mínimo. Observando que $\delta \
  &= \int_{t_1}^{t_2} \left( \pder{L}{q} - \frac{d}{dt} \left( \pder{L}{ \dot{q} } \right) \delta q dt \right) = 0.
 \end{align*}
 
-Así, imponiendo la condición de que el integrando sea idénticamente cero, obtenemos las \textit{ecuaciones de Lagrange}
+Así, imponiendo la condición de que el integrando sea idénticamente cero, obtenemos las \textit{ecuaciones de movimiento de Lagrange}
 \begin{equation}
- \pder{L}{d q_i} - \frac{d}{dt} \left( \pder{L}{ \dot{q_i} } \right) = 0 \ \forall \ i \in [1, \ldots, s].
+ \pder{L}{d q_i} - \frac{d}{dt} \left( \pder{L}{ \dot{q_i} } \right) = 0 \ \forall \ i \in [1, \ldots, s],
+ \label{eq:lagrange_equations}
+\end{equation}
+
+que son $s$ EDO de segundo orden y, por tanto, $2s$ constantes o condiciones iniciales $\{ q_{1_0}, \ldots, q_{s_0}, \dot{q_{1_0}}, \ldots, \dot{q_{s_0}} \}$\footnote{Se entiende que $q_{i_0} = q_i(t_0)$.} son necesarias para resolverlas. Con esto, la pregunta primordial es: ¿Qué forma tiene $L$?
+
+Tomemos como primer caso a la partícula libre. Ésta no tiene constricciones ni interactúa con nadie más y, por tanto, tiene 3 grados de libertad. Tomaremos como marco de referencia inercial las coordenadas rectangulares definidas por $\{ \hat{i}, \hat{j}, \hat{k} \}$ al cual llamaremos $\mathcal{K}$. Es importante para la descripción notar que en un marco de referencia inercial el espacio es homogéneo e isotrópico y el tiempo homogéneo. 
+
+Así, por la homogeneidad del éstos, $L$ no puede depender explícitamente de $\mathbf{r}$ ni de $t$ y, por tanto, $L(\mathbf{r},\mathbf{v},t) = L(\mathbf{v})$. Además, por lo isotrópico del espacio, debería ser indistinto para $L$ la dirección en la que la partícula se esté moviendo, de modo que la dependencia deberá sobre la magnitud de la velocidad, i.e., $L = L(\mathbf{v}) = L(v^2)$.
+
+Por (\ref{eq:lagrange_equations}), tenemos que 
+ \begin{align*}
+ \pder{L(\mathbf{v}) }{ \mathbf{r} } = 0 &\implies \frac{d}{dt}\pder{L(\mathbf{v})}{\mathbf{v}} = \frac{d}{dt} \frac{dL(\mathbf{v})}{d\mathbf{v}} = 0 \\ 
+ &\therefore \mathbf{v} = \text{constante}.
+ \end{align*}
+
+
+Hay que resaltar dos detalles sobre el lagrangiano para continuar con esta descripción:
+\begin{enumerate}
+
+  \item Dos lagrangianos $L$ y $\mathcal{L}$ que difieren bajo una función $f(q,t)$ de la forma $\mathcal{L}(q,\dot{q},t) = L(q,\dot{q},t) + \frac{d f(q,t)}{dt}$ son equivalentes ya que $\delta S_{L} = \delta S_{\mathcal{L}} = 0$\footnote{$ \delta S_{\mathcal{L}} = \cancelto{0}{\delta S_L} + \delta f(q^{(2)},t_2) - \delta f(q^{(1)},t_1) = \pder{f(q^{(2)},t_2)}{q} \cancelto{0}{ \delta q^{(2)} } - \pder{f(q^{(1)},t_1)}{q} \cancelto{0}{ \delta q^{(1)} } = 0$.} y, por tanto, la forma de las ecuaciones definidas por (\ref{eq:lagrange_equations}) no cambia.
+
+ \item Si dos lagrangianos $L_1$ y $L_2$ no interactúan entre sí en un mismo sistema, entonces ambos se pueden englobar en uno mismo como la suma indivudual de sus partes, i.e.
+ \begin{equation}
+  L = L_1 + L_2 .
+  \label{eq:lagrangian_addititivy}
+ \end{equation}
+ 
+\end{enumerate}
+
+Por lo primero, podemos encontrar la forma explícita de $L$ para la partícula libre. Sabemos que en el marco $\mathcal{K}$ la partícula se mueve con velocidad $\mathbf{v}$. Si otro marco inercial $\mathcal{K}'$ se mueve a $\mathbf{\epsilon} \ll \mathbf{v}$ respecto a $\mathcal{K}$, entonces la partícula se con velocidad $\mathbf{v}' = \mathbf{v} + \mathbf{\epsilon}$ en $\mathcal{K}'$. Así,
+\begin{align*}
+ \mathcal{L} = L(v'^2) = L(v^2 + 2 \mathbf{v} \cdot \mathbf{\epsilon} + \epsilon^2) \\
+ \implies  L(v'^2) = L(v^2) + \pder{L}{v^2} 2 \mathbf{v} \cdot \mathbf{\epsilon} + \cancelto{0}{\mathcal{O}(\epsilon^2)}.
+\end{align*}
+Como $\mathcal{L}$ y $L$ sólo pueden diferir por la derivada temporal de alguna función $f(\mathbf{v},t)$, entonces
+\begin{align*}
+ \pder{L}{v^2} = \alpha
+\end{align*}
+y, por tanto
+\begin{equation}
+ L(v^2) = \alpha v^2 = \frac{1}{2}m v^2,
+\end{equation}
+con $m$ la masa de la partícula, consiguiendo que el lagrangiano tenga unidades de energía.
+
+Por lo segundo, como las partículas libres, por definición, no interactúan entre sí, el lagrangiano de un sistema de $N$ partículas libres será
+\begin{equation}
+ L(\mathbf{v}_1, \ldots, \mathbf{v}_N) = L_1(\mathbf{v}_1) + \ldots + L_N(\mathbf{v}_N) = \sum_{i=1}^N \frac{1}{2}m_i v_i^2.
+ \label{eq:free_part_lagrangian}
 \end{equation}
