@@ -108,8 +108,17 @@ Un sistema de N partículas se llama cerrado si éstas interaccionan únicamente
 
 Hay tres puntos que creo vale la pena mencionar. Primero, Como $U$ es función de las posiciones únicamente entonces, si la posición de cualquier partícula cambia, el potencial  afecta instantaneamente a todas las demás. Segundo, si suponiéramos que dichas interacciones no son instantáneas, entonces éstas se propagarían con cierta velocidad y, por tanto, la invarianza de las ecuaciones sobre marcos de referencia inerciales ya no sería válida. Tercero, sustituyendo (\ref{eq:lagrangian_cartesian_closed}) en (\ref{eq:lagrange_equations}) tenemos
 \begin{align}
- -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} &= \frac{d}{dt} \pder{}{\mathbf{v}} \sum_{i=1}^N \frac{1}{2}m_i v_i^2 \nonumber \\
+ -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} &= \frac{d}{dt} \pder{}{\mathbf{v}_i} \sum_{i=1}^N \frac{1}{2}m_i v_i^2 \nonumber \\
  &\therefore m_i \ddot{\mathbf{r}_i} = -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} =: \mathbf{F},
  \label{eq:newton_second_law}
 \end{align}
 que corresponde a la \textit{segunda ley de Newton} para sistemas cerrados; de ahí la elección del ``$-$'' para la función $U$.
+
+Ahora, el lagrangiano dado por (\ref{eq:lagrangian_cartesian_closed}) fue trabajado en coordenadas rectangulares dado que la partícula libre no tiene constricciones del espacio. Como el potencial puede que restringa las trayectorias en el que las partículas se mueven, es posible que el sistema pueda ser descrito en $s < 3N$  coordenadas generalizadas en donde existe una función $\mathbf{g}_j: \mathbb{R}^{s} \to \mathbb{R}^{N}, \ j \in \{1,2,3\}$ tal que $g_{j,i}(q) = x_{j,i}$, donde $\mathbf{r}_i = x_{1,i} \hat{i} + x_{2,i} \hat{j} + x_{3,i} \hat{k}$, $\dot{x}_{j,i} = \sum_k \pder{\mathbf{g}_j(q)}{q_k} \dot{q_k}$ y $q \in \mathbb{R}^s$. Metiendo todo esto en el lagrangiano obtenemos
+\begin{equation}
+ L(q,\dot{q}) = \frac{1}{2}\sum_{i,k} a_{i,k}(q) \dot{q_i}\dot{q_k} - U(q),
+ \label{eq:lagrangian_closed_generalized}
+\end{equation}
+
+el lagrangiano en coordenadas generalizadas, donde $\mathbf{a}(q)$ es la función que sale de sustituir la transformación en $T(\dot{\mathbf{r})} = \frac{1}{2}\sum m_i \left( \dot{x}_{1,i}^2 + \dot{x}_{2,i}^2 + \dot{x}_{3,i}^2 \right)$. Es interesante destacar que en coordenadas generalizadas la energía cinética puede depender de las posiciones generalizadas y es, como antes, cuadrática en las velocidades. 
+
