@@ -47,9 +47,11 @@ Así, imponiendo la condición de que el integrando sea idénticamente cero, obt
  \label{eq:lagrange_equations}
 \end{equation}
 
-que son $s$ EDO de segundo orden y, por tanto, $2s$ constantes o condiciones iniciales $\{ q_{1_0}, \ldots, q_{s_0}, \dot{q_{1_0}}, \ldots, \dot{q_{s_0}} \}$\footnote{Se entiende que $q_{i_0} = q_i(t_0)$.} son necesarias para resolverlas. Con esto, la pregunta primordial es: ¿Qué forma tiene $L$?
+que son $s$ ecuaciones diferenciales ordinarias de segundo orden y, por tanto, $2s$ constantes o condiciones iniciales $\{ q_{1_0}, \ldots, q_{s_0}, \dot{q_{1_0}}, \ldots, \dot{q_{s_0}} \}$\footnote{Se entiende que $q_{i_0} = q_i(t_0)$.} son necesarias para resolverlas. Con esto, la pregunta primordial es: ¿Qué forma tiene $L$?
 
-Tomemos como primer caso a la partícula libre. Ésta no tiene constricciones ni interactúa con nadie más y, por tanto, tiene 3 grados de libertad. Tomaremos como marco de referencia inercial las coordenadas rectangulares definidas por $\{ \hat{i}, \hat{j}, \hat{k} \}$ al cual llamaremos $\mathcal{K}$. Es importante para la descripción notar que en un marco de referencia inercial el espacio es homogéneo e isotrópico y el tiempo homogéneo. 
+\subsubsection{Lagrangiano de la partícula libre}
+
+Tomemos como primer caso a la partícula libre (de interacciones). Ésta no tiene constricciones ni interactúa con nadie más y, por tanto, tiene 3 grados de libertad. Tomaremos como marco de referencia inercial las coordenadas rectangulares definidas por $\{ \hat{i}, \hat{j}, \hat{k} \}$ al cual llamaremos $\mathcal{K}$. Es importante para la descripción notar que en un marco de referencia inercial el espacio es homogéneo e isotrópico y el tiempo homogéneo. 
 
 Así, por la homogeneidad del éstos, $L$ no puede depender explícitamente de $\mathbf{r}$ ni de $t$ y, por tanto, $L(\mathbf{r},\mathbf{v},t) = L(\mathbf{v})$. Además, por lo isotrópico del espacio, debería ser indistinto para $L$ la dirección en la que la partícula se esté moviendo, de modo que la dependencia deberá sobre la magnitud de la velocidad, i.e., $L = L(\mathbf{v}) = L(v^2)$.
 
@@ -91,5 +93,23 @@ con $m$ la masa de la partícula, consiguiendo que el lagrangiano tenga unidades
 Por lo segundo, como las partículas libres, por definición, no interactúan entre sí, el lagrangiano de un sistema de $N$ partículas libres será
 \begin{equation}
  L(\mathbf{v}_1, \ldots, \mathbf{v}_N) = L_1(\mathbf{v}_1) + \ldots + L_N(\mathbf{v}_N) = \sum_{i=1}^N \frac{1}{2}m_i v_i^2.
- \label{eq:free_part_lagrangian}
+ \label{eq:kinetic}
 \end{equation}
+
+Notemos que este particular lagrangiano describe la energía del movimiento de las partículas cuando no interaccionan entre ellas; por esto, en el panorama más general, se le conoce como la \textit{energía cinética} del sistema: $L_{libre}(\mathbf{v}) := T(\mathbf{v})$.
+
+\subsubsection{Lagrangiano de un sistema cerrado} 
+
+Un sistema de N partículas se llama cerrado si éstas interaccionan únicamente entre ellas; es decir, no hay agentes externos que alteren al sistema. Vimos que la energía cinética está dada por (\ref{eq:kinetic}) y, así, al lagrangiano se le debe agregar la interacción entre partículas o \textit{energía potencial}. Resulta que si el sistema es cerrado, el potencial será una función que depende únicamente de la posición que cada partícula tiene en un instante dado. Nombraremos $-U$ a esta función, y así
+\begin{equation}
+ L(\mathbf{r},\mathbf{v}) = \sum_{i=1}^N \frac{1}{2}m_i v_i^2 -U(\mathbf{r_1},\ldots,\mathbf{r_N}).
+ \label{eq:lagrangian_cartesian_closed}
+\end{equation} 
+
+Hay tres puntos que creo vale la pena mencionar. Primero, Como $U$ es función de las posiciones únicamente entonces, si la posición de cualquier partícula cambia, el potencial  afecta instantaneamente a todas las demás. Segundo, si suponiéramos que dichas interacciones no son instantáneas, entonces éstas se propagarían con cierta velocidad y, por tanto, la invarianza de las ecuaciones sobre marcos de referencia inerciales ya no sería válida. Tercero, sustituyendo (\ref{eq:lagrangian_cartesian_closed}) en (\ref{eq:lagrange_equations}) tenemos
+\begin{align}
+ -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} &= \frac{d}{dt} \pder{}{\mathbf{v}} \sum_{i=1}^N \frac{1}{2}m_i v_i^2 \nonumber \\
+ &\therefore m_i \ddot{\mathbf{r}_i} = -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} =: \mathbf{F},
+ \label{eq:newton_second_law}
+\end{align}
+que corresponde a la \textit{segunda ley de Newton} para sistemas cerrados; de ahí la elección del ``$-$'' para la función $U$.
