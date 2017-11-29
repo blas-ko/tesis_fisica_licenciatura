@@ -125,8 +125,9 @@ el lagrangiano en coordenadas generalizadas, donde $\mathbf{a}(q)$ es la funció
 
 Un sistema abierto es aquel que puede interactuar con sus alrededores. Si un sistema $A$ interactúa con un sistema $B$ decimos, desde la perspectiva de $A$, que éste se mueve en un campo externo dado por $B$. Suponiendo que el sistema conformado por $A$ y $B$ juntos es cerrado, entonces tendrá un lagrangiano 
 \begin{equation}
- L(q_A,q_B,\dot{q}_A,\dot{q}_B) = T_A(q_A,\dot{q}_A) + T_B(q_B,\dot{q}_B) - U(q_A,q_B).
+ L(q_A,q_B,\dot{q}_A,\dot{q}_B) = T_A(q_A,\dot{q}_A) + T_B(q_B,\dot{q}_B) - U(q_A,q_B),
 \end{equation}
+con $U$ un potencial que considera la interacción de todas las partículas $q_A$ y $q_B$.
 
 Como no nos interesa la treyectoria de las partículas de $B$ sino únicamente en cómo afecta a $A$, podemos sustituir  en el lagrangiano $q_B \to q_b(t)$, la solución explicita en $t$ para $B$, obteniendo
 \begin{align*}
@@ -138,3 +139,67 @@ Así, un sistema que interactúa con un campo externo difiere con uno cerrado s�
  L(q,\dot{q},t) = T(q,\dot{q}) - U(q,t).
  \label{eq:lagrangian_open_generalized}
 \end{equation}
+
+\subsection{Ecuaciones de Hámilton}
+\label{sec:hamilton}
+
+Estableciendo el principio de mínima acción encontramos qué condiciones debe satisfacer el lagrangiano. Ésta condición define las ecuaciones de movimiento del sistema en cuestión en términos de las posiciones, las velocidades y el tiempo $q, \dot{q}$ y $t$, respectivamente. Sin embargo, nada dice que éstas sean las únicas cantidades para describir a dicho sistema. En la formulación de las ecuaciones de movimiento de Hámilton, un sistema es descrito por $q,p$ y $t$, las posiciones generalizadas, el momento generalizado y el tiempo, respectivamente. De manera similar a lagrangiano, que es una función $L = L(q,\dot{q},t)$, llamaremos \textit{hamiltoniano} a la función que represente las ecuaciones de movimiento equivalentes, donde $H = H(q,p,t)$. Resulta conveniente muchas veces trabajar en este esquema ya que el hanmiltoniano representa a la energía total mecánica de este. Se puede pasar de un esquema al otro vía una transformada de Legandre.
+
+Sabemos que 
+\begin{equation}
+ dL = \sum_i \pder{L}{q_i} d q_i + \sum_i \pder{L}{\dot{q_i} }  d\dot{q_i}
+ \label{eq:lagrangian_differential}
+\end{equation}
+y, definiendo 
+\begin{equation}
+ p_i := \pder{L}{\dot{q}_i}
+\end{equation} 
+obtenemos, sustituyendo en (\ref{eq:lagrange_equations}) que
+\begin{equation}
+ \pder{L}{q_i} = \dot{p}_i.
+ \label{eq:dot_momentum}
+\end{equation}
+
+Por otro lado, por la regla del producto, observamos que $d\left( \sum p_i \dot{q}_i \right) = \sum p_i d \dot{q}_i + \sum d p_i \dot{q}_i$. Usando esto, y mezclándolo con (\ref{eq:dot_momentum}) y (\ref{eq:lagrangian_differential}), obtenemos
+\begin{align}
+ dL &= \sum_i \dot{p}_i d q_i + \sum_i p_i d \dot{q}_i \nonumber \\
+ \implies d\left(\sum_i p_i \dot{q}_i - L \right) &= - \sum_i \dot{p}_i d q_i + \sum_i \dot{q}_i d p_i.
+ \label{eq:legandre_ham_lag}
+\end{align}
+
+Como $H = H(q,p,t)$, entonces 
+\begin{equation}
+ dH = \sum_i \pder{H}{q_i} dq_i + \sum_i \pder{H}{dp_i} dp_i,
+ \label{eq:hamilton_differential}
+\end{equation}
+y, comparándolo con (\ref{eq:legandre_ham_leg}), concluimos que el hamiltoniano está dado por
+\begin{equation}
+ H = \sum_i p_i \dot{q}_i - L
+ \label{eq:hamiltonian_legandre}
+\end{equation}
+y define las ecuaciones de movimiento
+\begin{align}
+ &\pder{H}{q_i} = - \dot{p}_i && \pder{H}{p_i} = \dot{q}_i.
+\end{align}
+
+Como el hamiltoniano representa la energía total del sistema, nos puede interesar cómo cambia en una trayectoria dada; así 
+\begin{equation*}
+ \frac{dH}{dt} = \pder{H}{t} + \sum_i \pder{H}{p_i}\dot{p}_i + \sum_i \pder{H}{q_i}\dot{q}_i = \pder{H}{t} + \sum_i - \cancel{\dot{p}_i\dot{q}_i} + \cancel{\dot{p}_i\dot{q}_i} = \pder{H}{t}.
+\end{equation*}
+Observamos que si $H$ no depende explícitamente del tiempo entonces es constante, i.e.,
+\begin{equation*}
+ H(p,q) = \text{constante} \ \forall (q,p) \in q(t).
+\end{equation*} Esto no es más que la conservación de la energía mecánica para un sistema cerrado.\footnote{Equivalentemente al lagrangiano, si el hamiltoniano no depende explícitamente del tiempo será un sistema cerrado; si sí, entonces será abierto.}
+
+Otro punto interesante sobre la descripción hamiltoniana es que $H$ puede expresarse de una manera más elegante notando que la energía cinética es cuadrática en las velocidades, entonces
+\begin{align*}
+ \sum_i \dot{q}_i \pder{L}{\dot{q_i}} = \sum_i \dot{q}_i \pder{T}{\dot{q_i}} = 2 T.
+\end{align*}
+Sustituyendo esto último en (\ref{eq:hamiltonian_legandre}) obtenemos
+\begin{align}
+ H = 2T - L = 2T - \left( T - U \right) \nonumber \\ 
+ \nonumber \\
+ \therefore H(q,p,t) = T(q,p) + U(q,t).
+ \label{eq:hamiltonian}
+\end{align}
+El hamiltoniano de un sistema es la suma de las energías cinética y potencial de éste. 
