@@ -2,8 +2,7 @@
 
 El objetivo de esta tesis es sacarle todo el provecho posible al transporte de jets y los indicadores que éste nos pueda regalar. Por esto, dos problemas físicos sencillos pero interesantes serán desarrollados en esta sección. El primero es el \textit{problema restringido de tres cuerpos en órbitas circulares (PR3COC)} y el segundo el \textit{sistema de Henón-Heiles (SHH)}. Antes de entrarle de lleno a estos problemas, creo que vale la pena recapitular un poco sobre la teoría en la que están basados; la mecánica analítica. Este capítulo se desarrollará como sigue: primero se hará un repaso de la mecánica lagrangiana y hamiltoniana muy al estilo de Landau y Lifshitz, específicamente en los capítulos I,II y VII de \cite{mechanics_landau_lifshitz}, luego, se desarrollará la teoría de PR3COC y, finalmente la de SHH.
 
-
-\subsection{Mecánica}
+\section{Mecánica}
 \label{sec:mecanica}
 
 Una buena forma de explorar cómo evoluciona un sistema dinámico que describa a un ente físico es encontrando las ecuaciones de movimiento que lo representa. Éste es el enfoque principal de la mecánica analítica de Hamilton y Lagrange\footnote{Claramente no son los únicos que desarrollaron esta teoría; grandes como Euler, Poisson o Liouville hicieron grandes aportaciones a la mecánica analítica, sin embargo, Hamilton y Lagrange cargan la bandera de la teoría gracias a que desarrollaron las ecuaciones de movimiento que llevan su nombre.} que, inspirados por Newton, encuentran la mejor descripción de sistemas macroscópicos basados en marcos de referencia inerciales\footnote{La elección de marcos de referencia inerciales dejan de lado la descripción relativista del mundo para esta teoría.}. Siempre que se hable de un sistema mecánico nos estaremos limitando a estas constricciones. 
@@ -17,7 +16,7 @@ Tomando como referencia un sistema de coordenadas cartesiano, podemos definir la
 
 Dada la naturaleza del sistema, a veces es posible describir un sistema de N partículas con menos de 3N coordenadas. Ejemplo de esto se ilustra en la figura \ref{fig:circular_scheme}, donde la posición de una partícula $m$ se puede determinar con precisión si se conoce el radio $R$ respecto al centro del círculo, en el cual $m$ se mueve en relación a $\theta$, el ángulo respecto a alguna línea de referencia que creamos conveniente. Para este ejemplo, basta únicamente de $\theta$ para describir la trayectoria de $m$ en lugar de las 3 coordenadas que se mencionaban en el párrafo anterior; podemos pensar que dicha partícula está \textit{restringida} a moverse sobre el círculo de radio $R$, es decir, ésta pierde la libertad de moverse arbitrariamente en cualquier punto del espacio tridimensional en donde vive. Con esto, definimos como \textit{grados de libertad} al número mínimo de coordenadas independientes con las cuales se puede definir la posición de todas las partículas de un sistema. 
 
-\subsubsection{Principio de Mínima Acción}
+\subsection{Principio de Mínima Acción}
 \label{sec:least_action}
 
 Un sistema tiene, en general, $s \leq N$ grados de libertad. Esto significa que se puede describir con $s$ cantidades independientes $\lbrace q_1, \ldots, q_s \rbrace$ que definen completamente la posición de todas las partículas. A estas cantidades se le llaman las \textit{coordenadas generalizadas} del sistema, y asociadas a ellas están las \textit{velocidades generalizadas} $\dot{q_i} = \frac{dq_i}{dt} \  \forall \ i \in [1,s]$. Parece ser que a la naturaleza\footnote{al menos a este nivel} le gusta seguir los caminos en los que la \textit{acción} sea mínima. Es decir, si a un instante $t_1$ el sistema ocupa las posiciones $q^{(1)} := (q_1(t_1), \ldots, q_s(t_1))$ y al instante $t_2$ las posiciones $q^{(2)}$,  debe existir una función $L$ con unidades de energía que dependa de las cantidades $q$, $\dot{q}$ y el tiempo tal que la integral 
@@ -49,7 +48,7 @@ Así, imponiendo la condición de que el integrando sea idénticamente cero, obt
 
 que son $s$ ecuaciones diferenciales ordinarias de segundo orden y, por tanto, $2s$ constantes o condiciones iniciales $\{ q_{1_0}, \ldots, q_{s_0}, \dot{q_{1_0}}, \ldots, \dot{q_{s_0}} \}$\footnote{Se entiende que $q_{i_0} = q_i(t_0)$.} son necesarias para resolverlas. Con esto, la pregunta primordial es: ¿Qué forma tiene $L$?
 
-\subsubsection{Lagrangiano de la partícula libre}
+\subsection{Lagrangiano de la partícula libre}
 
 Tomemos como primer caso a la partícula libre (de interacciones). Ésta no tiene constricciones ni interactúa con nadie más y, por tanto, tiene 3 grados de libertad. Tomaremos como marco de referencia inercial las coordenadas rectangulares definidas por $\{ \hat{i}, \hat{j}, \hat{k} \}$ al cual llamaremos $\mathcal{K}$. Es importante para la descripción notar que en un marco de referencia inercial el espacio es homogéneo e isotrópico y el tiempo homogéneo. 
 
@@ -98,7 +97,7 @@ Por lo segundo, como las partículas libres, por definición, no interactúan en
 
 Notemos que este particular lagrangiano describe la energía del movimiento de las partículas cuando no interaccionan entre ellas; por esto, en el panorama más general, se le conoce como la \textit{energía cinética} del sistema: $L_{libre}(\mathbf{v}) := T(\mathbf{v})$.
 
-\subsubsection{Lagrangiano de un sistema cerrado} 
+\subsection{Lagrangiano de un sistema cerrado} 
 
 Un sistema de N partículas se llama cerrado si éstas interaccionan únicamente entre ellas; es decir, no hay agentes externos que alteren al sistema. Vimos que la energía cinética está dada por (\ref{eq:kinetic}) y, así, al lagrangiano se le debe agregar la interacción entre partículas o \textit{energía potencial}. Resulta que si el sistema es cerrado, el potencial será una función que depende únicamente de la posición que cada partícula tiene en un instante dado. Nombraremos $-U$ a esta función, y así
 \begin{equation}
@@ -120,5 +119,22 @@ Ahora, el lagrangiano dado por (\ref{eq:lagrangian_cartesian_closed}) fue trabaj
  \label{eq:lagrangian_closed_generalized}
 \end{equation}
 
-el lagrangiano en coordenadas generalizadas, donde $\mathbf{a}(q)$ es la función que sale de sustituir la transformación en $T(\dot{\mathbf{r})} = \frac{1}{2}\sum m_i \left( \dot{x}_{1,i}^2 + \dot{x}_{2,i}^2 + \dot{x}_{3,i}^2 \right)$. Es interesante destacar que en coordenadas generalizadas la energía cinética puede depender de las posiciones generalizadas y es, como antes, cuadrática en las velocidades. 
+el lagrangiano en coordenadas generalizadas, donde $\mathbf{a}(q)$ es la función que sale de sustituir la transformación en $T(\dot{\mathbf{r}}) = \frac{1}{2}\sum m_i \left( \dot{x}_{1,i}^2 + \dot{x}_{2,i}^2 + \dot{x}_{3,i}^2 \right)$. Es interesante destacar que en coordenadas generalizadas la energía cinética puede depender de las posiciones generalizadas y es, como antes, cuadrática en las velocidades. 
 
+\subsection{Lagrangiano de un sistema abierto}
+
+Un sistema abierto es aquel que puede interactuar con sus alrededores. Si un sistema $A$ interactúa con un sistema $B$ decimos, desde la perspectiva de $A$, que éste se mueve en un campo externo dado por $B$. Suponiendo que el sistema conformado por $A$ y $B$ juntos es cerrado, entonces tendrá un lagrangiano 
+\begin{equation}
+ L(q_A,q_B,\dot{q}_A,\dot{q}_B) = T_A(q_A,\dot{q}_A) + T_B(q_B,\dot{q}_B) - U(q_A,q_B).
+\end{equation}
+
+Como no nos interesa la treyectoria de las partículas de $B$ sino únicamente en cómo afecta a $A$, podemos sustituir  en el lagrangiano $q_B \to q_b(t)$, la solución explicita en $t$ para $B$, obteniendo
+\begin{align*}
+ L(q_A,\dot{q}_A,t) = T_A(q_A,\dot{q_A}) + \cancelto{\frac{df}{dt}}{T_B(t)} - U(q_A,q_B(t)).
+\end{align*}
+
+Así, un sistema que interactúa con un campo externo difiere con uno cerrado sólo en el potencial, que tendrá una dependencia explícita del tiempo
+\begin{equation}
+ L(q,\dot{q},t) = T(q,\dot{q}) - U(q,t).
+ \label{eq:lagrangian_open_generalized}
+\end{equation}
