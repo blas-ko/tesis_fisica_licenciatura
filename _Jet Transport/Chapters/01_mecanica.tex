@@ -1,6 +1,6 @@
 %%Relacionar mejor el inicio de este capítulo en relación a lo escrito en la introducción. Lo de ahorita es, en principio, preliminar. 
 
-El objetivo de esta tesis es sacarle todo el provecho posible al transporte de jets y los indicadores que éste nos pueda regalar. Por esto, dos problemas físicos sencillos pero interesantes serán desarrollados en esta sección. El primero es el \textit{problema restringido de tres cuerpos en órbitas circulares (PR3COC)} y el segundo el \textit{sistema de Henón-Heiles (SHH)}. Antes de entrarle de lleno a estos problemas, creo que vale la pena recapitular un poco sobre la teoría en la que están basados; la mecánica analítica. Este capítulo se desarrollará como sigue: primero se hará un repaso de la mecánica lagrangiana y hamiltoniana muy al estilo de Landau y Lifshitz, específicamente en los capítulos I,II y VII de \cite{mechanics_landau_lifshitz}, luego, se desarrollará la teoría de PR3COC y, finalmente la de SHH.
+El objetivo de esta tesis es sacarle todo el provecho posible al transporte de jets y los indicadores que éste nos pueda regalar. Por esto, dos problemas físicos sencillos pero interesantes serán desarrollados en esta sección. El primero es el \textit{problema restringido de 3 cuerpos en una órbita circular (PR3COC)} y el segundo el \textit{sistema de Henón-Heiles (SHH)}. Antes de entrarle de lleno a estos problemas, creo que vale la pena recapitular un poco sobre la teoría en la que están basados; la mecánica analítica. Este capítulo se desarrollará como sigue: primero se hará un repaso de la mecánica lagrangiana y hamiltoniana muy al estilo de Landau y Lifshitz, específicamente en los capítulos I,II y VII de \cite{mechanics_landau_lifshitz}, luego, se desarrollará la teoría de PR3COC y, finalmente la de SHH.
 
 \section{Mecánica}
 \label{sec:mecanica}
@@ -144,7 +144,9 @@ Así, un sistema que interactúa con un campo externo difiere con uno cerrado s�
 \subsection{Marcos de referencia no inerciales}
 \label{sec:ficticious_forces}
 
-Se ha hablado hasta aquí de sistemas descritos por marcos de referencia inerciales. Dicha necesidad emerge de la invarianza ante estos y de la invarianza, así, de las ecuaciones de movimiento. Sin embargo, hay sistemas donde resulta más cómoda la descripción si el marco de referencia tiene ciérta aceleración respecto a los marcos de referencia inerciales con los que hemos trabajado. Un auto que busca tomar una curva en una carretera desde el punto de vista del piloto o un satélite que navega las órbitas entre dos planetas desde el punto del satélite son dos buenos ejemplos de esto. La aceleración dada por el marco de referencia brindará, según la segunda ley de Newton ($\ddot{\mathbf{r}}_{ref} \neq 0$), una fuerza extra al sistema siempre que un móvil masivo interactúe con él. A este tipo de fuerzas se le llaman \textit{ficticias}, ya que no son provocadas por campos externos ni interacción entre partículas, únicamente por la elección de un sistema de referencia que no va a velocidad constante.
+Se ha hablado hasta aquí de sistemas descritos por marcos de referencia inerciales. Dicha necesidad emerge de la invarianza ante estos y de la invarianza, así, de las ecuaciones de movimiento. Sin embargo, hay sistemas donde resulta más cómoda la descripción si el marco de referencia tiene ciérta aceleración respecto a los marcos de referencia inerciales con los que hemos trabajado. Un auto que busca tomar una curva en una carretera desde el punto de vista del piloto o un satélite que navega las órbitas entre dos planetas desde el punto del satélite son dos buenos ejemplos de esto. La aceleración dada por el marco de referencia brindará, según la segunda ley de Newton ($\ddot{\mathbf{r}}_{ref} \neq 0$), una fuerza extra al sistema siempre que un móvil masivo interactúe con él. A este tipo de fuerzas se le llaman \textit{ficticias}, ya que no son provocadas por campos externos ni interacción entre partículas, únicamente por la elección de un sistema de referencia que no va a velocidad constante. 
+
+Veremos como ejemplo las fuerzas ficticias que aparecen en un marco de referencia en rotación respecto a uno inercial. Ésto ilustará cómo trabajar en marcos de referencia no inerciales y se usará posteriormente para el problema de los tres cuerpos. 
 
 \subsubsection{Marcos rotantes}
 
@@ -192,12 +194,14 @@ y la aceleración
 \end{align}
 en relación al marco de referencia inercial del sistema. 
 
-Con esto, podemos ver que si una partícula de masa $m$ siente una aceleración $\ddot{\mathbf{r}}$ en el marco en rotación, ésta sentirá una serie e fuerzas ficticias si es vista desde un marco inercial. Al término ``$2 m \mathbf{\Omega} \times \dot{\mathbf{r}}$'' se le conoce como \textit{fuerza centrípeta}, a ``$m \mathbf{\Omega} \times ( \mathbf{\Omega} \times \mathbf{r} )$'' como la \textit{fuerza de Coriolis} y a ``$m \dot{\mathbf{\Omega}} \times \mathbf{r}$'' como \textit{fuerza de Euler}.
+Con esto, podemos ver que si una partícula de masa $m$ tiene una aceleración $\ddot{\mathbf{r}}$ en el marco en rotación, ésta sentirá una serie de fuerzas ficticias si es vista desde un marco inercial. Al término ``$2 m \mathbf{\Omega} \times \dot{\mathbf{r}}$'' se le conoce como \textit{fuerza centrípeta}, a ``$m \mathbf{\Omega} \times ( \mathbf{\Omega} \times \mathbf{r} )$'' como la \textit{fuerza de Coriolis} y a ``$m \dot{\mathbf{\Omega}} \times \mathbf{r}$'' como \textit{fuerza de Euler}.
 
-Notemos que si la rotación es uniforme entonces $\dot{\theta}$ es constante. Si además el sistema es cerrado (\ref{eq:newton_second_law}) en el marco rotativo, entonces (\ref{eq:rotating_acceleration}) se reduce a 
+Notemos que si la rotación es uniforme entonces $\dot{\mathbf{\Omega}} = 0$. Además, si el sistema es cerrado en el marco rotativo, entonces, por (\ref{eq:newton_second_law}), (\ref{eq:rotating_acceleration}) se reduce a 
 \begin{equation}
  \ddot{\mathbf{r}}_i - 2\mathbf{\Omega} \times \dot{\mathbf{r}}_r = \nabla \left( \frac{1}{m}U(\mathbf{r}_r) +  \mathbf{\Omega}^2 \mathbf{r}_r^2 \right).
 \end{equation}
+
+Salvo por la fuerza de Coriolis, que vuelve a éste un sistema abierto, se tiene que las ecuaciones de movimiento expresan un sistema cerrado con el nuevo potencial $U_{tot}(\mathbf{r}) = U(\mathbf{r}_r) + m \mathbf{\Omega}^2 \mathbf{r}_r^2$.
 
 %Revisar ésto bien en sintaxis y signos y ver qué nos interesa en cada caso entre "i" y "r". 
 %Meter imágenes.
@@ -265,3 +269,32 @@ Sustituyendo esto último en (\ref{eq:hamiltonian_legandre}) obtenemos
  \label{eq:hamiltonian}
 \end{align}
 El hamiltoniano de un sistema es la suma de las energías cinética y potencial de éste. 
+
+\section{Problema restringido de 3 cuerpos en una órbita circular (PR3COC)}
+
+El problema de tres cuerpos interactuando en campos gravitacionales ha sido de gran interés desde hace más de 300 años. Newton, en el siglo $XVII$, publica en su Philosophiæ Naturalis Principia Mathematica \cite{Principia} los primeros intentos ``serios'' para describir el movimiento entre el sol, la luna y la Tierra. Resulta que principios del siglo $XX$, el matemático Karl Sundman resolvió el problema con series de potencias convergentes, aunque no encontró ninguna función explícita que la represente. Sin embargo, el gran matemático Henrí Poincaré vio, en el siglo $XIV$, algo que no se había definido antes: \textit{el caos}. El problema de tres cuerpos tiene comportamiento caótico y es justo esa la motivación a desarrollarlo ya que las herramientas que se desarrollarán en el capítulo \ref{chapter:jet_transport} se aprovecharán de su naturaleza caótica. 
+
+Plantear el problema resulta trivial ya que el potencial de interacción se da entre pares de cuerpos, así, siguiendo el potencial gravitacional de Newton, 
+\begin{align}
+ U_{M_1}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_1 M_2}{r_{1,2}} - G \frac{M_1 M_3}{r_{1,3}} \\
+ U_{M_2}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_2 M_1}{r_{2,1}} - G \frac{M_2 M_3}{r_{2,3}} \\
+ U_{M_3}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_3 M_1}{r_{3,1}} - G \frac{M_3 M_2}{r_{3,2}}
+ \label{eq:3body_potential}
+\end{align}
+
+con $G$ la constante de gravitación universal, $\mathbf{r}_i = x_i \hat{\imath} + y_i \hat{\jmath} + z_i \hat{k}$ la posición de la i-ésima partícula, $M_i$ su masa y $r_{i,j} = \norm{ \mathbf{r}_i - \mathbf{r}_j}$ la distancia entre las partículas $M_i$ y $M_j$\footnote{Notemos la simetría $r_{i,j} = r_{j,i}$, aunque $\mathbf{r}_{i,j} = \mathbf{r}_i - \mathbf{r}_j = \mathbf{r}_j - \mathbf{r}_i  = - \mathbf{r}_{j,i}$.}. 
+
+La energía cinética del problema la definimos de la manera usual 
+\begin{equation}
+ T(\dot{\mathbf{r}}_1,\dot{\mathbf{r}}_2,\dot{\mathbf{r}}_3) = \sum_{i=1}^3 M_i \dot{r}_i^2,
+ \label{eq:3body_cinetic}
+\end{equation}
+lo cual define un sistema de 6 ecuaciones de movimiento dadas por (\ref{eq:newton_second_law})
+\begin{equation}
+ M_i \ddot{\mathbf{r}_i} = - G M_i \sum_{j\neq i} \frac{M_j}{r_{i,j}^2} \hat{\mathbf{r}}_{i,j},
+ \label{eq:3body_eqs_motion}
+\end{equation}
+con $\hat{\mathbf{r}}_i = \frac{\mathbf{r}_i}{r_i}$ un vector unitario en la dirección de $\mathbf{r}_i$.
+
+Éste es el caso más general del problema de tres cuerpos ya que ninguna restricción ha sido impuesta hasta el momento y, por tanto, no podemos hablar aún del problema restringido a órbitas circulares. Para ésto, vale la pena resolver primero el caso de dos cuerpos y luego regresar al de tres y ver a qué condiciones estará sujeto. 
+
