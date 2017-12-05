@@ -50,7 +50,7 @@ que son $s$ ecuaciones diferenciales ordinarias de segundo orden y, por tanto, $
 
 \subsection{Lagrangiano de la partícula libre}
 
-Tomemos como primer caso a la partícula libre (de interacciones). Ésta no tiene constricciones ni interactúa con nadie más y, por tanto, tiene 3 grados de libertad. Tomaremos como marco de referencia inercial las coordenadas rectangulares definidas por $\{ \hat{i}, \hat{j}, \hat{k} \}$ al cual llamaremos $\mathcal{K}$. Es importante para la descripción notar que en un marco de referencia inercial el espacio es homogéneo e isotrópico y el tiempo homogéneo. 
+Tomemos como primer caso a la partícula libre (de interacciones). Ésta no tiene constricciones ni interactúa con nadie más y, por tanto, tiene 3 grados de libertad. Tomaremos como marco de referencia inercial las coordenadas rectangulares definidas por $\{ \hat{\imath}, \hat{\jmath}, \hat{k} \}$ al cual llamaremos $\mathcal{K}$. Es importante para la descripción notar que en un marco de referencia inercial el espacio es homogéneo e isotrópico y el tiempo homogéneo. 
 
 Así, por la homogeneidad del éstos, $L$ no puede depender explícitamente de $\mathbf{r}$ ni de $t$ y, por tanto, $L(\mathbf{r},\mathbf{v},t) = L(\mathbf{v})$. Además, por lo isotrópico del espacio, debería ser indistinto para $L$ la dirección en la que la partícula se esté moviendo, de modo que la dependencia deberá sobre la magnitud de la velocidad, i.e., $L = L(\mathbf{v}) = L(v^2)$.
 
@@ -108,12 +108,13 @@ Un sistema de N partículas se llama cerrado si éstas interaccionan únicamente
 Hay tres puntos que creo vale la pena mencionar. Primero, Como $U$ es función de las posiciones únicamente entonces, si la posición de cualquier partícula cambia, el potencial  afecta instantaneamente a todas las demás. Segundo, si suponiéramos que dichas interacciones no son instantáneas, entonces éstas se propagarían con cierta velocidad y, por tanto, la invarianza de las ecuaciones sobre marcos de referencia inerciales ya no sería válida. Tercero, sustituyendo (\ref{eq:lagrangian_cartesian_closed}) en (\ref{eq:lagrange_equations}) tenemos
 \begin{align}
  -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} &= \frac{d}{dt} \pder{}{\mathbf{v}_i} \sum_{i=1}^N \frac{1}{2}m_i v_i^2 \nonumber \\
- &\therefore m_i \ddot{\mathbf{r}_i} = -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} =: \mathbf{F},
+ &\therefore m_i \ddot{\mathbf{r}_i} = -\pder{U(\mathbf{r_1}, \ldots, \mathbf{r_N})}{\mathbf{r}_i} =: \mathbf{F}_i(\mathbf{r}) \nonumber \\
+ &\therefore \mathbf{F}(\mathbf{r}) = \sum \mathbf{F}_i(\mathbf{r}) = - \nabla U(\mathbf{r}),
  \label{eq:newton_second_law}
 \end{align}
 que corresponde a la \textit{segunda ley de Newton} para sistemas cerrados; de ahí la elección del ``$-$'' para la función $U$.
 
-Ahora, el lagrangiano dado por (\ref{eq:lagrangian_cartesian_closed}) fue trabajado en coordenadas rectangulares dado que la partícula libre no tiene constricciones del espacio. Como el potencial puede que restringa las trayectorias en el que las partículas se mueven, es posible que el sistema pueda ser descrito en $s < 3N$  coordenadas generalizadas en donde existe una función $\mathbf{g}_j: \mathbb{R}^{s} \to \mathbb{R}^{N}, \ j \in \{1,2,3\}$ tal que $g_{j,i}(q) = x_{j,i}$, donde $\mathbf{r}_i = x_{1,i} \hat{i} + x_{2,i} \hat{j} + x_{3,i} \hat{k}$, $\dot{x}_{j,i} = \sum_k \pder{\mathbf{g}_j(q)}{q_k} \dot{q_k}$ y $q \in \mathbb{R}^s$. Metiendo todo esto en el lagrangiano obtenemos
+Ahora, el lagrangiano dado por (\ref{eq:lagrangian_cartesian_closed}) fue trabajado en coordenadas rectangulares dado que la partícula libre no tiene constricciones del espacio. Como el potencial puede que restringa las trayectorias en el que las partículas se mueven, es posible que el sistema pueda ser descrito en $s < 3N$  coordenadas generalizadas en donde existe una función $\mathbf{g}_j: \mathbb{R}^{s} \to \mathbb{R}^{N}, \ j \in \{1,2,3\}$ tal que $g_{j,i}(q) = x_{j,i}$, donde $\mathbf{r}_i = x_{1,i} \hat{\imath} + x_{2,i} \hat{\jmath} + x_{3,i} \hat{k}$, $\dot{x}_{j,i} = \sum_k \pder{\mathbf{g}_j(q)}{q_k} \dot{q_k}$ y $q \in \mathbb{R}^s$. Metiendo todo esto en el lagrangiano obtenemos
 \begin{equation}
  L(q,\dot{q}) = \frac{1}{2}\sum_{i,k} a_{i,k}(q) \dot{q_i}\dot{q_k} - U(q),
  \label{eq:lagrangian_closed_generalized}
@@ -139,6 +140,67 @@ Así, un sistema que interactúa con un campo externo difiere con uno cerrado s�
  L(q,\dot{q},t) = T(q,\dot{q}) - U(q,t).
  \label{eq:lagrangian_open_generalized}
 \end{equation}
+
+\subsection{Marcos de referencia no inerciales}
+\label{sec:ficticious_forces}
+
+Se ha hablado hasta aquí de sistemas descritos por marcos de referencia inerciales. Dicha necesidad emerge de la invarianza ante estos y de la invarianza, así, de las ecuaciones de movimiento. Sin embargo, hay sistemas donde resulta más cómoda la descripción si el marco de referencia tiene ciérta aceleración respecto a los marcos de referencia inerciales con los que hemos trabajado. Un auto que busca tomar una curva en una carretera desde el punto de vista del piloto o un satélite que navega las órbitas entre dos planetas desde el punto del satélite son dos buenos ejemplos de esto. La aceleración dada por el marco de referencia brindará, según la segunda ley de Newton ($\ddot{\mathbf{r}}_{ref} \neq 0$), una fuerza extra al sistema siempre que un móvil masivo interactúe con él. A este tipo de fuerzas se le llaman \textit{ficticias}, ya que no son provocadas por campos externos ni interacción entre partículas, únicamente por la elección de un sistema de referencia que no va a velocidad constante.
+
+\subsubsection{Marcos rotantes}
+
+Sea un marco que rota respecto algún eje de simetría con velocidad angular $\theta(t)$. Si basamos un marco de rerefencia inercial tal que el eje de rotación coincida con el eje $z$, entonces como se muestra en la figura \ref{fig:}, la relación entre ambos se puede expresar en coordenadas cilíndricas como
+\begin{align}
+ \hat{\imath}_r(t) &= \cos \theta(t) \hat{\imath}_i + \sin \theta(t) \hat{\jmath}_i \nonumber \\
+ \hat{\jmath}_r(t) &= -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i \\
+ \hat{k}_r(t) &= \hat{k}_i \nonumber
+ \label{eq:rotating_unitaries}
+\end{align}
+donde los subíndices ``$r$'' y ``$i$'' se refieren a los marcos de referencia rotado e inercial, respectivamente. Así, el cambio de los unitarios respecto al tiempo son
+\begin{align}
+ \frac{d}{dt} \hat{\imath}_r(t) &= \dot{\theta}(t) \left( -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i  \right) \nonumber \\
+ \frac{d}{dt} \hat{\jmath}_r(t) &= \dot{\theta}(t) \left( -\cos \theta(t) \hat{\imath}_i - \sin \theta(t) \hat{\jmath}_i \right) \\
+ \frac{d}{dt} \hat{k}_r &= 0 \nonumber 
+ \label{eq:rotating_unitaries_derivs}
+\end{align}
+Siguiendo la construcción de \cite{wiki_rotating_frame}, definimos al vector de rotación $\mathbf{\Omega} := \left( 0, 0, \dot{\theta} \right)$ y, con éste, cualquier término de (\ref{eq:rotating_unitaries_derivs}) se puede expresar como 
+\begin{equation}
+ \frac{d}{dt}\hat{u} = \mathbf{\Omega} \times \hat{u}.
+\end{equation}
+
+Sea entonces $\mathbf{f}(t) = f_x(t) \hat{\imath} + f_y(t) \hat{j} + f_z(t) \hat{k}$ una cantidad definida en el marco que rota, la descripción de su derivada desde el marco de referencia inercial es, por la regla del producto,
+\begin{equation*}
+ \left( \frac{d \mathbf{f}}{dt} \right)_i = \left( \frac{d\mathbf{f}}{dt} \right)_r  + \mathbf{\Omega} \times \mathbf{f}
+\end{equation*}
+y, por tanto,
+\begin{equation}
+ \left(\frac{d}{dt}\right)_i := \left( \frac{d}{dt} \right)_r + \mathbf{\Omega} \times
+ \label{eq:rotating_derivative}
+\end{equation}
+es un operador que expresa la derivada de $\mathbf{f}$ en el marco de referencia inercial.
+
+Con (\ref{eq:rotating_derivative}) se pueden expresar la velocidad 
+\begin{equation}
+ \mathbf{v}_i = \dot{\mathbf{r}}_i = \mathbf{v}_r + \mathbf{\Omega} \times \mathbf{r}_r,
+ \label{eq:rotating_velocity}
+\end{equation}
+y la aceleración
+\begin{align}
+ \mathbf{a}_i = \ddot{\mathbf{r}}_i &= \left[ \left( \frac{d}{dt}\right)_r + \mathbf{\Omega} \times \right]\left[ \mathbf{v}_r + \mathbf{\Omega} \times \mathbf{r}_r \right] \nonumber \\
+ \nonumber \\
+ \therefore \ddot{\mathbf{r}}_i &= \ddot{\mathbf{r}}_r + 2\mathbf{\Omega} \times \mathbf{\dot{r}}_r + \mathbf{\Omega} \times \left( \mathbf{\Omega} \times \mathbf{r}_r \right) + \dot{\mathbf{\Omega}} \times \mathbf{r}_r
+ \label{eq:rotating_acceleration}
+\end{align}
+en relación al marco de referencia inercial del sistema. 
+
+Con esto, podemos ver que si una partícula de masa $m$ siente una aceleración $\ddot{\mathbf{r}}$ en el marco en rotación, ésta sentirá una serie e fuerzas ficticias si es vista desde un marco inercial. Al término ``$2 m \mathbf{\Omega} \times \dot{\mathbf{r}}$'' se le conoce como \textit{fuerza centrípeta}, a ``$m \mathbf{\Omega} \times ( \mathbf{\Omega} \times \mathbf{r} )$'' como la \textit{fuerza de Coriolis} y a ``$m \dot{\mathbf{\Omega}} \times \mathbf{r}$'' como \textit{fuerza de Euler}.
+
+Notemos que si la rotación es uniforme entonces $\dot{\theta}$ es constante. Si además el sistema es cerrado (\ref{eq:newton_second_law}) en el marco rotativo, entonces (\ref{eq:rotating_acceleration}) se reduce a 
+\begin{equation}
+ \ddot{\mathbf{r}}_i - 2\mathbf{\Omega} \times \dot{\mathbf{r}}_r = \nabla \left( \frac{1}{m}U(\mathbf{r}_r) +  \mathbf{\Omega}^2 \mathbf{r}_r^2 \right).
+\end{equation}
+
+%Revisar ésto bien en sintaxis y signos y ver qué nos interesa en cada caso entre "i" y "r". 
+%Meter imágenes.
 
 \subsection{Ecuaciones de Hámilton}
 \label{sec:hamilton}
