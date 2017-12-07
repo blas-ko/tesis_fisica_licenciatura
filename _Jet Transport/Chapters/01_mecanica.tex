@@ -291,10 +291,90 @@ La energía cinética del problema la definimos de la manera usual
 \end{equation}
 lo cual define un sistema de 6 ecuaciones de movimiento dadas por (\ref{eq:newton_second_law})
 \begin{equation}
- M_i \ddot{\mathbf{r}_i} = - G M_i \sum_{j\neq i} \frac{M_j}{r_{i,j}^2} \hat{\mathbf{r}}_{i,j},
+ M_i \ddot{\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3} = - G M_i \sum_{j\neq i} \frac{M_j}{r_{i,j}^2} \hat{\mathbf{r}}_{i,j},
  \label{eq:3body_eqs_motion}
 \end{equation}
-con $\hat{\mathbf{r}}_i = \frac{\mathbf{r}_i}{r_i}$ un vector unitario en la dirección de $\mathbf{r}_i$.
+con $\hat{\mathbf{r}}_{i,j} = \frac{\mathbf{r}_{i,j}}{r_{i,j}}$ un vector unitario en la dirección de $\mathbf{r}_{i,j}$.
 
 Éste es el caso más general del problema de tres cuerpos ya que ninguna restricción ha sido impuesta hasta el momento y, por tanto, no podemos hablar aún del problema restringido a órbitas circulares. Para ésto, vale la pena resolver primero el caso de dos cuerpos y luego regresar al de tres y ver a qué condiciones estará sujeto. 
+
+\subsection{Problema de dos cuerpos}
+Con la misma lógica que en el caso de tres cuerpos, tenemos que 
+\begin{equation}
+ \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
+ \label{eq:2body_eqs_motion}
+\end{equation}
+Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Llamemos, por comodidad, $\mathbf{r}_{1,2}$ simplemente $\mathbf{r}$, y planteemos así, el\textit{problema de Kepler}, que describe la aceleración relativa
+\begin{equation}
+ \ddot{\mathbf{r}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{r^2} \hat{\mathbf{r}} = - \frac{\beta}{r^2}\hat{\mathbf{r}}
+ \label{eq:kepler_problem}
+\end{equation}
+con $\beta = G \left(M_1 + M_2 \right)$. Multiplicando (\ref{eq:kepler_problem}) por $\mu := \frac{M_1 M_2}{M_1+M_2}$ obtenemos las ecuaciones de movimiento de la fuerza relativa de $M_1$ respecto a $M_2$ como si $M_2$ estuviera fija y $M_1$ tuviera la \textit{masa reducida} $\mu$.
+
+Notemos que el momento angular $\mathbf{L} := \mathbf{r} \times \mathbf{p}$ se conserva, ya que
+\begin{equation}
+ \frac{d\mathbf{L}}{dt} = \frac{d}{dt}\left(\mathbf{r} \times \mu\dot{\mathbf{r}} \right) = \mu\dot{\mathbf{r}} \cancelto{0}{\times}\dot{\mathbf{r}} + \mathbf{r} \times \mu \ddot{\mathbf{r}} = - \mathbf{r} \cancelto{0}{\times} G\frac{\mu \beta}{r^2}\hat{\mathbf{r}} = 0
+\end{equation}
+y, por tanto, $\mathbf{L} = \text{constante}$. Como primera consecuencia esto implica que $\mathbf{r}$ y $\dot{\mathbf{r}}$ son perpendiculares a $\mathbf{L}$ y por tanto, viven en un plano que, por conveniencia, lo alinearemos al plano $xy$. 
+
+Con esto, una mejor descripción del movimiento se puede obtener en coordenadas polares, donde
+\begin{align}
+ \hat{r} &= \cos \theta \hat{\imath} + \sin \theta \hat{\jmath} \nonumber \\
+ \hat{\theta} &= -\sin \theta \hat{\imath} + \cos \theta \hat{\jmath}
+ \label{eq:polar_transformation}
+\end{align}
+y $z$ ya no necesita descripción ya que $z=0$ para toda la trayectoria. 
+
+Debemos encontrar ahora las expresiones de $\mathbf{r}$,$\dot{\mathbf{r}}$ y $\ddot{\mathbf{r}}$ en éste sistema de coordenadas; haciendo regla de la cadena, obtenemos
+\begin{align}
+ \mathbf{r} &= r \cos \theta \hat{\imath} + r \sin \theta \hat{\jmath} = r \hat{r} \\
+ \dot{\mathbf{r}} &= \left( \dot{r} \cos \theta - r \sin \theta \dot{\theta} \right) \hat{\imath} + \left( \dot{r} \sin \theta + r \cos \theta \dot{\theta} \right) \hat{\jmath} = \dot{r}\hat{r} + r \dot{\theta} \hat{\theta} \\
+ \ddot{\mathbf{r}} &= \left(\ddot{r} - r \dot{\theta}^2 \right) \hat{r} + \left( r \ddot{\theta} + 2 \dot{r}\dot{\theta} \right) \dot{\theta}.
+ \label{eq:motion_polar_variables}
+\end{align}
+
+De hecho, en éste sistema de coordenadas es fácil ver que
+\begin{equation}
+ L = \norm{ \mathbf{L} } = \norm{ \mathbf{r} \times \mu \dot{\mathbf{r}} } = \norm{ \left( r \hat{r} + 0 \hat{\theta} + 0 \hat{k} \right) \times \left( \dot{r} \hat{r} + r \dot{\theta} \hat{\theta} \right) } = \mu r^2 \dot{\theta}
+\end{equation}
+y, por tanto, concluir que
+\begin{equation}
+\dot{\theta} = \frac{L}{\mu r^2} = \text{ constante},
+\label{eq:2body_ang_vel}
+\end{equation}
+es decir, la velocidad angular relativa entre las partículas $M_1$ y $M_2$ es constante, ya que el momento angular total se conserva.
+
+Ahora, con (\ref{eq:motion_polar_variables}) podemos replantear (\ref{eq:kepler_problem})  y obtener dos ecuaciones de movimiento en las nuevas coordenadas
+\begin{align}
+ r \ddot{\theta} + 2 \dot{r} \dot{\theta} &= 0 \\
+ \ddot{r} - r \dot{\theta}^2 &= -\frac{\beta}{r^2}.
+ \label{eq:2body_eqs_motion_polar}
+\end{align}
+Notemos que la primera queda resuelta por (\ref{eq:2body_ang_vel}) mientras que la segunda, haciendo el cambio de variable $\dot{r} = \frac{d r}{d\theta} \dot{\theta}$, se obtiene
+\begin{align}
+ \frac{d^2 r}{d \theta^2} \dot{\theta}^2 + \frac{dr}{d\theta} \ddot{\theta} - r \dot{\theta}^2 = - \frac{\beta}{r^2}
+\end{align}
+donde 
+\begin{equation*}
+ \ddot{\theta} = -\frac{2L}{\mu r^3}\dot{r} = -\frac{2L}{\mu r^3} \frac{dr}{d\theta}\dot{\theta} = - \frac{2L^2}{\mu^2 r^5} \frac{dr}{d\theta}.
+\end{equation*}
+Esto y (\ref{eq:2body_ang_vel}) se sustituyen en  (\ref{eq:2body_eqs_motion_polar}) para obtener
+\begin{equation*}
+ \frac{L^2}{\mu^2 r^4}\left( \frac{d^2r}{d\theta^2} - \frac{1}{r} \left(\frac{dr}{d\theta} \right)^2 -r \right) = - \frac{\beta}{r^2}.
+\end{equation*}
+
+Finalmente, si hacemos $u(r) := \frac{1}{r}$, se simplifica la ecuación diferencial a
+\begin{equation}
+ \frac{d^2u}{d\theta^2} + u = \frac{\beta \mu^2}{L^2},
+\end{equation}
+
+que no es más que el oscilador armónico con forzamiento constante $\frac{\beta \mu^2}{L^2}$. Así, obtenemos explícitamente la solución para $u$:
+
+\begin{align}
+ u(\theta) &= \frac{\beta \mu^2}{L^2} \left( 1 + e \cos (\theta - \theta_0 ) \right) \nonumber \\
+ \nonumber \\
+ \therefore r(\theta) &= \frac{L^2}{\beta \mu^2 \left(1 + e \cos (\theta - \theta_0) \right)}.
+\end{align}
+%Cómo obtenemos explícitamente la forma de $e$ y de $\theta_0$? 
+%Por qué esta ecuación representa una sección cónica en polares? Debería simplemente decirlo y citar algún texto? Chance sí...  
 
