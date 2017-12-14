@@ -198,10 +198,11 @@ Con esto, podemos ver que si una partícula de masa $m$ tiene una aceleración $
 
 Notemos que si la rotación es uniforme entonces $\dot{\mathbf{\Omega}} = 0$. Además, si el sistema es cerrado en el marco rotativo, entonces, por (\ref{eq:newton_second_law}), (\ref{eq:rotating_acceleration}) se reduce a 
 \begin{equation}
- \ddot{\mathbf{r}}_i - 2\mathbf{\Omega} \times \dot{\mathbf{r}}_r = \nabla \left( \frac{1}{m}U(\mathbf{r}_r) +  \mathbf{\Omega}^2 \mathbf{r}_r^2 \right).
+ \ddot{\mathbf{r}}_r + 2\mathbf{\Omega} \times \dot{\mathbf{r}}_r = \ddot{\mathbf{r}}_i - \nabla \left( \frac{1}{m}U(\mathbf{r}_r) +  \frac{1}{2} \mathbf{\Omega}^2 \mathbf{r}_r^2 \right).
+ \label{eq:rotating_constant_acceleration}
 \end{equation}
 
-Salvo por la fuerza de Coriolis, que vuelve a éste un sistema abierto, se tiene que las ecuaciones de movimiento expresan un sistema cerrado con el nuevo potencial $U_{tot}(\mathbf{r}) = U(\mathbf{r}_r) + m \mathbf{\Omega}^2 \mathbf{r}_r^2$.
+Salvo por la fuerza de Coriolis, que vuelve a éste un sistema abierto, se tiene que las ecuaciones de movimiento expresan un sistema cerrado con el nuevo potencial $U_{tot}(\mathbf{r}) = U(\mathbf{r}_r) + \frac{m}{2} \mathbf{\Omega}^2 \mathbf{r}_r^2$.\footnote{Si $\Omega = (0,0,\text{constante})$, entonces $\mathbf{\Omega} \times ( \mathbf{\Omega} \times \mathbf{r} ) =\Omega^2 r_r = \nabla \frac{1}{2}\Omega^2 r_r^2$.}
 
 %Revisar ésto bien en sintaxis y signos y ver qué nos interesa en cada caso entre "i" y "r". 
 %Meter imágenes.
@@ -270,7 +271,7 @@ Sustituyendo esto último en (\ref{eq:hamiltonian_legandre}) obtenemos
 \end{align}
 El hamiltoniano de un sistema es la suma de las energías cinética y potencial de éste. 
 
-\section{Problema restringido de 3 cuerpos en una órbita circular (PR3COC)}
+\section{Problema de tres cuerpos}
 
 El problema de tres cuerpos interactuando en campos gravitacionales ha sido de gran interés desde hace más de 300 años. Newton, en el siglo $XVII$, publica en su Philosophiæ Naturalis Principia Mathematica \cite{Principia} los primeros intentos ``serios'' para describir el movimiento entre el sol, la luna y la Tierra. Resulta que principios del siglo $XX$, el matemático Karl Sundman resolvió el problema con series de potencias convergentes, aunque no encontró ninguna función explícita que la represente. Sin embargo, el gran matemático Henrí Poincaré vio, en el siglo $XIV$, algo que no se había definido antes: \textit{el caos}. El problema de tres cuerpos tiene comportamiento caótico y es justo esa la motivación a desarrollarlo ya que las herramientas que se desarrollarán en el capítulo \ref{chapter:jet_transport} se aprovecharán de su naturaleza caótica. 
 
@@ -304,77 +305,138 @@ Con la misma lógica que en el caso de tres cuerpos, tenemos que
  \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
  \label{eq:2body_eqs_motion}
 \end{equation}
-Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Llamemos, por comodidad, $\mathbf{r}_{1,2}$ simplemente $\mathbf{r}$, y planteemos así, el\textit{problema de Kepler}, que describe la aceleración relativa
+Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el \textit{problema de Kepler}, que describe la aceleración relativa
 \begin{equation}
- \ddot{\mathbf{r}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{r^2} \hat{\mathbf{r}} = - \frac{\beta}{r^2}\hat{\mathbf{r}}
+ \ddot{\mathbf{R}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{R^2} \hat{\mathbf{R}} = - \frac{\beta}{R^2}\hat{\mathbf{R}}
  \label{eq:kepler_problem}
 \end{equation}
 con $\beta = G \left(M_1 + M_2 \right)$. Multiplicando (\ref{eq:kepler_problem}) por $\mu := \frac{M_1 M_2}{M_1+M_2}$ obtenemos las ecuaciones de movimiento de la fuerza relativa de $M_1$ respecto a $M_2$ como si $M_2$ estuviera fija y $M_1$ tuviera la \textit{masa reducida} $\mu$.
 
-Notemos que el momento angular $\mathbf{L} := \mathbf{r} \times \mathbf{p}$ se conserva, ya que
+El problema de Kepler conserva el momento angular $\mathbf{L} := \mathbf{R} \times \mathbf{p}$, ya que
 \begin{equation}
- \frac{d\mathbf{L}}{dt} = \frac{d}{dt}\left(\mathbf{r} \times \mu\dot{\mathbf{r}} \right) = \mu\dot{\mathbf{r}} \cancelto{0}{\times}\dot{\mathbf{r}} + \mathbf{r} \times \mu \ddot{\mathbf{r}} = - \mathbf{r} \cancelto{0}{\times} G\frac{\mu \beta}{r^2}\hat{\mathbf{r}} = 0
+ \frac{d\mathbf{L}}{dt} = \frac{d}{dt}\left(\mathbf{R} \times \mu\dot{\mathbf{R}} \right) = \mu\dot{\mathbf{R}} \cancelto{0}{\times}\dot{\mathbf{R}} + \mathbf{R} \times \mu \ddot{\mathbf{R}} = - \mathbf{R} \cancelto{0}{\times} G\frac{\mu \beta}{r^2}\hat{\mathbf{R}} = 0
 \end{equation}
-y, por tanto, $\mathbf{L} = \text{constante}$. Como primera consecuencia esto implica que $\mathbf{r}$ y $\dot{\mathbf{r}}$ son perpendiculares a $\mathbf{L}$ y por tanto, viven en un plano que, por conveniencia, lo alinearemos al plano $xy$. 
+y, por tanto, $\mathbf{L} = \text{constante}$. Como primera consecuencia $\mathbf{R}$ y $\dot{\mathbf{R}}$ son perpendiculares a $\mathbf{L}$ y por tanto, viven en un plano. Por comodidad se escogerá un eje coordenado tal que dicho plano esté sobre $xy$. 
 
-Con esto, una mejor descripción del movimiento se puede obtener en coordenadas polares, donde
+Una mejor descripción del movimiento se puede obtener en coordenadas polares, donde
 \begin{align}
- \hat{r} &= \cos \theta \hat{\imath} + \sin \theta \hat{\jmath} \nonumber \\
+ \hat{R} &= \cos \theta \hat{\imath} + \sin \theta \hat{\jmath} \nonumber \\
  \hat{\theta} &= -\sin \theta \hat{\imath} + \cos \theta \hat{\jmath}
  \label{eq:polar_transformation}
 \end{align}
 y $z$ ya no necesita descripción ya que $z=0$ para toda la trayectoria. 
 
-Debemos encontrar ahora las expresiones de $\mathbf{r}$,$\dot{\mathbf{r}}$ y $\ddot{\mathbf{r}}$ en éste sistema de coordenadas; haciendo regla de la cadena, obtenemos
+Debemos encontrar ahora las expresiones de $\mathbf{R}$,$\dot{\mathbf{R}}$ y $\ddot{\mathbf{R}}$ para replantear las ecuaciones de movimiento del sistema. Haciendo regla de la cadena obtenemos
 \begin{align}
- \mathbf{r} &= r \cos \theta \hat{\imath} + r \sin \theta \hat{\jmath} = r \hat{r} \\
- \dot{\mathbf{r}} &= \left( \dot{r} \cos \theta - r \sin \theta \dot{\theta} \right) \hat{\imath} + \left( \dot{r} \sin \theta + r \cos \theta \dot{\theta} \right) \hat{\jmath} = \dot{r}\hat{r} + r \dot{\theta} \hat{\theta} \\
- \ddot{\mathbf{r}} &= \left(\ddot{r} - r \dot{\theta}^2 \right) \hat{r} + \left( r \ddot{\theta} + 2 \dot{r}\dot{\theta} \right) \dot{\theta}.
+ \mathbf{R} &= R \cos \theta \hat{\imath} + R \sin \theta \hat{\jmath} = R \hat{R} \\
+ \dot{\mathbf{R}} &= \left( \dot{R} \cos \theta - R \sin \theta \dot{\theta} \right) \hat{\imath} + \left( \dot{R} \sin \theta + R \cos \theta \dot{\theta} \right) \hat{\jmath} = \dot{R}\hat{R} + R \dot{\theta} \hat{\theta} \\
+ \ddot{\mathbf{R}} &= \left(\ddot{R} - R \dot{\theta}^2 \right) \hat{R} + \left( R \ddot{\theta} + 2 \dot{R}\dot{\theta} \right) \hat{\theta}.
  \label{eq:motion_polar_variables}
 \end{align}
 
 De hecho, en éste sistema de coordenadas es fácil ver que
 \begin{equation}
- L = \norm{ \mathbf{L} } = \norm{ \mathbf{r} \times \mu \dot{\mathbf{r}} } = \norm{ \left( r \hat{r} + 0 \hat{\theta} + 0 \hat{k} \right) \times \left( \dot{r} \hat{r} + r \dot{\theta} \hat{\theta} \right) } = \mu r^2 \dot{\theta}
+ L = \norm{ \mathbf{L} } = \norm{ \mathbf{R} \times \mu \dot{\mathbf{R}} } = \norm{ \left( R \hat{R} + 0 \hat{\theta} + 0 \hat{k} \right) \times \left( \dot{R} \hat{R} + R \dot{\theta} \hat{\theta} + 0\hat{k} \right) } = \mu R^2 \dot{\theta}
 \end{equation}
-y, por tanto, concluir que
+para encontrar una expresión para la velocidad angular 
 \begin{equation}
-\dot{\theta} = \frac{L}{\mu r^2} = \text{ constante},
+\dot{\theta}(R) = \frac{L}{\mu R^2}.
 \label{eq:2body_ang_vel}
 \end{equation}
-es decir, la velocidad angular relativa entre las partículas $M_1$ y $M_2$ es constante, ya que el momento angular total se conserva.
 
-Ahora, con (\ref{eq:motion_polar_variables}) podemos replantear (\ref{eq:kepler_problem})  y obtener dos ecuaciones de movimiento en las nuevas coordenadas
+Ahora, con (\ref{eq:motion_polar_variables}) podemos replantear (\ref{eq:kepler_problem}) y obtener las ecuaciones de movimiento en las nuevas coordenadas
 \begin{align}
- r \ddot{\theta} + 2 \dot{r} \dot{\theta} &= 0 \\
- \ddot{r} - r \dot{\theta}^2 &= -\frac{\beta}{r^2}.
+ R \ddot{\theta} + 2 \dot{R} \dot{\theta} &= 0 \\
+ \ddot{R} - R \dot{\theta}^2 &= -\frac{\beta}{R^2}.
  \label{eq:2body_eqs_motion_polar}
 \end{align}
-Notemos que la primera queda resuelta por (\ref{eq:2body_ang_vel}) mientras que la segunda, haciendo el cambio de variable $\dot{r} = \frac{d r}{d\theta} \dot{\theta}$, se obtiene
-\begin{align}
- \frac{d^2 r}{d \theta^2} \dot{\theta}^2 + \frac{dr}{d\theta} \ddot{\theta} - r \dot{\theta}^2 = - \frac{\beta}{r^2}
-\end{align}
+Notemos que la primera queda resuelta por (\ref{eq:2body_ang_vel}) mientras que la segunda, notando la relación $\dot{R} = \frac{d R}{d\theta} \dot{\theta}$, se convierte en
+\begin{align*}
+ \frac{d^2 R}{d \theta^2} \dot{\theta}^2 + \frac{dR}{d\theta} \ddot{\theta} - R \dot{\theta}^2 = - \frac{\beta}{R^2}
+\end{align*}
 donde 
 \begin{equation*}
- \ddot{\theta} = -\frac{2L}{\mu r^3}\dot{r} = -\frac{2L}{\mu r^3} \frac{dr}{d\theta}\dot{\theta} = - \frac{2L^2}{\mu^2 r^5} \frac{dr}{d\theta}.
+ \ddot{\theta} = -\frac{2L}{\mu R^3}\dot{R} = -\frac{2L}{\mu R^3} \frac{dR}{d\theta}\dot{\theta} = - \frac{2L^2}{\mu^2 R^5} \frac{dR}{d\theta}.
 \end{equation*}
-Esto y (\ref{eq:2body_ang_vel}) se sustituyen en  (\ref{eq:2body_eqs_motion_polar}) para obtener
+Ésto y (\ref{eq:2body_ang_vel}) se sustituyen en  (\ref{eq:2body_eqs_motion_polar}) para obtener
 \begin{equation*}
- \frac{L^2}{\mu^2 r^4}\left( \frac{d^2r}{d\theta^2} - \frac{1}{r} \left(\frac{dr}{d\theta} \right)^2 -r \right) = - \frac{\beta}{r^2}.
+ \frac{L^2}{\mu^2 R^4}\left( \frac{d^2R}{d\theta^2} - \frac{1}{R} \left(\frac{dR}{d\theta} \right)^2 -R \right) = - \frac{\beta}{R^2}.
 \end{equation*}
 
-Finalmente, si hacemos $u(r) := \frac{1}{r}$, se simplifica la ecuación diferencial a
+Finalmente, si hacemos $u(R) := \frac{1}{R}$, se simplifica la ecuación diferencial a
 \begin{equation}
  \frac{d^2u}{d\theta^2} + u = \frac{\beta \mu^2}{L^2},
 \end{equation}
 
-que no es más que el oscilador armónico con forzamiento constante $\frac{\beta \mu^2}{L^2}$. Así, obtenemos explícitamente la solución para $u$:
+que no es más que un oscilador armónico con forzamiento constante $\frac{\beta \mu^2}{L^2}$. Obtenemos explícitamente la solución para $u$:
 
-\begin{align}
- u(\theta) &= \frac{\beta \mu^2}{L^2} \left( 1 + e \cos (\theta - \theta_0 ) \right) \nonumber \\
- \nonumber \\
- \therefore r(\theta) &= \frac{L^2}{\beta \mu^2 \left(1 + e \cos (\theta - \theta_0) \right)}.
-\end{align}
+\begin{equation*}
+ u(\theta) = \frac{\beta \mu^2}{L^2} \left( 1 + e \cos (\theta - \theta_0 ) \right) 
+\end{equation*}
+\begin{equation}
+ \therefore R(\theta) = \frac{L^2}{\beta \mu^2 \left(1 + e \cos (\theta - \theta_0) \right)}.
+ \label{eq:2body_solution}
+\end{equation}
+
 %Cómo obtenemos explícitamente la forma de $e$ y de $\theta_0$? 
 %Por qué esta ecuación representa una sección cónica en polares? Debería simplemente decirlo y citar algún texto? Chance sí...  
 
+Ésta es la distancia relativa que tienen $M_1$ y $M_2$ en función del ángulo $\theta$. Notemos que (\ref{eq:2body_solution}) representa diferentes secciones cónicas en coordenadas polares y depende de la eccentricidad $e$ que tenga. 
+
+\subsection{Problema restringido de 3 cuerpos en una órbita circular (PR3COC)}
+
+Es ahora que estamos en posición de empezar a poner constricciones al problema de los tres cuerpos. 
+
+Antes que nada, supondremos que la tercer partícula será mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, una primera aproximación es que $m_3$ no afecta la dinámica de $M_2$ ni de $M_1$ y, por tanto, la solución para $U_{M_1}$ y $U_{M_2}$ es la de los dos cuerpos desarrollada en \ref{sec:2body_problem}, es decir, (\ref{eq:2body_solution}). Sólo resta resolver cómo se mueve $m_3$, la cual sí es afectada por los dos cuerpos masivos.
+
+Para restringir las órbitas a que sean circulares es necesario imponer que $R(\theta)$ tenga eccentricidad $e=0$; la cual queda de la forma
+\begin{equation}
+ R = \frac{L^2}{\mu^2 \beta}.
+ \label{eq:3body_restricted_solution}
+\end{equation} 
+
+Con esto podemos dar una expresión para la velocidad angular que no dependa del momento angular $L$, es decir, con (\ref{eq:3body_restricted_solution}) en (\ref{eq:2body_ang_vel}) se obtiene
+\begin{equation}
+ \Omega := \dot{\theta} = \sqrt{ \frac{\beta R}{R^4} } = \sqrt{\frac{G \left(M_1 + M_2 \right)}{R^3}},
+ \label{eq:3body_ang_velocity}
+\end{equation}
+que sólo depende de la distancia entre los cuerpos más masivos y la masa de cada uno de ellos. Notemos que al estar restringido el movimiento a órbitas circulares $R$ es constante en todo momento y por ello la velocidad angular también.
+
+Para trabajar la dinámica de $m_3$ conviene establecer un marco de referencia en rotación de modo que $M_1$ y $M_2$ estén en reposo. Dicha rotación tendrá velocidad angular $\Omega$ y estará basada en el centro de gravedad entre las dos. Recordemos, de la sección \ref{sec:ficticious_forces}, que un sistema de referencia en rotación traerá algunas fuerzas ficticias descritas por (\ref{eq:rotating_constant_acceleration}), más específicamente la aceleración de Coriolis y la aceleración centrípeta.
+
+Las ecuaciones para $m_3$ en este sistema quedan descritas como
+\begin{equation}
+ \ddot{\mathbf{R}} + 2\mathbf{\Omega} \times \dot{\mathbf{R}} = - \nabla V(\mathbf{R})
+ \label{eq:3body_restricted_acceleration}
+\end{equation}
+con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf{R} = \mathbf{r}_1 - \mathbf{r}_2 = (r_1 + r_2,0,0)$ la distancia entre $M_1$ y $M_2$ y
+\begin{equation}
+ V(\mathbf{r}) = \left( -G \frac{M_1}{\sqrt{(x + r_1)^2 + y^2 + z^2}} - G \frac{M_2}{\sqrt{(x - r_2)^2 + y^2 + z^2}} + \frac{1}{2} \mathbf{\Omega}^2 \mathbf{R}^2 \right)
+ \label{eq:3body_restricted_potential}
+\end{equation} 
+la parte cerrada del potencial, que se suele conocer como \textit{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula. Notemos que las coordenadas en (\ref{eq:3body_restricted_acceleration}) van de acuerdo a la figura \ref{fig:3body_scheme}, donde $M_1$ y $M_2$ están sobre el eje $x$.
+
+%FIGURA!
+
+Aún si no describe completamente a $m_3$, estudiar la estructura del pseudo-potencial nos da una buena intuición sobre los puntos de estabilidad y equilibrio. Éste análisis nos ayudará a entender mejor la estructura en el espacio de configuración $xy$ y encaminará a los indicadores que se desarrollan en el siguiente capítulo.
+
+La figura \ref{fig:3body_pseudo-potential} muestra la proyección de $V$ en el plano $xy$. Cualitativamente, se pueden observar tres puntos silla sobre el eje $x$, mientras que en medio de los planetas, con alguna altura $y \neq 0$, se observan islas que parecen centros, al menos topológicamente.
+
+%FIGURA! 
+
+Estos puntos singulares se conocen como \textit{puntos lagrangianos} y podemos encontrarlos cuando la fuerza $\nabla V = 0$, donde
+\begin{equation}
+ \nabla V = PENDIENTE.
+\end{equation} 
+La solución para éstos involucra hallar raíces para polinomios de quinto grado, y encontrarlos de manera analítica es difícil. 
+
+En una primera aproximación, y considerando que tres de los puntos se encuentran el la recta $y=0$, obtenemos que
+\begin{align*}
+ L_1 =
+ L_2 =
+ L_3 =
+\end{align*}
+
+%Desarrollar lo mismo para los de y... 
+
+Un análisis más profundo se hará en el capítulo XXX.
