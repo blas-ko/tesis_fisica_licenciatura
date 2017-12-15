@@ -3,7 +3,7 @@ Consideremos un sistema de ecuaciones diferenciales ordinarias (EDO) descrito po
 \dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)
 \label{eq:ode}
 \end{equation}
-con $t$ el parametro que describe la evolución del sistema y $\flowci$ la trayectoria de la solución que en $t_0$ se encuentra en $\xo$ o como se le conoce más comunmente, \textbf{flujo}. En la mayoría de los sistemas físicos, el parámetro $t$ describe al tiempo, i.e., $t \in \mathbb{R}^+$, y al sistema de ODE se le conoce como sistema dinámico.
+con $t$ el parametro que describe la evolución del sistema y $\flowci$ la trayectoria o \textbf{flujo} de la solución que en $t_0$ se encuentra en $\xo$. En la mayoría de los sistemas físicos, el parámetro $t$ describe al tiempo, i.e., $t \in \mathbb{R}^+$, y al sistema de ODE se le conoce como sistema dinámico.
 
 Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obtener de manera analítica y, por tanto, estudiar las familias de soluciones para diferentes condiciones iniciales termina siendo, casi siempre, un estudio indirecto o aproximado. Se han considerado varias formas para darle la vuelta a este problema y, en los esfuerzos de lo aproximado, una de las soluciones más prácticas ha sido discretizar al parámetro temporal $t$ de (\ref{eq:ode}) y encontrar, en saltos discretos de $t$, el ``estado actual'' del sistema dado un ``estado anterior''.
 
@@ -11,7 +11,7 @@ Gracias a que hoy en día existe poder de cómputo para hacer muchas operaciones
 En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de la forma (\ref{eq:ode}). Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa las soluciones de las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que son representaciones de la solución en un espacio de menor dimensionalidad, donde normalmente se busca que no sea tangente a las soluciones para entender cómo éstas cruzan dichas secciones que describe, los exponentes de Lyapunov, que estudia la separación de soluciones cercanas a una condición inicial dada, la derivada de Lie, que compara al campo vectorial de (\ref{eq:ode}) contra otro campo vectorial, la linealización de Grobman-Hartman, que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas y analiza qué quiere decir ``suficientemente'', entre otras. 
 %%REFERENCIAS NECESARIAS EN EL PÄRRAFO ANTERIOR.
 
-Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta parcela. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
+Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta parcela. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $\flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
 
 %FIGURA!
 
@@ -154,13 +154,13 @@ Queda claro que el desarrollo de TJ necesita de un álgebra polinomial para pode
 \section{Método de Taylor}
 \label{sec:taylor-metodo}
 
-Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con $h$ dado. El método de Taylor es la generalización del de Euler en el sentido de que, si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
+Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con $h$ dado. El método de Taylor es la generalización del de Euler en el sentido de que si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
 \begin{equation}
 \mathbf{x}(t + h) = \sum_{i=0}^\infty x_i h^i = \sum_{i=0}^\infty \frac{\mathbf{x}^{(i)}(t)}{i!}h^i 
-= \sum_{i=0}^M \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{M+1})
+= \sum_{i=0}^M \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{M+1}),
 \label{eq:anal-exp}
 \end{equation}
-la expansión de orden $M$ en $h$ donde $x_i$ es la i-ésima derivada normalizada $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1})$ corresponde al residuo de la expansión y, en caso de funciones analíticas, son términos de menor corrección a la función expandida dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método.
+donde $x_i$ es la i-ésima derivada normalizada, i.e. $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}^d$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1})$ corresponde al residuo de la expansión hasta $M < \infty$ y, en caso de funciones analíticas, son términos cada vez más pequeños mientras estén dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método.
 
 Notemos que comparando ambas expansiones en series de potencias de (\ref{eq:ode}) y notando que $ \frac{d}{dt} \left( \sum_{k=0} a_k t^k \right) = \sum_{k=1} k a_k t^{k-1}$,   
 \begin{equation*}
@@ -181,7 +181,7 @@ obteniendo así
 
 el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
 
-Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como varios de los Runge-Kutta, es que se puede acotar el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon_{Taylor}$, es decir
+Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como varios de los Runge-Kutta, es que se puede acotar el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$ si cambiamos el orden $M$ de la expansión, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon_{Taylor}$, es decir
 \begin{equation*}
 \norm{x_M}_\infty h^M \leq \epsilon_{Taylor} \implies h = \left( \frac{\epsilon_{Taylor}}{\norm{x_M}_\infty} \right)^{1/M}.
 \end{equation*} 
@@ -194,16 +194,15 @@ h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_m}_\infty} \ri
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
 \subsection{Método de Taylor para el transporte de jets}
-Para el método que se acaba de desarrollar, cada término satisface que $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el TJ una vecindad $\U_{\xo}$ se parametriza con el polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$ alrededor de $\xo = \mathbf{x}(t_0)$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \U_{\xo} = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
+Para el método que se acaba de desarrollar, cada término satisface que $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el transporte de jets (TJ) se parametriza la vecindad de la condición inicial con un polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
 \begin{equation}
 P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=1}^M f_i(P_{n,\xo}(\xi),t_n)h^i 
 \label{eq:jt-rel}
 \end{equation}
 
-donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, pueden encontrarse las soluciones $\phi(t_n;t_0,\xo) = \mathbf{x}(t_n)$ con condición inicial $\xo$ y $\phi(t_n;t_0,\U_{\xo}) = P_{n,\xo}(\xi)$ la solución de la vecindad $\U_{\xo}$ al tiempo
-$t_n$ del sistema (\ref{eq:ode}) usando (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}), respectivamente.
+donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, puede encontrarse la solución $\phi(t_n;t_0,\xo + \mathbf{\xi}) = P_{n,\xo}(\xi)$, que representa las vecindades del flujo $\phi(t_n;t_0,\xo)$ parametrizadas por $\mathbf{\xi}$.
 
-Aunque la actualización del método de Taylor para el transporte de jets es bastante directa gracias al desarrollo del álgebra polinomial, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
+El TJ requiere de operaciones con polinomios, las cuales han sido desarrollas en la sección \ref{sec:polalg} de álgebra polinomial. Sin embargo, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
 
 \begin{definicion}
 Sea $\norm{\cdot} : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
@@ -219,26 +218,24 @@ Así, la elección del paso de integración tiene sentido ahora también para po
 \subsection{Probando el método de Taylor}
 \label{sec:benchmark-taylor}
 
-Hemos trabajado, con intención de entender la escencia del transporte de jets, con el método de Euler. Sin embargo, es hora de poner a prueba el método de Taylor desarrollado hace un momento y ver si (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisos y ver, para (\ref{eq:jt-rel}) en particular, qué tipo de variables e indicadores se pueden obtener para obtener lo mejor del método.
+Hasta ahora, se han desarrollado ejemplos únicamente con el método de Euler con intención de entender la escencia del transporte de jets. Sin embargo, es hora de poner a prueba el método de Taylor desarrollado hace un momento y ver si (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisos y ver, para (\ref{eq:jt-rel}) en particular, qué tipo de variables e indicadores se pueden obtener para obtener lo mejor del método.
 
-Tomaremos, a manera de ejemplo, un par de \textbf{sistemas hamiltonianos} de la forma
+%Referenciar capítulo de mecánica?
+Para probar el método se tomarán algunos hamiltonianos de la forma
 \begin{equation}
  H(\mathbf{p},\mathbf{q}) = \frac{1}{2m}\mathbf{p}^2 + V(\mathbf{q},\mathbf{p})
  \label{eq:hamiltonian}
 \end{equation}
 %V = V(p,q) ? 
 
-donde $H: \mathbb{R}^{3N}\times\mathbb{R}^{3N} \to \mathbb{R}$ es el hamiltoniano del sistema y representa la energía, con $N$ la dimensionalidad del espacio. $H$ es una primera integral del sistema
+donde
 \begin{align}
  \dot{\mathbf{p}} &= -\frac{\partial{H}}{\partial{\mathbf{q}}} \nonumber \\
- \dot{\mathbf{q}} &= \frac{\partial{H}}{\partial{\mathbf{p}}}
+ \dot{\mathbf{q}} &= \frac{\partial{H}}{\partial{\mathbf{p}}}.
 \label{eq:ham-rel}
 \end{align}
 
-y representa una constante de movimiento que, físicamente, corresponde a la conservación de la energía total.
-
-Así, comprobar los métodos de integración para sistemas conservativos como (\ref{eq:hamiltonian}) será comparar la energía para cada paso temporal dado en relación a la energía inicial, lo cual debería ser constante. 
-Dado que conozcamos la solución analítica de algún sistema, se puede comparar dicha solución contra la calculada por los diferentes métodos de integración.
+Tomar este tipo de sistemas es cómodo ya que las soluciones viven en curvas de nivel con $H$ constante que, de paso, representan la conservación de la energía mecánica. Ésto nos permite hacer un chequeo de la dicha conservación, la cual debería ser constante para toda la trayectoria. Es posible que algunos de los ejemplos tengan más cantidades conservadas y éstas robustecerán la confianza al integrador de Taylor.
 %Otra propiedad importante de los sistemas hamiltonianos es la conservación de la estructura simpléctica, que no es más que ... [ref:chaos]
 
 \subsubsection{Oscilador armónico}
@@ -322,7 +319,7 @@ Tenemos que
 \end{align}
 son la energía cinética y potencial, respectivamente. 
 
-Así, contruimos el lagranjiano del sistema
+Así, contruimos el lagrangiano del sistema
 \begin{equation*}
  \mathcal{L}(\theta,\dot{\theta}) = K - U = \frac{1}{2} m l^2 \dot{\theta}^2 - mgl\left(1 - \cos{\theta} \right).
 \end{equation*}
@@ -505,6 +502,8 @@ Los siguientes indicadores están motivados fuertemente en lo discutido en \cite
 \label{sec:ind-dinam}
 
 En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
+
+Hay que destacar que el transporte de jets no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay un montón de cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parametros de las ecuaciones.
 
 \subsection{Un poco de motivación vía exponentes de Lyapunov}
 
@@ -925,7 +924,7 @@ encontrando la relación
 y la forma explícita de $\ell_i$
 \begin{align*}
  \ell_1(q) &= \sum_{i=0}^\infty \frac{b_{i,0}}{i+1} q^i \\
- \ell_2(p) &= \sum_{i=0}^\infty \frac{-a_{0,i}}{i+1} p^i.
+ \ell_2(p) &= \sum_{i=0}^\infty -\frac{a_{0,i}}{i+1} p^i.
 \end{align*}
 Como todo lo anterior es cierto término a término, podemos truncar a cualquier orden $M < \infty$ y construir $\mathcal{H}$ con las expansiones truncas $P_{f_1}^M(q,p)$ y $P_{f_2}^M(q,p)$. \qed
 \end{proof}
@@ -933,6 +932,9 @@ Como todo lo anterior es cierto término a término, podemos truncar a cualquier
 \begin{corolario}
 Si $H$ define un sistema hamiltoniano, entonces $\mathcal{H}$ es simpléctico. 
 \end{corolario}
+
+Así, como sabemos que los ejemplos construidos hasta ahora son vienen de un hamiltoniano $H(q,p)$, entonces la expansión polinomial $f(P_{0,(0,0)}(\xi))$ debe define una matriz de estabilidad simpléctica. 
+
 
 
 %Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
