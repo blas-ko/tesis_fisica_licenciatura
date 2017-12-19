@@ -939,10 +939,75 @@ Así, como sabemos que los ejemplos construidos hasta ahora son vienen de un ham
 
 %Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
 
-\subsection{Evaluaciones de Montecarlo}
-\label{sec:montecarlo}
+\subsection{Parametrización de parámetros}
+\label{sec:parameter_variation}
 
-%Mostrar que, dado un JT, se pueden simplemente evaluar los polinomios (usando xi_max) y tener un Montecarlo relativamente rápido. Hacer benchmarks de velocidad y precición con el montecarlo normal. Preguntar sobre un buen ejemplo de esto. 
+Aunque el título de esta sección suene redundante, el TJ nos permite no sólo parametrizar las vecindades de $\xo$ en un campo vectorial dado sino también los parámetros que lo definen.
+
+Tomemos, por ejemplo, al oscilador armónico\footnote{Al pobre oscilador armónico le deben picar las orejas de tanto que hablamos de él.} dado por  
+\begin{equation}
+ \ddot{x}(t) + \omega^2 x(t) = 0
+ \label{eq:one_dim_oscil}
+\end{equation}
+
+cuyo hamiltoniano está dado por 
+\begin{equation}
+ H(x,y) = \frac{1}{2} \left( y^2 + \omega ^2 x^2 \right),
+ \label{eq:osc_ham2}
+\end{equation}
+con $y = \dot{x}$.
+
+Complejificando el dominio, sabemos que la solución está dada por 
+\begin{equation*}
+ x_{\mathbb{C}}(t) = A e^{i\omega t} + B e^{-i \omega t}
+\end{equation*}
+donde, si $\omega^2 < 0$, entonces la proyección a los reales es
+\begin{equation}
+ x(t) = a \cos(t) + b \sin (t)
+ \label{eq:ho_solution_trig}
+\end{equation}
+y, si $\omega^2 > 0$, la proyección es
+\begin{equation}
+ x(t) = \alpha e^{\omega t} + \beta e^{- \omega t}.
+ \label{eq:ho_solution_exp}
+\end{equation}
+
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{oscillator_domega}
+ \caption{Curvas de nivel dadas por (\ref{eq:osc_ham2}) para diferentes valores de $\omega^2$.}
+ \label{fig:oscillator_domega}
+\end{figure}
+
+Observamos en la figura \ref{fig:oscillator_domega} cómo las curvas de nivel cambian para distintas $\omega^2$; en particular, observamos que las soluciones cambian de topología cuando $\omega^2$ cambia de signo. Con esto, pensar en una \textit{parametrización del parámetro} resulta una herramienta poderosa en el estudio de este tipo de sistemas ya que, por un lado, puede funcionar como un indicador para cambios de topología y, por otro, ayudar a encontrar conjuntos de soluciones cuando los parámetros no se conocen con exactitud. 
+
+Para hacer esto con el transporte de jets, basta con incluir al parámetro o los parámetros que se quieran variar en el sistema de ecuaciones como $\dot{\lambda} = 0$, donde $\lambda$ es el conjunto de parámetros que se quieren variar. En este ejemplo el sistema queda como
+\begin{align*}
+ \dot{x} &= y \\
+ \dot{y} &= - \omega^2 x \\
+ \dot{\omega^2} &= 0
+\end{align*}.
+ 
+La figura \ref{fig:} muestra el trasnporte de jets para $\omega^2$ para una condición inicial, donde $\omega^2 = \omega_0^2 + \delta \xi$, con $\delta \xi$ la variación de $\omega^2$ dada por el transporte. 
+
+%FIGURA! 
+\begin{figure}[h!]
+ \centering 
+ \includegraphics[width=0.8\linewidth]{oscillator_domega2}
+ \caption{Solución para condición inicial $\xo = (1,0,0)$ y variación del parámetro para $\delta \omega^2 = 0.5$ en la izquierda y $-0.5$ en la derecha. $\delta \omega$ es un polinomio de orden $30$, y la expansión de Taylor para la solución es de orden $28$, con tolerancia de $10^{-20}$. Son $25$ pasos de integración de $0$ a $2 \pi$.}
+\end{figure}
+
+Resulta que el transporte de jets sí obtiene el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
+
+%FIGURA! 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{oscillator_dE_domega}
+ \caption{Variación $\Delta E = \frac{1}{\epsilon_{machine}} \left( E(t) - E_0 \right)$ de la energía respecto a la condición inicial para ambas evaluaciones del transporte $\delta \omega < 0$ y $\delta \omega > 0$.}
+\end{figure}
+
+Se puede ver cómo el flujo conserva la energía cada vez menos conforme pasa el tiempo; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
 
 \subsection{Secciones de Poincaré}
 
