@@ -3,7 +3,9 @@ module JTFunctions
     ######
     using TaylorSeries, TaylorIntegration, Plots
     pyplot()
-    import TaylorSeries: NumberNotSeries
+    import TaylorSeries: NumberNotSeries, evaluate
+    #this is temporary
+    include("tmp_matrix_evaluation.jl")
 
     export evaluate_neighborhood, circle2, square2,
            ξmax, anal_vs_taylor2D, area_of_polygon, separation_rate,
