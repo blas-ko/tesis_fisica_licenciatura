@@ -935,13 +935,36 @@ Si $H$ define un sistema hamiltoniano, entonces $\mathcal{H}$ es simpléctico.
 
 Así, como sabemos que los ejemplos construidos hasta ahora son vienen de un hamiltoniano $H(q,p)$, entonces la expansión polinomial $f(P_{0,(0,0)}(\xi))$ debe define una matriz de estabilidad simpléctica. 
 
+Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{eq:symplectic_condition}) e interpretando la matriz $g$. Hay una visión geométrica que plantea Arnold \cite{Arnold}, donde una transformación simplética es %CHORO
+. De este modo, la matriz $g$ se puede representar con el jacobiano de $\phi(t;t_0,\xo)$ y, para cualquier tiempo $t$ del flujo, un sistema es simpléctico cumple
+\begin{equation}
+ J(\phi(t))^T \omega J(\phi(t)) = \omega \ \forall t.
+ \label{eq:sympletic_flow}
+\end{equation} 
 
+Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema dado. 
 
-%Hacer casos concretos 1: a mano, 2: con jet_transport para sistemas hamiltonianos y ¡no hamiltonianos también!. 
+Como el transporte de jets parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano\footnote{No todos los sistemas simplécticos son hamiltonianos, pero nos restringiremos únicamente a los que sí.}.
+
+%FIGURA! 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{simplecticity_pendulum}
+ \caption{}
+ \label{fig:simplecticity_pendulum}
+\end{figure}
+
+La figura \ref{fig:simplecticity_pendulum} muestra la variación de la cantidad $\varsigma(t)$ para el péndulo simple en términos de $\epsilon_{mahcine}$. Ésta se define como
+\begin{equation}
+ \varsigma(t) = \sum_{i,j} |\left[ J(\phi(t))^T \omega J(\phi(t)) - \omega \right]_{i,j}|
+\end{equation}
+y no es más que la suma de los valores absolutos de los elementos de matriz de (\ref{eq:sympletic_flow}). $\varsigma$ es una forma escalar de representar la simplecticidad del sistema para poder visualizarlo gráficamente para cada paso temporal.
+  
+Podemos observar en dicha figura un comportamiento browniano, similar a como pasa con la energía en los ejemplos de sistemas hamiltonianos planteados hasta ahora.
+
 
 \subsection{Parametrización de parámetros}
 \label{sec:parameter_variation}
-
 Aunque el título de esta sección suene redundante, el TJ nos permite no sólo parametrizar las vecindades de $\xo$ en un campo vectorial dado sino también los parámetros que lo definen.
 
 Tomemos, por ejemplo, al oscilador armónico\footnote{Al pobre oscilador armónico le deben picar las orejas de tanto que hablamos de él.} dado por  
@@ -1005,9 +1028,12 @@ Resulta que el transporte de jets sí obtiene el cambio de topología dado por e
  \centering
  \includegraphics[width=0.8\linewidth]{oscillator_dE_domega}
  \caption{Variación $\Delta E = \frac{1}{\epsilon_{machine}} \left( E(t) - E_0 \right)$ de la energía respecto a la condición inicial para ambas evaluaciones del transporte $\delta \omega < 0$ y $\delta \omega > 0$.}
+ \label{fig:oscillator_dE_domega}
 \end{figure}
 
-Se puede ver cómo el flujo conserva la energía cada vez menos conforme pasa el tiempo; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
+El flujo conserva la energía cada vez menos conforme pasa el tiempo como se observa en la figura \ref{fig:oscillator_dE_domega}; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
+
+%Pequeña conclusión de sección ? 
 
 \subsection{Secciones de Poincaré}
 
