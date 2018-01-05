@@ -7,10 +7,11 @@ module JTFunctions
     #this is temporary
     include("tmp_matrix_evaluation.jl")
 
-    export evaluate_neighborhood, circle2, square2,
-           ξmax, anal_vs_taylor2D, area_of_polygon, separation_rate,
+    export evaluate_neighborhood, circle2, square2, ξmax,
+           anal_vs_taylor2D, JT_vs_, area_of_polygon, separation_rate,
            grid_ξmax, grid_FTLE, grid_seprate, vectorField_plot,
            harmonic_oscillator!, simple_pendulum!, artificial_ode!,
+           stability_matrix, simplecticity,
            myfonts
     ######
 
@@ -139,6 +140,8 @@ module JTFunctions
 
     # Compare taylorinteg solution `x,y` vs analytical ones `xa`
     anal_vs_taylor2D(x,y,xa) = sqrt.((x - xa[:,1]).^2 + (y - xa[:,2]).^2)
+    # Compare 2 solutions (2D)
+    JT_vs_(q1,q2,q1_JT,q2_JT) = sqrt.((q1 - q1_JT).^2 + (q2 - q2_JT).^2)
 
 
     #### PLOTTING & GRIDS ####
@@ -296,6 +299,38 @@ module JTFunctions
         ylims!(ylim...)
     end
 
+    function stability_matrix(eqs_diff!::Function,δξ,x0,t0=0.0)
+        x0 = x0 .+ δξ
+        dx = zeros(x0)
+        eqs_diff!(t0,x0,dx)
+
+        dof = length(x0)
+        A = zeros(typeof(x0[1]), dof, dof)
+
+        for i in 1:dof
+            for j in 1:dof
+                A[i,j] = derivative(dx[i],j)
+            end
+        end
+
+        return A
+    end
+
+    simplecticity(ϕ::Vector{T}, ω) where T<:Number = jacobian(ϕ)' * ω * jacobian(ϕ) - ω
+    function simplecticity(ϕ::Matrix{T}) where T<:Number
+
+        time_units, D = size(ϕ)
+        z_matrix = zeros(D÷2,D÷2)
+        ω = hcat(z_matrix, I)
+        tmp = hcat(-I, z_matrix)
+        ω = vcat(ω, tmp)
+
+        symp = zeros(time_units)
+        for t in 1:time_units
+            symp[t] = sum(abs,simplecticity(ϕ[t,:],ω))
+        end
+        return symp
+    end
 
     #### ODE systems ####
     function harmonic_oscillator!(t,x,dx)
