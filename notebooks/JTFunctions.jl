@@ -8,7 +8,7 @@ module JTFunctions
     include("tmp_matrix_evaluation.jl")
 
     export evaluate_neighborhood, circle2, square2, ξmax,
-           anal_vs_taylor2D, JT_vs_, area_of_polygon, separation_rate,
+           anal_vs_taylor2D, JT_accuracy, area_of_polygon, separation_rate,
            grid_ξmax, grid_FTLE, grid_seprate, vectorField_plot,
            harmonic_oscillator!, simple_pendulum!, artificial_ode!,
            stability_matrix, simplecticity,
@@ -140,8 +140,15 @@ module JTFunctions
 
     # Compare taylorinteg solution `x,y` vs analytical ones `xa`
     anal_vs_taylor2D(x,y,xa) = sqrt.((x - xa[:,1]).^2 + (y - xa[:,2]).^2)
-    # Compare 2 solutions (2D)
-    JT_vs_(q1,q2,q1_JT,q2_JT) = sqrt.((q1 - q1_JT).^2 + (q2 - q2_JT).^2)
+    # Compare 2 solutions
+    function JT_accuracy(ϕ,ϕ_JT)
+        dims = size(ϕ)[2]
+        diffs = zero(ϕ[:,1])
+        for dim in 1:dims
+            diffs += (ϕ[:,dim] - ϕ_JT[:,dim]).^2
+        end
+        return sqrt.(diffs)
+    end
 
 
     #### PLOTTING & GRIDS ####
