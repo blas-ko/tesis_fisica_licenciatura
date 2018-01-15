@@ -273,6 +273,7 @@ El hamiltoniano de un sistema es la suma de las energías cinética y potencial 
 
 \section{Problema de tres cuerpos}
 
+%Reescribir ésta introducción... 
 El problema de tres cuerpos interactuando en campos gravitacionales ha sido de gran interés desde hace más de 300 años. Newton, en el siglo $XVII$, publica en su Philosophiæ Naturalis Principia Mathematica \cite{Principia} los primeros intentos ``serios'' para describir el movimiento entre el sol, la luna y la Tierra. Resulta que principios del siglo $XX$, el matemático Karl Sundman resolvió el problema con series de potencias convergentes, aunque no encontró ninguna función explícita que la represente. Sin embargo, el gran matemático Henrí Poincaré vio, en el siglo $XIV$, algo que no se había definido antes: \textit{el caos}. El problema de tres cuerpos tiene comportamiento caótico y es justo esa la motivación a desarrollarlo ya que las herramientas que se desarrollarán en el capítulo \ref{chapter:jet_transport} se aprovecharán de su naturaleza caótica. 
 
 Plantear el problema resulta trivial ya que el potencial de interacción se da entre pares de cuerpos, así, siguiendo el potencial gravitacional de Newton, 
@@ -421,7 +422,7 @@ Así, las ecuaciones de movimiento se reducen a
  \dot{x} &= v_x \\
  \dot{y} &= v_y \\
  \dot{v}_x &= \Omega^2 \left( x - \frac{ R^3 (1 - \alpha) (x+\alpha R) }{\left( (x+\alpha R)^2 + y^2 \right)^{3/2} } - \frac{ R^3 \alpha (x- (1 -\alpha) R) }{\left( (x - (1-\alpha) R)^2 + y^2 \right)^{3/2} } \right) + 2\Omega v_y \\ 
- \dot{v}_y &= \Omega^2 y \left( x - \frac{ R^3 (1 - \alpha) }{\left( (x+\alpha R)^2 + y^2 \right)^{3/2} } - \frac{ R^3 \alpha }{\left( (x - (1-\alpha) R)^2 + y^2 \right)^{3/2} } \right) - 2\Omega v_x
+ \dot{v}_y &= \Omega^2 y \left( x - \frac{ R^3 (1 - \alpha) }{\left( (x+\alpha R)^2 + y^2 \right)^{3/2} } - \frac{ R^3 \alpha }{\left( (1 - (1-\alpha) R)^2 + y^2 \right)^{3/2} } \right) - 2\Omega v_x
 \end{align}
 donde
 \begin{align*}
@@ -464,9 +465,60 @@ pero $r_{1,3} = r_{2,3}$, por lo que lo anterior se simplifica a
 Encontramos que $r_{1,3} = r_{2,3} = R$. $L_4$ y $L_5$ forman un tríangulo equilátero de lado $R$, cuya base es la distancia entre $M_1$ y $M_2$. Así,
 \begin{align}
  L_4 &= \left( \frac{1 - 2\alpha}{2}  R , \frac{\sqrt{3}}{2} R \right) \\
- L_5 &= \left( \frac{1 - 2\alpha}{2}  R  , -\frac{\sqrt{3}}{2} R \right).
+ L_5 &= \left( \frac{1 - 2\alpha}{2}  R  , -\frac{\sqrt{3}}{2} R \right)
+ \label{eq:L4_L5}
 \end{align} 
+tal como se ve en la figura \ref{fig:L_diagram}.
 
-La estabilidad de estos puede estudiarse viendo cómo se comportan las ecuaciones de primera variación alrededor de los puntos de equilibrio, sin embargo, las herramientas desarrolladas en esta tesis automatizan todo ese trabajo, por lo que dicho análisis se estudiará más a fondo en el capítulo \ref{sec:results} de resultados.
+%FIGURA! 
 
+%SI HACER EL ANALISIS DE LOS PUNTOS! YA QUE DE AQUI VIENE LA CONDICIÖN PARA QUE L4 Y L5 SEAN ESTABLES!
+La estabilidad de estos puede estudiarse viendo cómo se comportan las ecuaciones de primera variación alrededor de los puntos de equilibrio, tal como se hace en \cite{WMAP}. Para esto basta construir la matriz de estabilidad 
+\begin{equation*}
+ A(\mathbf{x}) = \begin{bmatrix}
+  \pder{\mathbf{f}_1}{x_1}(\mathbf{x}) & \dots & \pder{\mathbf{f}_1}{x_n}(\mathbf{x}) \\
+  \vdots & \ddots & \vdots \\ 
+  \pder{\mathbf{f}_n}{x_1}(\mathbf{x}) & \dots & \pder{\mathbf{f}_n}{x_n} (\mathbf{x})
+\end{bmatrix}
+\end{equation*}
+donde $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x})$ y encontrar los eigenvalores de ésta para determinar qué tipo de punto singular se trata. Para éste caso
+\begin{equation}
+ A(\mathbf{x}_{L_i}) = \begin{bmatrix}
+  0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & 1 \\ 
+  \pder{\dot{v_x}(\mathbf{x}_{L_i})}{x} & \pder{\dot{v_x}(\mathbf{x}_{L_i})}{y} & 0 & 2 \Omega \\
+  \pder{\dot{v_y}(\mathbf{x}_{L_i})}{x} & \pder{\dot{v_y}(\mathbf{x}_{L_i})}{y} & -2\Omega & 0
+\end{bmatrix}
+\end{equation}
+representa dicha matriz, y ésta será evaluada en los puntos lagrangianos $\mathbf{x}_{L_i}$, donde 
+\begin{align}
+ \pder{\dot{v}_x}{x} &= \Omega^2 \left( 1 - R^3 \left( \frac{1-\alpha}{r_{1,3}^3} - 3\frac{(1-\alpha)(x + \alpha R)^2}{r_{1,3}^5} + \frac{\alpha}{r_{2,3}^3} - 3\frac{\alpha(x - (1-\alpha) R)^2}{r_{2,3}^5} \right) \right) \nonumber \\ 
+ \pder{\dot{v}_y}{y} &= \Omega^2 \left( 1 - R^3 \left( \frac{1-\alpha}{r_{1,3}^3} - 3\frac{(1-\alpha)y^2}{r_{1,3}^5} + \frac{\alpha}{r_{2,3}^3} - 3\frac{\alpha y^2}{r_{2,3}^5} \right) \right) \nonumber \\
+ \pder{\dot{v}_x}{y} &= \pder{\dot{v}_y}{x} = 3 \Omega^2 R^3 y \left( \frac{(1-\alpha )(x+\alpha R)}{r_{1,3}^5} + \frac{\alpha (x- (1-\alpha )R)}{r_{2,3}^5} \right),
+ \label{eq:3body_stability}
+\end{align}
+con $r_{i,3}$ la distancia $M_i$ a la partícula de interés.
+
+Sustituyendo para $L_1$, $L_2$ y $L_3$ se puede mostrar que son equilibrios inestables sin importar el valor de los cuerpos masivos ni la distancia entre ellas \cite{algo}. Sin embargo, es interesante ver que para $L_4$ y $L_5$ existen condiciones de estabilidad para cierta relación entre la masa de los objetos.
+
+Sustituyendo (\ref{eq:L4_L5}) en (\ref{eq:3body_stability}), se obtiene que $\pder{\dot{v}_x}{x} = \pm \frac{3}{4}\Omega^2$, $\pder{\dot{v}_y}{y} = \pm \frac{9}{4}\Omega^2$ y $\pder{\dot{v}_x}{y} = \pm \frac{3\sqrt{3}}{2} (1-2\alpha) \Omega^2$, cuyos eigenvalores son
+\begin{align*}
+ \lambda_1 = i \frac{\Omega}{2} \sqrt{ 2 - \sqrt{27(1-2\alpha)^2 - 23} } \\
+ \lambda_2 = - i \frac{\Omega}{2} \sqrt{ 2 - \sqrt{27(1-2\alpha)^2 - 23} } \\
+ \lambda_3 = i \frac{\Omega}{2} \sqrt{ 2 + \sqrt{27(1-2\alpha)^2 - 23} } \\
+ \lambda_4 = - i \frac{\Omega}{2} \sqrt{ 2 + \sqrt{27(1-2\alpha)^2 - 23} }.
+\end{align*}
+
+Estos puntos serán estables si sus eigenvalores son puramente imaginarios, cuya condición se cumple si 
+\begin{align*}
+ 2 &\geq \sqrt{27(1-2\alpha)^2 - 23} \\
+ 23 &< 27(1-2\alpha)^2.
+\end{align*}
+Lo primero es equivalente a que 
+\begin{equation}
+ M_1 > \frac{1 + \sqrt{\frac{23}{27}} }{1 - \sqrt{\frac{23}{27}}}M_2 \approx 25M_2
+\end{equation}
+y lo segundo se da siempre que lo primero se cumple. 
+
+Así, vemos explícitamente la condición para la estabilidad de los puntos $L_4$ y $L_5$. 
 %Falta escoger el segundo problema... esto será después de hacer todos los análisis pertinentes del CR3BP
