@@ -414,7 +414,19 @@ con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf
  V(\mathbf{r}) = \left( -G \frac{M_1}{\sqrt{(x + r_1)^2 + y^2 + z^2}} - G \frac{M_2}{\sqrt{(x - r_2)^2 + y^2 + z^2}} - \frac{1}{2} \mathbf{\Omega}^2 \mathbf{r}^2 \right)
  \label{eq:3body_restricted_potential}
 \end{equation} 
-la parte cerrada del potencial, que se suele conocer como \textit{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula. Notemos que éste es un sistema no conservativo, ya que la dinámica de la partícula depende explícitamente de la velocidad de ésta. $V$ se escribe de manera tal que las masas quedan alineadas con el eje $x$ y se mueven en el plano $z = 0$. De hecho, con afan de reducir aún más los grados de libertad, tomaremos condiciones iniciales para que $m_3$ viva siempre en este plano.
+la parte cerrada del potencial, que se suele conocer como \textit{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
+Existe una primera integral desl sistema si hacemos el producto interno de (\ref{eq:3body_restricted_acceleration}) por $\dot{\mathbf{r}}$, que resulta en 
+\begin{align*}
+ \ddot{x} \dot{x} + \ddot{y} \dot{y} &= \pder{V}{x}\dot{x} + \pder{V}{y} \dot{y} \\
+ \implies \frac{1}{2} \left( \dot{x}^2 + \dot{y}^2 \right) &= \frac{d V}{dt} 
+\end{align*}
+\begin{equation}
+ \therefore C_J = 2U - v^2,
+ \label{eq:3body_jacobi_constant}
+\end{equation}
+donde a $C_J$ se le conoce como \textbf{constante de Jacobi}.
+
+Aunque se pudo encontrar una primera integral al problema, hay que notar que éste no es conservativo, ya que la dinámica de la partícula depende explícitamente de la velocidad de ésta. $V$ se escribe de manera tal que las masas quedan alineadas con el eje $x$ y se mueven en el plano $z = 0$. De hecho, con afan de reducir aún más los grados de libertad, tomaremos condiciones iniciales para que $m_3$ viva siempre en este plano.
 
 Así, las ecuaciones de movimiento se reducen a
 \begin{align}
