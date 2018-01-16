@@ -273,10 +273,9 @@ El hamiltoniano de un sistema es la suma de las energías cinética y potencial 
 
 \section{Problema de tres cuerpos}
 
-%Reescribir ésta introducción... 
-El problema de tres cuerpos interactuando en campos gravitacionales ha sido de gran interés desde hace más de 300 años. Newton, en el siglo $XVII$, publica en su Philosophiæ Naturalis Principia Mathematica \cite{Principia} los primeros intentos ``serios'' para describir el movimiento entre el sol, la luna y la Tierra. Resulta que principios del siglo $XX$, el matemático Karl Sundman resolvió el problema con series de potencias convergentes, aunque no encontró ninguna función explícita que la represente. Sin embargo, el gran matemático Henrí Poincaré vio, en el siglo $XIV$, algo que no se había definido antes: \textit{el caos}. El problema de tres cuerpos tiene comportamiento caótico y es justo esa la motivación a desarrollarlo ya que las herramientas que se desarrollarán en el capítulo \ref{chapter:jet_transport} se aprovecharán de su naturaleza caótica. 
+El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran controversia desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el caso restringido de tres cuerpos en órbitas circulares (PR3COC), el problema presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y una rica dinámica en general, además de que el PR3COC tiene únicamente dos grados de libertad (en vez de las 18 originalmente planteadas del problema general de tres cuerpos), lo que hace que su espacio de configuraciones pueda ser representado gráficamente. En este sentido, se antoja analizar dicha dinámica con las herramientas desarrolladas en \ref{sec:jt}.
 
-Plantear el problema resulta trivial ya que el potencial de interacción se da entre pares de cuerpos, así, siguiendo el potencial gravitacional de Newton, 
+El problema es planteado con el potencial gravitacional de Newton entre pares de cuerpos 
 \begin{align}
  U_{M_1}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_1 M_2}{r_{1,2}} - G \frac{M_1 M_3}{r_{1,3}} \\
  U_{M_2}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_2 M_1}{r_{2,1}} - G \frac{M_2 M_3}{r_{2,3}} \\
@@ -298,10 +297,10 @@ lo cual define un sistema de 6 ecuaciones de movimiento dadas por (\ref{eq:newto
 \end{equation}
 con $\hat{\mathbf{r}}_{i,j} = \frac{\mathbf{r}_{i,j}}{r_{i,j}}$ un vector unitario en la dirección de $\mathbf{r}_{i,j}$.
 
-Éste es el caso más general del problema de tres cuerpos ya que ninguna restricción ha sido impuesta hasta el momento. Sin embargo, para el problema \textbf{restringido} de tres cuerpos uno supone que una de las partículas tiene una masa tan baja que no afecta a las otras dos y, por esto, las dos más grandes se mueven como si la tercera no existiera.Vale la pena estudiar primero el caso de dos cuerpos, ver la dinámica entre las dos partículas más masivas y luego regresar a estudiar el movimiento de la tercer partícula bajo la influencia de estas dos. 
+Éste es el caso más general del problema de tres cuerpos ya que ninguna restricción ha sido impuesta hasta el momento. Sin embargo, para el problema \textbf{restringido} de tres cuerpos uno supone que una de las partículas tiene una masa tan baja que no afecta a las otras dos y, por esto, las dos más grandes se mueven como si la tercera no existiera. Vale la pena estudiar primero el caso de dos cuerpos, ver la dinámica entre las dos partículas más masivas y luego regresar a estudiar el movimiento de la tercer partícula bajo la influencia de estas dos. 
 
 \subsection{Problema de dos cuerpos}
-Con la misma lógica que en el caso de tres cuerpos, tenemos que 
+Dadas que $M_1$ y $M_2$ son los cuerpos de mayor masa o \textit{primarios} y $M_3$ es despreciable, la dinámica de dichos cuerpos primarios queda definida por
 \begin{equation}
  \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
  \label{eq:2body_eqs_motion}
@@ -388,7 +387,7 @@ que no es más que un oscilador armónico con forzamiento constante $\frac{\beta
 
 Es ahora que estamos en posición de empezar a poner constricciones al problema de los tres cuerpos. 
 
-Antes que nada, supondremos que la tercer partícula será mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, una primera aproximación es que $m_3$ no afecta la dinámica de $M_2$ ni de $M_1$ y, por tanto, la solución para $U_{M_1}$ y $U_{M_2}$ es la de los dos cuerpos desarrollada en \ref{sec:2body_problem}, es decir, (\ref{eq:2body_solution}). Sólo resta resolver cómo se mueve $m_3$, la cual sí es afectada por los dos cuerpos masivos.
+Como ya se había mencionado, supondremos que la tercer partícula será mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, la suposición principal es que $m_3$ no afecta la dinámica de $M_2$ ni de $M_1$ y, por tanto, la solución para $U_{M_1}$ y $U_{M_2}$ es la de los dos cuerpos desarrollada en \ref{sec:2body_problem}. En este sentido sólo queda por estudiar el comportamiento de $m_3$ en influencia de los cuerpos primarios.
 
 Para restringir las órbitas a que sean circulares es necesario imponer que $R(\theta)$ tenga eccentricidad $e=0$; la cual queda de la forma
 \begin{equation}
@@ -521,4 +520,6 @@ Lo primero es equivalente a que
 y lo segundo se da siempre que lo primero se cumple. 
 
 Así, vemos explícitamente la condición para la estabilidad de los puntos $L_4$ y $L_5$. 
+
+
 %Falta escoger el segundo problema... esto será después de hacer todos los análisis pertinentes del CR3BP
