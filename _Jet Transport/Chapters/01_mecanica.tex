@@ -445,17 +445,32 @@ donde
 Aún sin ser conservativo, vale la pena estudiar las curvas de nivel de pseudo-potencial ya que éste nos dará una buena intuición sobre cómo será la trayectoria de nuestra partícula. De hecho, los puntos singulares que puedan aparecer seguirán siéndolo cuando se tome en cuenta la aceleración de Coriolis. La figura \ref{fig:3body_pseudo-potential} presenta dichas curvas de nivel, donde se observan tres puntos singulares en el eje alineados a $M_1$ y $M_2$ que se suelen llamar $L_2$,$L_1$ y $L_3$, respectivamente. Otros dos puntos existen para $y \neq 0$ los cuales se conocen como $L_4$ y $L_5$. Estas particulares coordenadas reciben el nombre de \textit{puntos lagrangianos} en honor a los estudios de Joseph Lagrange sobre el tema.
 
 %FIGURA! 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{pseudo_potential}
+ \caption{Curvas de nivel para el pseudo-potencial $V(x,y)$ con $M_1 = 26M_2$, $R = 10$ Y $G=1$ en unidades adimensionales.}
+ \label{fig:3body_pseudo_potential}
+\end{figure}
 
 Siguiendo el desarrollo de \cite{}, encontraremos dónde están dichos puntos singulares y se hará un análisis de estabilidad de éstos.
 
 Los tres primeros se dan cuando $y=0$, quedando por resolver únicamente cuándo $\dot{v}_x = 0$. Esto plantea una ecuación de quinto grado en $x$ complicada de resolver analíticamente. Sin embargo, cuando $M_1$ es considerablemente más grande que $M_2$, se puede tomar la aproximación a primer orden de $\alpha$ y conseguir
-\begin{align*}
- L_1 &\approx \left( \left[ 1 - \left(\frac{\alpha}{3}\right)^{1/3} \right] R , 0 \right) \\ 
- L_2 &\approx \left( R\left[ 1 + \left(\frac{\alpha}{3}\right)^{1/3} \right] R , 0 \right) \\
+\begin{align}
+ L_1 &\approx \left( \left[ 1 - \left(\frac{\alpha}{3}\right)^{1/3} \right] R , 0 \right) \nonumber \\ 
+ L_2 &\approx \left( R\left[ 1 + \left(\frac{\alpha}{3}\right)^{1/3} \right] R , 0 \right) \nonumber \\
  L_3 &\approx \left( -R\left[ 1 5 \frac{5 \alpha}{12} \right] R, 0 \right).
-\end{align*} 
+ \label{eq:3body_L123}
+\end{align} 
 
-También se pueden obtener estos valores numéricamente para cualquier $\alpha$, pero hace un poco más complicado el análisis de estabilidad ya que no se consiguen en función de $\alpha$ y $R$.
+También se pueden obtener estos valores numéricamente para cualquier $\alpha$, pero hace un poco más complicado el análisis de estabilidad ya que no se consiguen en función de $\alpha$ y $R$. Sin embargo, como se observa en la figura \ref{fig:3body_pseudo_xaxis}, para $\alpha = \frac{1}{27}$ sí se llega a notar la diferencia.
+
+%FIGURA!
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{pseudo_xaxis}
+ \caption{Proyección del pseudo-potencial en el eje $x$ para ver sus puntos de inflexión. Aparecen $L_1, L_2$ y $L_3$ calculados con (\ref{eq:3body_L123}) (verde) y numéricamente (naranja).}
+ \label{fig:3body_pseudo_xaxis}
+\end{figure}
 
 Para obtener $L_4$ y $L_5$ es importante destacar que la fuerza centrípeta es, por definición, radial hacia afuera. En este sentido, en la dirección radial se deben balancear la fuerza centrípeta con la gravitacional. Esto hace que el balance en la dirección tangencial sea debido únicamente a los dos objetos masivos interactuando bajo sus campos gravitacionales. Para obtener esto, hacemos una proyección de la fuerza hacia sus direcciones radiales y tangenciales con los vectores $\mathbf{r}_{\parallel} = (x,y)$ y $\mathbf{r}_{\bot} = (-y,x)$, así
 \begin{align*}
@@ -541,18 +556,24 @@ y lo segundo se da siempre que lo primero se cumple.
 
 Así, vemos explícitamente la condición para la estabilidad de los puntos $L_4$ y $L_5$. 
 
-Un último análisis que vale la pena hacer es aquel de las \textbf{curvas de velocidad cero}. Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más allá de cierta altura $h$ que dependa de dicha energía. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
+Un último análisis que vale la pena hacer es aquel de las \textbf{curvas de velocidad cero} (CV0). Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más allá de cierta altura $h$ que dependa de dicha energía. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
 
 Para encontrar estas curvas, se impone cierta pseudo-energía $C_J$ y se traza la curva tal que la velocidad sea cero, i.e.,
 \begin{equation*}
  (x,y,0,0) = \left\lbrace V \ | \  V = \frac{1}{2}C_J \right\rbrace.
 \end{equation*}
 
-Como en el ejemplo de caída libre, todas las trayectorias estarán atrapadas ``debajo'' de esta curva, lo cual restringe la forma en la que $m_3$ se mueve. 
+Como en el ejemplo de caída libre, todas las trayectorias estarán atrapadas ``debajo'' de esta curva y restringe las secciones en las que $m_3$ se puede mover. 
 
 %FIGURA! 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.9\linewidth]{zero_velocity_curves}
+ \caption{\textit{Arriba:} curvas de velocidad cero (CV0) sobre los puntos $L_1, L_2$ y $L_3$, respectivamente. \textit{abajo:} CV0 sobre variaciones en energía sobre las de arriba, se tomó $\varepsilon = 0.05$.}
+ \label{fig:zero_velocity_curves}
+\end{figure}
 
-La figura \ref{fig} muestra algunas de estas curvas con consantes de Jacobi alrededor de $L_1$, $L_2$ y $L_3$. Un análisis detallado de esto se hará en la sección de resultados utilizando el transporte de jets, donde se buscarán encontrar transferencias entre órbitas vía este tipo de curvas.
+La figura \ref{fig:zero_velocity_curves} muestra algunas de estas curvas con consantes de Jacobi alrededor de $L_1$, $L_2$ y $L_3$ y algunas variaciones respecto a estos\footnote{Se graficaron las energías mayores o iguales a la constante de Jacobi para ver la ``sección prohibida'' de las trayectorias.}. Al ser estos puntos tipo silla, dividen al espacio en regiones. El caso más interesantes está entre las energías de $L_1$ y $L_2$, ya que entre éstas se pueden diseñar condiciones iniciales que se queden siempre orbitando entre los dos planetas, o que se quede sólamente en uno de ellos eternamente.
 %hablar un poquito más sobre estas curvas.. y YA! 
 
 %Falta escoger el segundo problema... esto será después de hacer todos los análisis pertinentes del CR3BP
