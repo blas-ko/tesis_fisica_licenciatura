@@ -3,9 +3,7 @@ module JTFunctions
     ######
     using TaylorSeries, TaylorIntegration, Plots
     pyplot()
-    import TaylorSeries: NumberNotSeries, evaluate
-    #this is temporary
-    include("tmp_matrix_evaluation.jl")
+    import TaylorSeries: NumberNotSeries
 
     export evaluate_neighborhood, circle2, square2, ξmax,
            anal_vs_taylor2D, JT_accuracy, area_of_polygon, separation_rate,
@@ -174,7 +172,7 @@ module JTFunctions
         for (i,x) in enumerate(xgrid)
 
             for (j,y) in enumerate(ygrid)
-                q0TN = [x+δx,y+δy]
+                q0TN = [x+δx,y+δy,0.0,0.0]
                 _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
                 heatgrid[i,j] = ξmax(ϕN)
             end

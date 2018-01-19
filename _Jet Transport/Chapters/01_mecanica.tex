@@ -273,7 +273,7 @@ El hamiltoniano de un sistema es la suma de las energías cinética y potencial 
 
 \section{Problema de tres cuerpos}
 
-El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran controversia desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el caso restringido de tres cuerpos en órbitas circulares (PR3COC), el problema presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y una rica dinámica en general, además de que el PR3COC tiene únicamente dos grados de libertad (en vez de las 18 originalmente planteadas del problema general de tres cuerpos), lo que hace que su espacio de configuraciones pueda ser representado gráficamente. En este sentido, se antoja analizar dicha dinámica con las herramientas desarrolladas en \ref{sec:jt}.
+El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran controversia desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el caso restringido de tres cuerpos en órbitas circulares (PR3COC), el problema presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y, en general, una rica dinámica. Además,el PR3COC tiene únicamente dos grados de libertad (en vez de los 18 del problema general de tres cuerpos) lo cuál permite un estudio y una representación gráfica mucho más alcanzable respecto al problema original. En este sentido, se antoja analizar dicha dinámica con las herramientas desarrolladas en \ref{sec:jt}.
 
 El problema es planteado con el potencial gravitacional de Newton entre pares de cuerpos 
 \begin{align}
@@ -300,12 +300,13 @@ con $\hat{\mathbf{r}}_{i,j} = \frac{\mathbf{r}_{i,j}}{r_{i,j}}$ un vector unitar
 Éste es el caso más general del problema de tres cuerpos ya que ninguna restricción ha sido impuesta hasta el momento. Sin embargo, para el problema \textbf{restringido} de tres cuerpos uno supone que una de las partículas tiene una masa tan baja que no afecta a las otras dos y, por esto, las dos más grandes se mueven como si la tercera no existiera. Vale la pena estudiar primero el caso de dos cuerpos, ver la dinámica entre las dos partículas más masivas y luego regresar a estudiar el movimiento de la tercer partícula bajo la influencia de estas dos. 
 
 \subsection{Problema de dos cuerpos}
-Dadas que $M_1$ y $M_2$ son los cuerpos de mayor masa o \textit{primarios} y $M_3$ es despreciable, la dinámica de dichos cuerpos primarios queda definida por
+\label{sec:2body_problem}
+Dadas que $M_1$ y $M_2$ son los cuerpos de mayor masa o \textit{primarios} y $m_3$ es despreciable, la dinámica de dichos cuerpos primarios queda definida por
 \begin{equation}
  \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
  \label{eq:2body_eqs_motion}
 \end{equation}
-Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el \textit{problema de Kepler}, que describe la aceleración relativa
+Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el desarrollo de \cite{} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el \textit{problema de Kepler}, que describe la aceleración relativa
 \begin{equation}
  \ddot{\mathbf{R}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{R^2} \hat{\mathbf{R}} = - \frac{\beta}{R^2}\hat{\mathbf{R}}
  \label{eq:kepler_problem}
@@ -442,7 +443,7 @@ donde
  R_2 &= (1 - \alpha) R.
 \end{align*}
 
-Aún sin ser conservativo, vale la pena estudiar las curvas de nivel de pseudo-potencial ya que éste nos dará una buena intuición sobre cómo será la trayectoria de nuestra partícula. De hecho, los puntos singulares que puedan aparecer seguirán siéndolo cuando se tome en cuenta la aceleración de Coriolis. La figura \ref{fig:3body_pseudo-potential} presenta dichas curvas de nivel, donde se observan tres puntos singulares en el eje alineados a $M_1$ y $M_2$ que se suelen llamar $L_2$,$L_1$ y $L_3$, respectivamente. Otros dos puntos existen para $y \neq 0$ los cuales se conocen como $L_4$ y $L_5$. Estas particulares coordenadas reciben el nombre de \textit{puntos lagrangianos} en honor a los estudios de Joseph Lagrange sobre el tema.
+Aún sin ser conservativo, vale la pena estudiar las curvas de nivel de pseudo-potencial ya que éste nos dará una buena intuición sobre cómo será la trayectoria de nuestra partícula. De hecho, los puntos singulares que puedan aparecer seguirán siéndolo cuando se tome en cuenta la aceleración de Coriolis. La figura \ref{fig:3body_pseudo_potential} presenta dichas curvas de nivel, donde se observan tres puntos singulares en el eje alineados a $M_1$ y $M_2$ que se suelen llamar $L_2$,$L_1$ y $L_3$, respectivamente. Otros dos puntos existen para $y \neq 0$ los cuales se conocen como $L_4$ y $L_5$. Éstos cinco reciben el nombre de \textit{puntos lagrangianos} en honor a los estudios de Joseph Lagrange sobre el tema.
 
 %FIGURA! 
 \begin{figure}[h!]
