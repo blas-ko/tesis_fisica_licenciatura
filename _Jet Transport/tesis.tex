@@ -502,31 +502,37 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 %\input{Chapters/01_MCSCBE}
 %
 
-\chapter{Sistemas Mecánicos} 
-\label{chap:mechanics}
-\input{Chapters/01_mecanica}
+\chapter{Transporte de Jet (TJ)} 
+\label{chap:jt}
+\input{Chapters/01_transporteJet}
 
 %% Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
 
-\chapter{Transporte de Jet} 
-\label{chap:jetT}
-\input{Chapters/02_transporteJet}
+\chapter{Indicadores Dinámicos del TJ} 
+\label{chap:jt_indicators}
+\input{Chapters/02_indicadores}
 
+%% Para que de nuevo haya salto de linea. (buscar Dutch style)
+\setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
+
+\chapter{Problema Restringido de Tres Cuerpos} 
+\label{chap:mechanics}
+\input{Chapters/03_PR3COC}
 
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
 
 \chapter{Resultados} 
 \label{chap:Resultados}
-\input{Chapters/03_resultados}
+\input{Chapters/04_resultados}
 
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
 
 \chapter{Conclusiones} 
 \label{chap:Conclusiones}
-\input{Chapters/04_conclusiones}
+\input{Chapters/05_conclusiones}
 
  
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
@@ -551,12 +557,12 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \renewcommand{\headrulewidth}{0.5pt}
 
 \chapter{El código}
-\label{chap:Codigo}
+\label{chap:codigo}
 \input{Chapters/codigo}
 
-\chapter{Álgebra Polinomial}
-\label{chap:AlgPoli}
-\input{Chapters/algebraPoli}  
+\chapter{Mecánica Analítica}
+\label{chap:mecanica}
+\input{Chapters/mecanica}  
 
 \backmatter %los capitulos y titulos de nivel inferior no aparecen numerados
 
