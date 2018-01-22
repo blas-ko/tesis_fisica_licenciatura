@@ -11,7 +11,7 @@ Gracias a que hoy en día existe poder de cómputo para hacer muchas operaciones
 En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de la forma (\ref{eq:ode}). Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos singulares o, más generalmente, la topología del campo vectorial que representa las soluciones de las ecuaciones. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que son representaciones de la solución en un espacio de menor dimensionalidad, donde normalmente se busca que no sea tangente a las soluciones para entender cómo éstas cruzan dichas secciones que describe, los exponentes de Lyapunov, que estudia la separación de soluciones cercanas a una condición inicial dada, la derivada de Lie, que compara al campo vectorial de (\ref{eq:ode}) contra otro campo vectorial, la linealización de Grobman-Hartman, que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas y analiza qué quiere decir ``suficientemente'', entre otras. 
 %%REFERENCIAS NECESARIAS EN EL PÄRRAFO ANTERIOR.
 
-Muchas de estas preguntas podrían responderse si, en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada, se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta parcela. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $\flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
+Muchas de estas preguntas podrían responderse si en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta parcela. Ésto viene motivado principalmente por los trabajos de Daniel-Perez sobre aplicaciones del TJ, \cite{Perez2013,Perez2015}. Parecería una idea idéntica a las simulaciones de Montecarlo, pero la gran diferencia es que en Montecarlo se integra cada solución de manera independiente y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del Transporte de Jets (TJ); dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $\flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la figura \ref{fig:FIGURA!} se observa un esquema cualitativo de la idea del transporte de jets.
 
 %FIGURA!
 
@@ -54,7 +54,7 @@ Así, se puede extender el método de Euler al TJ
 
 donde $P_{n,\xo}(\xi)$ representa al flujo $\flowxi$. Basta evaluar éste polinomio en $\Uxo$ para obtener $\flowU$\footnote{$\flowxi$ no necesariamente debe ser evaluado en toda una vecindad $\Uxo$; puede, también, ser en un único punto $\xi =\delta \mathbf{x}$ y obtener el flujo para $\phi(t;t_0,\xo + \delta \mathbf{x})$}.
 
-Es importante notar que la solución $\flowci$ o el conjunto de soluciones $\flowU$ son sensibles al método de integración utilizado para encontrarlas dado que la solución construida es una aproximación. Se recomienda al lector, si le interesa, leer el desarrollo explícito en \cite{p-palau} para ver estas diferencias.
+Es importante notar que la solución $\flowci$ o el conjunto de soluciones $\flowU$ son sensibles al método de integración utilizado para encontrarlas dado que la solución construida es una aproximación. Se recomienda al lector, si le interesa, leer el desarrollo explícito en \cite{Perez2015} para ver estas diferencias.
 
 Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que motive el uso del Transporte de Jet.
 
@@ -374,7 +374,7 @@ Se define la \textbf{división} como
  \label{eq:polidiv}
 \end{equation}
 
-Con el mismo espíritu, inspirados por el artículo de Haro ~\cite{Haro2009} podemos definir las relaciones de recurrencia para otras operaciones entre polinomios.
+Con el mismo espíritu, inspirados por el artículo de Haro \cite{Haro2009} podemos definir las relaciones de recurrencia para otras operaciones entre polinomios.
 
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
 
@@ -465,7 +465,7 @@ Sea $\norm{\cdot} : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_
 donde, si $a_k \in \mathbb{R}$, entonces $\norm{a_k}_p = |a_k|$.
 \end{definicion}
 
-Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{P-palau}.
+Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{Perez2013}.
 
 \subsection{Probando el método de Taylor}
 \label{sec:benchmark-taylor}
@@ -748,4 +748,4 @@ Recordemos que como \ref{eq:artificial_ode} es un sistema de EDO hamiltoniano en
 
 Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en éste último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $xo$ y observamos en qué tiempo cruzan las vecindades ésta sección. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que estos indicadores servirán para darnos información sobre el espacio fase sin conocerlo del todo. 
 
-Los siguientes indicadores están motivados fuertemente en lo discutido en \cite{Perez2015}, \cite{Perez2015}, \cite{Haro2009}.
+%Los siguientes indicadores están motivados fuertemente en lo discutido en \cite{Perez2015}, \cite{Perez2015}, \cite{Haro2009}.
