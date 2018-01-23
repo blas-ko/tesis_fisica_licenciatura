@@ -35,21 +35,21 @@ con $\hat{\mathbf{r}}_{i,j} = \frac{\mathbf{r}_{i,j}}{r_{i,j}}$ un vector unitar
 
 \section{Problema de dos cuerpos}
 \label{sec:2body_problem}
-Dadas que $M_1$ y $M_2$ son los cuerpos de mayor masa o \textit{primarios} y $m_3$ es despreciable, la dinámica de dichos cuerpos primarios queda definida por
+Dadas que $M_1$ y $M_2$ son los cuerpos de mayor masa o \textbf{primarios} y $m_3$ es despreciable, la dinámica de dichos cuerpos queda definida por
 \begin{equation}
  \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
  \label{eq:2body_eqs_motion}
 \end{equation}
-Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el desarrollo de \cite{} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el \textit{problema de Kepler}, que describe la aceleración relativa
+Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el desarrollo de \cite{} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el problema de Kepler, que describe la aceleración relativa
 \begin{equation}
  \ddot{\mathbf{R}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{R^2} \hat{\mathbf{R}} = - \frac{\beta}{R^2}\hat{\mathbf{R}}
  \label{eq:kepler_problem}
 \end{equation}
-con $\beta = G \left(M_1 + M_2 \right)$. Multiplicando (\ref{eq:kepler_problem}) por $\mu := \frac{M_1 M_2}{M_1+M_2}$ obtenemos las ecuaciones de movimiento de la fuerza relativa de $M_1$ respecto a $M_2$ como si $M_2$ estuviera fija y $M_1$ tuviera la \textit{masa reducida} $\mu$.
+con $\beta = G \left(M_1 + M_2 \right)$. Multiplicando (\ref{eq:kepler_problem}) por $\gamma := \frac{M_1 M_2}{M_1+M_2}$ obtenemos las ecuaciones de movimiento de la fuerza relativa de $M_1$ respecto a $M_2$ como si $M_2$ estuviera fija y $M_1$ tuviera masa reducida $\gamma$.
 
 El problema de Kepler conserva el momento angular $\mathbf{L} := \mathbf{R} \times \mathbf{p}$, ya que
 \begin{equation}
- \frac{d\mathbf{L}}{dt} = \frac{d}{dt}\left(\mathbf{R} \times \mu\dot{\mathbf{R}} \right) = \mu\dot{\mathbf{R}} \cancelto{0}{\times}\dot{\mathbf{R}} + \mathbf{R} \times \mu \ddot{\mathbf{R}} = - \mathbf{R} \cancelto{0}{\times} G\frac{\mu \beta}{r^2}\hat{\mathbf{R}} = 0
+ \frac{d\mathbf{L}}{dt} = \frac{d}{dt}\left(\mathbf{R} \times \gamma\dot{\mathbf{R}} \right) = \gamma\dot{\mathbf{R}} \cancelto{0}{\times}\dot{\mathbf{R}} + \mathbf{R} \times \gamma \ddot{\mathbf{R}} = - \mathbf{R} \cancelto{0}{\times} G\frac{\gamma \beta}{r^2}\hat{\mathbf{R}} = 0
 \end{equation}
 y, por tanto, $\mathbf{L} = \text{constante}$. Como primera consecuencia $\mathbf{R}$ y $\dot{\mathbf{R}}$ son perpendiculares a $\mathbf{L}$ y por tanto, viven en un plano. Por comodidad se escogerá un eje coordenado tal que dicho plano esté sobre $xy$. 
 
@@ -71,11 +71,11 @@ Debemos encontrar ahora las expresiones de $\mathbf{R}$,$\dot{\mathbf{R}}$ y $\d
 
 De hecho, en éste sistema de coordenadas es fácil ver que
 \begin{equation}
- L = \norm{ \mathbf{L} } = \norm{ \mathbf{R} \times \mu \dot{\mathbf{R}} } = \norm{ \left( R \hat{R} + 0 \hat{\theta} + 0 \hat{k} \right) \times \left( \dot{R} \hat{R} + R \dot{\theta} \hat{\theta} + 0\hat{k} \right) } = \mu R^2 \dot{\theta}
+ L = \norm{ \mathbf{L} } = \norm{ \mathbf{R} \times \gamma \dot{\mathbf{R}} } = \norm{ \left( R \hat{R} + 0 \hat{\theta} + 0 \hat{k} \right) \times \left( \dot{R} \hat{R} + R \dot{\theta} \hat{\theta} + 0\hat{k} \right) } = \gamma R^2 \dot{\theta}
 \end{equation}
 para encontrar una expresión para la velocidad angular 
 \begin{equation}
-\dot{\theta}(R) = \frac{L}{\mu R^2}.
+\dot{\theta}(R) = \frac{L}{\gamma R^2}.
 \label{eq:2body_ang_vel}
 \end{equation}
 
@@ -91,25 +91,25 @@ Notemos que la primera queda resuelta por (\ref{eq:2body_ang_vel}) mientras que 
 \end{align*}
 donde 
 \begin{equation*}
- \ddot{\theta} = -\frac{2L}{\mu R^3}\dot{R} = -\frac{2L}{\mu R^3} \frac{dR}{d\theta}\dot{\theta} = - \frac{2L^2}{\mu^2 R^5} \frac{dR}{d\theta}.
+ \ddot{\theta} = -\frac{2L}{\gamma R^3}\dot{R} = -\frac{2L}{\gamma R^3} \frac{dR}{d\theta}\dot{\theta} = - \frac{2L^2}{\gamma^2 R^5} \frac{dR}{d\theta}.
 \end{equation*}
 Ésto y (\ref{eq:2body_ang_vel}) se sustituyen en  (\ref{eq:2body_eqs_motion_polar}) para obtener
 \begin{equation*}
- \frac{L^2}{\mu^2 R^4}\left( \frac{d^2R}{d\theta^2} - \frac{1}{R} \left(\frac{dR}{d\theta} \right)^2 -R \right) = - \frac{\beta}{R^2}.
+ \frac{L^2}{\gamma^2 R^4}\left( \frac{d^2R}{d\theta^2} - \frac{1}{R} \left(\frac{dR}{d\theta} \right)^2 -R \right) = - \frac{\beta}{R^2}.
 \end{equation*}
 
 Finalmente, si hacemos $u(R) := \frac{1}{R}$, se simplifica la ecuación diferencial a
 \begin{equation}
- \frac{d^2u}{d\theta^2} + u = \frac{\beta \mu^2}{L^2},
+ \frac{d^2u}{d\theta^2} + u = \frac{\beta \gamma^2}{L^2},
 \end{equation}
 
-que no es más que un oscilador armónico con forzamiento constante $\frac{\beta \mu^2}{L^2}$. Obtenemos explícitamente la solución para $u$:
+que no es más que un oscilador armónico con forzamiento constante $\frac{\beta \gamma^2}{L^2}$. Obtenemos explícitamente la solución para $u$:
 
 \begin{equation*}
- u(\theta) = \frac{\beta \mu^2}{L^2} \left( 1 + e \cos (\theta - \theta_0 ) \right) 
+ u(\theta) = \frac{\beta \gamma^2}{L^2} \left( 1 + e \cos (\theta - \theta_0 ) \right) 
 \end{equation*}
 \begin{equation}
- \therefore R(\theta) = \frac{L^2}{\beta \mu^2 \left(1 + e \cos (\theta - \theta_0) \right)}.
+ \therefore R(\theta) = \frac{L^2}{\beta \gamma^2 \left(1 + e \cos (\theta - \theta_0) \right)}.
  \label{eq:2body_solution}
 \end{equation}
 
@@ -122,35 +122,74 @@ que no es más que un oscilador armónico con forzamiento constante $\frac{\beta
 
 Es ahora que estamos en posición de empezar a poner constricciones al problema de los tres cuerpos. 
 
-Como ya se había mencionado, supondremos que la tercer partícula será mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, la suposición principal es que $m_3$ no afecta la dinámica de $M_2$ ni de $M_1$ y, por tanto, la solución para $U_{M_1}$ y $U_{M_2}$ es la de los dos cuerpos desarrollada en \ref{sec:2body_problem}. En este sentido sólo queda por estudiar el comportamiento de $m_3$ en influencia de los cuerpos primarios.
+Como ya se había mencionado, supondremos que la tercer partícula será mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, la consecuencia principal es que $m_3$ no afecta la dinámica de $M_2$ ni de $M_1$ y, por tanto, la solución para los cuerpos primarios es la desarrollada en \ref{sec:2body_problem}. Sólo queda por estudiar la dinámica de $m_3$.
 
-Para restringir las órbitas a que sean circulares es necesario imponer que $R(\theta)$ tenga eccentricidad $e=0$; la cual queda de la forma
+Para restringir las órbitas a que sean circulares es necesario imponer que $R(\theta)$ tenga eccentricidad $e=0$; así
 \begin{equation}
- R = \frac{L^2}{\mu^2 \beta}.
+ R = \frac{L^2}{\gamma^2 \beta}.
  \label{eq:3body_restricted_solution}
 \end{equation} 
 
-Con esto podemos dar una expresión para la velocidad angular que no dependa del momento angular $L$, es decir, con (\ref{eq:3body_restricted_solution}) en (\ref{eq:2body_ang_vel}) se obtiene
+Con esto, podemos dar una expresión para la velocidad angular que no dependa del momento angular $L$, es decir, con (\ref{eq:3body_restricted_solution}) en (\ref{eq:2body_ang_vel}) se obtiene
 \begin{equation}
- \Omega := \dot{\theta} = \sqrt{ \frac{\beta R}{R^4} } = \sqrt{\frac{G \left(M_1 + M_2 \right)}{R^3}},
+ \Omega := \dot{\theta} = \sqrt{ \frac{\beta R}{R^4} } = \sqrt{\frac{G \left(M_1 + M_2 \right)}{R^3}}.
  \label{eq:3body_ang_velocity}
 \end{equation}
-que sólo depende de la distancia entre los cuerpos más masivos y la masa de cada uno de ellos. Notemos que al estar restringido el movimiento a órbitas circulares $R$ es constante en todo momento y por ello la velocidad angular también.
+Notemos que al estar restringido el movimiento a órbitas circulares $R$ es constante en todo momento y por ello la velocidad angular también.
 
-Para trabajar la dinámica de $m_3$ conviene establecer un marco de referencia en rotación de modo que $M_1$ y $M_2$ estén en reposo. Dicha rotación tendrá velocidad angular $\Omega$ y estará basada en el centro de gravedad entre las dos. Recordemos, de la sección \ref{sec:ficticious_forces}, que un sistema de referencia en rotación traerá algunas fuerzas ficticias descritas por (\ref{eq:rotating_constant_acceleration}), más específicamente la aceleración de Coriolis y la aceleración centrípeta. Como en este caso el sistema está centrado en el centro de gravedad de $M_1$ y $M_2$, la aceleración inercial será nula en todo momento.
+Para trabajar la dinámica de $m_3$ conviene establecer un marco de referencia en rotación de modo que $M_1$ y $M_2$ estén en reposo. Dicha rotación tendrá velocidad angular $\Omega$ y estará basada en el centro de gravedad entre las dos. Recordemos, de la sección \ref{sec:ficticious_forces}, que un sistema de referencia en rotación traerá algunas fuerzas ficticias descritas por (\ref{eq:rotating_constant_acceleration}), más específicamente la aceleración de Coriolis y la aceleración centrípeta. Como en este caso el sistema está centrado en el centro de gravedad de $M_1$ y $M_2$, la aceleración inercial del sistema será nula en todo momento.
 
-Las ecuaciones para $m_3$ en este sistema quedan descritas como
+Las ecuaciones de movimiento para $m_3$ en este sistema quedan descritas como
 \begin{equation}
  \ddot{\mathbf{r}} + 2\mathbf{\Omega} \times \dot{\mathbf{r}} = - \nabla V(\mathbf{r})
  \label{eq:3body_restricted_acceleration}
 \end{equation}
 con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf{R} = \mathbf{r}_1 - \mathbf{r}_2 = (r_1 + r_2,0,0)$ la distancia entre $M_1$ y $M_2$ y
 \begin{equation}
- V(\mathbf{r}) = \left( -G \frac{M_1}{\sqrt{(x + r_1)^2 + y^2 + z^2}} - G \frac{M_2}{\sqrt{(x - r_2)^2 + y^2 + z^2}} - \frac{1}{2} \mathbf{\Omega}^2 \mathbf{r}^2 \right)
+ V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{R_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{R_1}}} - \frac{1}{2} \Omega^2 r^2 \right)
  \label{eq:3body_restricted_potential}
 \end{equation} 
-la parte cerrada del potencial, que se suele conocer como \textit{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
-Existe una primera integral desl sistema si hacemos el producto interno de (\ref{eq:3body_restricted_acceleration}) por $\dot{\mathbf{r}}$, que resulta en 
+la parte cerrada del potencial, que se suele conocer como \textbf{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
+
+Con el afán de reducir el número de parámetros que definen al problema, trabajaremos en unidades especiales tales que 
+\begin{align}
+ M_1 + M_2 &= 1 \ um \nonumber \\
+ R = r_2 - (-r_1) &= 1 \ ud \nonumber \\
+ \Omega &= 1 \frac{rad}{ut} \nonumber \\
+ \implies G &= 1 \frac{ud^3}{ut^2 \cdot um},
+ \label{eq:3body_new_units}
+\end{align}
+Éstas nos permiten además adimensionalizar las ecuaciones de movimiento. Para esto, es cómodo poner el origen en el centro de masa entre $M_1$ y $M_2$, y a éstas alineadas sobre el eje $x$, así $CM = (0,0) = (\frac{-M_1r_1 + M_2r_2}{M_1 + M_2}, 0)$ obteniendo $-r_1 = -\frac{M_2}{M_1+M_2}R$ y $r_2 =\frac{M_1}{M_1+M_2}R$. Definimos el parámetro de masa 
+\begin{equation*}
+ \mu = \frac{M_2}{M_1 + M_2} 
+\end{equation*}
+con el que podemos replantear todo en términos adimensionales
+\begin{align}
+ M_1 &= 1 - \mu \nonumber \\
+ M_2 &= \mu \nonumber \\
+ -r_1 &= -\mu \nonumber \\
+ r_2 &= 1 - \mu \nonumber \\
+ G &= 1 \nonumber \\
+ \Omega &= 1
+ \label{eq:3body_adimensional_units}
+\end{align}
+tomando en cuenta las cantidades de (\ref{eq:3body_new_units}).
+
+Así, (\ref{eq:3body_restricted_potential}) se expresa como
+\begin{equation}
+ V(r) = V(x,y) = -\frac{1 - \mu}{\sqrt{(x + \mu)^2 + y^2}} -  \frac{\mu}{\sqrt{(x - 1 + \mu)^2 + y^2}} - \frac{1}{2} \left(x^2 + y^2 \right)
+\end{equation}
+con las ecuaciones de movimiento asociadas a (\ref{eq:3body_restricted_acceleration})
+\begin{align}
+ \dot{x} &= v_x \\
+ \dot{y} &= v_y \\
+ \dot{v}_x - 2v_y &=  x - \frac{(1 - \mu) (x+\mu)}{\sqrt{ (x+\mu)^2 + y^2 }^3} - \frac{\mu (x - 1 + \mu) }{\sqrt{(x - 1 +  \mu)^2 + y^2}^3 } \\ 
+ \dot{v}_y + 2v_x &= y \left( x - \frac{ 1 - \mu }{\sqrt{(x+\mu)^2 + y^2}^3} - \frac{\mu}{\sqrt{(x - 1 + \mu)^2 + y^2}^3} \right),
+ \label{eq:3body_restricted_ eqs_motion}
+\end{align}
+donde todo queda en términos del único parámetro $\mu$.
+
+Existe una primera integral del sistema si hacemos el producto interno de (\ref{eq:3body_restricted_acceleration}) por $\dot{\mathbf{r}}$, que resulta en 
 \begin{align*}
  \ddot{x} \dot{x} + \ddot{y} \dot{y} &= - \pder{V}{x}\dot{x} - \pder{V}{y} \dot{y} \\
  \implies \frac{1}{2} \left( \dot{x}^2 + \dot{y}^2 \right) &= \frac{d V}{dt} 
@@ -162,20 +201,6 @@ Existe una primera integral desl sistema si hacemos el producto interno de (\ref
 con $C_J$ la constante de integración que se conoce como \textbf{constante de Jacobi} o \textbf{energía de Jacobi}.
 
 Aunque se pudo encontrar una primera integral al problema, hay que notar que éste no es conservativo, ya que la dinámica de la partícula depende explícitamente de la velocidad de ésta. $V$ se escribe de manera tal que las masas quedan alineadas con el eje $x$ y se mueven en el plano $z = 0$. De hecho, con afan de reducir aún más los grados de libertad, tomaremos condiciones iniciales para que $m_3$ viva siempre en este plano.
-
-Así, las ecuaciones de movimiento se reducen a
-\begin{align}
- \dot{x} &= v_x \\
- \dot{y} &= v_y \\
- \dot{v}_x &= \Omega^2 \left( x - \frac{ R^3 (1 - \alpha) (x+\alpha R) }{\left( (x+\alpha R)^2 + y^2 \right)^{3/2} } - \frac{ R^3 \alpha (x- (1 -\alpha) R) }{\left( (x - (1-\alpha) R)^2 + y^2 \right)^{3/2} } \right) + 2\Omega v_y \\ 
- \dot{v}_y &= \Omega^2 y \left( x - \frac{ R^3 (1 - \alpha) }{\left( (x+\alpha R)^2 + y^2 \right)^{3/2} } - \frac{ R^3 \alpha }{\left( (1 - (1-\alpha) R)^2 + y^2 \right)^{3/2} } \right) - 2\Omega v_x
-\end{align}
-donde
-\begin{align*}
- \alpha :&= \frac{M_2}{M_1 + M_2} \\ 
- R_1 &= \alpha R \\
- R_2 &= (1 - \alpha) R.
-\end{align*}
 
 \subsection{Puntos lagrangianos}
 \label{sec:lag_points}
