@@ -1,0 +1,73 @@
+En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Rica es por elementos como la sensibilidad al parámetro de masa (\ref{eq:3body_mu}), la sensibilidad a condiciones inciales cercanas, las trayectorias discriminadas por su constante de Jacobi, o los cinco puntos lagrangianos (\ref{eq:3body_lag}). Esta sección busca explotar el transporte de jets como se describe en el capítulo \ref{sec:jt} así como los indicadores y herramientas desarrolladas en \ref{sec:jt_indicators}. 
+
+En este capítulo se buscan explotar las propiedades dinámicas encontradas en \ref{chap:CR3BP} con ayuda de las herramientas planteadas en \ref{chap:jt_indicators}. Se utilizará al tranporte de jets en varias perspectivas donde, por ejemplo, se lo tratará como un integrador de flujo cuyas condiciones iniciales no se saben con presición, una herramienta para encontrar las ecuaciones de primera variación y más, método para encontrar las máximas y mínimas expansiones de la vecindad de una condición inicial dada en el espacio de configuraciones
+
+Este capítulo se divide como sigue: 
+%...
+
+%Algo con las 0VC, 
+%Parametrización de la masa (no está jalando; chance lo mochamos)
+%heatmaps..
+%direcciones de mayor y menor contracción alrededor de un punto
+%simplecticidad??????
+%ξmax en algo que no sea ξgrid? 
+
+\section{Colisión de asteroides}
+
+%%% Choro acerca de dos asteroides colisionando. %%% 
+
+%%% Chorito acerca de cómo 4 masas es lo mismo que 3. (usando la masa de apohpis por ejemplo... %%%
+
+%Hay en promedio $X$ objetos celestes orbitando a la Tierra 
+
+%Hace 65 millones de años no existían métodos computacionales para determinar la trayectoria de las posibles colisiones de asteroides  con el planeta Tierra. ¿Qué sucedió?, los dinosaurios se extinguieron \cite{}. Hoy en día conocemos (o creemos conocer) las leyes que gobiernan la dinámica del sistema solar y los cuerpos que lo visitan así como métodos que resuelven dicha dinámica. Posiblemente no podamos detener el impacto, pero podemos intentar prepararnos para dicho suceso con varios años de anticipación. Por esto, es importante conocer el riesgo que tiene un objeto celeste de impactar con la Tierra, y el transporte de Jets es una muy buena herramienta para analizar dicha posibilidad. 
+
+%con velocidad $\mathbf{v}_{a_1}(t_0) + \delta\mathbf{v}_{a_1}(t_0)$
+
+Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de la masa primaria mayor. Inicialmente, éstos se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ \cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
+
+La figura \ref{fig:} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.7665$. En esta integración, la mínima distancia entre ambos cuerpos es de $ $ que representa unos $ $ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el transporte de jets de la siguiente manera: 
+
+\begin{itemize}
+ \item Hacer una integración nominal de dos asteroides con energías similares.\footnote{En un ejemplo real ésto no se impone, se encuentra.}
+ 
+ \item Encontrar las coordenadas $\mathbf{q}_{a_i}^{(col)}$\footnote{$\mathbf{q} = \left( \mathbf{x}, \mathbf{v} \right)$} donde la distancia entre $a_1$ y $a_2$ es mínima.
+ 
+ \item Hacer TJ alrededor de las condiciones encontrada en el punto anterior.
+ 
+ \item Evaluar una distribución de $N$ puntos en la bola $\delta\mathbf{x}_i \leq \Delta_{max}$ alrededor de $\mathbf{q}_{a_i}^{(col)}$ para ambos asteroides y guardar la distribución.
+ 
+ \item Definir una distancia $D_{col}$ para la cual los asteroides chocarían y determinar qué puntos de la distribución quedan debajo de ésta.
+ 
+ \item Determinar la probabilidad de impacto $\mathcal{P}$ como la cantidad de veces puntos que quedan debajo de $D_{col}$ respecto al número de trayectorias totales $N^2$; así
+ \begin{equation} 
+ \mathcal{P} = \frac{\norm{\mathbf{x}_{a_1} - \mathbf{x}_{a_2} }    \leq D_{col} }{N^2}.
+ \end{equation}
+\end{itemize}
+
+La figura \ref{fig:} muestra una distribución normal de $6000$ puntos\footnote{$6000$ ya convergen a una probabilidad cuyas cifras significativas no afectan el redondeo de \ref{table:collision_table}} evaluados en el transporte alrededor de $\mathbf{q}_{a_i}^{(col)}$ para $i = \{1,2\}$. La probabilidad de impacto dependerá del tamaño que tengan los asteroides, la cual se presenta en la tabla \ref{table:collision_table}. 
+
+%TABLA!
+\begin{table}[h!]
+\centering
+\begin{tabular}{c|c|c}
+\toprule
+\textbf{$ D_{col}$ [ km ]} & \textbf{$\mathcal{P}$ [ $\%$ ]} & \textbf{Colisiones [ $ \# $ ]} \\ \cmidrule(l){1-3} 
+\textbf{$0.5$} &   0.0001                 & 51            \\
+\textbf{$5$}   &   0.0154                 & 5560          \\
+\textbf{$30$}  &   0.5508                 & 198304        \\
+\textbf{$150$} &   12.9412                & 4658839       \\ \bottomrule 
+\end{tabular}
+\caption{Número de colisiones y riesgo de choque para asteroides de distintas dimensiones.}
+\label{table:collision_table}
+\end{table}
+
+
+%Sea $S$ un asteroide que en el tiempo $t_0$ está en $\xo$ con momento $\mathbf{p}_0$ y cierto margen de error en la posición $\delta\xo$. Éste se encuentra restringido únicamente a la dinámica de la Tierra y la Luna orbitando circularmente entre sí\footnote{Esto es una sobresimplificación de todas las fuerzas que el asteroide pueda llegar a sentir, pero el ejemplo ilustra los pasos a seguir.}. Podemos conocer el flujo $\phi(T;t_0, \xo + \delta\xo) = P_{T,\xo}(\delta\xo)$ considerando $\delta\xo$ haciendo un transporte de jets alrededor de $\xo$. 
+
+%Dado este transporte, se puede encontrar toda la gama de posibilidades con variación $\delta\xo$ 
+
+%Mencionar adimensionalización del tiempo para ver cuánto implica 1 unidad temporal.
+
+%Hay que ser ciudadosos cuando se trabaja en mecánica celeste ya que, debido a la escala que gobierna éstos movimientos, pequeñas variaciones de masa, tiempo o longitud podrían no pasar desapercibidas desde la Tierra. Existen cerca de 100 satélites \cite{} orbitando la Tierrimplicar que dos objetos celestes colisiones
+ %Nos podemos imaginar que 1. pierda velocidad y se salga de óribta hacia la TIerra, 2. colisione con otro asteroide, 3. cambia de órbita hacia la luna. QUé tan probable es esto ? 
