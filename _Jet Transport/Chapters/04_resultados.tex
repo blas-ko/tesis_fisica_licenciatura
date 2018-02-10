@@ -26,16 +26,25 @@ Este capítulo se divide como sigue:
 
 Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de la masa primaria mayor. Inicialmente, éstos se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ \cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
 
-La figura \ref{fig:} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.7665$. En esta integración, la mínima distancia entre ambos cuerpos es de $ $ que representa unos $ $ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el transporte de jets de la siguiente manera: 
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\linewidth]{asteroid_collision_nominal_integration}
+ \caption{Integración nominal a $T=10 \approx $ unidades temporales, donde $\mathbf{q}_{a_1}(t_0) = \left( -0.373098, -0.0804321, 1.21995, \dot{y}_{a_1} \left( x_{a_1}(t_0), y_{a_1}(t_0), \dot{x}_{a_1}(t_0), C_J \right) \right)$ 
+ y $\mathbf{q}_{a_2}(t_0) = \left( -0.27324, -0.307896, -0.307576, \dot{y}_{a_2} \left( x_{a_2}(t_0), y_{a_2}(t_0), \dot{x}_{a_2}(t_0), C_J \right) \right)$. El círculo naranja representa a $M_1$, y los círculos verde y gris a $\mathbf{q}_{a_1}(t_0)$ y $\mathbf{q}_{a_2}(t_0)$, respectivamente. La zona de mayor acercamiento se marca con cruces, donde en ésta, la distancia entre los asteroides es de $0.00348 \approx 1341$ km.}
+ \label{fig:asteroid_collision_nominal_integration}
+\end{figure}
+
+La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el transporte de jets de la siguiente manera: 
 
 \begin{itemize}
- \item Hacer una integración nominal de dos asteroides con energías similares.\footnote{En un ejemplo real ésto no se impone, se encuentra.}
+ \item Hacer una integración nominal de dos asteroides con energías similares o que se sepa que pueden tener riesgo de colisión.
  
- \item Encontrar las coordenadas $\mathbf{q}_{a_i}^{(col)}$\footnote{$\mathbf{q} = \left( \mathbf{x}, \mathbf{v} \right)$} donde la distancia entre $a_1$ y $a_2$ es mínima.
+ \item Encontrar las coordenadas $\mathbf{q}_{a_i}^{(col)}$ donde la distancia entre $a_1$ y $a_2$ es mínima.
  
  \item Hacer TJ alrededor de las condiciones encontrada en el punto anterior.
  
- \item Evaluar una distribución de $N$ puntos en la bola $\delta\mathbf{x}_i \leq \Delta_{max}$ alrededor de $\mathbf{q}_{a_i}^{(col)}$ para ambos asteroides y guardar la distribución.
+ \item Evaluar una distribución de $N$ puntos en la bola $\delta\mathbf{x}_i \leq \Delta_{max}$ alrededor de $\mathbf{q}_{a_i}^{(col)}$ para ambos asteroides y guardarla.
  
  \item Definir una distancia $D_{col}$ para la cual los asteroides chocarían y determinar qué puntos de la distribución quedan debajo de ésta.
  
@@ -45,7 +54,15 @@ La figura \ref{fig:} muestra la trayectoria nominal de $a_1$ y $a_2$ para condic
  \end{equation}
 \end{itemize}
 
-La figura \ref{fig:} muestra una distribución normal de $6000$ puntos\footnote{$6000$ ya convergen a una probabilidad cuyas cifras significativas no afectan el redondeo de \ref{table:collision_table}} evaluados en el transporte alrededor de $\mathbf{q}_{a_i}^{(col)}$ para $i = \{1,2\}$. La probabilidad de impacto dependerá del tamaño que tengan los asteroides, la cual se presenta en la tabla \ref{table:collision_table}. 
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\linewidth]{asteroid_collision_distribution}
+ \caption{Transporte de jets de orden $4$ alrededor de $\mathbf{q}_{a_i}^{(col)}$ (cruces en la figura) donde los cúmulos son la distribución de radio $\delta\mathbf{x}_{a_i} \leq 350$ km evaluadas en el polinomio resultante del transporte. Para el método sólo se toman los cúmulos donde se encuentra $\mathbf{q}_{a_i}^{(col)}$, pero la figura busca ilustrar una sección de la trayectoria de los asteroides.}
+ \label{fig:asteroid_collision_distribution}
+\end{figure}
+
+La figura \ref{fig:asteroid_collision_distribution} muestra una distribución normal de $7000$ puntos\footnote{$7000$ ya convergen a una probabilidad cuyas cifras significativas no afectan el redondeo de la tabla \ref{table:collision_table}.} evaluados en el transporte alrededor de $\mathbf{q}_{a_i}^{(col)}$ para $i = \{1,2\}$. La probabilidad de impacto dependerá del tamaño que tengan los asteroides, la cual se presenta en la tabla \ref{table:collision_table}. Se presenta en la figura \ref{fig:asteroid_collision_histogram} la distribución de distancias entre ambos asteroides en la zona de riesgo de colisión. Aún cuando $D_{col}$ e incluso $\Delta_{max}$ quedan debajo del escenario más posible en la distribución, la probabilidad de impacto es suficientemente grande para no ser ignorada en los asteroides de mayor dimensión.
 
 %TABLA!
 \begin{table}[h!]
@@ -53,21 +70,34 @@ La figura \ref{fig:} muestra una distribución normal de $6000$ puntos\footnote{
 \begin{tabular}{c|c|c}
 \toprule
 \textbf{$ D_{col}$ [ km ]} & \textbf{$\mathcal{P}$ [ $\%$ ]} & \textbf{Colisiones [ $ \# $ ]} \\ \cmidrule(l){1-3} 
-\textbf{$0.5$} &   0.0001                 & 51            \\
-\textbf{$5$}   &   0.0154                 & 5560          \\
-\textbf{$30$}  &   0.5508                 & 198304        \\
-\textbf{$150$} &   12.9412                & 4658839       \\ \bottomrule 
+\textbf{$0.5$} &   $3.7 \times 10^{-5}$   & $18$          \\
+\textbf{$5$}   &   $0.0048$               & $2356$        \\
+\textbf{$30$}  &   $0.172$                & $84,609$     \\
+\textbf{$150$} &   $4.357$                & $2,135,173$   \\ \bottomrule 
 \end{tabular}
 \caption{Número de colisiones y riesgo de choque para asteroides de distintas dimensiones.}
 \label{table:collision_table}
 \end{table}
 
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\linewidth]{asteroid_collision_histogram}
+ \caption{Distribución normalizada de distancias entre $a_1$ y $a_2$ cerca del punto de posible dadas $7000$ variaciones iniciales alrededor de $\mathbf{q}_{a_1}^{col}$ y $\mathbf{q}_{a_2}^{col}$. Las líneas verticales muestran los valores usados en la tabla \ref{table:collision_table}.}
+ \label{fig:asteroid_collision_histogram}
+\end{figure}
 
-%Sea $S$ un asteroide que en el tiempo $t_0$ está en $\xo$ con momento $\mathbf{p}_0$ y cierto margen de error en la posición $\delta\xo$. Éste se encuentra restringido únicamente a la dinámica de la Tierra y la Luna orbitando circularmente entre sí\footnote{Esto es una sobresimplificación de todas las fuerzas que el asteroide pueda llegar a sentir, pero el ejemplo ilustra los pasos a seguir.}. Podemos conocer el flujo $\phi(T;t_0, \xo + \delta\xo) = P_{T,\xo}(\delta\xo)$ considerando $\delta\xo$ haciendo un transporte de jets alrededor de $\xo$. 
 
-%Dado este transporte, se puede encontrar toda la gama de posibilidades con variación $\delta\xo$ 
+Algo relevante al hacer transporte de jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Ésto se muestra en la figura \ref{fig:asteroid_jt_vs_nominal}.
+
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\linewidth]{asteroid_jt_vs_nominal}
+ \caption{Promedio de la distancia entre la integración nominal y el transporte de jets para $500$ condiciones iniciales con variación $\norm{\delta\mathbf{x}_{a_1}} = \norm{\delta\mathbf{x}_{a_1}} = \Delta_{max}$.}
+ \label{fig:asteroid_jt_vs_nominal}
+\end{figure}
+
+Así, ilustramos el método de posible colisión entre asteroides, donde se estableció la probabilidad de impacto para diferentes zonas de colisión. El transporte de jets permitió encontrar dichas probabilidades ya que en éste, simplemente hubo que evaluar la distribución de variaciones iniciales en un radio dado. Éste método es generalizable a cualquier sistema donde exista alguna incertidumbre en las condiciones iniciales. Sin embargo, hay que tener claro que el transporte de jets no es muy preciso para integraciones muy largas ni para vecindades muy grandes. En este ejemplo, el radio de las variaciones eran $0.46$ veces más pequeñas que $\xi_{max}$. Además, se hizo la integración de jets cerca del punto de posible colisión para tener tiempo de integración cortos. 
 
 %Mencionar adimensionalización del tiempo para ver cuánto implica 1 unidad temporal.
-
-%Hay que ser ciudadosos cuando se trabaja en mecánica celeste ya que, debido a la escala que gobierna éstos movimientos, pequeñas variaciones de masa, tiempo o longitud podrían no pasar desapercibidas desde la Tierra. Existen cerca de 100 satélites \cite{} orbitando la Tierrimplicar que dos objetos celestes colisiones
- %Nos podemos imaginar que 1. pierda velocidad y se salga de óribta hacia la TIerra, 2. colisione con otro asteroide, 3. cambia de órbita hacia la luna. QUé tan probable es esto ? 
