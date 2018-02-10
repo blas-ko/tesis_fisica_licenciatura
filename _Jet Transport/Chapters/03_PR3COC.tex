@@ -1,6 +1,6 @@
 %%Relacionar mejor el inicio de este capítulo en relación a lo escrito en la introducción. Lo de ahorita es, en principio, preliminar. 
 
-El objetivo de esta tesis es sacarle todo el provecho posible al transporte de jets y los indicadores que éste nos pueda regalar. Por esto, dos problemas físicos sencillos pero interesantes serán desarrollados en esta sección. El primero es el \textit{problema restringido de 3 cuerpos en una órbita circular (PR3COC)} y el segundo el \textit{sistema de Henón-Heiles (SHH)}. Antes de entrarle de lleno a estos problemas, creo que vale la pena recapitular un poco sobre la teoría en la que están basados; la mecánica analítica. Este capítulo se desarrollará como sigue: primero se hará un repaso de la mecánica lagrangiana y hamiltoniana muy al estilo de Landau y Lifshitz, específicamente en los capítulos I,II y VII de \cite{mechanics_landau_lifshitz}, luego, se desarrollará la teoría de PR3COC y, finalmente la de SHH.
+%El objetivo de esta tesis es sacarle todo el provecho posible al transporte de jets y los indicadores que éste nos pueda regalar. Por esto, dos problemas físicos sencillos pero interesantes serán desarrollados en esta sección. El primero es el \textit{problema restringido de 3 cuerpos en una órbita circular (PR3COC)} y el segundo el \textit{sistema de Henón-Heiles (SHH)}. Antes de entrarle de lleno a estos problemas, creo que vale la pena recapitular un poco sobre la teoría en la que están basados; la mecánica analítica. Este capítulo se desarrollará como sigue: primero se hará un repaso de la mecánica lagrangiana y hamiltoniana muy al estilo de Landau y Lifshitz, específicamente en los capítulos I,II y VII de \cite{mechanics_landau_lifshitz}, luego, se desarrollará la teoría de PR3COC y, finalmente la de SHH.
 
 \section{Problema de tres cuerpos sin restricciones}
 \label{sec:3BP}
@@ -40,7 +40,7 @@ Dadas que $M_1$ y $M_2$ son los cuerpos de mayor masa o \textbf{primarios} y $m_
  \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
  \label{eq:2body_eqs_motion}
 \end{equation}
-Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el desarrollo de \cite{} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el problema de Kepler, que describe la aceleración relativa
+Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el capítulo 3 del Goldstein \cite{Goldstein2007} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el problema de Kepler, que describe la aceleración relativa
 \begin{equation}
  \ddot{\mathbf{R}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{R^2} \hat{\mathbf{R}} = - \frac{\beta}{R^2}\hat{\mathbf{R}}
  \label{eq:kepler_problem}
@@ -146,7 +146,7 @@ Las ecuaciones de movimiento para $m_3$ en este sistema quedan descritas como
 \end{equation}
 con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf{R} = \mathbf{r}_1 - \mathbf{r}_2 = (r_1 + r_2,0,0)$ la distancia entre $M_1$ y $M_2$ y
 \begin{equation}
- V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{R_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{R_1}}} - \frac{1}{2} \Omega^2 r^2 \right)
+ V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{r_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{r_2}}} - \frac{1}{2} \Omega^2 r^2 \right)
  \label{eq:3body_restricted_potential}
 \end{equation} 
 la parte cerrada del potencial, que se suele conocer como \textbf{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
@@ -184,7 +184,7 @@ con las ecuaciones de movimiento asociadas a (\ref{eq:3body_restricted_accelerat
  \dot{x} &= v_x \\
  \dot{y} &= v_y \\
  \dot{v}_x - 2v_y &=  x - \frac{(1 - \mu) (x+\mu)}{\sqrt{ (x+\mu)^2 + y^2 }^3} - \frac{\mu (x - 1 + \mu) }{\sqrt{(x - 1 +  \mu)^2 + y^2}^3 } \\ 
- \dot{v}_y + 2v_x &= y \left( x - \frac{ 1 - \mu }{\sqrt{(x+\mu)^2 + y^2}^3} - \frac{\mu}{\sqrt{(x - 1 + \mu)^2 + y^2}^3} \right),
+ \dot{v}_y + 2v_x &= y \left( 1 - \frac{ 1 - \mu }{\sqrt{(x+\mu)^2 + y^2}^3} - \frac{\mu}{\sqrt{(x - 1 + \mu)^2 + y^2}^3} \right),
  \label{eq:3body_restricted_ eqs_motion}
 \end{align}
 donde todo queda en términos del único parámetro $\mu$.
@@ -192,10 +192,10 @@ donde todo queda en términos del único parámetro $\mu$.
 Existe una primera integral del sistema si hacemos el producto interno de (\ref{eq:3body_restricted_acceleration}) por $\dot{\mathbf{r}}$, que resulta en 
 \begin{align*}
  \ddot{x} \dot{x} + \ddot{y} \dot{y} &= - \pder{V}{x}\dot{x} - \pder{V}{y} \dot{y} \\
- \implies \frac{1}{2} \left( \dot{x}^2 + \dot{y}^2 \right) &= \frac{d V}{dt} 
+ \implies - \frac{1}{2} \left( \dot{x}^2 + \dot{y}^2 \right) &= \int \frac{d V}{dt} = V - C_J 
 \end{align*}
 \begin{equation}
- \therefore C_J = U + \frac{1}{2}v^2,
+ \therefore C_J = V + \frac{1}{2}v^2,
  \label{eq:3body_jacobi_constant}
 \end{equation}
 con $C_J$ la constante de integración que se conoce como \textbf{constante de Jacobi} o \textbf{energía de Jacobi}.
@@ -213,7 +213,7 @@ Aún sin ser conservativo, vale la pena estudiar las curvas de nivel de pseudo-p
  \label{fig:3body_pseudo_potential}
 \end{figure}
 
-Siguiendo el desarrollo de \cite{}, encontraremos dónde están dichos puntos singulares y se hará un análisis de estabilidad de éstos.
+Siguiendo el desarrollo de \cite{Cornish1998, Windall2008}, encontraremos dónde están dichos puntos singulares y se hará un análisis de estabilidad de éstos.
 
 Los tres primeros se dan cuando $y=0$, quedando por resolver únicamente cuándo $\dot{v}_x = 0$. Esto plantea una ecuación de quinto grado en $x$ complicada de resolver analíticamente. Sin embargo, cuando $M_1$ es considerablemente más grande que $M_2$, se puede tomar la aproximación a primer orden de $\mu$ y conseguir
 \begin{align}
@@ -259,7 +259,7 @@ tal como se ve en la figura \ref{fig:L_diagram}.
 
 %FIGURA! 
 
-La estabilidad de estos puede estudiarse viendo cómo se comportan las ecuaciones de primera variación alrededor de los puntos de equilibrio, tal como se hace en \cite{WMAP}. Para esto basta construir la matriz de estabilidad 
+La estabilidad de estos puede estudiarse viendo cómo se comportan las ecuaciones de primera variación alrededor de los puntos de equilibrio, tal como se hace en \cite{Cornish1998}. Para esto basta construir la matriz de estabilidad 
 \begin{equation*}
  A(\mathbf{x}) = \begin{bmatrix}
   \pder{\mathbf{f}_1}{x_1}(\mathbf{x}) & \dots & \pder{\mathbf{f}_1}{x_n}(\mathbf{x}) \\
@@ -285,7 +285,7 @@ representa dicha matriz, y ésta será evaluada en los puntos lagrangianos $\mat
 \end{align}
 con $r_{i,3}$ la distancia a $M_i$.
 
-Para $L_1$, $L_2$ y $L_3$ se puede mostrar que son equilibrios inestables sin importar el valor de los cuerpos masivos ni la distancia entre ellas \cite{algo}. De hecho, sustituyendo para $L_1$ y $L_2$ se obtiene
+Para $L_1$, $L_2$ y $L_3$ se puede mostrar que son equilibrios inestables sin importar el valor de los cuerpos masivos ni la distancia entre ellas \cite{MirelesJames2006}. De hecho, sustituyendo para $L_1$ y $L_2$ se obtiene
 \begin{align*}
  \lambda_\pm &= \pm  \sqrt{1 + 2\sqrt{7}} \\
  \sigma_\pm &= \pm i \sqrt{2\sqrt{7} - 1}
@@ -319,7 +319,7 @@ Así, vemos explícitamente la condición para la estabilidad de los puntos $L_4
 \subsection{Curvas de velocidad cero}
 \label{sec:zvc}
 
-Un último análisis que vale la pena hacer es aquel de las \textbf{curvas de velocidad cero} (CV0). Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más allá de cierta altura $h$ que dependa de dicha energía. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
+Un último análisis que vale la pena hacer es aquel de las \textbf{curvas de velocidad cero} (CV0). Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Un análisis similar se puede encontrar en las notas de Mireles \cite{MirelesJames2006}. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más allá de cierta altura $h$ que dependa de dicha energía. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
 
 Para encontrar estas curvas, se impone cierta pseudo-energía $C_J$ y se traza la curva tal que la velocidad sea cero, i.e.,
 \begin{equation*}
