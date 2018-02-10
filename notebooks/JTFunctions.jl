@@ -1,12 +1,13 @@
 module JTFunctions
 
     ######
-    using TaylorSeries, TaylorIntegration, Plots
+    using TaylorSeries, TaylorIntegration, Distributions, Plots
     pyplot()
     import TaylorSeries: NumberNotSeries
 
-    export evaluate_neighborhood, circle2, square2, ξmax,
-           anal_vs_taylor2D, JT_accuracy, area_of_polygon, separation_rate,
+    export evaluate_neighborhood, evaluate_distribution,
+           circle2, square2, ξmax, anal_vs_taylor2D,
+                area_of_polygon, separation_rate,
            grid_ξmax, grid_FTLE, grid_seprate, vectorField_plot,
            harmonic_oscillator!, simple_pendulum!, artificial_ode!,
            stability_matrix, simplecticity,
@@ -41,6 +42,30 @@ module JTFunctions
 
     function evaluate_neighborhood{T<:AbstractSeries}(δU::Function,ϕ::Array{T,1};num_vals::Integer=100,ξ::Real=0.1)
         return evaluate_neighborhood.(δU,ϕ,num_vals,ξ)
+    end
+
+
+    function evaluate_distribution{T<:NumberNotSeries}(ϕ::TaylorN{T};U::Array{T}=zeros(10,2) )
+        distributed_ϕ = Vector{eltype(ϕ)}()
+
+        for i in eachindex(U[:,1])
+            push!(distributed_ϕ, ϕ(U[i,:]))
+        end
+
+        return distributed_ϕ
+    end
+
+        dof = get_numvars()
+
+    function evaluate_distribution{T<:NumberNotSeries}(ϕ::Vector{TaylorN{T}},U)
+        return evaluate_distribution.(ϕ,U=U)
+    end
+
+    function evaluate_distribution{T<:NumberNotSeries}(ϕ::Array{TaylorN{T},2},dist::Distribution=Normal(0,0.01);num_vals::Integer=200)
+        dof = get_numvars()
+        U = rand(dist, num_vals, dof)
+
+        return evaluate_distribution(ϕ[:,1],U), evaluate_distribution(ϕ[:,2],U), U
     end
 
     # Some Neighborhood Parametrization (this should deserve a special type Neighborhood)
@@ -138,15 +163,15 @@ module JTFunctions
 
     # Compare taylorinteg solution `x,y` vs analytical ones `xa`
     anal_vs_taylor2D(x,y,xa) = sqrt.((x - xa[:,1]).^2 + (y - xa[:,2]).^2)
-    # Compare 2 solutions
-    function JT_accuracy(ϕ,ϕ_JT)
-        dims = size(ϕ)[2]
-        diffs = zero(ϕ[:,1])
-        for dim in 1:dims
-            diffs += (ϕ[:,dim] - ϕ_JT[:,dim]).^2
-        end
-        return sqrt.(diffs)
-    end
+    # # Compare 2 solutions
+    # function JT_accuracy(ϕ,ϕ_JT)
+    #     dims = size(ϕ)[2]
+    #     diffs = zero(ϕ[:,1])
+    #     for dim in 1:dims
+    #         diffs += (ϕ[:,dim] - ϕ_JT[:,dim]).^2
+    #     end
+    #     return sqrt.(diffs)
+    # end
 
 
     #### PLOTTING & GRIDS ####
@@ -237,7 +262,7 @@ module JTFunctions
 
             for (j,y) in enumerate(ygrid)
                 #initial TaylorN condition
-                q0TN = [x+δx,y+δy]
+                q0TN = [x+δx,y+δy,0,0]
                 #Jet Trasnport Integration
                 _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
                 #indicators' evaluations
