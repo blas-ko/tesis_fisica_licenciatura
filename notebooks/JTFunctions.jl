@@ -6,7 +6,7 @@ module JTFunctions
     import TaylorSeries: NumberNotSeries
 
     export evaluate_neighborhood, evaluate_distribution,
-           circle2, square2, ξmax, anal_vs_taylor2D,
+           circle2, square2, ξmax, ξmax_lastT, anal_vs_taylor2D,
                 area_of_polygon, separation_rate,
            grid_ξmax, grid_FTLE, grid_seprate, vectorField_plot,
            harmonic_oscillator!, simple_pendulum!, artificial_ode!,
@@ -100,18 +100,21 @@ module JTFunctions
     end
 
     # Maximum Box Size
-    function ξmax(ϕ;ϵ=10e-6)
-        dof = size(ϕ)[2]
-        ord = ϕ[end,1].order
+    function ξmax(ϕ::Vector{T};ϵ=1e-5) where T<:TaylorN
+        dof = length(ϕ)
+        ord = ϕ[1].order
         ξ = Inf
 
         for m in 1:dof
-            a_k = ϕ[end,m].coeffs[ord+1].coeffs
+            a_k = ϕ[m].coeffs[ord+1].coeffs
 
             #In case the last term is zero.
             k = 1
             while a_k == zeros(a_k)
-                a_k = ϕ[end,m].coeffs[ord+1-k].coeffs
+                if k > ord
+                    break
+                end
+                a_k = ϕ[m].coeffs[ord+1-k].coeffs
                 k += 1
             end
 
@@ -123,9 +126,47 @@ module JTFunctions
         return ξ
     end
 
+    function ξmax(ϕ::Vector{T};ϵ=1e-5) where T<:Taylor1
+        dof = length(ϕ)
+        ord = ϕ[1].order
+        ξ = Inf
+
+        for m in 1:dof
+            a_k = ϕ[m].coeffs[ord+1]
+
+            #In case the last term is zero.
+            k = 1
+            while a_k == zero(a_k)
+                if k > ord
+                    break
+                end
+                a_k = ϕ[m].coeffs[ord+1-k]
+                k += 1
+            end
+
+            ξ = min(ξ,abs(ϵ/a_k)^(1./ord) )
+        end
+
+        return ξ
+    end
+
+    function ξmax(ϕ::Matrix{T};ϵ=1e-5) where T<:AbstractSeries
+
+        total_timesteps = size(ϕ)[1]
+        ξmax_T = zeros(total_timesteps)
+
+        for t in 1:total_timesteps
+            ξmax_T[t] = ξmax(ϕ[t,:];ϵ=ϵ)
+        end
+
+        return ξmax_T
+    end
+
+    ξmax_lastT(ϕ;ϵ=1e-5) = ξmax(ϕ[end,:],ϵ=ϵ)
+
     function separation_rate(ϕN;neighborhood_vals::Integer=100)
 
-        ξ_max = ξmax(ϕN) #should ξ_max be an argument?
+        ξ_max = ξmax_lastT(ϕN) #should ξ_max be an argument?
         qjet = evaluate_neighborhood(circle2,ϕN[end,1],neighborhood_vals,ξ_max) .- evaluate(ϕN[end,1])
         pjet = evaluate_neighborhood(circle2,ϕN[end,2],neighborhood_vals,ξ_max) .- evaluate(ϕN[end,2])
 
@@ -199,7 +240,7 @@ module JTFunctions
             for (j,y) in enumerate(ygrid)
                 q0TN = [x+δx,y+δy,0.0,0.0]
                 _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
-                heatgrid[i,j] = ξmax(ϕN)
+                heatgrid[i,j] = ξmax_lastT(ϕN)
             end
 
         end
@@ -266,7 +307,7 @@ module JTFunctions
                 #Jet Trasnport Integration
                 _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
                 #indicators' evaluations
-                ξ_max = ξmax(ϕN)
+                ξ_max = ξmax_lastT(ϕN)
                 P_max,P_min,θ_max,θ_min = separation_rate(ϕN,neighborhood_vals=neighborhood_vals)
 
                 #vector field grids as series of tuples
