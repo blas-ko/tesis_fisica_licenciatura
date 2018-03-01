@@ -19,6 +19,8 @@ module ThreeBody
     const mass_sun = 1.9855e30 #kg
     # mass_satelite ≈ 1e3 kg
     ### Earth, Moon, Sun distances ###
+    const radius_earth_moon = 3.85e5 #km
+    const radius_earth_sun  = 1.496e8 #km
 
     ### Mass parameters (with distance normalized to 1)
     M_1 = mass_earth
@@ -146,6 +148,7 @@ module ThreeBody
     """
     _vy(r, vx, μ; E=C_L1) = √( 2*( E - _V_pseudo(r,μ) ) - vx^2 )
 
-    println("M_1: $M_1 , M_2: $M_2")
+    println("M_1: $M_1 , M_2: $M_2, μ: $μ")
     println("L_1: $(round(L_1,3)), L_2: $(round(L_2,3)), L_3: $(round(L_1,3)), L_4x: $(round(L_x4,3)), L_4y: $(round(L_y4,3))")
+    println("C_L1: $(round(C_L1,3))")
 end
