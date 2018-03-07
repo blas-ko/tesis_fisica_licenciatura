@@ -1,16 +1,16 @@
 module JTFunctions
 
     ######
-    using TaylorSeries, TaylorIntegration, Distributions, Plots
+    using TaylorSeries, TaylorIntegration, Distributions, Plots, DataFrames
     pyplot()
     import TaylorSeries: NumberNotSeries
 
     export evaluate_neighborhood, evaluate_distribution,
            circle2, square2, ξmax, ξmax_lastT, anal_vs_taylor2D,
-                area_of_polygon, separation_rate,
+                area_of_polygon, separation_rate, remoteness,
            grid_ξmax, grid_FTLE, grid_seprate, vectorField_plot,
            harmonic_oscillator!, simple_pendulum!, artificial_ode!,
-           stability_matrix, simplecticity,
+           stability_matrix, simplecticity, hp_filter,
            myfonts
     ######
 
@@ -164,6 +164,7 @@ module JTFunctions
 
     ξmax_lastT(ϕ;ϵ=1e-5) = ξmax(ϕ[end,:],ϵ=ϵ)
 
+    remoteness(ϕμ, Δμ) = sqrt.( (ϕμ[:,1](Δμ) - ϕμ[1,1](Δμ)).^2 + (ϕμ[:,2](Δμ) - ϕμ[1,2](Δμ)).^2 )
     function separation_rate(ϕN;neighborhood_vals::Integer=100)
 
         ξ_max = ξmax_lastT(ϕN) #should ξ_max be an argument?
@@ -424,5 +425,37 @@ module JTFunctions
         nothing
     end
 
+    ### Other functions... ###
+    ### Taken from Sébastien Villemot at http://www.econforge.org/posts/2014/juil./28/cef2014-julia/ ###
+    function hp_filter(y::Vector{Float64}, lambda::Int64)
+        n = length(y)
+        @assert n >= 4
+
+        diag2 = lambda*ones(n-2)
+        diag1 = [ -2lambda; -4lambda*ones(n-3); -2lambda ]
+        diag0 = [ 1+lambda; 1+5lambda; (1+6lambda)*ones(n-4); 1+5lambda; 1+lambda ]
+
+        D = spdiagm((diag2, diag1, diag0, diag1, diag2), (-2,-1,0,1,2))
+
+        D\y, y - D\y
+    end
+
+    function hp_filter(df::T, lambda::Int64) where T <: DataFrame
+        num_cols = size(df)[2]
+        cycle = Vector{Any}(num_cols) # Vector{Float64}
+        trend = Vector{Any}(num_cols)
+
+        i = 1
+        for ts in df.columns
+            tmp = hp_filter(ts,lambda)
+            trend[i] = tmp[1]
+            cycle[i] = tmp[2]
+            i+=1
+        end
+
+        trend = DataFrame(trend,df.colindex)
+        cycle = DataFrame(cycle,df.colindex)
+        return trend, cycle
+    end
 
 end #module
