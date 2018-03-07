@@ -12,6 +12,31 @@ Este capítulo se divide como sigue:
 %simplecticidad??????
 %ξmax en algo que no sea ξgrid? 
 
+\section{Parametrización de $\mu$}
+Como se analizó en el capítulo \ref{sec:lag}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dada por \ref{eq:3.36}. 
+
+El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos, sin embargo, también es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la masa que visita a $L_4$ o $L_5$.
+
+Para esto, se seguirá la filosofía de la sección \ref{sec:parametrizacion}, donde se agregará a las ecuaciones de movimiento la ecuación 
+\begin{equation*}
+ \dot{\mu} = 0.
+\end{equation*}
+Con esto, se hará un transporte en $\mu$, es decir, ésta se parametrizará como 
+\begin{equation*}
+ \mu = \mu_0 + \delta\mu
+\end{equation*}   
+donde $\delta\mu \in \pkr$ y, por tanto, $\mu \in \pkr$ también. Se introduce la notación $\phi_\mu(t;t_0,\xo)$ para referirse a este tipo de transporte. Tomando $\mu_0 = \mu_c \approx 0.0385$, se está en el límite entre la estabilidad y la divergencia alrededor de los puntos $L_4$ y $L_5$.
+
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{flow_dmu}
+ \caption{Espacio de configuraciones para $\phi_\mu$ con variaciones $\delta\mu = 0$ (azul), $\delta\mu = \delta\mu_{max}$ (naranja), y $\delta\mu = -\delta\mu_{max}$ (verde), donde $\delta\mu_{max} = \xi_{max}(\phi_\mu) \approx 0.00329$. Para el transporte se usó un jet de orden $n=18$ con condiciones iniciales $\left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$.}
+ \label{fig:flow_dmu}
+\end{figure}
+
+Para hacer el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad (\ref{eq:ximax}), es decir, $\delta\mu \leq \lvert \xi_{max}(\phi_\mu) \rvert$. Se puede ver en la figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales, que equivalen a unos $X$ años. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad.
+
 \section{Colisión de asteroides}
 
 %%% Choro acerca de dos asteroides colisionando. %%% 
@@ -24,7 +49,7 @@ Este capítulo se divide como sigue:
 
 %con velocidad $\mathbf{v}_{a_1}(t_0) + \delta\mathbf{v}_{a_1}(t_0)$
 
-Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de la masa primaria mayor. Inicialmente, éstos se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ \cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
+Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de la masa primaria mayor. Inicialmente, éstos se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente, donde $\delta\mathbf{x}_{a_i} \in \pkk{n}{2}$. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
 
 %FIGURA!
 \begin{figure}
