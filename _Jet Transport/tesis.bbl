@@ -26,8 +26,12 @@ N.~J. Cornish and J.~Goodman, ``{The Lagrange points},'' {\em WMAP Education
 J.~{Mireles James}, ``{Celestial Mechanics Notes Set 4: The Circular Restricted
   Three Body Problem},'' {\em Published December}, pp.~1--65, 2006.
 
-\bibitem{Desmars2013}
-J.~Desmars, D.~Bancelin, D.~Hestro, and W.~Thuillot, ``{Statistical and
-  Numerical Study of Asteroid Orbital Uncertainty},'' p.~7, 2013.
+\bibitem{Hodrick1997}
+R.~J. Hodrick and E.~C. Prescott, ``{Postwar U.S. Business Cycles: An Empirical
+  Investigation},'' {\em Journal of Money, Credit and Banking}, vol.~29, no.~1,
+  p.~1, 1997.
+
+\bibitem{Kim2004}
+H.~Kim, ``Hodrick-prescott filter,'' 2004.
 
 \end{thebibliography}

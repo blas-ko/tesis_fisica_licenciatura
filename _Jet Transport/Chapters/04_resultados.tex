@@ -13,9 +13,9 @@ Este capítulo se divide como sigue:
 %ξmax en algo que no sea ξgrid? 
 
 \section{Parametrización de $\mu$}
-Como se analizó en el capítulo \ref{sec:lag}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dada por \ref{eq:3.36}. 
+Como se analizó en el capítulo \ref{sec:lag}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por \ref{eq:3.36}. 
 
-El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos, sin embargo, también es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la masa que visita a $L_4$ o $L_5$.
+El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos, sin embargo, también es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la partícula que visita a $L_4$ o $L_5$.
 
 Para esto, se seguirá la filosofía de la sección \ref{sec:parametrizacion}, donde se agregará a las ecuaciones de movimiento la ecuación 
 \begin{equation*}
@@ -35,7 +35,63 @@ donde $\delta\mu \in \pkr$ y, por tanto, $\mu \in \pkr$ también. Se introduce l
  \label{fig:flow_dmu}
 \end{figure}
 
-Para hacer el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad (\ref{eq:ximax}), es decir, $\delta\mu \leq \lvert \xi_{max}(\phi_\mu) \rvert$. Se puede ver en la figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales, que equivalen a unos $X$ años. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad.
+Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad de la expresión (\ref{eq:ximax}), es decir, $\lvert \delta\mu \rvert \leq  \xi_{max}(\phi_\mu) \approx 0.033$ en este caso. Se puede ver en la figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales, que equivalen a unos $X$ años. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad. Una forma de observar este comportamiento de manera más clara es si medimos la separación de $\phi_\mu(t)$ respecto de $\xo$ para distintos valores de $\delta \mu$. La figura \ref{fig:} muestra esta separación en función del tiempo. Se puede observar que mientras mayor se la variación de $\mu$, mayor es la tendencia y mayor la amplitud de oscilación. 
+
+%FIGURA! 
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{remoteness_dmu}
+ \caption{Diferencia $\Delta\phi_\mu(t) = \norm{ \phi_\mu(t) - \xo }$ del espacio de configuraciones para $\delta\mu \in \left\lbrace -\delta\mu_{max}, -2\delta\mu_{max}/3, -\delta\mu_{max}/3, 0, \delta\mu_{max}/3, 2\delta\mu_{max}/3, \delta\mu_{max}  \right\rbrace$.}
+ \label{fig:remoteness_dmu}
+\end{figure}
+
+Una forma de ver realmente cuándo el flujo no diverge de la localidad de $L_4$ es si podemos aislar la tendencia de la amplitud de los ciclos. Para esto, se puede usar un filtro de Hodrick-Prescott, que separa una serie de tiempo en tendencia y ciclo. Sea $y_t$ la variable de una serie de tiempo al tiempo $t$. Se asume que dicha serie está compuesta de una componente de tendencia $\tau_t$ más una componente ciclica $c_t$, es decir, $y_t = \tau_t + c_t$\footnote{Normalmente se incluye una componente de error $\eta_t$ que, en este caso, será absorbida por $c_t$.}. Así, uno puede encontrar la tendencia, como se plantea en \cite{Hodrick1997}, bajo el problema de minimización
+\begin{equation}
+ \min_{\tau} \left( \sum_{t=1}^T (y_t - \tau_t)^2 + \lambda \sum_{t=2}^{T-1} \left[ (\tau_{t+1} - \tau_t) - (\tau_t - \tau_{t-1}) \right]^2 \right)
+ \label{eq:hp-filter}
+\end{equation} 
+con $\lambda$ un parámetro positivo que regula la variabilidad en la componente de tendencia de la serie.
+
+Tomaremos la solución matricial lineal de \cite{Kim2004}  
+\begin{equation}
+ \mathbf{y}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right) \tau_t
+ \label{eq:hp_matrix}
+\end{equation}  
+al derivar (\ref{eq:hp-filter}) por $\tau_t$, donde
+\begin{align}
+ \mathbf{F} = \left[ \begin{array}{cccccccccc}
+ 1  & -2 & 1  & 0  & \cdots &        &        & & \cdots & 0    \\
+ -2 & 5  & -4 & 1  & 0      & \cdots &        & & \cdots & 0    \\
+ 1  & -4 & 6  & -4 & 1      & 0      & \cdots & & \cdots & 0    \\
+ 0  & 1  & -4 & 6  & -4 & 1 & 0      & \cdots &        & \vdots \\
+ \vdots  & \ddots  &  &  &  &  &  &  &        & \ddots          \\
+    &    &    &  0 &  1 &-4 &    6   & -4     &      1 & 0      \\
+   &   &  & \cdots &  0 & 1 &   -4   &  6     &      4 & 1      \\
+   &   &  &  &   \cdots & 0 &    1   &  -4    &      5 & 2      \\
+ 0 &\cdots&  &  &  & \cdots &    0   &   1    &     -2 & 1      \\
+ \end{array} \right].
+\end{align}
+
+ya que ésta es fácilmente programable. Así, de (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$, lo cual aplicamos a la figura \ref{fig:remoteness_dmu}, lo cual se refleja en la figura \ref{fig:trendcycle_dmu}. En ésta, es bastante claro cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) para abajo, la tendencia decrece después de determinado tiempo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$.
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{trends_dmu}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{cycles_dmu}
+\end{subfigure}
+\caption{ Separación en tendencia (izquierda) y ciclo(derecha) de los valores de la figura \ref{fig:remoteness_dmu} usando un filtro de Hodrick-Prescott con $\lambda = 8000$.}
+\label{fig:trendcycle_dmu}
+\end{figure}
+
+Hacer esta separación ayuda fuertemente al análisis de estabilidad de $\mu$ alrededor de $L_4$ y $L_5$ cuando $\mu = \mu_c \pm \delta\mu$, pero ¿Qué pasa en el caso donde $\mu \gg \mu_c$ como en el caso Tierra-Luna?
+
 
 \section{Colisión de asteroides}
 
