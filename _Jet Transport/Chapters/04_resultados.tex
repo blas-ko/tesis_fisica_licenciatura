@@ -1,4 +1,4 @@
-En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Rica es por elementos como la sensibilidad al parámetro de masa (\ref{eq:3body_mu}), la sensibilidad a condiciones inciales cercanas, las trayectorias discriminadas por su constante de Jacobi, o los cinco puntos lagrangianos (\ref{eq:3body_lag}). Esta sección busca explotar el transporte de jets como se describe en el capítulo \ref{sec:jt} así como los indicadores y herramientas desarrolladas en \ref{sec:jt_indicators}. 
+En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Rica es por elementos como la sensibilidad al parámetro de masa (\ref{eq:3body_mu}), la sensibilidad a condiciones inciales cercanas, las trayectorias discriminadas por su constante de Jacobi, o los cinco puntos lagrangianos (\ref{eq:3body_lag}). Esta sección busca explotar el transporte de jets como se describe en el capítulo \ref{sec:jt} así como los indicadores y herramientas desarrolladas en \ref{sec:jt_indicators}.
 
 En este capítulo se buscan explotar las propiedades dinámicas encontradas en \ref{chap:CR3BP} con ayuda de las herramientas planteadas en \ref{chap:jt_indicators}. Se utilizará al tranporte de jets en varias perspectivas donde, por ejemplo, se lo tratará como un integrador de flujo cuyas condiciones iniciales no se saben con presición, una herramienta para encontrar las ecuaciones de primera variación y más, método para encontrar las máximas y mínimas expansiones de la vecindad de una condición inicial dada en el espacio de configuraciones
 
@@ -13,11 +13,11 @@ Este capítulo se divide como sigue:
 %ξmax en algo que no sea ξgrid? 
 
 \section{Parametrización de $\mu$}
-Como se analizó en el capítulo \ref{sec:lag}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por \ref{eq:3.36}. 
+Como se analizó en la sección \ref{sec:lag_points}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por (\ref{eq:mu_critica}). 
 
 El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos, sin embargo, también es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la partícula que visita a $L_4$ o $L_5$.
 
-Para esto, se seguirá la filosofía de la sección \ref{sec:parametrizacion}, donde se agregará a las ecuaciones de movimiento la ecuación 
+Para esto, se seguirá la filosofía de la sección \ref{sec:parameter_variation}, donde se agregará a las ecuaciones de movimiento la ecuación 
 \begin{equation*}
  \dot{\mu} = 0.
 \end{equation*}
@@ -35,7 +35,7 @@ donde $\delta\mu \in \pkr$ y, por tanto, $\mu \in \pkr$ también. Se introduce l
  \label{fig:flow_dmu}
 \end{figure}
 
-Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad de la expresión (\ref{eq:ximax}), es decir, $\lvert \delta\mu \rvert \leq  \xi_{max}(\phi_\mu) \approx 0.033$ en este caso. Se puede ver en la figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales, que equivalen a unos $X$ años. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad. Una forma de observar este comportamiento de manera más clara es si medimos la separación de $\phi_\mu(t)$ respecto de $\xo$ para distintos valores de $\delta \mu$. La figura \ref{fig:} muestra esta separación en función del tiempo. Se puede observar que mientras mayor se la variación de $\mu$, mayor es la tendencia y mayor la amplitud de oscilación. 
+Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad de la expresión (\ref{eq:ximax}), es decir, $\lvert \delta\mu \rvert \leq  \xi_{max}(\phi_\mu) \approx 0.033$ en este caso. Se puede ver en la figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad. Una forma de observar este comportamiento de manera más clara es si medimos la separación de $\phi_\mu(t)$ respecto de $\xo$ para distintos valores de $\delta \mu$. La figura \ref{fig:remoteness_dmu} muestra esta separación en función del tiempo. Se puede observar que mientras mayor se la variación de $\mu$, mayor es la tendencia y mayor la amplitud de oscilación. 
 
 %FIGURA! 
 \begin{figure}
@@ -72,7 +72,7 @@ al derivar (\ref{eq:hp-filter}) por $\tau_t$, donde
  \end{array} \right].
 \end{align}
 
-ya que ésta es fácilmente programable. Así, de (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$, lo cual aplicamos a la figura \ref{fig:remoteness_dmu}, lo cual se refleja en la figura \ref{fig:trendcycle_dmu}. En ésta, es bastante claro cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) para abajo, la tendencia decrece después de determinado tiempo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$.
+ya que ésta es fácilmente programable. Así, de (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Separando de esta manera a la figura \ref{fig:remoteness_dmu}, podemos obtener el ciclo y la tendencia tal como se presenta en la figura \ref{fig:trendcycle_dmu}. En ésta, es bastante claro cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) para abajo, la tendencia decrece después de determinado tiempo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -92,7 +92,46 @@ ya que ésta es fácilmente programable. Así, de (\ref{eq:hp_matrix}), obtenemo
 
 Hacer esta separación ayuda fuertemente al análisis de estabilidad de $\mu$ alrededor de $L_4$ y $L_5$ cuando $\mu = \mu_c \pm \delta\mu$, pero ¿Qué pasa en el caso donde $\mu \gg \mu_c$ como en el caso Tierra-Luna?
 
+\subsection{Caso Tierra-Luna}
+Dado que en la adimensionalización de las ecuaciones de movimiento el problema queda planteado únicamente en términos de $\mu$, basta ver que en el caso Tierra-Luna $M_T = 5.972 \times 10^{24} kg $, $M_L = 7.348 \times 10^{22} kg$ y, por tanto, $\mu_{TL} = 0.01215$. Notamos que $\mu_{TL} \gg \mu_c$ por lo que alrededor de $L_4$ y $L_5$ debería haber órbitas estables, aún cuando $\delta\mu_{max}$ sea grande.
 
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{flow_tl}
+ \caption{Espacio de configuraciones para $\phi_\mu$ con variaciones $\delta\mu = 0$ (azul), $\delta\mu = \delta\mu_{max}$ (naranja), y $\delta\mu = -\delta\mu_{max}$ (verde), donde $\delta\mu_{max} = \xi_{max}(\phi_\mu) \approx 0.0063$. Para el transporte se usó un jet de orden $n=18$ con condiciones iniciales $\left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$.}
+ \label{fig:flow_tl}
+\end{figure}
+
+Primero, al hacer el transporte de jets a $40$ unidades temporales y ver el espacio de configuraciones como se muestra en la figura \ref{fig:flow_tl}, se observa cómo las tres trayectorias $\delta\mu = \left\lbrace -\delta\mu_{max}, 0, \delta\mu_{max} \right\rbrace$ quedan siempre orbitando alrededor de $L_4$, es decir, no divergen. Resulta que $\delta\mu_{max} = 0.0063 $, lo cual equivale a una variación del $52.14 \%$ respecto a $\mu_{TL}$. Para ponerlo en perspectiva, $\mu_{TL}$ equivale a que la masa primaria (la Tierra) es unas $81$ veces más grande que la secundaria (luna); $\mu_{TL} \pm \delta\mu_{max}$ equivale a que la masa primaria sea $53$ y $171$ veces, respectivamente. Análogo a la figura \ref{fig:remoteness_dmu}, se hace la gráfica de separación respecto a $\xo$ en la figura \ref{fig:remoteness_tl}. Aquí se puede observar que, aunque al principio (cerca de las $10$ unidades temporales) parecería empezar una tendencia similar al caso anterior, rápidamente pierda dicho orden y se vuelven oscilaciones completamente arbitrarias, sin tener una tendencia aparente y con amplitudes similares de ciclo.
+
+%FIGURA!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{remoteness_tl}
+ \caption{Diferencia $\Delta\phi_\mu(t) = \norm{ \phi_\mu(t) - \xo }$ del espacio de configuraciones para $\delta\mu \in \left\lbrace -\delta\mu_{max}, -2\delta\mu_{max}/3, -\delta\mu_{max}/3, 0, \delta\mu_{max}/3, 2\delta\mu_{max}/3, \delta\mu_{max}  \right\rbrace$.}
+ \label{fig:remoteness_tl}
+\end{figure}
+
+De hecho, en la figura \ref{fig:trendcycle_tl} se muestran los gráficas al aplicar el filtro de Hodrick-Prescott. Al aplicar dicho filtro, ¡No se puede observar absolutamente nada! Ni la gráfica de ciclo ni la de tendencia tienen ninguna coherencia en realción a las variaciones del parámetro de masa. Esto significa que $\mu_{TL} + \delta\mu$ es, en efecto, estable para todo el conjunto de valores $\delta\mu$ evaluados alrededor de $L_4$ y $L_5$. Este es un caso donde el TJ es una herramienta natural para evaluar la estabilidad de éstos puntos lagrangianos y para ver cómo varían las trayectorias en función de los parámetros del problema-. Muchas otras exploraciones se pueden hacer con variación de parámetros en el problema de tres cuerpos. Sin embargo, este análisis basta para ver las capacidades del TJ cuando no son específicamente ``Jets'' los que transporta.
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{trends_tl}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{cycles_tl}
+\end{subfigure}
+\caption{ Separación en tendencia (izquierda) y ciclo(derecha) de los valores de la figura \ref{fig:remoteness_tl} usando un filtro de Hodrick-Prescott con $\lambda = 8000$.}
+\label{fig:trendcycle_tl}
+\end{figure}
+
+\pagebreak
 \section{Colisión de asteroides}
 
 %%% Choro acerca de dos asteroides colisionando. %%% 
@@ -105,7 +144,9 @@ Hacer esta separación ayuda fuertemente al análisis de estabilidad de $\mu$ al
 
 %con velocidad $\mathbf{v}_{a_1}(t_0) + \delta\mathbf{v}_{a_1}(t_0)$
 
-Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de la masa primaria mayor. Inicialmente, éstos se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente, donde $\delta\mathbf{x}_{a_i} \in \pkk{n}{2}$. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
+Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de la masa primaria mayor. Inicialmente, éstos se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente, donde $\delta\mathbf{x}_{a_i} \in \pkk{n}{2}$. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ \cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
+
+La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el transporte de jets de la siguiente manera: 
 
 %FIGURA!
 \begin{figure}
@@ -115,8 +156,6 @@ Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de l
  y $\mathbf{q}_{a_2}(t_0) = \left( -0.27324, -0.307896, -0.307576, \dot{y}_{a_2} \left( x_{a_2}(t_0), y_{a_2}(t_0), \dot{x}_{a_2}(t_0), C_J \right) \right)$. El círculo naranja representa a $M_1$, y los círculos verde y gris a $\mathbf{q}_{a_1}(t_0)$ y $\mathbf{q}_{a_2}(t_0)$, respectivamente. La zona de mayor acercamiento se marca con cruces, donde en ésta, la distancia entre los asteroides es de $0.00348 \approx 1341$ km.}
  \label{fig:asteroid_collision_nominal_integration}
 \end{figure}
-
-La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el transporte de jets de la siguiente manera: 
 
 \begin{itemize}
  \item Hacer una integración nominal de dos asteroides con energías similares o que se sepa que pueden tener riesgo de colisión.
