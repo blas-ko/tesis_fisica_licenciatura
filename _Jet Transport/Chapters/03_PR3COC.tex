@@ -275,6 +275,7 @@ donde $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x})$ y encontrar los eigenvalores d
   \pder{\dot{v_x}(\mathbf{x}_{L_i})}{x} & \pder{\dot{v_x}(\mathbf{x}_{L_i})}{y} & 0 & 2 \Omega \\
   \pder{\dot{v_y}(\mathbf{x}_{L_i})}{x} & \pder{\dot{v_y}(\mathbf{x}_{L_i})}{y} & -2\Omega & 0
 \end{bmatrix}
+\label{eq:stability_CR3BP}
 \end{equation}
 representa dicha matriz, y ésta será evaluada en los puntos lagrangianos $\mathbf{x}_{L_i}$, donde 
 \begin{align}
@@ -311,6 +312,7 @@ Estos puntos serán estables si sus eigenvalores son puramente imaginarios, cuya
 Lo primero es equivalente a que 
 \begin{equation}
  \mu \leq \frac{1}{2} \left(1 - \sqrt{\frac{23}{27}} \right) \approx 0.0385
+ \label{eq:mu_critica}
 \end{equation}
 y lo segundo se da siempre que lo primero se cumple\footnote{Esto es equivalente a que la masa principal sea aproximadamente $25$ veces más masiva que la otra.}.
 
