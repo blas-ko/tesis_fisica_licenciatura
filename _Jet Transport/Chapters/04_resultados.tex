@@ -292,12 +292,39 @@ p_y &\to p_y + \Omega x
 y aplicar la relación (\ref{eq:sympletic_flow}).
 
 %FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{non_symplectic_L1}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{non_symplectic_L4}
+\end{subfigure}
+\caption{ $\varsigma(t)$ para $\phi(t)$ sin modificar el flujo. Las condiciones iniciales son $\xo = \left( \left( L_{1_x}, 0.001, 0, 0 \right)^T + \delta \xi \right) $ (izquierda) y $ \xo = \left( \left( L_{4_x}, L_{4_y} + 0.001, 0, 0 \right)^T + \delta \xi \right) $ (derecha) para $\delta \xi$ un polinomio de orden $3$.}
+\label{fig:non_symplectic_L4_L1}
+\end{figure}
 
-Si uno no hace dichas transformaciones, parecerá que el problema no conserva la forma simpléctica, tal como en el ingenuo intento que se muestra en la figura \ref{fig:} para diferentes condiciones iniciales. Para obtener $\varsigma$ se utiliza la ecuación (\ref{eq:scalar_symplecticity}) que, como se discute en la sección \ref{sec:}, opera de manera muy natural con el TJ, ya que la parametrización de las vecindades del espacio fase permite computar al jacobiano en cada punto de manera directa.
+Si uno no hace dichas transformaciones, parecerá que el problema no conserva la forma simpléctica, tal como en el ingenuo intento que se muestra en la figura \ref{fig:non_symplectic_L4_L1} para diferentes condiciones iniciales. Para obtener $\varsigma$ se utiliza la ecuación (\ref{eq:scalar_symplecticity}) que, como se discute en la sección \ref{sec:}, opera de manera muy natural con el TJ, ya que la parametrización de las vecindades del espacio fase permite computar al jacobiano en cada punto de manera directa.
 
-La figura \ref{fig:}, en cambio, muestra la conservación simpléctica del PC3C bajo la transformación (\ref{eq:momentum_transformation}), donde se observa cómo $\varsigma(t)$ se mantiene constante durante toda la inegración. En ésta, se tomaron las mismas dos condiciones iniciales que en la figura \ref{fig:}; una cerca de $L_4$, que es una trayectoría estable, y otra cerca de $L_1$, que orbita alrededor de la masa primaria menor. Se puede observar cómo en la condición más estable la conservación de la simplecticidad varía en unos dos órdenes de magnitud menos que cerca de $L_1$. Sin emabrgo, ambas tienen variaciones menor a $10^{-10}$ en cada punto de la trayectoria, porl o que podemos decir que, en efecto, el sistema es simpléctico. Esta es una aplicación muy directa para el TJ que aprovecha su estructura paramétrica, de la cual se pueden obetener el jacobiano o incluso variaciones de órdenes mayores. 
+La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpléctica del PC3C bajo la transformación (\ref{eq:momentum_transformation}), donde se observa cómo $\varsigma(t)$ se mantiene constante durante toda la inegración. En ésta, se tomaron las mismas dos condiciones iniciales que en la figura \ref{fig:non_symplectic_L4_L1}; una cerca de $L_4$, que es una trayectoría estable, y otra cerca de $L_1$, que orbita alrededor de la masa primaria menor. Se puede observar cómo en la condición más estable la conservación de la simplecticidad varía en unos dos órdenes de magnitud menos que cerca de $L_1$. Sin emabrgo, ambas tienen variaciones menor a $10^{-10}$ en cada punto de la trayectoria, porl o que podemos decir que, en efecto, el sistema es simpléctico. Esta es una aplicación muy directa para el TJ que aprovecha su estructura paramétrica, de la cual se pueden obetener el jacobiano o incluso variaciones de órdenes mayores. 
 
 %FIGURA!
-
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{symplectic_L1}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{symplectic_L4}
+\end{subfigure}
+\caption{$\varsigma(t)$ para $\phi(t)$ con las transformaciones (\ref{eq:momentum_transformation}). Las condiciones iniciales son $\xo = \left( \left( L_{1_x}, 0.001, 0, 0 \right)^T + \delta \xi \right) $ (izquierda) y $ \xo = \left( \left( L_{4_x}, L_{4_y} + 0.001, 0, 0 \right)^T + \delta \xi \right) $ (derecha) para $\delta \xi$ un polinomio de orden $3$.}
+\label{fig:symplectic_L4_L1}
+\end{figure}
 
 %Valdrá la pena hacer un análisis simpléctico de mayor dimensión?
