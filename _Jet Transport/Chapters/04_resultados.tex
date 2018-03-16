@@ -221,3 +221,72 @@ Algo relevante al hacer transporte de jets es la presición de éste. Se encuent
 Así, ilustramos el método de posible colisión entre asteroides, donde se estableció la probabilidad de impacto para diferentes zonas de colisión. El transporte de jets permitió encontrar dichas probabilidades ya que en éste, simplemente hubo que evaluar la distribución de variaciones iniciales en un radio dado. Éste método es generalizable a cualquier sistema donde exista alguna incertidumbre en las condiciones iniciales. Sin embargo, hay que tener claro que el transporte de jets no es muy preciso para integraciones muy largas ni para vecindades muy grandes. En este ejemplo, el radio de las variaciones eran $0.46$ veces más pequeñas que $\xi_{max}$. Además, se hizo la integración de jets cerca del punto de posible colisión para tener tiempo de integración cortos. 
 
 %Mencionar adimensionalización del tiempo para ver cuánto implica 1 unidad temporal.
+
+\section{Simplecticidad del PC3C}
+Se construyeron en la sección \ref{sec:3BP} los potenciales (\ref{eq:3body_potential}) y sus respectivas energías cinéticas (\ref{eq:3body_kinetic}) del problema general de tres cuerpos. Estas nos permiten definir al hamiltoniano
+\begin{equation}
+ H(\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3, \mathbf{p}_1, \mathbf{p}_2, \mathbf{p}_3) = \sum_{i=1}^3 h_i(r_{i,j}, r_{i,k}, \mathbf{p}_i)
+ \label{eq:3BP_hamiltonian}
+\end{equation} 
+donde $\mathbf{p}_i = M_i \dot{\mathbf{r}}_i$ es el momento conjugado y
+\begin{equation}
+ h_i(r_{i,j}, r_{i,k}, \mathbf{p}_i) = \frac{1}{2 M_i} p_i^2 + U_{M_i}(r_{i,j}, r_{i,k})
+ \label{eq:individual_hamiltonian}
+\end{equation}
+es el hamiltoniano para cada una de los cuerpos. Notemos que (\ref{eq:3BP_hamiltonian}) no depende del tiempo y, por lo tanto, es un sistema conservativo. 
+
+Cuando en la sección \ref{sec:R3BP} se supuso que la masa menor no inlfuye en la dinámica de las masas primarias, bastó con hacer una rotación con velocidad angular $\Omega$ para encontrar las ecuaciones de movimiento de $m_3$. Esto fija las masas primarias y modifica el hamiltoniano para la masa menor ya que el potencial de $M_2$ se cancela con el de $M_1$. Dicha rotación se puede realizar bajo el cambio de coordenadas
+\begin{align*}
+ x &= X\cos (\Omega t) - Y \sin (\Omega t) \\
+ y &= X\sin (\Omega t) - Y \cos (\Omega t) 
+\end{align*} 
+con $(x,y)$ y $(X,Y)$ las nuevas y viejas coordenadas para $m_3$, respectivamente, tal como se muestra en la figura \ref{fig:}.
+
+Para obtener el hamiltoniano modificado, que en alguna literatura se llama Kamiltoniano \cite{Goldstein2007, etc}, es necesario ver cómo se modifica momento conjugado en el nuevo sistema y, para esto, se debe conservar el principio de mínima acción
+
+\begin{align}
+ \delta \int_{t_0}^t \left( \dot{\mathbf{r}} \cdot \mathbf{p} - K(\mathbf{r}, \mathbf{p}, \tau) \right) d\tau &= 0 \nonumber \\
+ \delta \int_{t_0}^t \left( \dot{\mathbf{R}} \cdot \mathbf{P} - H(\mathbf{R}, \mathbf{P}, \tau) \right) d\tau &= 0
+ \label{eq:kamiltonian_condition}
+\end{align}
+en ambos ejes, lo cual sucede si
+\begin{equation}
+ \dot{\mathbf{R}} \cdot \mathbf{P} - H(\mathbf{R}, \mathbf{P}) = \dot{\mathbf{r}} \cdot \mathbf{p} - K(\mathbf{r}, \mathbf{p}, t) + \frac{dG(\mathbf{R}, \mathbf{p}, t)}{dt}
+\end{equation}
+donde $\mathbf{P} = (P_x,P_y)$, $\mathbf{R} = (X,Y)$, $\mathbf{p} = (p_x,p_y)$, $\mathbf{r} = (x,y)$, $K$ es el Kamiltoniano y $G$ es una función que genera una transformación canónica entre ambos sistemas, también conocida como función generatriz de tipo 2 \cite{generatriz}. Notemos que como $\frac{dG}{dt} = \pder{G}{\mathbf{R}}\dot{\mathbf{R}} + \pder{G}{\mathbf{p}}\dot{\mathbf{p}} + \pder{G}{t}$ entonces
+\begin{align}
+ \mathbf{P} &= \pder{G}{\mathbf{R}} \nonumber \\
+ \mathbf{r} &= \pder{G}{\mathbf{p}} \nonumber \\
+ \therefore K(\mathbf{r}, \mathbf{p}) &= H(\mathbf{r}, \mathbf{p}) + \pder{G}{t} (\mathbf{r}, \mathbf{p}).
+ \label{eq:kamiltonian_formulae}
+\end{align}
+
+$G$ se define simplemente como
+\begin{equation}
+ G(\mathbf{R}, \mathbf{p}, t) = p_x \underbrace{\left( X \cos (\Omega t) - Y \sin (\Omega t) \right) }_{x} + p_x (\underbrace{ \left( X \sin (\Omega t) + Y \cos (\Omega t) \right)}_{y} .
+ \label{eq:generating_function}
+\end{equation}
+
+Con esto y las ecuaciones de (\ref{eq:kamiltonian_formulae}) podemos escribir explícitamente el kamiltoniano como
+\begin{equation}
+ K(\mathbf{r}, \mathbf{p}) = \underbrace{ \frac{1}{2M_3}\left( p_x^2 + p_y^2 \right) - G \frac{M_1}{r_{1,3}} - G \frac{M_2}{r_{2,3}}}_{H(\mathbf{r}, \mathbf{p}) } + \underbrace{\Omega\left( p_y x - p_x y \right) }_{\pder{G}{t}(\mathbf{r}, \mathbf{p})}
+\end{equation}
+\begin{equation}
+ \therefore K = \frac{1}{2M_3} \left( (p_x - \Omega y)^2 + (p_y + \Omega x)^2 \right) - \left(G \frac{M_1}{r_{1,3}} + G \frac{M_2}{r_{2,3}} + \frac{\Omega}{2}\left( x^2 + y^2 \right) \right).
+ \label{eq:kamiltonian}
+\end{equation}
+
+%FIGURA!
+
+Así, para probar la simplecticidad del PC3C, basta con hacer las transformaciones 
+\begin{align*}
+p_x &\to p_x - \Omega y \\
+p_y &\to p_y + \Omega x
+\end{align*} 
+y aplicar entonces la relación (\ref{eq:sympletic_flow}).
+
+No se puede conseguir simplecticidad en $h_3$ sin hacer la transformación canónica dado que sin ésta, la presencia de las dos masas primarias sí influyen en el potencial. En la figura \ref{fig:} se muestra el ingenuo intento de esto. Al hacer la rotación angular $\Omega t$ aparecen la fuerza centrípeta y la fuerza de corielos, que se ven presentes en (\ref{eq:kamiltonian}). En partícular, la fuerza de Coriolis nos lleva a (\ref{eq:coriolis_transformations}), la cual es necesaria para la conservación simpléctica. La figura \ref{fig:}. 
+
+%Hablar de cómo el jet trasnport ayuda para todo esto. 
+%Usar el teorema del hamiltoniano trunco
+%Meter gráficas
