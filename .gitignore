@@ -9,6 +9,9 @@
 *.gz
 *.toc
 *.loa
+*.dvi
+*.blg
+*bibexport.bib
 
 #Mac Garbage
 .DS_Store
