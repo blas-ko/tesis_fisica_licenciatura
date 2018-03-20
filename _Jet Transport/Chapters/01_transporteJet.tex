@@ -78,7 +78,7 @@ h & 1  \\
 \end{array} \right] (\xi_1,\xi_2)^T.
 \end{align*} 
 
-El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin el transporte de jets. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$'s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}(\xi)$. De este modo, el TJ se plantea a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$, al operar siempre con polinomios y no con números, suele ser más lenta que la de una única trayectoria que pasa por $\xo$ en $t_0$. Naturalmente, el tiempo en donde uno u otro método es mejor es discutible y dependerá fuertemente de la complejidad y la dimensionalidad de las ecuaciones presentes en el sistema\footnote{Para una discusión más a fondo sobre este tema, revisar la sección \ref{sec:}, donde se hacen varios benchmarks en relación al tiempo de cómputo y la memoria utilizada.}.
+El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin el transporte de jets. El segundo término es la solución de las ecuaciones variacionales de primer order para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$'s. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}(\xi)$. De este modo, el TJ se plantea a ser un buen método para hacer simulaciones de Montecarlo de manera muy rápida, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. La única desventaja en esto es que la integración de $\U_{\xo}$, al operar siempre con polinomios y no con números, suele ser más lenta que la de una única trayectoria que pasa por $\xo$ en $t_0$. Naturalmente, el tiempo en donde uno u otro método es mejor es discutible y dependerá fuertemente de la complejidad y la dimensionalidad de las ecuaciones presentes en el sistema\footnote{Para una discusión más a fondo sobre este tema, revisar la sección \ref{sec:benchmark_resultados}, donde se hacen varios benchmarks en relación al tiempo de cómputo y la memoria utilizada.}.
 
 Se podría seguir haciendo el desarrollo del TJ iterativamente con el método de Euler. Por ejemplo, el segundo paso quedaría como 
 \begin{align*}
@@ -176,7 +176,7 @@ Sean $A,B \in \pk$ con $A = \polk{a_k}$ y $B = \polk{b_k} \ a_k,b_k \in \mathbb{
 así, se define \textbf{$+$}  en $\pk$ como
 \begin{equation}
 A + B = \polk{(a_k + b_k)}.
-\label{eq: polsum}
+\label{eq:polsum}
 \end{equation}
 
 Para el producto, notemos que
@@ -190,7 +190,7 @@ así, se define \textbf{$\cdot$}  en $\pk$ como
 
 \begin{equation}
 A \cdot B = \polk{\sum_{j=0}^k a_{k-j}b_j}.
-\label{eq: polprod}
+\label{eq:polprod}
 \end{equation}
 Aún cuando las operaciones están definidas inspiradas en la aritmética de los números, $\mathbb{K}$ puede ser cualquier campo arbitrario.
 
@@ -200,7 +200,7 @@ Para $\mathbb{K} = \mathbb{R}$ o $\mathbb{C}$, $\algpol$ forma un campo.
 \end{proposicion}
 
 \begin{proof}
-Basta probar las nueve propiedades de campo con las operaciones de \ref{eq: polsum} y \ref{eq: polprod}.
+Basta probar las nueve propiedades de campo con las operaciones de \ref{eq:polsum} y \ref{eq:polprod}.
 Sean $A$, $B$ y $C \in \pk$
 \begin{enumerate}
 
@@ -575,7 +575,7 @@ Así, contruimos el lagrangiano del sistema
 \begin{equation*}
  \mathcal{L}(\theta,\dot{\theta}) = K - U = \frac{1}{2} m l^2 \dot{\theta}^2 - mgl\left(1 - \cos{\theta} \right).
 \end{equation*}
-Sabemos, por (\ref{eq:lagr-ham-rel}), que
+Sabemos que
 \begin{equation*}
  \mathbf{p} = \frac{\partial \mathcal{L}}{\partial \mathbf{\dot{q}}} = ml^2\dot{\theta}
 \end{equation*}

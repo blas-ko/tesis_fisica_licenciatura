@@ -4,7 +4,7 @@ Hay que destacar que el transporte de jets no sirve únicamente para dar indicad
 
 \subsection{Un poco de motivación vía exponentes de Lyapunov}
 
-El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad $\Uxo$ en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados por saber qué pasa en la vecindad de una condición inicial $\xo$ bajo la aproximación lineal del campo vectorial que define su trayectoria. Surge de aquí la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar cómo se separan dos soluciones cercanas dadas por las trayectorias de $\xo$ y la aproximación lineal de la trayectoria de $\xo + \delta\xo$. Esto permitirá encontrar componentes de caos , estructuras lagrangianas, separatrices, ciclos límite, entre otras, \cite{Perez2015,Perez2012}. 
+El transporte de jets es relevante en el sentido de poder hacer variaciones de tamaño $\delta x$ alrededor de $\xo$ y ver cómo evoluciona el flujo $\flowU$ de toda la vecindad $\Uxo$ en el tiempo. Respecto a esto, son conocidos los esfuerzos realizados por saber qué pasa en la vecindad de una condición inicial $\xo$ bajo la aproximación lineal del campo vectorial que define su trayectoria. Surge de aquí la idea de los \textit{Exponentes de Lyapunov a Tiempo Finito}, o ELTF, que busca encontrar cómo se separan dos soluciones cercanas dadas por las trayectorias de $\xo$ y la aproximación lineal de la trayectoria de $\xo + \delta\xo$. Esto permitirá encontrar componentes de caos , estructuras lagrangianas, separatrices, ciclos límite, entre otras, \cite{Perez2015,Perez2013}. 
 
 Sea $\dot{\mathbf{x}}(t) = \mathbf{f}(\mathbf{x}(t),t) = A\mathbf{x}+\mathcal{O}(\mathbf{x}^2)$ un sistema de $d$ grados de libertad que describe un campo vectorial con parte lineal $A \mathbf{x}$. Si nos quedamos únicamente con ésta, podemos encontrar la solución explícita al sistema
 \begin{equation*}
@@ -35,13 +35,13 @@ Los ELTF son, en escencia, indicadores escalares que, para cada punto $\mathbf{x
 \end{equation}
 y hacer un análisis (lineal) un poco más riguroso sobre las variaciones $\delta \mathbf{x}$.
 
-Es importante resaltar que en los casos donde $\delta \xo$ se aleja de $\xo$ en el tiempo, la separación puede volverse tan grande que la aproximación lineal planteada por (\ref{eq:lyap-sep}) no es válida. Por esto, como se sugiere en \cite{ChaosBook}, es conveniente, dada la separación  $\delta \mathbf{x}(\Delta t_1)$ en un intervalo $\Delta t_1$ donde valga la aproximación lineal, encontrar $\lambda_1 = \lambda_{\xo}^{\Delta t_1}$ para éste intervalo y luego reescalar $\delta \mathbf{x}(\Delta t_1)$ en un factor de $\norm{ \delta \xo / \delta \mathbf{x}(\Delta t_1) }$ para que la magnitud de la separación después de éste intervalo de tiempo sea igual que la inicial $\delta \xo$. Con esto, se puede encontrar el exponente (\ref{eq:lyap-exp}) para tiempos largos con
+Es importante resaltar que en los casos donde $\delta \xo$ se aleja de $\xo$ en el tiempo, la separación puede volverse tan grande que la aproximación lineal planteada por (\ref{eq:lyap-sep}) no es válida. Por esto, como se sugiere en \cite{CBLyapunovExponents}, es conveniente, dada la separación  $\delta \mathbf{x}(\Delta t_1)$ en un intervalo $\Delta t_1$ donde valga la aproximación lineal, encontrar $\lambda_1 = \lambda_{\xo}^{\Delta t_1}$ para éste intervalo y luego reescalar $\delta \mathbf{x}(\Delta t_1)$ en un factor de $\norm{ \delta \xo / \delta \mathbf{x}(\Delta t_1) }$ para que la magnitud de la separación después de éste intervalo de tiempo sea igual que la inicial $\delta \xo$. Con esto, se puede encontrar el exponente (\ref{eq:lyap-exp}) para tiempos largos con
 \begin{equation*}
  \lambda_{\xo}^t = \frac{1}{t} \sum_{i} \Delta t_i \lambda_i
     \quad\text{,}\quad 
  \sum_i \Delta t_i = t
 \end{equation*}
-evitando así problemas en las no linealidades\footnote{Suena muy lindo pero no es cierto siempre; ver \ref{eq:} } y tomando en cuenta, además, los casos donde $\mathbf{f}(\mathbf{x}(t),t) = A(t)\mathbf{x} + \ldots $, ya que cada exponente $\lambda_i$ se haría en relación a $A(t_i)$.
+evitando así problemas en las no linealidades y tomando en cuenta, además, los casos donde $\mathbf{f}(\mathbf{x}(t),t) = A(t)\mathbf{x} + \ldots $, ya que cada exponente $\lambda_i$ se haría en relación a $A(t_i)$.
 
 Sea $\phi: \mathbb{R} \times \mathbb{R} \times \mathcal{D} \to \mathcal{D}$, $\mathcal{D} \subset \mathbb{C}^d$ el flujo de $\dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)$, donde
 
@@ -147,7 +147,7 @@ Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin 
 	\label{fig:dE_ximax_ah}
 \end{figure}
 
-En la figura \ref{fig:dE_ximax_ah} retomamos al sistema \ref{eq:artifical_ode} que, en su momento, vimos cómo su energía divirgió; ahora podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido aleatoriamente en la sección \ref{sec:benchmark-taylor}. 
+En la figura \ref{fig:dE_ximax_ah} retomamos al sistema (\ref{eq:artificial_ode}) que, en su momento, vimos cómo su energía divirgió; ahora podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido aleatoriamente en la sección \ref{sec:benchmark-taylor}. 
 
 $\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importantemente, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en \textbf{órdenes no lineales de la vecindad de las soluciones}. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
 
@@ -290,7 +290,7 @@ Sea $\omega$ una matriz que cumple las propiedades (\ref{eq:omega_properties}). 
 
 Las matrices que cumplen la definición anterior forman un \textbf{grupo simpléctico} denotado $Sd(d)$, que son un caso particular de los grupos de Lie.
 
-Los \textbf{grupos de Lie} son grupos cuyos elementos dependen de un número finito de parámetros, i.e., $g = g(\eta) = g(\eta_1,\ldots,\eta_N)$. Dicho esto, y como se menciona en \cite{ChaosBook}, para los cálculos se suele escoger una base para operar dichas matrices y, para transformaciones infinitesimales del espacio fase, éstas toman la forma
+Los \textbf{grupos de Lie} son grupos cuyos elementos dependen de un número finito de parámetros, i.e., $g = g(\eta) = g(\eta_1,\ldots,\eta_N)$. Dicho esto, y como se menciona en \cite{CBHamiltonianDynamics}, para los cálculos se suele escoger una base para operar dichas matrices y, para transformaciones infinitesimales del espacio fase, éstas toman la forma
 \begin{equation}
  g(\delta \eta) := \mathbf{1} + \delta \eta \mathbf{T}
  \label{eq:symp_infinit_rotation}
@@ -433,16 +433,14 @@ Si $H$ define un sistema hamiltoniano, entonces $\mathcal{H}$ es simpléctico.
 
 Así, como sabemos que los ejemplos construidos hasta ahora son vienen de un hamiltoniano $H(q,p)$, entonces la expansión polinomial $f(P_{0,(0,0)}(\xi))$ debe define una matriz de estabilidad simpléctica. 
 
-Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{eq:symplectic_condition}) e interpretando la matriz $g$. Hay una visión geométrica que plantea Arnold \cite{Arnold}, donde una transformación simplética es %CHORO
-. De este modo, la matriz $g$ se puede representar con el jacobiano de $\phi(t;t_0,\xo)$ y, para cualquier tiempo $t$ del flujo, un sistema es simpléctico cumple
+Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{eq:symplectic_condition}) e interpretando la matriz $g$. Hay una visión geométrica que plantea Arnold \cite{Arnold1989} en su capítulo de variedades simplécticas, donde una estructura simplética es simplemente una 2-forma cerrada, lo cual representa la conservación del espacio fase. De este modo, la matriz $g$ se puede representar con el jacobiano de $\phi(t;t_0,\xo)$ y, para cualquier tiempo $t$ del flujo, un sistema es simpléctico cumple
 \begin{equation}
  J(\phi(t))^T \omega J(\phi(t)) = \omega \ \forall t.
  \label{eq:sympletic_flow}
 \end{equation} 
+tal como se propone en la sección 42 de dicho capítulo del Arnold.
 
-Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema dado. 
-
-Como el transporte de jets parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano\footnote{No todos los sistemas simplécticos son hamiltonianos, pero nos restringiremos únicamente a los que sí.}.
+Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema dado. Como el transporte de jets parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano\footnote{No todos los sistemas simplécticos son hamiltonianos, pero nos restringiremos únicamente a los que sí.}.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -455,6 +453,7 @@ Como el transporte de jets parametriza las vecindades de una trayectoria en el e
 La figura \ref{fig:simplecticity_pendulum} muestra la variación de la cantidad $\varsigma(t)$ para el péndulo simple en términos de $\epsilon_{mahcine}$. Ésta se define como
 \begin{equation}
  \varsigma(t) = \sum_{i,j} |\left[ J(\phi(t))^T \omega J(\phi(t)) - \omega \right]_{i,j}|
+ \label{eq:scalar_symplecticity}
 \end{equation}
 y no es más que la suma de los valores absolutos de los elementos de matriz de (\ref{eq:sympletic_flow}). $\varsigma$ es una forma escalar de representar la simplecticidad del sistema para poder visualizarlo gráficamente para cada paso temporal.
   
@@ -510,16 +509,17 @@ Para hacer esto con el transporte de jets, basta con incluir al parámetro o los
  \dot{\omega^2} &= 0
 \end{align*}.
  
-La figura \ref{fig:} muestra el trasnporte de jets para $\omega^2$ para una condición inicial, donde $\omega^2 = \omega_0^2 + \delta \xi$, con $\delta \xi$ la variación de $\omega^2$ dada por el transporte. 
-
 %FIGURA! 
 \begin{figure}[h!]
  \centering 
  \includegraphics[width=0.8\linewidth]{oscillator_domega2}
  \caption{Solución para condición inicial $\xo = (1,0,0)$ y variación del parámetro para $\delta \omega^2 = 0.5$ en la izquierda y $-0.5$ en la derecha. $\delta \omega$ es un polinomio de orden $30$, y la expansión de Taylor para la solución es de orden $28$, con tolerancia de $10^{-20}$. Son $25$ pasos de integración de $0$ a $2 \pi$.}
+ \label{fig:oscillator_param_transport}
 \end{figure}
 
-Resulta que el transporte de jets sí obtiene el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
+La figura \ref{fig:oscillator_param_transport} muestra el trasnporte de jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el transporte de jets sí obtiene el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
+
+El flujo conserva la energía cada vez menos conforme pasa el tiempo como se observa en la figura \ref{fig:oscillator_dE_domega}; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -529,6 +529,5 @@ Resulta que el transporte de jets sí obtiene el cambio de topología dado por e
  \label{fig:oscillator_dE_domega}
 \end{figure}
 
-El flujo conserva la energía cada vez menos conforme pasa el tiempo como se observa en la figura \ref{fig:oscillator_dE_domega}; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
 
 %Pequeña conclusión de sección ? 

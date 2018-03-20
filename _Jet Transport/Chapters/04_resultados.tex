@@ -240,11 +240,11 @@ Cuando en la sección \ref{sec:R3BP} se supuso que la masa menor no inlfuye en l
  x &= X\cos (\Omega t) - Y \sin (\Omega t) \\
  y &= X\sin (\Omega t) - Y \cos (\Omega t) 
 \end{align*} 
-con $(x,y)$ y $(X,Y)$ las nuevas y viejas coordenadas para $m_3$, respectivamente, tal como se muestra en la figura \ref{fig:}.
+con $(x,y)$ y $(X,Y)$ las nuevas y viejas coordenadas para $m_3$, respectivamente, tal como se muestra en la figura \ref{fig:FIGURA!}.
 
 %FIGURA!
 
-Para obtener el hamiltoniano modificado, que en alguna literatura se llama kamiltoniano \cite{Goldstein2007, etc}, es necesario ver cómo se modifica el momento conjugado en el nuevo sistema donde, para esto, se debe conservar el principio de mínima acción
+Para obtener el hamiltoniano modificado, que en alguna literatura se llama kamiltoniano \cite{Goldstein2007, Johns2011}, es necesario ver cómo se modifica el momento conjugado en el nuevo sistema donde, para esto, se debe conservar el principio de mínima acción
 
 \begin{align}
  \delta \int_{t_0}^t \left( \dot{\mathbf{R}} \cdot \mathbf{P} - H(\mathbf{R}, \mathbf{P}, \tau) \right) d\tau &= 0 \nonumber \\
@@ -255,7 +255,7 @@ en ambos ejes, lo cual sucede si
 \begin{equation}
  \dot{\mathbf{R}} \cdot \mathbf{P} - H(\mathbf{R}, \mathbf{P}) = \dot{\mathbf{r}} \cdot \mathbf{p} - K(\mathbf{r}, \mathbf{p}, t) + \frac{dG(\mathbf{R}, \mathbf{p}, t)}{dt}.
 \end{equation}
-Aquí $\mathbf{P} = (P_x,P_y)$, $\mathbf{R} = (X,Y)$, $\mathbf{p} = (p_x,p_y)$, $\mathbf{r} = (x,y)$, $K$ es el kamiltoniano y $G = - \mathbf{r} \cdot \mathbf{p} + G_2(\mathbf{R}, \mathbf{p}, t)$ es una función que genera una transformación canónica entre ambos sistemas, también conocida como función generatriz de tipo 2 \cite{generatriz}. Notemos que como 
+Aquí $\mathbf{P} = (P_x,P_y)$, $\mathbf{R} = (X,Y)$, $\mathbf{p} = (p_x,p_y)$, $\mathbf{r} = (x,y)$, $K$ es el kamiltoniano y $G = - \mathbf{r} \cdot \mathbf{p} + G_2(\mathbf{R}, \mathbf{p}, t)$ es una función que genera una transformación canónica entre ambos sistemas, también conocida como función generatriz de tipo 2 \cite{CanonicalTransformations}. Notemos que como 
 \begin{align*}
  \frac{dG}{dt} =  - \dot{\mathbf{r}}\cdot \mathbf{p} - \mathbf{r}\cdot \dot{\mathbf{p}} + \pder{G_2}{\mathbf{R}}\dot{\mathbf{R}} + \pder{G_2}{\mathbf{p}}\dot{\mathbf{p}} + \pder{G_2}{t}
 \end{align*}
@@ -307,7 +307,7 @@ y aplicar la relación (\ref{eq:sympletic_flow}).
 \label{fig:non_symplectic_L4_L1}
 \end{figure}
 
-Si uno no hace dichas transformaciones, parecerá que el problema no conserva la forma simpléctica, tal como en el ingenuo intento que se muestra en la figura \ref{fig:non_symplectic_L4_L1} para diferentes condiciones iniciales. Para obtener $\varsigma$ se utiliza la ecuación (\ref{eq:scalar_symplecticity}) que, como se discute en la sección \ref{sec:}, opera de manera muy natural con el TJ, ya que la parametrización de las vecindades del espacio fase permite computar al jacobiano en cada punto de manera directa.
+Si uno no hace dichas transformaciones, parecerá que el problema no conserva la forma simpléctica, tal como en el ingenuo intento que se muestra en la figura \ref{fig:non_symplectic_L4_L1} para diferentes condiciones iniciales. Para obtener $\varsigma$ se utiliza la ecuación (\ref{eq:scalar_symplecticity}) que, como se discute en la sección \ref{sec:formas-simplecticas}, opera de manera muy natural con el TJ, ya que la parametrización de las vecindades del espacio fase permite computar al jacobiano en cada punto de manera directa.
 
 La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpléctica del PC3C bajo la transformación (\ref{eq:momentum_transformation}), donde se observa cómo $\varsigma(t)$ se mantiene constante durante toda la inegración. En ésta, se tomaron las mismas dos condiciones iniciales que en la figura \ref{fig:non_symplectic_L4_L1}; una cerca de $L_4$, que es una trayectoría estable, y otra cerca de $L_1$, que orbita alrededor de la masa primaria menor. Se puede observar cómo en la condición más estable la conservación de la simplecticidad varía en unos dos órdenes de magnitud menos que cerca de $L_1$. Sin emabrgo, ambas tienen variaciones menor a $10^{-10}$ en cada punto de la trayectoria, porl o que podemos decir que, en efecto, el sistema es simpléctico. Esta es una aplicación muy directa para el TJ que aprovecha su estructura paramétrica, de la cual se pueden obetener el jacobiano o incluso variaciones de órdenes mayores. 
 
