@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Perez2013}
 D.~P{\'{e}}rez, J.~J. Masdemont, and G.~G{\'{o}}mez, ``{Jet Transport
@@ -15,12 +15,35 @@ A.~Haro, ``{Automatic differentiation methods in computational dynamical
   systems: Invariant manifolds and normal forms of vector fields at fixed
   points},'' 2009.
 
+\bibitem{CBLyapunovExponents}
+P.~Cvitanovi{\'c}, R.~Artuso, R.~Mainieri, G.~Tanner, and G.~Vattay, ``Lyapunov
+  exponents,'' in {\em Chaos: Classical and Quantum}, ch.~6, Copenhagen: Niels
+  Bohr Inst., 2016.
+
+\bibitem{Haller2011}
+G.~Haller, ``{A variational theory of hyperbolic Lagrangian Coherent
+  Structures},'' {\em Physica D: Nonlinear Phenomena}, vol.~240, no.~7,
+  pp.~574--598, 2011.
+
+\bibitem{CBHamiltonianDynamics}
+P.~Cvitanovi{\'c}, R.~Artuso, R.~Mainieri, G.~Tanner, and G.~Vattay,
+  ``Hamiltonian dynamics,'' in {\em Chaos: Classical and Quantum}, ch.~8,
+  Copenhagen: Niels Bohr Inst., 2016.
+
+\bibitem{Arnold1989}
+V.~Arnold, {\em {Mathematical methods of classical mechanics}}.
+\newblock 1989.
+
 \bibitem{Goldstein2007}
 H.~Goldstein, C.~Poole, and J.~Safko, ``{Classical Mechanics},'' 2007.
 
 \bibitem{Cornish1998}
 N.~J. Cornish and J.~Goodman, ``{The Lagrange points},'' {\em WMAP Education
   and Outreach}, pp.~1--8, 1998.
+
+\bibitem{Widnall2008}
+S.~Widnall, ``{Exploring the Neighborhood: the Restricted Three-Body
+  Problem},'' ch.~Lecture L18, pp.~1--11, 2008.
 
 \bibitem{MirelesJames2006}
 J.~{Mireles James}, ``{Celestial Mechanics Notes Set 4: The Circular Restricted
@@ -33,5 +56,18 @@ R.~J. Hodrick and E.~C. Prescott, ``{Postwar U.S. Business Cycles: An Empirical
 
 \bibitem{Kim2004}
 H.~Kim, ``Hodrick-prescott filter,'' 2004.
+
+\bibitem{Desmars2013}
+J.~Desmars, D.~Bancelin, D.~Hestro, and W.~Thuillot, ``{Statistical and
+  Numerical Study of Asteroid Orbital Uncertainty},'' p.~7, 2013.
+
+\bibitem{Johns2011}
+O.~Johns, {\em Analytical Mechanics for Relativity and Quantum Mechanics}.
+\newblock Oxford Graduate Texts, Oxford University Press, 2~ed., 2011.
+
+\bibitem{CanonicalTransformations}
+O.~Johns, {\em Analytical Mechanics for Relativity and Quantum Mechanics},
+  ch.~17 Canonical Transformations.
+\newblock In {\em Oxford Graduate Texts\/} \cite{Johns2011}, 2~ed., 2011.
 
 \end{thebibliography}
