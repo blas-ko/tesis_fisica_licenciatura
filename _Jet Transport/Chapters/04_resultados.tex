@@ -15,7 +15,7 @@ Este capítulo se divide como sigue:
 \section{Parametrización de $\mu$}
 Como se analizó en la sección \ref{sec:lag_points}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por (\ref{eq:mu_critica}). 
 
-El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos, sin embargo, también es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la partícula que visita a $L_4$ o $L_5$.
+El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos. Sin embargo, es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la partícula que visita a $L_4$ o $L_5$.
 
 Para esto, se seguirá la filosofía de la sección \ref{sec:parameter_variation}, donde se agregará a las ecuaciones de movimiento la ecuación 
 \begin{equation*}
@@ -45,7 +45,7 @@ Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L
  \label{fig:remoteness_dmu}
 \end{figure}
 
-Una forma de ver realmente cuándo el flujo no diverge de la localidad de $L_4$ es si podemos aislar la tendencia de la amplitud de los ciclos. Para esto, se puede usar un filtro de Hodrick-Prescott, que separa una serie de tiempo en tendencia y ciclo. Sea $y_t$ la variable de una serie de tiempo al tiempo $t$. Se asume que dicha serie está compuesta de una componente de tendencia $\tau_t$ más una componente ciclica $c_t$, es decir, $y_t = \tau_t + c_t$\footnote{Normalmente se incluye una componente de error $\eta_t$ que, en este caso, será absorbida por $c_t$.}. Así, uno puede encontrar la tendencia, como se plantea en \cite{Hodrick1997}, bajo el problema de minimización
+Una forma de ver realmente cuándo el flujo no diverge de la localidad de $L_4$ es si podemos aislar la tendencia de la amplitud de los ciclos. Para ésto, se puede usar un filtro de Hodrick-Prescott, que separa una serie de tiempo en tendencia y ciclo. Sea $y_t$ la variable de una serie de tiempo al tiempo $t$. Se asume que dicha serie está compuesta de una componente de tendencia $\tau_t$ más una componente ciclica $c_t$, es decir, $y_t = \tau_t + c_t$\footnote{Normalmente se incluye una componente de error $\eta_t$ que, en este caso, será absorbida por $c_t$.}. Así, uno puede encontrar la tendencia, como se plantea en \cite{Hodrick1997}, bajo el problema de minimización
 \begin{equation}
  \min_{\tau} \left( \sum_{t=1}^T (y_t - \tau_t)^2 + \lambda \sum_{t=2}^{T-1} \left[ (\tau_{t+1} - \tau_t) - (\tau_t - \tau_{t-1}) \right]^2 \right)
  \label{eq:hp-filter}
@@ -57,7 +57,7 @@ Tomaremos la solución matricial lineal de \cite{Kim2004}
  \mathbf{y}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right) \tau_t
  \label{eq:hp_matrix}
 \end{equation}  
-al derivar (\ref{eq:hp-filter}) por $\tau_t$, donde
+al derivar (\ref{eq:hp-filter}) respecto a $\tau_t$, donde
 \begin{align}
  \mathbf{F} = \left[ \begin{array}{cccccccccc}
  1  & -2 & 1  & 0  & \cdots &        &        & & \cdots & 0    \\
@@ -72,7 +72,7 @@ al derivar (\ref{eq:hp-filter}) por $\tau_t$, donde
  \end{array} \right].
 \end{align}
 
-ya que ésta es fácilmente programable. Así, de (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Separando de esta manera a la figura \ref{fig:remoteness_dmu}, podemos obtener el ciclo y la tendencia tal como se presenta en la figura \ref{fig:trendcycle_dmu}. En ésta, es bastante claro cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) para abajo, la tendencia decrece después de determinado tiempo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$.
+ya que ésta es fácilmente programable. De (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Aplicando este filtro en la figura \ref{fig:remoteness_dmu}, se obtiene el ciclo y la tendencia tal como se presenta en la figura \ref{fig:trendcycle_dmu}. En ésta, se observa cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) hacia valores más negativos, la tendencia decrece después de llegar a un máximo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -223,7 +223,7 @@ Así, ilustramos el método de posible colisión entre asteroides, donde se esta
 %Mencionar adimensionalización del tiempo para ver cuánto implica 1 unidad temporal.
 
 \section{Simplecticidad del PC3C}
-Se construyeron en la sección \ref{sec:3BP} los potenciales (\ref{eq:3body_potential}) y sus respectivas energías cinéticas (\ref{eq:3body_kinetic}) del problema general de tres cuerpos. Estas nos permiten definir al hamiltoniano
+Se construyeron en el capítulo \ref{chap:CR3BP} los potenciales (\ref{eq:3body_potential}) y sus respectivas energías cinéticas (\ref{eq:3body_kinetic}) del problema general de tres cuerpos. Éstas nos permiten definir al hamiltoniano
 \begin{equation}
  H(\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3, \mathbf{p}_1, \mathbf{p}_2, \mathbf{p}_3) = \sum_{i=1}^3 h_i(r_{i,j}, r_{i,k}, \mathbf{p}_i)
  \label{eq:3BP_hamiltonian}
@@ -269,7 +269,7 @@ entonces
 
 Definimos $G_2$ simplemente como
 \begin{equation}
- G(\mathbf{R}, \mathbf{p}, t) = p_x \underbrace{\left( X \cos (\Omega t) - Y \sin (\Omega t) \right) }_{x} + p_x (\underbrace{ \left( X \sin (\Omega t) + Y \cos (\Omega t) \right)}_{y}
+ G_2(\mathbf{R}, \mathbf{p}, t) = p_x \underbrace{\left( X \cos (\Omega t) - Y \sin (\Omega t) \right) }_{x} + p_x (\underbrace{ \left( X \sin (\Omega t) + Y \cos (\Omega t) \right)}_{y}
  \label{eq:generating_function}
 \end{equation}
 
@@ -328,3 +328,7 @@ La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpl�
 \end{figure}
 
 %Valdrá la pena hacer un análisis simpléctico de mayor dimensión?
+
+\section{Tamaño máximo de vecindades como indicador de sensibilidad de las condiciones iniciales}
+
+.
