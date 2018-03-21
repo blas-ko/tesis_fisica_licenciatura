@@ -1,0 +1,58 @@
+
+Sea un marco que rota respecto algún eje de simetría con velocidad angular $\theta(t)$. Si basamos un marco de rerefencia inercial tal que el eje de rotación coincida con el eje $z$, entonces como se muestra en la figura \ref{fig:}, la relación entre ambos se puede expresar en coordenadas cilíndricas como
+\begin{align}
+ \hat{\imath}_r(t) &= \cos \theta(t) \hat{\imath}_i + \sin \theta(t) \hat{\jmath}_i \nonumber \\
+ \hat{\jmath}_r(t) &= -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i \\
+ \hat{k}_r(t) &= \hat{k}_i \nonumber
+ \label{eq:rotating_unitaries}
+\end{align}
+donde los subíndices ``$r$'' y ``$i$'' se refieren a los marcos de referencia rotado e inercial, respectivamente. Así, el cambio de los unitarios respecto al tiempo son
+\begin{align}
+ \frac{d}{dt} \hat{\imath}_r(t) &= \dot{\theta}(t) \left( -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i  \right) \nonumber \\
+ \frac{d}{dt} \hat{\jmath}_r(t) &= \dot{\theta}(t) \left( -\cos \theta(t) \hat{\imath}_i - \sin \theta(t) \hat{\jmath}_i \right) \\
+ \frac{d}{dt} \hat{k}_r &= 0 \nonumber
+ \label{eq:rotating_unitaries_derivs}
+\end{align}
+Siguiendo la construcción del capítulo 27 de \cite{Arnold1989}, definimos al vector de rotación $\mathbf{\Omega} := \left( 0, 0, \dot{\theta} \right)$ y, con éste, cualquier término de (\ref{eq:rotating_unitaries_derivs}) se puede expresar como
+\begin{equation}
+ \frac{d}{dt}\hat{u} = \mathbf{\Omega} \times \hat{u}.
+\end{equation}
+
+Sea entonces $\mathbf{f}(t) = f_x(t) \hat{\imath} + f_y(t) \hat{j} + f_z(t) \hat{k}$ una cantidad definida en el marco que rota, la descripción de su derivada desde el marco de referencia inercial es, por la regla del producto,
+\begin{equation*}
+ \left( \frac{d \mathbf{f}}{dt} \right)_i = \left( \frac{d\mathbf{f}}{dt} \right)_r  + \mathbf{\Omega} \times \mathbf{f}
+\end{equation*}
+y, por tanto,
+\begin{equation}
+ \left(\frac{d}{dt}\right)_i := \left( \frac{d}{dt} \right)_r + \mathbf{\Omega} \times
+ \label{eq:rotating_derivative}
+\end{equation}
+es un operador que expresa la derivada de $\mathbf{f}$ en el marco de referencia inercial.
+
+Con (\ref{eq:rotating_derivative}) se pueden expresar la velocidad
+\begin{equation}
+ \mathbf{v}_i = \dot{\mathbf{r}}_i = \mathbf{v}_r + \mathbf{\Omega} \times \mathbf{r}_r,
+ \label{eq:rotating_velocity}
+\end{equation}
+y la aceleración
+\begin{align}
+ \mathbf{a}_i = \ddot{\mathbf{r}}_i &= \left[ \left( \frac{d}{dt}\right)_r + \mathbf{\Omega} \times \right]\left[ \mathbf{v}_r + \mathbf{\Omega} \times \mathbf{r}_r \right] \nonumber \\
+ \nonumber \\
+ \therefore \ddot{\mathbf{r}}_i &= \ddot{\mathbf{r}}_r + 2\mathbf{\Omega} \times \mathbf{\dot{r}}_r + \mathbf{\Omega} \times \left( \mathbf{\Omega} \times \mathbf{r}_r \right) + \dot{\mathbf{\Omega}} \times \mathbf{r}_r
+ \label{eq:rotating_acceleration}
+\end{align}
+en relación al marco de referencia inercial del sistema.
+
+Con esto, podemos ver que si una partícula de masa $m$ tiene una aceleración $\ddot{\mathbf{r}}$ en el marco en rotación, ésta sentirá una serie de fuerzas ficticias si es vista desde un marco inercial. Al término ``$2 m \mathbf{\Omega} \times \dot{\mathbf{r}}$'' se le conoce como \textit{fuerza centrípeta}, a ``$m \mathbf{\Omega} \times ( \mathbf{\Omega} \times \mathbf{r} )$'' como la \textit{fuerza de Coriolis} y a ``$m \dot{\mathbf{\Omega}} \times \mathbf{r}$'' como \textit{fuerza de Euler}.
+
+Notemos que si la rotación es uniforme entonces $\dot{\mathbf{\Omega}} = 0$. Además, si el sistema es cerrado en el marco rotativo, entonces, por la segunda ley de Newton, (\ref{eq:rotating_acceleration}) se reduce a
+\begin{equation}
+ \ddot{\mathbf{r}}_r + 2\mathbf{\Omega} \times \dot{\mathbf{r}}_r = \ddot{\mathbf{r}}_i - \nabla \left( \frac{1}{m}U(\mathbf{r}_r) +  \frac{1}{2} \mathbf{\Omega}^2 \mathbf{r}_r^2 \right).
+ \label{eq:rotating_constant_acceleration}
+\end{equation}
+
+%Salvo por la fuerza de Coriolis, que vuelve a éste un sistema abierto, se tiene que las ecuaciones de movimiento expresan un sistema cerrado con el nuevo potencial $U_{tot}(\mathbf{r}) = U(\mathbf{r}_r) + \frac{m}{2} \mathbf{\Omega}^2 \mathbf{r}_r^2$.\footnote{Si $\Omega = (0,0,\text{constante})$, entonces $\mathbf{\Omega} \times ( \mathbf{\Omega} \times \mathbf{r} ) =\Omega^2 r_r = \nabla \frac{1}{2}\Omega^2 r_r^2$.}
+
+%Revisar ésto bien en sintaxis y signos y ver qué nos interesa en cada caso entre "i" y "r".
+%Meter imágenes.
+
