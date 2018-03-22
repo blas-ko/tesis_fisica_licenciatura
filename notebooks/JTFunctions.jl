@@ -225,7 +225,7 @@ module JTFunctions
     get_variables(order) = [TaylorN(i,order=order) for i in 1:get_numvars()]
     ####
 
-    function grid_ξmax{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
+    function grid_ξmax{T<:Real}(eqs_diff!::Function,t0::T,tmax::T,μ::T;
                         xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
                         order_jet::Integer=3,order_taylor::Integer=25,abstol=1e-10)
         @assert get_numvars() == 2 "ξmax must be 2-dimensional."
@@ -235,13 +235,20 @@ module JTFunctions
         ygrid= linspace(ylim...,num_points)
         heatgrid = zeros(length(xgrid),length(ygrid))
 
+        L3_ =  -(1 + (5μ/12))
+        L2_ = 1 + (μ/3)^(1/3)
+        ε₁,ε₂ = (-μ - L3_)/1.5, ( L2_ - (1-μ) )/1.5
+
         #Parallelize here!
         for (i,x) in enumerate(xgrid)
-
             for (j,y) in enumerate(ygrid)
+
+                if (norm( [x - (-μ), y] ) > ε₁) && (norm( [x - (1-μ), y] ) > ε₂)
                 q0TN = [x+δx,y+δy,0.0,0.0]
-                _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
+                _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol,maxsteps=800);
                 heatgrid[i,j] = ξmax_lastT(ϕN)
+                end
+
             end
 
         end
@@ -250,22 +257,27 @@ module JTFunctions
 
     #FTLE scalar field using TaylorIntegration lyapunov expectrum.
     #TODO: FTLEs could also be made with MY method... (JT of order = 1 jets)
-    function grid_FTLE{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
+    function grid_FTLE{T<:Real}(eqs_diff!::Function,t0::T,tmax::T,μ::T;
                             xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
                             order_taylor::Integer=25,abstol=1e-10)
 
         qgrid = linspace(xlim...,num_points)
         pgrid = linspace(ylim...,num_points)
-
         FTLE = zeros(num_points,num_points)
+
+        L3_ =  -(1 + (5μ/12))
+        L2_ = 1 + (μ/3)^(1/3)
+        ε₁,ε₂ = (-μ - L3_)/1.5, ( L2_ - (1-μ) )/1.5
 
         #Parallelize here!
         for (i,q) in enumerate(qgrid)
             for (j,p) in enumerate(pgrid)
 
+                if (norm( [x - (-μ), y] ) > ε₁) && (norm( [x - (1-μ), y] ) > ε₂)
                 x0 = [q,p]
                 _,__,λ = liap_taylorinteg(eqs_diff!,x0,t0,tmax,order_taylor,abstol)
                 FTLE[i,j] = maximum(λ[end,:])
+                end
 
             end
         end
@@ -273,7 +285,7 @@ module JTFunctions
         return qgrid, pgrid, FTLE'
     end
 
-    function grid_seprate{T<:Real}(eqs_diff!::Function,t0::T,tmax::T;
+    function grid_seprate{T<:Real}(eqs_diff!::Function,t0::T,tmax::T,μ::T;
                         xlim::Tuple=(-1,1),ylim::Tuple=(-1,1),num_points::Integer=30,
                         order_jet::Integer=3,order_taylor::Integer=25,abstol=1e-10,
                         neighborhood_vals::Integer=100)
@@ -297,30 +309,42 @@ module JTFunctions
         vecField_sepRate_max = Vector{Tuple{Float64,Float64}}(num_points^2)
         vecField_sepRate_min = Vector{Tuple{Float64,Float64}}(num_points^2)
 
+        L3_ =  -(1 + (5μ/12))
+        L2_ = 1 + (μ/3)^(1/3)
+        ε₁,ε₂ = (-μ - L3_)/1.5, ( L2_ - (1-μ) )/1.5
+
         #FTLE is missing...
 
         #Parallelize here!
         for (i,x) in enumerate(xgrid)
-
             for (j,y) in enumerate(ygrid)
-                #initial TaylorN condition
-                q0TN = [x+δx,y+δy,0,0]
-                #Jet Trasnport Integration
-                _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
-                #indicators' evaluations
-                ξ_max = ξmax_lastT(ϕN)
-                P_max,P_min,θ_max,θ_min = separation_rate(ϕN,neighborhood_vals=neighborhood_vals)
 
-                #vector field grids as series of tuples
-                k = num_points*(i-1)+j
-                xy_grid[k] = (x,y)
-                vecField_sepRate_max[k] = (0.45 * Δr) .* ( cos(θ_max), sin(θ_max) )
-                vecField_sepRate_min[k] = (0.45 * Δr) .* ( cos(θ_min), sin(θ_min) )
+                if (norm( [x - (-μ), y] ) > ε₁) && (norm( [x - (1-μ), y] ) > ε₂)
+                    #initial TaylorN condition
+                    q0TN = [x+δx,y+δy,0,0]
+                    #Jet Trasnport Integration
+                    _,ϕN = taylorinteg(eqs_diff!,q0TN,t0,tmax,order_taylor,abstol);
+                    #indicators' evaluations
+                    ξ_max = ξmax_lastT(ϕN)
+                    P_max,P_min,θ_max,θ_min = separation_rate(ϕN,neighborhood_vals=neighborhood_vals)
 
-                #heatmap matrices
-                heatgrid_ξmax[i,j] = ξ_max
-                heatgrid_sepRate_max[i,j] = P_max
-                heatgrid_sepRate_min[i,j] = P_min
+                    #vector field grids as series of tuples
+                    k = num_points*(i-1)+j
+                    xy_grid[k] = (x,y)
+                    vecField_sepRate_max[k] = (0.45 * Δr) .* ( cos(θ_max), sin(θ_max) )
+                    vecField_sepRate_min[k] = (0.45 * Δr) .* ( cos(θ_min), sin(θ_min) )
+
+                    #heatmap matrices
+                    heatgrid_ξmax[i,j] = ξ_max
+                    heatgrid_sepRate_max[i,j] = P_max
+                    heatgrid_sepRate_min[i,j] = P_min
+                else
+                    k = num_points*(i-1)+j
+                    xy_grid[k] = (x,y)
+                    vecField_sepRate_max[k] = (0.0, 0.0 )
+                    vecField_sepRate_min[k] = (0.0, 0.0 )
+                end
+
             end
 
         end
