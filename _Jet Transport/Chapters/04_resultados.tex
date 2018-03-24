@@ -332,37 +332,39 @@ La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpl�
 
 %Valdrá la pena hacer un análisis simpléctico de mayor dimensión?
 
-\section{Sensibilidad a las condiciones iniciales}
+\section{Campos de $\xi_{max}$ y $\varsigma_\pm$ para el PC3C}
+\label{sec:C3BP_heatmaps}
 
-El estudio y exploración del TJ ha utilizado la ecuación (\ref{eq:ximax}) en varias ocaciones. Ésta ha sido el parámetro que nos ha permitido saber qué tan grandes pueden ser las vecindades dado cierto error $\epsilon_{jet}$, tal como se discute en la sección \ref{sec:ximax}. Éste se utilizó en la sección \ref{sec:asteroids} para comprobar que la incertidumbre de medición diera resultados precisos al evaluar la distribución de puntos, y en \ref{sec:parametrization} para las variaciones del parámetro de masa y analizar la estabilidad de $L_4$. $\xi_{max}$ percibe, en esencia, qué tan compleja es la deformación de la vecindad y qué tanto se alejan las condiciones vecinas a la condición nominal, por lo que $\xi_{max} \ll 1$ implica una alta sensibilidad en las condiciones iniciales o un gran gradiente de velocidades para la vecindad. 
+El estudio y exploración del TJ ha utilizado la ecuación (\ref{eq:ximax}) en varias ocaciones. Ésta ha sido el parámetro que nos ha permitido saber qué tan grandes pueden ser las vecindades dado cierto error $\epsilon_{jet}$, tal como se discute en la sección \ref{sec:ximax}. Éste se utilizó en la sección \ref{sec:asteroids} para comprobar que la incertidumbre de medición diera resultados precisos al evaluar la distribución de puntos, y en \ref{sec:parametrization} para las variaciones del parámetro de masa y analizar la estabilidad de $L_4$. $\xi_{max}$ percibe, en esencia, qué tan compleja es la deformación de la vecindad y qué tanto se alejan las condiciones vecinas a la condición nominal, por lo que $\xi_{max} \ll 1$ implica una alta sensibilidad en las condiciones iniciales cercanas o un gran gradiente de velocidades para la vecindad. 
 
-Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $t_{n} = 0.2$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la figura \ref{fig:} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que cerca de elos el computo del TJ se vuelve muy lento. 
+Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $T = 0.3$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la figura \ref{fig:} de la sección \ref{sec:} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que el tiempo de computo es muy grande cerca de estos. 
 
 %FIGURA! 
 \begin{figure}
  \centering
  \includegraphics[width=0.8\linewidth]{C3BP_ximax1}
- \caption{Espacio de configuraciones para $\phi_\mu$ con variaciones $\delta\mu = 0$ (azul), $\delta\mu = \delta\mu_{max}$ (naranja), y $\delta\mu = -\delta\mu_{max}$ (verde), donde $\delta\mu_{max} = \xi_{max}(\phi_\mu) \approx 0.00329$. Para el transporte se usó un jet de orden $n=18$ con condiciones iniciales $\left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$.}
+ \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ en una retícula de $70 \times 70$  después de $0.3$ unidades adimensionales de tiempo. Éste se calculó con tolerancia $\epsilon_{Taylor} = 10^{-7}$, orden de jets $ = 2$ y orden máximo de la expansión $M = 20$. Las condiciones del PC3C son para $\xo = (x_{0_i}, y_{0_j}, 0, 0)^T$ con $\mu = 0.1$}
  \label{fig:C3BP_ximax1}
 \end{figure}
 
-La figura \ref{fig:C3BP_ximax3}, en cambio, presenta el mismo campo escalar pero integrada a $t_n = 3$ unidades adimensionales. Como se menciona al inicio de esta sección, las dos principales formas en las que $\xi_{max}$ sea chica es si el gradiente de velocidades en una vecindad es muy grande o si la deformación de la vecindad inicial es muy pronunciada. ambas figuras se observa cómo decrece $\xi_{max}$ gradualmente al aumentar el gradiente de velocidad hacia las singularidades. Esto indica únicamente la tendencia de que la tercer partícula se vea atraida hacia las masas primarias. Sin embargo, en la figura \ref{fig:C3BP_ximax3} se observan curvas donde $\xi_{max}$ es pequeña  respecto a los valores vecinos. Los puntos en estas curvas, que llamaremos $\mathcal{C}_s$, no reflejan un gran gradiente de velocidad, pero sí una deformación muy pronunciada del jet. Aquí seguramente divirgieron las condiciones por debajo y por arriba de la condición inicial. 
+La figura \ref{fig:C3BP_ximax3}, en cambio, presenta el mismo campo escalar pero integrada a $T = 3$ unidades adimensionales. Como se menciona al inicio de esta sección, las dos principales formas en las que $\xi_{max}$ sea chica es si el gradiente de velocidades en una vecindad es muy grande o si la deformación de la vecindad inicial es muy pronunciada. ambas figuras se observa cómo $\xi_{max}$ decrece gradualmente al aumentar el gradiente de velocidad hacia las singularidades. Esto muestra la tendencia de la tercer partícula atrayéndose hacia las masas primarias. Sin embargo, en la figura \ref{fig:C3BP_ximax3} se observan curvas donde $\xi_{max}$ es pequeña  respecto a los valores vecinos. Los puntos en estas curvas, a las cuales llamaremos $\mathcal{C}_s$, no reflejan un gran gradiente de velocidad, pero sí una deformación muy pronunciada del jet. Aquí seguramente divirgieron las condiciones por debajo y por arriba de la condición inicial. 
 
 %FIGURA! 
 \begin{figure}
  \centering
  \includegraphics[width=0.8\linewidth]{C3BP_ximax3}
- \caption{Espacio de configuraciones para $\phi_\mu$ con variaciones $\delta\mu = 0$ (azul), $\delta\mu = \delta\mu_{max}$ (naranja), y $\delta\mu = -\delta\mu_{max}$ (verde), donde $\delta\mu_{max} = \xi_{max}(\phi_\mu) \approx 0.00329$. Para el transporte se usó un jet de orden $n=18$ con condiciones iniciales $\left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$.}
+ \caption{Mismas condiciones que para la figura \ref{fig:C3BP_ximax1} pero integrado a $3$ unidades temporales.}
  \label{fig:C3BP_ximax3}
 \end{figure}
 
-Para reforzar este análisis, se computaron las direcciones de mayor expansión para la vecindad de los puntos lagrangianos. La figura \ref{fig:C3BP_seprate3} presenta dichas direcciones en distintas secciones del espacio de configuraciones, donde se observa cómo en las zonas de menor expansión, equivalentes a las zonas donde $\xi_{max}$ es pequeña,  $\theta_{+}$ cambia drásticamente. Esto nos hace entender a las curvas como una especie de separatriz del problema. La figura presenta un acercamiento para cada punto lagrangiano (exeptuando a $L_5$ que es equivalente a $L_4$). Para $L_3$ y $L_2$, que están a la izquierda de la masa primaria mayor y a la derecha de la menor, respectivamente, se observa como las vecindades se expanden hacia la singularidad hasta que, cuando cruzan $\mathcal{C}_s$, buscan escapar de ella; la misma dinámica ocurre para $L_4$. En el caso de $L_1$, por donde cruzan varias curvas $\mathcal{C}_s$ la dirección $\theta_{+}$ puede regresar a lo que tendía inicialmente si el número de cruces es par y esto dará la tendencia de cuáles condiciones van hacia la masa primaria mayor y cuáles hacia la menor. 
+Para reforzar este análisis, se computaron las direcciones de mayor expansión para la vecindad de los puntos lagrangianos. La figura \ref{fig:C3BP_seprate3} presenta dichas direcciones en distintas secciones del espacio de configuraciones, donde se observa cómo en las zonas de menor expansión, equivalentes a las zonas donde $\xi_{max}$ es pequeña,  $\theta_{+}$ cambia drásticamente. Esto nos hace entender a las curvas como una especie de separatriz del problema. Esta figura presenta una acercamiento alrededor de $L_4$ y $L_3$, donde se observa cómo la dirección de  $\theta_{+}$ cambia cuando se cruza por una curva $\mathcal{C}_s$. Lejos de las singularidades el gradiente tiende hacia ellas pero al cruzar por estas curvas especiales, la dirección de expansión máxima cambia de sentido. 
+
 
 %FIGURE!
 \begin{figure}
  \centering
- \includegraphics[width=0.8\linewidth]{C3BP_seprate3}
- \caption{Espacio de configuraciones para $\phi_\mu$ con variaciones $\delta\mu = 0$ (azul), $\delta\mu = \delta\mu_{max}$ (naranja), y $\delta\mu = -\delta\mu_{max}$ (verde), donde $\delta\mu_{max} = \xi_{max}(\phi_\mu) \approx 0.00329$. Para el transporte se usó un jet de orden $n=18$ con condiciones iniciales $\left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$.}
+ \includegraphics[width=1.1\linewidth]{C3BP_seprate}
+ \caption{Campos vectoriales dados por $\left( \cos(\theta_{+}(\xo), \sin(\theta_{+}(\xo) \right)^T$ sobre los campos escalares $\varsigma_{+}(\xo)$ en una cuadrícula de $20 ţimes 20$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=2$ y orden de la expansió-n de Taylor $N = 25$ integradas a $T = 3$ unidades adimensionales. Las condiciones del PC3C son para $\xo = (x_{0_i}, y_{0_j}, 0, 0)^T$ con $\mu = 0.1$. A la izquierda se observan los puntos cerca de $L_4$, marcada con $\times$, mientras que a la izquierda se presentan las localidades de $L_3$.}
  \label{fig:C3BP_seprate3}
 \end{figure}
 
@@ -374,8 +376,6 @@ Para reforzar este análisis, se computaron las direcciones de mayor expansión 
 %Ver si funciona ximax para el espacio planteado por Perez en su artículo, así hay punto de comparación. hacer referencia a las estructuras lagrangianas que se encuentran... si se encuentran.
 
 %FIGURA! 
-
-
 
 %Cerrar el capítulo de resultados con un bonito choro... 
 
