@@ -103,9 +103,7 @@ x_{1_0} - h^2x_{1_0} - 2h x_{2_0}  \\
 \end{array} \right] (\xi_1,\xi_2)^T
 \end{align*}
  
-y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores $\mathbb{\xi}$ \textit{suficientemente pequeños} para encontrar las soluciones en la vecindad de $\xo$. En la figura \ref{fig:center-evals} se evalúa $\flowxi$ para distintos valores de $t$ en vecindades $\Uxo$ dadas por círculos de distinto radio.
-
-se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_n$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
+y así sucesivamente. Una vez que se obtiene $P_{n,\xo}(\xi)$ basta con evaluarlo para valores $\mathbb{\xi}$ \textit{suficientemente pequeños} para encontrar las soluciones en la vecindad de $\xo$. En la figura \ref{fig:center-evals} se evalúa $\flowxi$ para distintos valores de $t$ en vecindades $\Uxo$ dadas por círculos de distinto radio. Se pueden ver las evaluaciones de $P_{n,\xo}(\xi)$ para distintos valores de $t_n$ y de $\xi$ alrededor del punto singular $\xo = (0,0)$.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -134,17 +132,15 @@ En la figura \ref{fig:center_anal_comparison} se muestran distintas comparacione
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{euler-vs-analytical_center}
-	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
 	\label{fig:center-eu_vs_anal}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{euler-method_error}
-	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
 	\label{fig:center_not-closed}
 \end{subfigure}
-\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}}
+\caption{Diferencias numéricas entre el método de Euler y la solución analítica para \ref{eq:center}. \textit{Izquierda:} norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler. \textit{Derecha:} sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$.}
 \label{fig:center_anal_comparison}
 \end{figure}
 
@@ -159,7 +155,7 @@ La necesidad del álgebra polinomial se vuelve imperativa para el TJ como hemos 
 $$P = P(x) := \polk{p_k} $$
 con $P: \mathbb{C} \to \mathbb{K}$ una función analítica y $p_k \in \mathbb{K} \  \forall i \in [0,n]$.
 
-Esta sección se divide en tres: la primera sobre construcción formal del álgebra en una variable vía la demostración de sus propiedades de campo, la segunda sobre el desarrollo de las operaciones para las funciones estándar dentro de ésta álgebra. La tercera sección es la extensión de dicha álgebra a más variables, para poder trabajar a cualquier dimensionalidad
+Esta sección se divide en tres: la primera sobre construcción formal del álgebra en una variable vía la demostración de sus propiedades de campo, la segunda sobre el desarrollo de las operaciones para las funciones estándar dentro de este álgebra. La tercera sección es la extensión de dicha álgebra a más variables, para poder trabajar a cualquier dimensionalidad
 
 %		- It may be necessary to analize how different independet variables imply that A(x) != A(b).
 
@@ -189,10 +185,10 @@ Para el producto, notemos que
 así, se define \textbf{$\cdot$}  en $\pk$ como
 
 \begin{equation}
-A \cdot B = \polk{\sum_{j=0}^k a_{k-j}b_j}.
+A \cdot B = \polk{\sum_{j=0}^k a_{k-j}b_j},
 \label{eq:polprod}
 \end{equation}
-Aún cuando las operaciones están definidas inspiradas en la aritmética de los números, $\mathbb{K}$ puede ser cualquier campo arbitrario.
+donde $( A \cdot B \ \in \pk$, o sea, un polinomio truncado a orden $n$. Aún cuando las operaciones están definidas inspiradas en la aritmética de los números, $\mathbb{K}$ puede ser cualquier campo arbitrario.
 
 \begin{proposicion}
 Para $\mathbb{K} = \mathbb{R}$ o $\mathbb{C}$, $\algpol$ forma un campo.
@@ -306,7 +302,7 @@ Así, quedan demostradas todas las propiedades de campo. \qed
 \subsection{Definición explicita de operaciones con polinomios}
 \label{sec:alg_functions}
 
-Aún con \ref{prop:alg_field} demostrado y con las operaciones básicas $(\cdot,+)$ definidas, es práctico prestar atención a otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la potencia, la composición y la derivada nuestros ``caballos de batalla" para el desarrollo de casi cualquier función existente en la aritmética usual.
+Aún con \ref{prop:alg_field} demostrado y con las operaciones básicas $(\cdot,+)$ definidas, es práctico prestar atención a otras operaciones que serán de ayuda al trabajar con elementos de $\pk$. Serán la potencia, la composición y la derivada nuestros ``caballos de batalla'' para el desarrollo de casi cualquier función existente en la aritmética usual.
 
 Sea $A = A(x) = \polk{a_k} \in \pk$. Si $m \in \mathbb{N}$,
 \begin{align*}
@@ -352,7 +348,7 @@ con las operaciones definidas hasta ahora.
 %		- See "chain rule" technical details. Maybe only mention taht is has sense for polynomial functions and later on prove that it is indeed true.
 %		- Define (/,-,sin,cos,exp,log,pow). This should be expanded when needed in the thesis only.
 
-Aún cuando ya tenemos las operaciones básicas del álgebra definidas, va a ser de gran practicidad extender otras operaciones útiles para el transporte de $\mathbb{U}$ para el campo vectorial que estemos estudiando.
+Aún cuando ya tenemos las operaciones básicas del álgebra definidas, va a ser de gran practicidad extender otras operaciones útiles para el transporte de $\U_{\xo}$ para el campo vectorial que estemos estudiando.
 
 Se define la \textbf{resta $-$} como
 \begin{equation}
@@ -374,22 +370,22 @@ Se define la \textbf{división} como
  \label{eq:polidiv}
 \end{equation}
 
-Con el mismo espíritu, inspirados por el artículo de Haro \cite{Haro2009} podemos definir las relaciones de recurrencia para otras operaciones entre polinomios.
+Con el mismo espíritu, Haro desarrolla en su artículo \cite{Haro2009} una serie de relaciones de recurrencia para las operaciones elementales como $\sin, \ \cos, \  \exp, \ \log$, etc. Se recomienda al lector consultar dichas relaciones de recurrencia si busca implementar un álgebra polinomial como aquí.
 
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
 
 \subsection{Polinomios en varias variables}
 \label{sec:pknN}
 
-Fantástico, $^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de varias variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$. Es decir, nos gustaría trabajar con polinomios cuyos coeficientes sean polinomios, cuyos coeficientes sean, finalmente, números.
-Sea  $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$, entonces, con $P(x) \in \pk$ y $P_k(y) = \sum_{j=0}^n a_{j,k}y^j \in \mathbb{K} \forall k \in [1,n]$
+$^nP_{\mathbb{C}}$ y $^nP_{\mathbb{R}}$ son campos y tenemos ya varias operaciones definidas sobre $\pk$, pero la motivación del desarrollo de este álgebra es hacer polinomios de una variable (que representen al tiempo) cuyos coeficientes sean polinomios de otras variables (que representen al espacio fase de $\dot{x} = f(x(t))$), cuyos coeficientes sean elementos de $\mathbb{C}$ o $\mathbb{R}$. Es decir, nos gustaría trabajar con polinomios cuyos coeficientes sean polinomios, cuyos coeficientes sean, finalmente, números.
+Sea  $\pk$ con $\mathbb{K} = {{^{m}P_{\mathbb{C}}}}$, entonces, con $P(x) \in \pk$ y $P_k(y) = \sum_{j=0}^m a_{j,k}y^j \in \mathbb{K} \ \forall \  k \in [0,m]$
 
 \begin{equation}
- P(x) =  \polk{P_k(y)} = \polk{\left( \sum_{j=0}^n a_{j,k} y^j \right)} := \sum_{k+j=0}^n a_{j,k} y^j x^k = P(\mathbf{x}).
+ P(x) =  \polk{P_k(y)} = \polk{\left( \sum_{j=0}^m a_{j,k} y^j \right)} := \sum_{k+j=0}^n a_{j,k} y^j x^k = P(\mathbf{x}).
 \label{eq:pkn2}
 \end{equation}
 
-Con la definición planteada en la última igualdad de (\ref{eq:pkn2}) se observa cómo el polinomio $P(x)$ cuyos coeficientes son los polinomios $P_k(y)$ es equivalente a un polinomio de dos variables que vive en un espacio que denominaremos, por construcción, $\pkn{2}$. Se tuvo que imponer la condición de que en el último conjunto de términos $i+j = n$ así $P(x)$  pueda pertenecer, en efecto, a un espacio de polinomios de orden $n$.
+Con la definición planteada en el lado derecho de (\ref{eq:pkn2}) se observa cómo el polinomio $P(x)$ cuyos coeficientes son los polinomios $P_k(y)$ es equivalente a un polinomio de dos variables que vive en un espacio que denominaremos, por construcción, $\pkn{2}$. Notemos que el último conjunto de términos tiene orden $j+k = n$ para que $P(x)$  pertenezca, en efecto, a un espacio de polinomios de orden $n$. De hecho, para cada elemento de la suma se tiene que $k+j= \text{constante}$, los cuales se conocen como polinomios homogeneos de orden $k+j$.
 
 Inductivamente, se puede construir el espacio $\pkn{N}$ tomando
 \begin{align}
@@ -406,28 +402,28 @@ En el caso del transporte de jets se trabaja en el espacio ${^{m}P_{\mathbb{K}}}
 \section{Método de Taylor}
 \label{sec:taylor-metodo}
 
-Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con $h$ dado. El método de Taylor es la generalización del de Euler en el sentido de que si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
+Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lineal de $\mathbf{x}(t)$ con $h$ dado. El método de Taylor es la generalización del método de Euler en el sentido de que si $\dotx = f(\mathbf{x}(t),t)$ es una función analítica, entonces $\mathbf{x}(t)$ también lo es y, por tanto, se puede expresar como una serie de potencias convergente 
 \begin{equation}
 \mathbf{x}(t + h) = \sum_{i=0}^\infty x_i h^i = \sum_{i=0}^\infty \frac{\mathbf{x}^{(i)}(t)}{i!}h^i 
 = \sum_{i=0}^M \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{M+1}),
 \label{eq:anal-exp}
 \end{equation}
-donde $x_i$ es la i-ésima derivada normalizada, i.e. $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}^d$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1})$ corresponde al residuo de la expansión hasta $M < \infty$ y, en caso de funciones analíticas, son términos cada vez más pequeños mientras estén dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método.
+donde $x_i$ es la i-ésima derivada normalizada, i.e. $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}^d$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1})$ corresponde al residuo de la expansión hasta $M < \infty$ y, en caso de funciones analíticas, son términos cada vez más pequeños mientras estén dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método\footnote{Los métodos que incluyen el cálculo del residuo como un intervalo de error se conocen como Taylor Models.}
 
-Notemos que comparando ambas expansiones en series de potencias de (\ref{eq:ode}) y notando que $ \frac{d}{dt} \left( \sum_{k=0} a_k t^k \right) = \sum_{k=1} k a_k t^{k-1}$,   
+Comparando ambas expansiones en series de potencias de (\ref{eq:ode}) y notando que $ \frac{d}{dt} \left( \sum_{k=0} a_k t^k \right) = \sum_{k=1} k a_k t^{k-1}$,   
 \begin{equation*}
- \dot{\mathbf{x}}(t) \approx \sum_{i=1}^M i x_i t^{i-1} = \sum_{i=0}^M (i+1)x_{i+1} t^i = \sum_{i=0}^M f_i t^i
+ \dot{\mathbf{x}}(t) \approx \sum_{i=1}^M i x_i t^{i-1} = \sum_{i=0}^M (i+1)x_{i+1} t^i = \sum_{i=0}^M f_i t^i.
 \end{equation*}
 
-definiendo la relación de recurrencia
+Así, se define la relación de recurrencia
 \begin{equation}
-x_{i+1} = \frac{f_i}{i+1}
+x_{i+1} = \frac{f_i}{i+1},
 \label{eq:rec-rel}
 \end{equation}
 
 obteniendo así 
 \begin{equation}
-\mathbf{x}(t_{n+1}) = \mathbf{x}(t_n) + \sum_{i=1}^M f_i(\mathbf{x}(t_{n+1}),t_n)h^i + \mathcal{O}(h^{M+1})
+\mathbf{x}(t_{n+1}) = \mathbf{x}(t_n) + \sum_{i=0}^M \frac{f_i}{i+1} \left(\mathbf{x}(t_{n+1}),t_n \right) h^i + \mathcal{O}(h^{M+1}),
 \label{eq:taylor-rel}
 \end{equation}
 
@@ -443,18 +439,21 @@ Para el caso de funciones pares o impares, es probable que el último coeficient
 h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_m}_\infty} \right)^{1/m} }.
 \label{eq:stepsize}
 \end{equation} 
+
+Esta última ecuación hace que el método de Taylor sea de presición arbitraria. El paso es adaptativo para cada iteración y, dependiendo si uno busca presición o rápidez, uno selecciona a $\epsilon_{Taylor}$ grande o chica, respectivamente. Típicamente, para obtener la mejor presición posible, $\epsilon_{Taylor} \leq \epsilon_{machine}$, donde $\epsilon_{machine}$ es la presición de la máquina.
+
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
 \subsection{Método de Taylor para el transporte de jets}
 Para el método que se acaba de desarrollar, cada término satisface que $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el transporte de jets (TJ) se parametriza la vecindad de la condición inicial con un polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
 \begin{equation}
-P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=1}^M f_i(P_{n,\xo}(\xi),t_n)h^i 
+P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=0}^M \frac{f_i}{i+1}(P_{n,\xo}(\xi),t_n)h^i 
 \label{eq:jt-rel}
 \end{equation}
 
 donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, puede encontrarse la solución $\phi(t_n;t_0,\xo + \mathbf{\xi}) = P_{n,\xo}(\xi)$, que representa las vecindades del flujo $\phi(t_n;t_0,\xo)$ parametrizadas por $\mathbf{\xi}$.
 
-Notemos que para este punto ya no hay problema en evaluar $P_{n,\xo}(\xi)$ ya que quedaron definidas las operaciones necesarias en la sección \ref{sec:alg_poli}. Sin embargo, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, la p-norma no está definida.
+Notemos que para este punto ya no hay problema en evaluar $P_{n,\xo}(\xi)$ ya que quedaron definidas las operaciones necesarias en la sección \ref{sec:alg_poli}. Sin embargo, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, se puede definir la $p$-norma.
 
 \begin{definicion}
 Sea $\norm{\cdot} : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
@@ -465,12 +464,12 @@ Sea $\norm{\cdot} : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_
 donde, si $a_k \in \mathbb{R}$, entonces $\norm{a_k}_p = |a_k|$.
 \end{definicion}
 
-Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Perez en \cite{Perez2013}.
+Así, la elección del paso de integración tiene sentido ahora también para polinomios. Es importante mencionar que la definición de la norma para polinomios en $\pkk{N}{d}$ coincide con la definición estándar de norma. Además, de este modo, el paso de integración $h$ coincide por el utilizado por D. Pérez en \cite{Daniel2015}.
 
 \subsection{Probando el método de Taylor}
 \label{sec:benchmark-taylor}
 
-Hasta ahora, se han desarrollado ejemplos únicamente con el método de Euler con intención de entender la escencia del transporte de jets. Sin embargo, es hora de poner a prueba el método de Taylor desarrollado hace un momento y ver si (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisos y ver, para (\ref{eq:jt-rel}) en particular, qué tipo de variables e indicadores se pueden obtener para obtener lo mejor del método.
+Hasta ahora, se han desarrollado ejemplos únicamente con el método de Euler con intención de entender la esencia del transporte de jets. Sin embargo, es hora de poner a prueba el método de Taylor desarrollado hace un momento y ver si (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisos y ver, para (\ref{eq:jt-rel}) en particular, qué tipo de variables e indicadores se pueden obtener, para así enriquecer al método.
 
 %Referenciar capítulo de mecánica?
 Para probar el método se tomarán algunos hamiltonianos de la forma
@@ -529,9 +528,9 @@ Así, tenemos que las soluciones analíticas son de la forma
  \label{eq:oscilador_analytical}
 \end{align}
 
-La figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico, junto con una solución calculada con el transporte de jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la figura la estructura de centros alrededor del único punto singular $(0,0)^T$.
+La figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico, junto con una solución calculada con el transporte de jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la figura la estructura de centros alrededor del único punto de equilibrio $(0,0)^T$.
 
-Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \ Kg$, $k = 1 \frac{Kg}{s^2}$, el oscilador tendrá una energía de $E_0 = H(\xo) = 1$ Joules. En la figura \ref{fig:oscillator_deltas} se pueden ver las variaciones $\delta E(t_n)$ de la energía en cada paso de integración así como la diferencia $\delta \mathbf{x}(t_n)$ de las soluciones de jet calculadas por el método de Taylor evaluadas en diferentes $\xi$s y las soluciones analíticas del oscilador armónico correspondientes al desplazamiento dado por dichas $\xi$s.
+Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \textrm{ Kg}$, $k = 1 \textrm{ Kg s}^{-2}$, el oscilador tendrá una energía de $E_0 = H(\xo) = 1$ Joules. En la figura \ref{fig:oscillator_deltas} se pueden ver las variaciones $\delta E(t_n)$ de la energía en cada paso de integración así como la diferencia $\delta \mathbf{x}(t_n)$ de las soluciones de jet calculadas por el método de Taylor evaluadas en diferentes $\xi$s y las soluciones analíticas del oscilador armónico correspondientes al desplazamiento dado por dichas $\xi$s.
 
 %FIGURA!
  \begin{figure}[h!]
@@ -539,17 +538,16 @@ Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \ Kg$, $k = 1 \frac{
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{oscillator_dE}
-	\caption{Variación $\delta E(t_n) = \frac{E(t_n)-E_0}{\epsilon_{machine}}$ de la energía respecto a la energía inicial $E_0 = 1$ Joule.\\ \\ }
 	\label{fig:oscillator_dE}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{oscillator_dx}
-	\caption{Variación $\delta \mathbf{x}(t) =  \frac{\norm{\mathbf{x}(t_n) - \mathbf{x_n}}_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
+	\caption{}
 	\label{fig:oscillator_dx}
 \end{subfigure}
-\caption{Variaciones de energía y trayectoria para el oscilador armónico en cada uno de los pasos temporales de la solución con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$.}
+\caption{Variaciones de energía y trayectoria para el oscilador armónico en cada uno de los pasos temporales de la solución en unidades del épsilon de la máquina con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$. \textit{Izquierda}: variación $\delta E(t_n) = \frac{E(t_n)-E_0}{\epsilon_{machine}}$ de la energía respecto a la energía inicial $E_0 = 1$ Joule. \textit{Derecha}: cariación $\delta \mathbf{x}(t) =  \frac{\norm{\mathbf{x}(t_n) - \mathbf{x_n}}_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
 \label{fig:oscillator_deltas}
 \end{figure}
 
@@ -562,7 +560,7 @@ Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de lon
 %FIGURA! 
 
 
-La forma más natural de trabajar este problema es en coordenadas polares, en donde la masa $m$ se mueve con una velocidad $v = l\dot{\theta}$ con $l$ constante, es decir $r = l \neq r(t) \implies \dot{r} = \dot{p_r} = 0$. Esta constricción reduce en uno los grados de libertad del sistema, haciendo que éste dependa únicamente de $\theta$. 
+La forma más natural de trabajar este problema es en coordenadas polares, en donde la masa $m$ se mueve con una velocidad $v = l\dot{\theta}$ con $l$ constante, es decir $r(t) = l \implies \dot{r} = \dot{p_r} = 0$. Esta constricción reduce en uno los grados de libertad del sistema, haciendo que éste dependa únicamente de $\theta$. 
 
 Tenemos que 
 \begin{align}
