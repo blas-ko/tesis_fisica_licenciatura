@@ -403,16 +403,16 @@ Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{simplecticity_pendulum}
- \caption{}
+ \caption{Representación escalar de la simplecticidad del péndulo simple con condición inicial $( \pi/2,0)^T$ para $200$ periodos ($1600 $ pasos de integración) con orden del jet $M=2$, orden de la expansión $N = 28$ y tolerancia $\epsilon_{Taylor} = 10^{-10}$.}
  \label{fig:simplecticity_pendulum}
 \end{figure}
 
-La figura \ref{fig:simplecticity_pendulum} muestra la variación de la cantidad $\varsigma(t)$ para el péndulo simple en términos de $\epsilon_{mahcine}$. Ésta se define como
+La figura \ref{fig:simplecticity_pendulum} muestra la variación de la cantidad $\varsigma(t)$ para el péndulo simple en términos de $\epsilon_{machine}$. Ésta se define como
 \begin{equation}
- \varsigma(t) = \sum_{i,j} |\left[ J(\phi(t))^T \omega J(\phi(t)) - \omega \right]_{i,j}|
+ \varsigma(t) = \norm{ J(\phi(t))^T \omega J(\phi(t)) - \omega }_\infty
  \label{eq:scalar_symplecticity}
 \end{equation}
-y no es más que la suma de los valores absolutos de los elementos de matriz de (\ref{eq:sympletic_flow}). $\varsigma$ es una forma escalar de representar la simplecticidad del sistema para poder visualizarlo gráficamente para cada paso temporal.
+y no es más que el máximo valor absolutos de la matriz de (\ref{eq:sympletic_flow}). $\varsigma$ es una forma escalar de representar la simplecticidad del sistema para poder visualizarlo gráficamente para cada paso temporal.
   
 Podemos observar en dicha figura un comportamiento browniano, similar a como pasa con la energía en los ejemplos de sistemas hamiltonianos planteados hasta ahora.
 
@@ -421,29 +421,29 @@ Podemos observar en dicha figura un comportamiento browniano, similar a como pas
 \label{sec:parameter_variation}
 Aunque el título de esta sección suene redundante, el TJ nos permite no sólo parametrizar las vecindades de $\xo$ en un campo vectorial dado sino también los parámetros que lo definen.
 
-Tomemos, por ejemplo, al oscilador armónico\footnote{Al pobre oscilador armónico le deben picar las orejas de tanto que hablamos de él.} dado por  
+Tomemos, por ejemplo, al oscilador armónico dado por  
 \begin{equation}
  \ddot{x}(t) + \omega^2 x(t) = 0
  \label{eq:one_dim_oscil}
 \end{equation}
 
-cuyo hamiltoniano está dado por 
+con hamiltoniano
 \begin{equation}
  H(x,y) = \frac{1}{2} \left( y^2 + \omega ^2 x^2 \right),
  \label{eq:osc_ham2}
 \end{equation}
-con $y = \dot{x}$.
+con $y = \dot{x}$ y $\omega \in \mathbb{C}$.
 
-Complejificando el dominio, sabemos que la solución está dada por 
+Complejificando el dominio, sabemos la solución
 \begin{equation*}
  x_{\mathbb{C}}(t) = A e^{i\omega t} + B e^{-i \omega t}
 \end{equation*}
-donde, si $\omega^2 < 0$, entonces la proyección a los reales es
+donde, si $\omega^2 > 0$, entonces la proyección a los reales es
 \begin{equation}
  x(t) = a \cos(t) + b \sin (t)
  \label{eq:ho_solution_trig}
 \end{equation}
-y, si $\omega^2 > 0$, la proyección es
+y, si $\omega^2 < 0$, la proyección es
 \begin{equation}
  x(t) = \alpha e^{\omega t} + \beta e^{- \omega t}.
  \label{eq:ho_solution_exp}
@@ -487,4 +487,5 @@ El flujo conserva la energía cada vez menos conforme pasa el tiempo como se obs
 \end{figure}
 
 
+Los indicadores desarrollados hasta ahora refuerzan el estudio del espacio fase como en los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$, permiten tener alternativas al método de Montecarlo como en la parametrización de parámetros, nos dan formas de evaluar las vecindades en un radio donde el error sea menor a una tolerancia dada y permiten corrobrar la simplecticidad de un flujo hamiltoniano. Éstas se utilizarán en un problema específico, el Problema Circular de Tres Cuerpos, el cual se desarrollará en el siguiente capítulo.
 %Pequeña conclusión de sección ? 
