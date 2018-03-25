@@ -591,22 +591,22 @@ Las EDO quedan entonces, por (\ref{eq:ham-rel}), como
 \label{eq:pendulo-ode}
 \end{align}
 
-en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen tres puntos singulares: $(-\pi,0),(\pi,0), (0,0)$; dos puntos de ``liberación'' y otro de ``relajación'', respectivamente. En la figura \ref{fig:pendulum_pshp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos.
+en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen dos puntos de equilibrio: $(\pi,0), (0,0)$; el primero de libración y el otro de oscilación. En la figura \ref{fig:pendulum_pshp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos. Notemos que, por la periodicidad del péndulo, $(\pi, 0) = (-\pi, 0)$.
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{pendulum_phsp}
- \caption{Espacio fase para el péndulo simple representado por la ecuación \ref{eq:pendulo-ham}. En negro salen puntos de la trayectoria calculada con el método de Taylor para Jets con $\xo = (\frac{\pi}{2},0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y sus vecindades (jets) evaluadas para $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$.}
+ \caption{Espacio fase para el péndulo simple representado por la ecuación (\ref{eq:pendulo-ham}). En negro salen puntos de la trayectoria calculada con el método de Taylor para Jets con $\xo = (\frac{\pi}{2},0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y sus vecindades (jets) evaluadas para $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$.}
 \label{fig:pendulum_pshp}
 \end{figure}
 
-Si viajamos a un planeta en donde $g = 1 \ \frac{m}{s^2}$ \footnote{A veces, para la física, es más fácil viajar a un planeta donde exista la atracción gravitacional que más nos gusta que hacer a un péndulo girar en la Tierra; qué comodo.} y tomamos una varilla de longitud $l=1$ m y una masa $m=1$ kg,  entonces, para las condiciones iniciales $p_{\theta}(0) = 0 \ N \cdot m$ y $\theta(0) = \pi/2$, la energía total es 
+Tomando unidades donde $g = 1 $ , $l=1$ y $m=1$,  entonces, para las condiciones iniciales $p_{\theta}(0) = 0 \ N \cdot m$ y $\theta(0) = \pi/2$, la energía total es 
 \begin{equation*}
-E_0 = H(p_{\theta}(0),\theta (0) ) = 1 \text{ J.}
+E_0 = H(p_{\theta}(0),\theta (0) ) = 1.
 \end{equation*}
 
-Para dichas condiciones, se puede integrar el transporte de jets y además, evaluarlo para condiciones cercanas y ver cómo se comportan éstas soluciones en el espacio fase, que deben, en teoría, moverse por las curvas de (\ref{eq:pendulo-ham}). Se puede observar de la figura \ref{fig:pendulum_jt_O4} cómo para jets de orden 4, las soluciones se quedan sobre las curvas de nivel del hamiltoniano.
+Para ésta, se puede integrar el transporte de jets y además, evaluarlo para condiciones cercanas y ver cómo se comportan éstas soluciones en el espacio fase, que deben, en teoría, moverse por las curvas de (\ref{eq:pendulo-ham}). Se puede observar de la figura \ref{fig:pendulum_jt_O4} cómo para jets de orden 4, las soluciones se quedan sobre las curvas de nivel que corresponden a su energía mecánica.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -614,21 +614,19 @@ Para dichas condiciones, se puede integrar el transporte de jets y además, eval
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{pendulum_jt_O1}
-	\caption{Jet de orden $1$ después de dos periodos desde $\xo$.}
 	\label{fig:pendulum_jt_O1}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{pendulum_jt_O4}
-	\caption{Jet de orden $4$ después de dos periodos desde $\xo$.}
 	\label{fig:pendulum_jt_O4}
 \end{subfigure}
-\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\tau) = 0.1\left( \cos(\tau),\sin(\tau) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$.}
+\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\tau) = 0.1\left( \cos(\tau),\sin(\tau) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple después de dos periodos. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$. \textit{Izquierda}: jet de orden $1$, el cual no pasa por las curva de nivel de (\ref{eq:pendulo-ham}). \textit{Derecha}: jet de orden $4$}
 \label{fig:pendulum_jt}
 \end{figure}
 
-Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fig:pendulum_dE} cómo $\delta E(t)$ varía alrededor de cero como un movimiento browniano. Éste último se relaciona con los errores de redondeo de puntos flotantes de la máquina y no con el método de Taylor en sí, a diferencia del método de Euler, como se observa en la figura \ref{fig:center_anal_comparison}, donde el error crece de manera lineal. La máxima variación respecto a la energía inicial es de $2.28\times10^{-14}$, lo cual corresponde a $103 \epsilon_{machine}$ (sin redondear).
+Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fig:pendulum_dE} cómo $\delta E(t)$ varía alrededor de cero como un movimiento browniano. Éste último se relaciona con los errores de redondeo de los números de punto flotante de la máquina y no con el método de Taylor en sí, a diferencia del método de Euler, como se observa en la figura \ref{fig:center_anal_comparison}, donde el error crece de manera lineal. La máxima variación respecto a la energía inicial es de $2.28\times10^{-14}$, lo cual corresponde exactamente a $103 \epsilon_{machine}$.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -657,7 +655,7 @@ el hamiltoniano del sistema cuyas curvas de nivel representan las soluciones par
 \end{align}
 
 
-Notemos que el sistema anterior tiene un único punto singular $(0,0)^T$ que corresponde a una energía de $H(0,0) = 0$. Con esto, podemos obtener la condición para que las soluciones estén sobre dicho curva límite o separatriz que divide diferentes regiones del espacio. Vemos que si
+Notemos que este sistema tiene un único punto de equilibrio $(0,0)^T$ que corresponde a una energía de $H(0,0) = 0$. Con esto, podemos obtener la condición para que las soluciones estén sobre dicha curva límite o separatriz que divide diferentes regiones del espacio. Vemos que si
 \begin{equation*}
  H(q,p) = qp^2 - \frac{1}{2}q^2 = 0 \implies p = \pm \sqrt{\frac{q}{2}} 
 \end{equation*}
@@ -668,21 +666,21 @@ entonces las condiciones iniciales tipo $\xo = \left( q, -\sqrt{\frac{q}{2}} \ri
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.8\linewidth]{artificial_phsp}
- \caption{Espacio fase de \ref{eq:artificial_ode}.}
+ \caption{Espacio fase de (\ref{eq:artificial_ode}).}
  \label{fig:artificial_phsp}
 \end{figure}
 
-Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el hamiltoniano del sistema. Notemos que dicha separatriz se puede observar como una especie de parábola horizontal positiva con centro en el punto singular.
+Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el hamiltoniano del sistema. Notemos que dicha separatriz se puede observar como una especie de parábola horizontal positiva que pasa por el punto de equilibrio.
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.8\linewidth]{artificial_jt_O16}
- \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, con tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=28$. En gris están las soluciones a $\xo + \xi$ sin utilizar TJ.}
+ \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $N=28$. En gris están las soluciones a $\xo + \xi$ sin utilizar TJ.}
  \label{fig:artificial_jt}
 \end{figure}
 
-Si tomamos $q_0 = 0.7$ con la condición anterior, y hacemos un transporte de jets alrededor de dicha condición inicial podríamos ver, en teoría, las trayectorias que toman las soluciones cercanas a la curva límite en cada lado de la frontera que ésta impone. En la figura \ref{fig:artificial_jt} se observa la deformación de estos jets conforme pasa el tiempo y, aunque la evolución temporal es un intervalo relativamente corto, es evidente la tendencia que tienen las soluciones cercanas a diverger.
+Si tomamos $q_0 = 0.7$ con la condición anterior, y hacemos un transporte de jets alrededor de dicha condición inicial podríamos ver, en teoría, las trayectorias que toman las soluciones cercanas a la curva límite en cada lado de la frontera que ésta impone. En la figura \ref{fig:artificial_jt} se observa la deformación de estos jets conforme pasa el tiempo y es evidente la tendencia que tienen las soluciones cercanas a diverger.
 
 En este problema se vuelve importante muy rápidamente la precisión con la que los jets nos dan soluciones cercanas ya que la deformación de la vecindad inicial $\U_{\xo}$ es muy grande. Por esto, se muestra en la tabla \ref{table:djet_artificial} la diferencia entre evaluar el jet en $\xi = (0,-0.1)^T$ y hacer el método de Taylor convencional partiendo de ese punto. De hecho, se observan en la figura \ref{fig:artificial_jO2_jO16} la evaluación de jets de distinto orden para la misma vecindad inicial alrededor de $\xo$.
 
@@ -692,7 +690,6 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
 \begin{tabular}{c|ccccc}
 \toprule
                & \textbf{$ M = 1 $} & \textbf{$M = 2 $} & \textbf{$ M = 4$} & \textbf{$ M = 8 $} & \textbf{$ M = 16 $} \\ \cmidrule(l){1-6} 
-\textbf{$t_0$} & -Inf                       & -Inf                       & -Inf                       & -Inf                       & -Inf                          \\
 \textbf{$t_1$} & -2.42                      & -3.97                      & -7.07                      & -13.28                     & -15.95                        \\
 \textbf{$t_2$} & -1.92                      & -3.1                       & -5.47                      & -10.22                     & -15.95                        \\
 \textbf{$t_3$} & -1.54                      & -2.48                      & -4.37                      & -8.15                      & -15.91                        \\
@@ -701,7 +698,7 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
 \textbf{$t_6$} & -0.61                      & -1.05                      & -1.95                      & -3.74                      & -7.34                         \\
 \textbf{$t_7$} & -0.29                      & -0.6                       & -1.24                      & -2.52                      & -5.08                         \\ \bottomrule 
 \end{tabular}
-\caption{Diferencia logarítmica de $\delta \mathbf{x} = \norm{ \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) }$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden $M$ en $\xi$.}
+\caption{Diferencia logarítmica de $\delta \mathbf{x} = \norm{ \phi(t_i,t_0,\xo + (0,-0,1)^T) - P_{i,\xo}((0,-0.1)^T) }$ para polinomios $P_{i,\xo}(\xi)$ de distinto orden $M$ en $\xi$. Se ve que al duplicar $M$, el error mejora en un factor $2$, aproximadamente.}
 \label{table:djet_artificial}
 \end{table}
 
@@ -713,7 +710,7 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
  \label{fig:artificial_jO2_jO16}
 \end{figure}
 
-Recordemos que como (\ref{eq:artificial_ode}) es un sistema de EDO hamiltoniano entonces deberá conservar la energía. En la figura \ref{fig:artificial_dE} se observa la variación de la energía para cada paso temporal con el jet evaluado en $\xi = (0,\pm 0.1)^T$, así como en $\xo$, i.e., para el método de Taylor sin jets. Notemos cómo al principio (figura \ref{fig:artificial_dEjets_half}) la energía sí se conserva, i.e, las evaluaciones del TJ se mantienen sobre las superficies de nivel del hamiltoniano, sin embargo, cuando la vecindad se empieza a deformar más, la energía empieza a variar más respecto a la de su condición inicial. Notemos que aunque esta variación es de $\approx 10^8 \epsilon_{machine}$, el error en la energía es en la octava cifra significativa, dado que $\epsilon_{machine} = 2.22\times 10^{-16}$.
+Recordemos que como (\ref{eq:artificial_ode}) es un sistema de EDO hamiltoniano entonces deberá conservar la energía. En la figura \ref{fig:artificial_dE} se observa la variación de la energía para cada paso temporal con el jet evaluado en $\xi = (0,\pm 0.1)^T$, así como en $\xo$, i.e., para el método de Taylor sin jets. Notemos cómo al principio (figura \ref{fig:artificial_dEjets_half}) la energía sí se conserva, i.e, las evaluaciones del TJ se mantienen sobre las superficies de nivel del hamiltoniano, sin embargo, cuando la vecindad se empieza a deformar más, la energía empieza a variar más respecto a la de su condición inicial. Notemos que aunque esta variación es de unas $10^8 \epsilon_{machine}$, el error en la energía es apenas en la octava cifra significativa, dado que $\epsilon_{machine} = 2.22\times 10^{-16}$.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -729,21 +726,19 @@ Recordemos que como (\ref{eq:artificial_ode}) es un sistema de EDO hamiltoniano 
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{artificial_dEjets_half}
-	\caption{Diferencias de energía $\delta E$ respecto a la energía inicial en la primera mitad de la integración.}
 	\label{fig:artificial_dEjets_half}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{artificial_dEjets_all}
-	\caption{Logaritmo de las diferencias de energía $\delta E$ respecto a la energía inicial en toda la integración.}
 	\label{fig:artificial_dEjets_all}
 \end{subfigure}
-\caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema (\ref{eq:artificial_ode}) con jets de orden $M=16$ evaluados en $\xi$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+\caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema (\ref{eq:artificial_ode}) con jets de orden $M=16$ evaluados en $\xi$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 28$ y $40$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$. \textit{Izquierda}: $\delta E$ respecto a la energía inicial en la primera mitad de la integración. \textit{Derecha}:  $\log_10(\delta E + 1)$ respecto a la energía inicial en toda la integración. }
 \label{fig:artificial_dEjets}
 \end{figure}
 
 
-Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de éstos ejemplos. Por otro lado, hemos visto en éste último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $xo$ y observamos en qué tiempo cruzan las vecindades ésta sección. El uso de jets motiva a hacer varios indicadores sobre la dinámica de las ecuaciones son obtener explícitamente la solución. Es importante notar que no siempre se tendrá un hamiltoniano explicito para comparar las soluciones con sus curvas de nivel, así que estos indicadores servirán para darnos información sobre el espacio fase sin conocerlo del todo. 
+Todos los ejemplos construidos en la última sección han sido evaluados en una vecindad con un radio de $r = 0.1$ alrededor de $\xo$. Sin embargo, nada asegura que ésta sea una buena elección para dicha vecindad. Estudiar cuál es el tamaño máximo que una vecindad puede tomar para que los jets arrojen soluciones precisas se vuelve una pregunta natural al ver las gráficas y tablas de estos ejemplos. Por otro lado, hemos visto en este último ejemplo cómo una vecindad inicial puede deformarse bastante rápido cerca de una curva límite cuando en el oscilador armónico, en cambio, no se deforma nada. Establecer una métrica de deformación se vuelve, también, una forma de análisis del estudio de vecindades de alguna condición $\xo$ dada para algún sistema de ecuaciones diferenciales a trabajar. En el caso del péndulo simple, se observa cómo después de cada periodo de oscilación, el jet se deforma de manera tal que las soluciones cercanas no cruzan la condición inicial al mismo tiempo que $\xo$; esto se puede estudiar si pintamos una sección transversal a las soluciones del péndulo que pase por $\xo$ y observamos en qué tiempo cruzan las vecindades ésta sección.  El TJ ha funcionado muy bien en ver cómo varían las vecindades de las ecuaciones estudiadas en esta sección, y esto nos motiva a desarrollar indicadores sobre la dinámica de los sistemas de ecuaciones en general, aún cuando no se pueda obtener su solución explícita. Es importante notar que no siempre se tendrá la posibilidad de comparar con aspectos cuantitativos como en los ejemplos son las curvas de nivel. Ésto motiva a que dichos indicadores nos ayuden a conocer el espacio fase aún cuando no sepamos todas las cantidades conservadas.
 
 %Los siguientes indicadores están motivados fuertemente en lo discutido en \cite{Perez2015}, \cite{Perez2015}, \cite{Haro2009}.
