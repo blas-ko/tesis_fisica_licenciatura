@@ -13,6 +13,8 @@ Este capítulo se divide como sigue:
 %ξmax en algo que no sea ξgrid? 
 
 \section{Parametrización de $\mu$}
+\label{sec:parametrization}
+
 Como se analizó en la sección \ref{sec:lag_points}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por (\ref{eq:mu_critica}). 
 
 El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos. Sin embargo, es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la partícula que visita a $L_4$ o $L_5$.
@@ -45,7 +47,7 @@ Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L
  \label{fig:remoteness_dmu}
 \end{figure}
 
-Una forma de ver realmente cuándo el flujo no diverge de la localidad de $L_4$ es si podemos aislar la tendencia de la amplitud de los ciclos. Para ésto, se puede usar un filtro de Hodrick-Prescott, que separa una serie de tiempo en tendencia y ciclo. Sea $y_t$ la variable de una serie de tiempo al tiempo $t$. Se asume que dicha serie está compuesta de una componente de tendencia $\tau_t$ más una componente ciclica $c_t$, es decir, $y_t = \tau_t + c_t$\footnote{Normalmente se incluye una componente de error $\eta_t$ que, en este caso, será absorbida por $c_t$.}. Así, uno puede encontrar la tendencia, como se plantea en \cite{Hodrick1997}, bajo el problema de minimización
+Una forma de ver realmente cuándo el flujo no diverge de la localidad de $L_4$ es si podemos aislar la tendencia de la amplitud de los ciclos. Para esto, se puede usar un filtro de Hodrick-Prescott, que separa una serie de tiempo en tendencia y ciclo. Sea $y_t$ la variable de una serie de tiempo al tiempo $t$. Se asume que dicha serie está compuesta de una componente de tendencia $\tau_t$ más una componente ciclica $c_t$, es decir, $y_t = \tau_t + c_t$\footnote{Normalmente se incluye una componente de error $\eta_t$ que, en este caso, será absorbida por $c_t$.}. Así, uno puede encontrar la tendencia, como se plantea en \cite{Hodrick1997}, bajo el problema de minimización
 \begin{equation}
  \min_{\tau} \left( \sum_{t=1}^T (y_t - \tau_t)^2 + \lambda \sum_{t=2}^{T-1} \left[ (\tau_{t+1} - \tau_t) - (\tau_t - \tau_{t-1}) \right]^2 \right)
  \label{eq:hp-filter}
@@ -113,7 +115,7 @@ Primero, al hacer el transporte de jets a $40$ unidades temporales y ver el espa
  \label{fig:remoteness_tl}
 \end{figure}
 
-De hecho, en la figura \ref{fig:trendcycle_tl} se muestran los gráficas al aplicar el filtro de Hodrick-Prescott. Al aplicar dicho filtro, ¡No se puede observar absolutamente nada! Ni la gráfica de ciclo ni la de tendencia tienen ninguna coherencia en realción a las variaciones del parámetro de masa. Esto significa que $\mu_{TL} + \delta\mu$ es, en efecto, estable para todo el conjunto de valores $\delta\mu$ evaluados alrededor de $L_4$ y $L_5$. Este es un caso donde el TJ es una herramienta natural para evaluar la estabilidad de éstos puntos lagrangianos y para ver cómo varían las trayectorias en función de los parámetros del problema-. Muchas otras exploraciones se pueden hacer con variación de parámetros en el problema de tres cuerpos. Sin embargo, este análisis basta para ver las capacidades del TJ cuando no son específicamente ``Jets'' los que transporta.
+De hecho, en la figura \ref{fig:trendcycle_tl} se muestran los gráficas al aplicar el filtro de Hodrick-Prescott. Al aplicar dicho filtro, ¡No se puede observar absolutamente nada! Ni la gráfica de ciclo ni la de tendencia tienen ninguna coherencia en realción a las variaciones del parámetro de masa. Esto significa que $\mu_{TL} + \delta\mu$ es, en efecto, estable para todo el conjunto de valores $\delta\mu$ evaluados alrededor de $L_4$ y $L_5$. Este es un caso donde el TJ es una herramienta natural para evaluar la estabilidad de estos puntos lagrangianos y para ver cómo varían las trayectorias en función de los parámetros del problema-. Muchas otras exploraciones se pueden hacer con variación de parámetros en el problema de tres cuerpos. Sin embargo, este análisis basta para ver las capacidades del TJ cuando no son específicamente ``Jets'' los que transporta.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -133,6 +135,7 @@ De hecho, en la figura \ref{fig:trendcycle_tl} se muestran los gráficas al apli
 
 \pagebreak
 \section{Colisión de asteroides}
+\label{sec:asteroids}
 
 %%% Choro acerca de dos asteroides colisionando. %%% 
 
@@ -208,7 +211,7 @@ La figura \ref{fig:asteroid_collision_distribution} muestra una distribución no
 \end{figure}
 
 
-Algo relevante al hacer transporte de jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Ésto se muestra en la figura \ref{fig:asteroid_jt_vs_nominal}.
+Algo relevante al hacer transporte de jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Esto se muestra en la figura \ref{fig:asteroid_jt_vs_nominal}.
 
 %FIGURA!
 \begin{figure}
@@ -235,7 +238,7 @@ donde $\mathbf{p}_i = M_i \dot{\mathbf{r}}_i$ es el momento conjugado y
 \end{equation}
 los hamiltonianos para cada una de los cuerpos. Notemos que (\ref{eq:3BP_hamiltonian}) no depende del tiempo y, por lo tanto, es un sistema conservativo. 
 
-Cuando en la sección \ref{sec:R3BP} se supuso que la masa menor no inlfuye en la dinámica de las masas primarias, bastó con hacer una rotación con velocidad angular $\Omega$ para encontrar las ecuaciones de movimiento de $m_3$. Ésto fija las masas primarias, cancela sus hamiltonianos ($  U_{M_2} = - U_{M_1}$) y modifica el hamiltoniano para la masa menor. Dicha rotación se puede realizar bajo el cambio de coordenadas
+Cuando en la sección \ref{sec:R3BP} se supuso que la masa menor no inlfuye en la dinámica de las masas primarias, bastó con hacer una rotación con velocidad angular $\Omega$ para encontrar las ecuaciones de movimiento de $m_3$. Esto fija las masas primarias, cancela sus hamiltonianos ($  U_{M_2} = - U_{M_1}$) y modifica el hamiltoniano para la masa menor. Dicha rotación se puede realizar bajo el cambio de coordenadas
 \begin{align*}
  x &= X\cos (\Omega t) - Y \sin (\Omega t) \\
  y &= X\sin (\Omega t) - Y \cos (\Omega t) 
@@ -329,6 +332,50 @@ La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpl�
 
 %Valdrá la pena hacer un análisis simpléctico de mayor dimensión?
 
-\section{Tamaño máximo de vecindades como indicador de sensibilidad de las condiciones iniciales}
+\section{Campos de $\xi_{max}$ y $\varsigma_\pm$ para el PC3C}
+\label{sec:C3BP_heatmaps}
 
-.
+El estudio y exploración del TJ ha utilizado la ecuación (\ref{eq:ximax}) en varias ocaciones. Ésta ha sido el parámetro que nos ha permitido saber qué tan grandes pueden ser las vecindades dado cierto error $\epsilon_{jet}$, tal como se discute en la sección \ref{sec:ximax}. Éste se utilizó en la sección \ref{sec:asteroids} para comprobar que la incertidumbre de medición diera resultados precisos al evaluar la distribución de puntos, y en \ref{sec:parametrization} para las variaciones del parámetro de masa y analizar la estabilidad de $L_4$. $\xi_{max}$ percibe, en esencia, qué tan compleja es la deformación de la vecindad y qué tanto se alejan las condiciones vecinas a la condición nominal, por lo que $\xi_{max} \ll 1$ implica una alta sensibilidad en las condiciones iniciales cercanas o un gran gradiente de velocidades para la vecindad. 
+
+Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $T = 0.3$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la figura \ref{fig:} de la sección \ref{sec:} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que el tiempo de computo es muy grande cerca de estos. 
+
+%FIGURA! 
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{C3BP_ximax1}
+ \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ en una retícula de $70 \times 70$  después de $0.3$ unidades adimensionales de tiempo. Éste se calculó con tolerancia $\epsilon_{Taylor} = 10^{-7}$, orden de jets $ = 2$ y orden máximo de la expansión $M = 20$. Las condiciones del PC3C son para $\xo = (x_{0_i}, y_{0_j}, 0, 0)^T$ con $\mu = 0.1$}
+ \label{fig:C3BP_ximax1}
+\end{figure}
+
+La figura \ref{fig:C3BP_ximax3}, en cambio, presenta el mismo campo escalar pero integrada a $T = 3$ unidades adimensionales. Como se menciona al inicio de esta sección, las dos principales formas en las que $\xi_{max}$ sea chica es si el gradiente de velocidades en una vecindad es muy grande o si la deformación de la vecindad inicial es muy pronunciada. ambas figuras se observa cómo $\xi_{max}$ decrece gradualmente al aumentar el gradiente de velocidad hacia las singularidades. Esto muestra la tendencia de la tercer partícula atrayéndose hacia las masas primarias. Sin embargo, en la figura \ref{fig:C3BP_ximax3} se observan curvas donde $\xi_{max}$ es pequeña  respecto a los valores vecinos. Los puntos en estas curvas, a las cuales llamaremos $\mathcal{C}_s$, no reflejan un gran gradiente de velocidad, pero sí una deformación muy pronunciada del jet. Aquí seguramente divirgieron las condiciones por debajo y por arriba de la condición inicial. 
+
+%FIGURA! 
+\begin{figure}
+ \centering
+ \includegraphics[width=0.8\linewidth]{C3BP_ximax3}
+ \caption{Mismas condiciones que para la figura \ref{fig:C3BP_ximax1} pero integrado a $3$ unidades temporales.}
+ \label{fig:C3BP_ximax3}
+\end{figure}
+
+Para reforzar este análisis, se computaron las direcciones de mayor expansión para la vecindad de los puntos lagrangianos. La figura \ref{fig:C3BP_seprate3} presenta dichas direcciones en distintas secciones del espacio de configuraciones, donde se observa cómo en las zonas de menor expansión, equivalentes a las zonas donde $\xi_{max}$ es pequeña,  $\theta_{+}$ cambia drásticamente. Esto nos hace entender a las curvas como una especie de separatriz del problema. Esta figura presenta una acercamiento alrededor de $L_4$ y $L_3$, donde se observa cómo la dirección de  $\theta_{+}$ cambia cuando se cruza por una curva $\mathcal{C}_s$. Lejos de las singularidades el gradiente tiende hacia ellas pero al cruzar por estas curvas especiales, la dirección de expansión máxima cambia de sentido. 
+
+
+%FIGURE!
+\begin{figure}
+ \centering
+ \includegraphics[width=1.1\linewidth]{C3BP_seprate}
+ \caption{Campos vectoriales dados por $\left( \cos(\theta_{+}(\xo), \sin(\theta_{+}(\xo) \right)^T$ sobre los campos escalares $\varsigma_{+}(\xo)$ en una cuadrícula de $20 ţimes 20$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=2$ y orden de la expansió-n de Taylor $N = 25$ integradas a $T = 3$ unidades adimensionales. Las condiciones del PC3C son para $\xo = (x_{0_i}, y_{0_j}, 0, 0)^T$ con $\mu = 0.1$. A la izquierda se observan los puntos cerca de $L_4$, marcada con $\times$, mientras que a la izquierda se presentan las localidades de $L_3$.}
+ \label{fig:C3BP_seprate3}
+\end{figure}
+
+%Un poquito más de choro ya con la imagen, procurar ser más preciso en los datos dados y compararlo con algunas otras cosas... que no sea todo tan cualitativo, pues. Usar, potencialmente las CV0.
+
+%Hacer una mejor discusión sobre estas órbitas, ver las energías de Jacobi y ver si, en efecto, éstas corresponden a los mismo lugares.
+%Análisis de energía de las separatrices, ver si éstas tienen la misma  +- epsilon. 
+
+%Ver si funciona ximax para el espacio planteado por Perez en su artículo, así hay punto de comparación. hacer referencia a las estructuras lagrangianas que se encuentran... si se encuentran.
+
+%FIGURA! 
+
+%Cerrar el capítulo de resultados con un bonito choro... 
+
