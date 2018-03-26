@@ -330,7 +330,7 @@ La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpl�
 
 El estudio y exploración del TJ ha utilizado la ecuación (\ref{eq:ximax}) en varias ocaciones. Ésta ha sido el parámetro que nos ha permitido saber qué tan grandes pueden ser las vecindades dado cierto error $\epsilon_{jet}$, tal como se discute en la sección \ref{sec:ximax}. Éste se utilizó en la sección \ref{sec:asteroids} para comprobar que la incertidumbre de medición diera resultados precisos al evaluar la distribución de puntos, y en \ref{sec:parametrization} para las variaciones del parámetro de masa y analizar la estabilidad de $L_4$. $\xi_{max}$ percibe, en esencia, qué tan compleja es la deformación de la vecindad y qué tanto se alejan las condiciones vecinas a la condición nominal, por lo que $\xi_{max} \ll 1$ implica una alta sensibilidad en las condiciones iniciales cercanas o un gran gradiente de velocidades para la vecindad. 
 
-Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $T = 0.3$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la figura \ref{fig:} de la sección \ref{sec:} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que el tiempo de computo es muy grande cerca de estos. 
+Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. Dichos campos son comparables con el campo de ELTF desarrollado al principio del capítulo \ref{chap:jt_indicators}, por lo que se hará una comparación con estos al final de la sección. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $T = 0.3$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la figura \ref{fig:3body_pseudo_potential} de la sección \ref{sec:lag_points} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que el tiempo de computo es muy grande cerca de estos. 
 
 %FIGURA! 
 \begin{figure}
@@ -356,9 +356,19 @@ Para reforzar este análisis, se computaron las direcciones de mayor expansión 
 %FIGURE!
 \begin{figure}
  \centering
- \includegraphics[width=1.1\linewidth]{C3BP_seprate}
- \caption{Campos vectoriales dados por $\left( \cos(\theta_{+}(\xo), \sin(\theta_{+}(\xo) \right)^T$ sobre los campos escalares $\varsigma_{+}(\xo)$ en una cuadrícula de $20 ţimes 20$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=2$ y orden de la expansió-n de Taylor $N = 25$ integradas a $T = 3$ unidades adimensionales. Las condiciones del PC3C son para $\xo = (x_{0_i}, y_{0_j}, 0, 0)^T$ con $\mu = 0.1$. A la izquierda se observan los puntos cerca de $L_4$, marcada con $\times$, mientras que a la izquierda se presentan las localidades de $L_3$.}
+ \includegraphics[width=1.0\linewidth]{C3BP_seprate}
+ \caption{Campos vectoriales dados por $\left( \cos(\theta_{+}(\xo), \sin(\theta_{+}(\xo) \right)^T$ sobre los campos escalares $\varsigma_{+}(\xo)$ en una cuadrícula de $20 \times 20$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=2$ y orden de la expansió-n de Taylor $N = 25$ integradas a $T = 3$ unidades adimensionales. Las condiciones del PC3C son para $\xo = (x_{0_i}, y_{0_j}, 0, 0)^T$ con $\mu = 0.1$. A la izquierda se observan los puntos cerca de $L_4$, marcada con $\times$, mientras que a la izquierda se presentan las localidades de $L_3$.}
  \label{fig:C3BP_seprate3}
+\end{figure}
+
+Notemos de la figura \ref{fig:C3BP_FTLE}, que el campo escalar para $\xi_{max}$ es bastante similar al campo de los ELTF. Se presentan las mismas líneas separatrices que en \ref{fig:C3BP_ximax3}. Sin embargo, la diferencia conceptual es que en el caso de ELTF éstas representan las zonas de mayor tasa de expansión, mientras que en $\xi_{max}$ representan el tamaño donde las variaciones son más pequeñas.
+
+%FIGURE!
+\begin{figure}
+ \centering
+ \includegraphics[width=0.7\linewidth]{C3BP_FTLE}
+ \caption{Campo escalar dado por los ELTF. Las condiciones y la retícula para esta figura son idénticas a las de \ref{fig:C3BP_ximax3}.}
+ \label{fig:C3BP_FTLE}
 \end{figure}
 
 %Un poquito más de choro ya con la imagen, procurar ser más preciso en los datos dados y compararlo con algunas otras cosas... que no sea todo tan cualitativo, pues. Usar, potencialmente las CV0.
