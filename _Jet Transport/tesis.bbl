@@ -27,10 +27,11 @@ M.~Berz, ``{High order computation and normal form analysis of repetitive
 M.~Berz, ``{Differential Algebraic Techniques, Entry in 'Handbook of
   Accelerator Physics and Engineering'},'' vol.~9, pp.~4--10.
 
-\bibitem{CBLyapunovExponents}
-P.~Cvitanovi{\'c}, R.~Artuso, R.~Mainieri, G.~Tanner, and G.~Vattay, ``Lyapunov
-  exponents,'' in {\em Chaos: Classical and Quantum}, ch.~6, Copenhagen: Niels
-  Bohr Inst., 2016.
+\bibitem{Shadden2005}
+S.~C. Shadden, F.~Lekien, and J.~E. Marsden, ``{Definition and properties of
+  Lagrangian coherent structures from finite-time Lyapunov exponents in
+  two-dimensional aperiodic flows},'' {\em Physica D: Nonlinear Phenomena},
+  vol.~212, no.~3-4, pp.~271--304, 2005.
 
 \bibitem{Haller2011}
 G.~Haller, ``{A variational theory of hyperbolic Lagrangian Coherent
