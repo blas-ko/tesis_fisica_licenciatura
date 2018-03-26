@@ -1,16 +1,7 @@
-En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Rica es por elementos como la sensibilidad al parámetro de masa (\ref{eq:3body_mu}), la sensibilidad a condiciones inciales cercanas, las trayectorias discriminadas por su constante de Jacobi, o los cinco puntos lagrangianos (\ref{eq:3body_lag}). Esta sección busca explotar el transporte de jets como se describe en el capítulo \ref{sec:jt} así como los indicadores y herramientas desarrolladas en \ref{sec:jt_indicators}.
+En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Rica es por elementos como la sensibilidad al parámetro de masa (\ref{eq:mu_critica}), la sensibilidad a condiciones inciales cercanas, las trayectorias discriminadas por su constante de Jacobi, o sus cinco puntos lagrangianos. Esta sección busca explotar el transporte de jets como se describe en el capítulo \ref{chap:jt} así como los indicadores y herramientas desarrolladas en \ref{chap:jt_indicators}.
 
-En este capítulo se buscan explotar las propiedades dinámicas encontradas en \ref{chap:CR3BP} con ayuda de las herramientas planteadas en \ref{chap:jt_indicators}. Se utilizará al tranporte de jets en varias perspectivas donde, por ejemplo, se lo tratará como un integrador de flujo cuyas condiciones iniciales no se saben con presición, una herramienta para encontrar las ecuaciones de primera variación y más, método para encontrar las máximas y mínimas expansiones de la vecindad de una condición inicial dada en el espacio de configuraciones
 
-Este capítulo se divide como sigue: 
-%...
-
-%Algo con las 0VC, 
-%Parametrización de la masa (no está jalando; chance lo mochamos)
-%heatmaps..
-%direcciones de mayor y menor contracción alrededor de un punto
-%simplecticidad??????
-%ξmax en algo que no sea ξgrid? 
+Este capítulo se divide como sigue: La sección \ref{sec:parametrization} parametriza a $\mu$ y hace un TJ de dicha parametrización. La sección \ref{sec:asteroids} estudia la probabilidad de colisión entre dos asteroides orbitando cerca de la Tierra. Luego, en \ref{sec:C3BP_simplecticity} se estudia la simplecticidad del PC3C. Finalmente, en la sección \ref{sec:C3BP_heatmaps} se presentan los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$ y se compara con los resultados para el campo de ELTF.
 
 \section{Parametrización de $\mu$}
 \label{sec:parametrization}
@@ -226,6 +217,8 @@ Así, ilustramos el método de posible colisión entre asteroides, donde se esta
 %Mencionar adimensionalización del tiempo para ver cuánto implica 1 unidad temporal.
 
 \section{Simplecticidad del PC3C}
+\label{sec:C3BP_simplecticity}
+
 Se construyeron en el capítulo \ref{chap:CR3BP} los potenciales (\ref{eq:3body_potential}) y sus respectivas energías cinéticas (\ref{eq:3body_kinetic}) del problema general de tres cuerpos. Éstas nos permiten definir al hamiltoniano
 \begin{equation}
  H(\mathbf{r}_1, \mathbf{r}_2, \mathbf{r}_3, \mathbf{p}_1, \mathbf{p}_2, \mathbf{p}_3) = \sum_{i=1}^3 h_i(r_{i,j}, r_{i,k}, \mathbf{p}_i)
