@@ -1,0 +1,23 @@
+El transporte de jets es una herramienta que permite la propagación de la vecindad de una condición inicial bajo la parametrización polinomial de orden $M$ de las funciones que describen un sistema de EDO de la forma (\ref{eq:ode}). Con esto, y los indicadores que se plantearon en el capítulo \ref{chap:jt_indicators} se llegaron a varias conclusiones acerca del PC3C.
+
+El capítulo de resultados ofrece información relevante acerca del TJ y el problema circular de tres cuerpos. En la sección \ref{sec:asteroids}, se utilizó como una alternativa del método de Montecarlo que, dados los análisis del apéndice \ref{chap:benchmarks}, resultó ser más rápida sin perder precisión. Hay que tomar en cuenta que el transporte resulta una buena alternativa cuando los tiempos de integración no son muy largos y cuando la distribución de valores a propagar quedan por debajo de $\xi_{max}$. Con esto, se pudo analizar la probabilidad de colisión entre dos asteroides orbitando la Tierra, éstas tuvieron una incertidumbre de $350$ kilómetros, que es la incertidumbre promedio de Apophis. 
+
+En \ref{sec:parametrization} se hizo un análisis acerca de la estabilidad de $L_4$ gracias a la parametrización de $\mu$ alrededor de $\mu_c$. Esta sección demuestra cómo utilizar al TJ como una herramienta de estabilidad de las ecuaciones; de hecho, se mostró cómo para $\mu < \mu_c$ el flujo alrededor de $L_4$ era estable mientras que diverge si $\mu > \mu_c$. 
+
+Se obtuvo satisfactoriamente la prueba de que el PC3C es un sistema simpléctico bajo la tranformación (\ref{eq:momentum_transformation}) en \ref{sec:C3BP_simplecticity}, con una precisión del orden de $10^{-10}$. Esto muestra cómo la parametrización de las vecindades y la diferenciación automática del álgebra polinomial ayudan al análisis de sistemas en una forma computacionalmente directa y precisa. 
+
+Finalmente, se estudió al espacio de configuraciones del PC3C con el campo escalar de $\xi_{max}$ y el campo vectorial de máxima y mínima expansión de $\theta_{\pm}$. Estos se compararon con los campos escalares de los ELTF y resulta que encuentran separatrices en zonas parecidas. Se observa cómo crece la complejidad de las soluciones cuando el tiempo transcurrido de integración aumenta.
+
+El TJ es una herramienta poderosa, pero no se puede utilizar de manera arbitraria ya que en general es un método tardado en comparación de las integraciones nominales. Por esto, se debe tener en cuenta cómo crece el tiempo de cómputo y hasta que punto es preciso. Se pudo sacar una buena cantidad de información acerca del PC3C y, analizando los resultados, se observa cómo esto puede ser generalizable a otros sistemas. A fin de cuentas, el PC3C es un ``problema de juguete'', en el sentido que generalmente se necesitan más variables para describir un objeto celeste con precisión. Sin embargo, la metodología del TJ no es específica del problema y se puede explotar en sistemas más realistas y de diversas disciplinas. 
+
+Hay muchas áreas donde el transporte de jets puede ser más profundamente explorado y mejor utilizado: 
+\begin{itemize}
+\item En matemáticas, se puede explorar más a fondo el estudio del tamaño máximo de vecindad $\xi_{max}$. En la tesis se propone una fórmula que intuitivamente acota el error debido a la contribución del último término de un polinomio. Sin embargo, no se demuestra que éste sea la máxima cota, por lo cual $\xi_{max}$ es posiblemente optimizable. Simó hace un análisis sobre los pasos de integración óptimos en \cite{}, los cuales pueden ser una buena guía. Otra rama de potencial aplicación es la probabilidad, ya que plantear un paquete de probabilidad es directo con el TJ, sobre todo si éste tiene una distribución compacta.
+
+\item En computación, un primer paso es paralelizar el código para los campos escalares de $\xi_{max}$ y los campos vectoriales de $\theta_{\pm}$, ya que en esta tesis todo fue hecho de manera secuencial y los cálculos se volvieron bastante lentos (tarda del orden de horas, y paralelizarlo lo llevaría al orden de minutos). 
+
+\item En física veo aplicación directa a la mecánica cuántica. Con el mismo espíritu que en Probabilidad, el TJ puede plantear un paquete de ondas inicial que describa al ensemble del sistema de una forma muy directa. 
+\end{itemize}
+
+Se le recuerda al lector que la tesis, las figuras, los scripts y los algoritmos son de código abierto y se pueden encontrar en \href{https://github.com/blas-ko/tesis}{mi repositorio de github}. Cualquier duda, sugerencia o propuesta será gratamente aceptada y escuchada.
+
