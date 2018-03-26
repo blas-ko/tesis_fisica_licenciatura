@@ -1,6 +1,40 @@
-El transporte de jets es una herramienta conveniente por dos principales razones: la primera es que al integrar la parametrización de la vecindad de $\xo$ con polinomios de orden $M$, se pueden obtener términos variacionales hasta de este orden de manera automática. En este sentido, es importante que el transporte sea suficientemente preciso para dichas variaciones. Se prupuso en la sección \ref{sec:ximax} una forma de controlar el error del método. En éste apéndice se mostrará, para el péndulo simple y el PC3C, la precisión respecto a la integración nominal a distintos órdenes de jet y distintas condiciones inciales, con todos los demás parámetros fijos. 
+El transporte de jets es una herramienta conveniente por dos principales razones: la primera es que al integrar la parametrización de la vecindad de $\xo$ con polinomios de orden $M$, se pueden obtener términos variacionales hasta de este orden de manera automática. En este sentido, es importante que el transporte sea suficientemente preciso para dichas variaciones. Se prupuso en la sección \ref{sec:ximax} una forma de controlar el error del método via $\xi_{max}$. En éste apéndice se mostrará, tomando al PC3C, la precisión respecto a la integración nominal a distintos órdenes de jet y distintas condiciones inciales, con todos los demás parámetros fijos. 
 
-%... hacerlo debe ser rápido.
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{acc_c3bp_ci1}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{acc_c3bp_ci2}
+\end{subfigure}
+\caption{Diferencia entre la integración nominal y el transporte de jets para dos condiciones iniciales del PC3C con $\mu = 0.012$. Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, orden del jet $M=4$ y $6$ unidades temporales a $10$ pasos de integración. \textit{Izquierda}: $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$. \textit{Derecha}: $\xo = \left(L_{1_x}, 0.01, 0, 0 \right)^T$.}
+\label{fig:acc_ci}
+\end{figure}
+
+En la figura \ref{fig:acc_ci} se muestra cómo la precisión de las evaluaciones del jet para variaciones tamaño $\norm{\delta \xo} = \xi_{max}$ queda siempre del orden de$10^{-8}$, que es bastante inferior a la cota máxima dada $\epsilon_{jet} = 10^{-5}$. El error de la condición $x_0 = (L_{1}, 0.01, 0,0)^T$ es menor, sin embargo, el tamaño de la vecindad tuvo que ser mucho más pequeña $\xi_{max} = 2.03 \times 10^{-5}$ comparado con la otra condición inicial, donde $\xi_{max} = 2.33 \times 10^{-3}$. 
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{acc_c3bp_M}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{M_ximax}
+\end{subfigure}
+\caption{ \textit{Izquierda}: Diferencia entre la integración nominal y el transporte de jets para diferentes órdenes $M$ del jet con condición inicial $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$. Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, $\epsilon_{jet} = 10^{-5}$ y $6$ unidades temporales a $10$ pasos de integración. \textit{Derecha}: Tamaño máximo de vecindad $\xi_{max}$ para diferentes órdenes de jet con las condiciones mencionadas.}
+\label{fig:acc_M}
+\end{figure}
+
+La figura izquierda de \ref{fig:acc_M} muestra la misma diferencia que \ref{fig:acc_ci}, pero aquí varía el orden del jet. Se toma como condición inicial a $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$.  Se observa como el orden de magnitud del error se mantiene alrededor de $10^{-8}$ para todos los órdenes del jet. Sin embargo, a la derecha de la figura se observa cómo $\xi_{max}$ es notablemente más pequeña mientras menor es el orden utilizado. Esto quiere decir que siempre se puede obtener la misma precisión, con el precio de reducir el diámetro potencial de la vecindad inicial.
  
 La segunda razón que vuelve atractivo al TJ es que propone una alternativa a los métodos de Montecarlo. Una vez que el ćalculo está hecho, basta con evaluar los polinomios resultantes para obtener la solución en las variaciones $\delta \xo$ dadas. El problema radica en que las operaciones del álgebra polinomial son, por construcción, mucho más lentas que las operaciones numéricas estándar. Por esto, se hace un comparativo entre el TJ y el método de Montecarlo para distinto número de evaluaciones a distintos órdenes $M$ de los jets y, como en las gráficas anteriores, se mostrará para el péndulo simple y el PC3C, con todos los demás parámetros fijos.
 
@@ -20,7 +54,7 @@ La segunda razón que vuelve atractivo al TJ es que propone una alternativa a lo
 \label{fig:times}
 \end{figure}
 
-Se muestra en la figura \ref{fig:times} la integración de hasta $5000$ condiciones iniciales cercanas para el péndulo y el PC3C. En ambos casos se tiene un comportamiento parecido donde, para pocas integraciones, el método de Montecarlo es más rápido que el TJ. Esto se debe a la lentitud algebráica de los polinomios operados. Sin embargo, el tiempo que demora el TJ durante toda la gráfica es casi constante para todos los órdenes. Éste no es perfectamente constante dado que la evaluación de los polinomios sí requiere tiempo, aunque es mucho menor al de hacer una integración más. Es por esto que la pendiente que describe el aumento en el tiempo de cómputo es casi constante para el transporte de jets. En el caso de Montecarlo, se tiene aproximadamente una recta de pendiente positiva, lo cual es de esperarse ya que en la vecindad cada integración demora aproximadamente lo mismo. 
+Se muestra en la figura \ref{fig:times} la integración de hasta $5000$ condiciones iniciales cercanas para el péndulo y el PC3C. En ambos casos se tiene un comportamiento parecido donde, para pocas integraciones, el método de Montecarlo es más rápido que el TJ. Esto se debe a la lentitud algebráica de los polinomios operados. Sin embargo, el tiempo que demora el TJ durante toda la gráfica es casi constante para todos los órdenes; cada orden con su tiempo característico. Dicho tiempo no es exactamente constante dado que la evaluación de los polinomios sí requiere tiempo, aunque es mucho menor al de hacer una integración más. En el caso de Montecarlo, se tiene aproximadamente una recta de pendiente positiva, lo cual es de esperarse ya que en la vecindad cada integración demora aproximadamente lo mismo. 
 
 %FIGURE!
 \begin{figure}[h!]
@@ -38,7 +72,7 @@ Se muestra en la figura \ref{fig:times} la integración de hasta $5000$ condicio
 \label{fig:times_diffx0}
 \end{figure}
 
-No todas las condiciones iniciales en el espacio fase tardan el mismo tiempo en integrarse para el mismo intervalo. Por esto, se presenta la figura \ref{fig:times_diffx0}, donde se observa la dependencia de cómputo en función de la condición inicial seleccionada. El comportamiento del TJ sigue siendo casi constante aunque escala de manera considerable para las dos condiciones evaluadas. En el PC3C se hace mucho más evidente donde, para $\xo = (L_{4_x}, L_{4_x} + 0.01, 0, 0)^T$, el tiempo promedio del transporte ya evaluado es de $89.1$ segundos, mientras que para $\xo = (L_1, 0.01, 0, 0)^T$ es de $3.05$ segundos.
+No todas las condiciones iniciales en el espacio fase tardan el mismo tiempo en integrarse para el mismo intervalo temporal. Por esto, se presenta la figura \ref{fig:times_diffx0}, donde se observa la dependencia de cómputo en función de la condición inicial seleccionada. El comportamiento del TJ sigue siendo casi constante aunque escala de manera considerable para las dos condiciones evaluadas. En el PC3C se hace mucho más evidente donde, para $\xo = (L_{4_x}, L_{4_x} + 0.01, 0, 0)^T$, el tiempo promedio del transporte ya evaluado es de $89.1$ segundos, mientras que para $\xo = (L_1, 0.01, 0, 0)^T$ es de tan solo $3.05$ segundos.
 
 Finalmente, para concluir el apéndice se presentan resultados de tiempo de cómputo para algunas operaciones elementales usando el álgebra polinomial. La tabla \ref{table:times_algpoli_1} presenta la velocidad de cómputo en escala logarítmica para polinomios de dos variables pero con orden de jet variable desde $1$ hasta $32$. Como referencia, la primera fila representa el tiempo que tarda hacer la misma operación elemental con un número de punto flotante arbitrario. 
 
@@ -79,3 +113,4 @@ La tabla \ref{table:times_algpoli_2}, en cambio, mantiene constante el orden del
 \label{table:times_algpoli_2}
 \end{table}
 
+Todos los cálculos aquí presentados fueron realizados en serie, con un CPU Intel\textregistered  Core\texttrademark  i7-7700HQ @ 2.80GHz $\times$ 8. El lenguaje utilizado para el cálculo es \href{julialang.org}{\textsf{Julia}}, versión $0.6.0$. El álgebra polinomial es operado con el paquete \href{https://github.com/JuliaDiff/TaylorSeries.jl}{\textsf{TaylorSeries}} versión $0.7.2$ y la integración del transporte de jets es realizada con el paquete \href{https://github.com/PerezHz/TaylorIntegration.jl}{\textsf{TaylorIntegration}} versión $0.2.1$.
