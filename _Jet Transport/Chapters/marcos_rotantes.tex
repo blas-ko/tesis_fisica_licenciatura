@@ -1,16 +1,16 @@
 
-Sea un marco que rota respecto algún eje de simetría con velocidad angular $\theta(t)$. Si basamos un marco de rerefencia inercial tal que el eje de rotación coincida con el eje $z$, entonces como se muestra en la figura \ref{fig:}, la relación entre ambos se puede expresar en coordenadas cilíndricas como
+Sea un marco de referencia que rota respecto algún eje de simetría con velocidad angular $\theta(t)$. Si basamos un marco de referencia inercial tal que el eje de rotación coincida con el eje $z$, entonces como se muestra en la figura \ref{fig:}, la relación entre ambos se puede expresar en coordenadas cilíndricas como
 \begin{align}
- \hat{\imath}_r(t) &= \cos \theta(t) \hat{\imath}_i + \sin \theta(t) \hat{\jmath}_i \nonumber \\
- \hat{\jmath}_r(t) &= -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i \\
- \hat{k}_r(t) &= \hat{k}_i \nonumber
+ \hat{\imath}_r(t) &= \cos \theta(t) \hat{\imath}_i + \sin \theta(t) \hat{\jmath}_i, \nonumber \\
+ \hat{\jmath}_r(t) &= -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i, \nonumber \\
+ \hat{k}_r(t) &= \hat{k}_i,
  \label{eq:rotating_unitaries}
 \end{align}
 donde los subíndices ``$r$'' y ``$i$'' se refieren a los marcos de referencia rotado e inercial, respectivamente. Así, el cambio de los unitarios respecto al tiempo son
 \begin{align}
- \frac{d}{dt} \hat{\imath}_r(t) &= \dot{\theta}(t) \left( -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i  \right) \nonumber \\
- \frac{d}{dt} \hat{\jmath}_r(t) &= \dot{\theta}(t) \left( -\cos \theta(t) \hat{\imath}_i - \sin \theta(t) \hat{\jmath}_i \right) \\
- \frac{d}{dt} \hat{k}_r &= 0 \nonumber
+ \frac{d}{dt} \hat{\imath}_r(t) &= \dot{\theta}(t) \left( -\sin \theta(t) \hat{\imath}_i + \cos \theta(t) \hat{\jmath}_i  \right), \nonumber \\
+ \frac{d}{dt} \hat{\jmath}_r(t) &= \dot{\theta}(t) \left( -\cos \theta(t) \hat{\imath}_i - \sin \theta(t) \hat{\jmath}_i \right), \nonumber \\
+ \frac{d}{dt} \hat{k}_r &= 0.
  \label{eq:rotating_unitaries_derivs}
 \end{align}
 Siguiendo la construcción del capítulo 27 de \cite{Arnold1989}, definimos al vector de rotación $\mathbf{\Omega} := \left( 0, 0, \dot{\theta} \right)$ y, con éste, cualquier término de (\ref{eq:rotating_unitaries_derivs}) se puede expresar como
@@ -37,8 +37,8 @@ Con (\ref{eq:rotating_derivative}) se pueden expresar la velocidad
 y la aceleración
 \begin{align}
  \mathbf{a}_i = \ddot{\mathbf{r}}_i &= \left[ \left( \frac{d}{dt}\right)_r + \mathbf{\Omega} \times \right]\left[ \mathbf{v}_r + \mathbf{\Omega} \times \mathbf{r}_r \right] \nonumber \\
- \nonumber \\
- \therefore \ddot{\mathbf{r}}_i &= \ddot{\mathbf{r}}_r + 2\mathbf{\Omega} \times \mathbf{\dot{r}}_r + \mathbf{\Omega} \times \left( \mathbf{\Omega} \times \mathbf{r}_r \right) + \dot{\mathbf{\Omega}} \times \mathbf{r}_r
+ \nonumber, \\
+ \therefore \ddot{\mathbf{r}}_i &= \ddot{\mathbf{r}}_r + 2\mathbf{\Omega} \times \mathbf{\dot{r}}_r + \mathbf{\Omega} \times \left( \mathbf{\Omega} \times \mathbf{r}_r \right) + \dot{\mathbf{\Omega}} \times \mathbf{r}_r.
  \label{eq:rotating_acceleration}
 \end{align}
 en relación al marco de referencia inercial del sistema.
