@@ -517,7 +517,7 @@ con $p=mv$, cumple con las ecuaciones de (\ref{eq:ham-rel}) y es una constante d
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{oscillator_phsp}
- \caption{Espacio fase para el oscilador armónico representado por la ecuación \ref{eq:oscilador_ham}. En negro aparece la solución calculada con el método de Taylor para jets con $\xo = (1,0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$. Los jets fueron evaluados para la vecindad parametrizada por $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$, mientras que la solución en gris representa la variación $\xi = (-0.1,0)^T$.}
+ \caption{Espacio fase para el oscilador armónico representado por la ecuación \ref{eq:oscilador_ham}. En negro aparece la solución calculada con el método de Taylor para jets con $\xo = (1,0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $N = 28$ y orden del jet $M=4$. Los jets fueron evaluados para la vecindad parametrizada por $\mathbf{\xi}(\alpha) = 0.1\cdot \left( \cos(\alpha), \sin(\alpha) \right)^T$, $\alpha \in [0,1]$, mientras que la solución en gris representa la variación $\xi = (-0.1,0)^T$.}
  \label{fig:oscilador_phsp}
 \end{figure}
 
@@ -528,7 +528,7 @@ Así, tenemos que las soluciones analíticas son de la forma
  \label{eq:oscilador_analytical}
 \end{align}
 
-La figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico, junto con una solución calculada con el transporte de jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la figura la estructura de centros alrededor del único punto de equilibrio $(0,0)^T$.
+La figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico, junto con una solución calculada con el transporte de jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la figura la estructura de centros alrededor del único punto de equilibrio $(0,0)^T$, donde la vecindad calculada por el TJ oscila siempre a la misma frecuencia $\omega$, lo cual es característico de este sistema.
 
 Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \textrm{ Kg}$, $k = 1 \textrm{ Kg s}^{-2}$, el oscilador tendrá una energía de $E_0 = H(\xo) = 1$ Joules. En la figura \ref{fig:oscillator_deltas} se pueden ver las variaciones $\delta E(t_n)$ de la energía en cada paso de integración así como la diferencia $\delta \mathbf{x}(t_n)$ de las soluciones de jet calculadas por el método de Taylor evaluadas en diferentes $\xi$s y las soluciones analíticas del oscilador armónico correspondientes al desplazamiento dado por dichas $\xi$s.
 
@@ -547,7 +547,7 @@ Dada la condición inicial $\xo = (1,0)^T$ y tomando $m = 1 \textrm{ Kg}$, $k = 
 	\caption{}
 	\label{fig:oscillator_dx}
 \end{subfigure}
-\caption{Variaciones de energía y trayectoria para el oscilador armónico en cada uno de los pasos temporales de la solución en unidades del épsilon de la máquina con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y orden del jet $N=4$. \textit{Izquierda}: variación $\delta E(t_n) = \frac{E(t_n)-E_0}{\epsilon_{machine}}$ de la energía respecto a la energía inicial $E_0 = 1$ Joule. \textit{Derecha}: cariación $\delta \mathbf{x}(t) =  \frac{\norm{\mathbf{x}(t_n) - \mathbf{x_n}}_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
+\caption{Variaciones de energía y trayectoria para el oscilador armónico en cada uno de los pasos temporales de la solución en unidades del épsilon de la máquina con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $N = 28$ y orden del jet $M=4$. \textit{Izquierda}: variación $\delta E(t_n) = \frac{E(t_n)-E_0}{\epsilon_{machine}}$ de la energía respecto a la energía inicial $E_0 = 1$ Joule. \textit{Derecha}: variación $\delta \mathbf{x}(t) =  \frac{\norm{\mathbf{x}(t_n) - \mathbf{x_n}}_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo$.}
 \label{fig:oscillator_deltas}
 \end{figure}
 
@@ -555,7 +555,7 @@ Es interesante notar que (\ref{eq:oscilador_ode}) es un sistema lineal de ecuaci
 
 \subsubsection{Péndulo simple}
 \label{sec:pendulo}
-Sea un sistema donde una masa $m$ está anclada al extremo de una varilla de longitud $l$ cuya masa es despreciable. Esta varilla está anclada, a su vez, a un punto inmovil. Así, $m$ se mueve bajo la acción de la gravedad $\mathbf{g}$ como se muestra en la figura \ref{fig:pendulo}, ignorando la resistencia del aire.
+Consideremos un sistema donde una masa $m$ está anclada al extremo de una varilla de longitud $l$ cuya masa es despreciable. Esta varilla está anclada, a su vez, a un punto inmovil. Así, $m$ se mueve bajo la acción de la gravedad $\mathbf{g}$ como se muestra en la figura \ref{fig:pendulo}, ignorando la resistencia del aire.
 
 %FIGURA! 
 
@@ -575,7 +575,7 @@ Así, contruimos el lagrangiano del sistema
 \end{equation*}
 Sabemos que
 \begin{equation*}
- \mathbf{p} = \frac{\partial \mathcal{L}}{\partial \mathbf{\dot{q}}} = ml^2\dot{\theta}
+ \mathbf{p} = \frac{\partial \mathcal{L}}{\partial \mathbf{\dot{q}}} = ml^2\dot{\theta},
 \end{equation*}
 
 obteniendo la coordenada conjugada de momento y, así, plantear el hamiltoniano, o energía total del sistema, como
@@ -587,17 +587,17 @@ obteniendo la coordenada conjugada de momento y, así, plantear el hamiltoniano,
 Las EDO quedan entonces, por (\ref{eq:ham-rel}), como
 \begin{align}
  \dot{\theta} &= \frac{p_{\theta}}{ml^2} \nonumber \\
- \dot{p_{\theta}} &= -mgl\sin{\theta} 
+ \dot{p_{\theta}} &= -mgl\sin{\theta},
 \label{eq:pendulo-ode}
 \end{align}
 
-en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen dos puntos de equilibrio: $(\pi,0), (0,0)$; el primero de libración y el otro de oscilación. En la figura \ref{fig:pendulum_pshp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos. Notemos que, por la periodicidad del péndulo, $(\pi, 0) = (-\pi, 0)$.
+en cuyo dominio $(\theta,p_{\theta}) \in [-\pi,\pi]\times[p_{min},p_{max}] \subset \mathbb{R}^2$ existen dos puntos de equilibrio: $(\pi,0), (0,0)$; el primero de libración y el otro de rotación. En la figura \ref{fig:pendulum_pshp} se puede ver una representación del espacio fase donde se exhibe el comportamiento de dichos puntos. Notemos que, por la periodicidad del péndulo, $(\pi, 0) = (-\pi, 0)$.
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.8\linewidth]{pendulum_phsp}
- \caption{Espacio fase para el péndulo simple representado por la ecuación (\ref{eq:pendulo-ham}). En negro salen puntos de la trayectoria calculada con el método de Taylor para Jets con $\xo = (\frac{\pi}{2},0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $M = 28$ y sus vecindades (jets) evaluadas para $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$.}
+ \caption{Espacio fase para el péndulo simple representado por la ecuación (\ref{eq:pendulo-ham}). En negro salen puntos de la trayectoria calculada con el método de Taylor para Jets con $\xo = (\frac{\pi}{2},0)^T$, tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $N = 28$ y sus vecindades (jets) evaluadas para $\mathbf{\xi}(\alpha) = 0.1\cdot \left( \cos(\alpha), \sin(\alpha) \right)^T$, $\alpha \in [0,1]$.}
 \label{fig:pendulum_pshp}
 \end{figure}
 
@@ -606,7 +606,7 @@ Tomando unidades donde $g = 1 $ , $l=1$ y $m=1$,  entonces, para las condiciones
 E_0 = H(p_{\theta}(0),\theta (0) ) = 1.
 \end{equation*}
 
-Para ésta, se puede integrar el transporte de jets y además, evaluarlo para condiciones cercanas y ver cómo se comportan éstas soluciones en el espacio fase, que deben, en teoría, moverse por las curvas de (\ref{eq:pendulo-ham}). Se puede observar de la figura \ref{fig:pendulum_jt_O4} cómo para jets de orden 4, las soluciones se quedan sobre las curvas de nivel que corresponden a su energía mecánica.
+Para ésta, se puede integrar el transporte de jets y además, evaluarlo para condiciones cercanas y ver cómo se comportan éstas soluciones en el espacio fase, que deben, en teoría, moverse por las curvas de (\ref{eq:pendulo-ham}). Se puede observar de la figura \ref{fig:pendulum_jt} cómo para jets de orden 4, las soluciones se quedan sobre las curvas de nivel que corresponden a su energía mecánica.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -614,19 +614,17 @@ Para ésta, se puede integrar el transporte de jets y además, evaluarlo para co
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{pendulum_jt_O1}
-	\label{fig:pendulum_jt_O1}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{pendulum_jt_O4}
-	\label{fig:pendulum_jt_O4}
 \end{subfigure}
-\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\tau) = 0.1\left( \cos(\tau),\sin(\tau) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple después de dos periodos. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $M = 28$. \textit{Izquierda}: jet de orden $1$, el cual no pasa por las curva de nivel de (\ref{eq:pendulo-ham}). \textit{Derecha}: jet de orden $4$}
+\caption{Jets de distinto orden para $\U_{\xo}$ parametrizada en un círculo de radio 0.1 $\mathbf{\xi}(\alpha) = 0.1\left( \cos(\alpha),\sin(\alpha) \right)^T$ alrededor de $\xo = (\frac{\pi}{2},0)^T$ en el péndulo simple después de dos periodos. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $N = 28$. \textit{Izquierda}: Jet de orden $1$, el cual no pasa por las curva de nivel de (\ref{eq:pendulo-ham}). \textit{Derecha}: Jet de orden $4$}
 \label{fig:pendulum_jt}
 \end{figure}
 
-Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fig:pendulum_dE} cómo $\delta E(t)$ varía alrededor de cero como un movimiento browniano. Éste último se relaciona con los errores de redondeo de los números de punto flotante de la máquina y no con el método de Taylor en sí, a diferencia del método de Euler, como se observa en la figura \ref{fig:center_anal_comparison}, donde el error crece de manera lineal. La máxima variación respecto a la energía inicial es de $2.28\times10^{-14}$, lo cual corresponde exactamente a $103 \epsilon_{machine}$.
+Respecto a las variaciones de energía en el sistema, se ve en la figura \ref{fig:pendulum_dE} cómo $\delta E(t)$ varía alrededor de cero como un movimiento browniano. Éste último se relaciona con los errores de redondeo de los números de punto flotante de la máquina y no con el método de Taylor en sí gracias a que $\epsilon_{Taylor}$ es suficientemente chica y $N$ suficientemente grande, a diferencia del método de Euler, como se observa en la figura \ref{fig:center_anal_comparison}, donde el error crece de manera lineal. La máxima variación respecto a la energía inicial es de $2.28\times10^{-14}$, lo cual corresponde exactamente a $103 \epsilon_{machine}$.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -655,7 +653,7 @@ el hamiltoniano del sistema cuyas curvas de nivel representan las soluciones par
 \end{align}
 
 
-Notemos que este sistema tiene un único punto de equilibrio $(0,0)^T$ que corresponde a una energía de $H(0,0) = 0$. Con esto, podemos obtener la condición para que las soluciones estén sobre dicha curva límite o separatriz que divide diferentes regiones del espacio. Vemos que si
+Notemos que este sistema tiene un único punto de equilibrio $(0,0)^T$ que corresponde a la energía de $H(0,0) = 0$. Con esto, podemos obtener la condición para que las soluciones estén sobre dicha curva límite o separatriz que divide diferentes regiones del espacio. Vemos que si
 \begin{equation*}
  H(q,p) = qp^2 - \frac{1}{2}q^2 = 0 \implies p = \pm \sqrt{\frac{q}{2}} 
 \end{equation*}
@@ -666,11 +664,11 @@ entonces las condiciones iniciales tipo $\xo = \left( q, -\sqrt{\frac{q}{2}} \ri
 \begin{figure}[h!]
  \centering
  \includegraphics[width= 0.8\linewidth]{artificial_phsp}
- \caption{Espacio fase de (\ref{eq:artificial_ode}).}
+ \caption{Espacio fase del campo vectorial dado por las ecuaciones de (\ref{eq:artificial_ode}).}
  \label{fig:artificial_phsp}
 \end{figure}
 
-Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el hamiltoniano del sistema. Notemos que dicha separatriz se puede observar como una especie de parábola horizontal positiva que pasa por el punto de equilibrio.
+Se muestra en la figura \ref{fig:artificial_phsp} el espacio fase dado por el hamiltoniano del sistema. Notemos que dicha separatriz se puede observar como una parábola horizontal positiva que pasa por el punto de equilibrio.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -710,7 +708,7 @@ En este problema se vuelve importante muy rápidamente la precisión con la que 
  \label{fig:artificial_jO2_jO16}
 \end{figure}
 
-Recordemos que como (\ref{eq:artificial_ode}) es un sistema de EDO hamiltoniano entonces deberá conservar la energía. En la figura \ref{fig:artificial_dE} se observa la variación de la energía para cada paso temporal con el jet evaluado en $\xi = (0,\pm 0.1)^T$, así como en $\xo$, i.e., para el método de Taylor sin jets. Notemos cómo al principio (figura \ref{fig:artificial_dEjets_half}) la energía sí se conserva, i.e, las evaluaciones del TJ se mantienen sobre las superficies de nivel del hamiltoniano, sin embargo, cuando la vecindad se empieza a deformar más, la energía empieza a variar más respecto a la de su condición inicial. Notemos que aunque esta variación es de unas $10^8 \epsilon_{machine}$, el error en la energía es apenas en la octava cifra significativa, dado que $\epsilon_{machine} = 2.22\times 10^{-16}$.
+Recordemos que como (\ref{eq:artificial_ode}) es un sistema de EDO hamiltoniano entonces deberá conservar la energía. En la figura \ref{fig:artificial_dE} se observa la variación de la energía para cada paso temporal con el jet evaluado en $\xi = (0,\pm 0.1)^T$, así como en $\xo$, i.e., para el método de Taylor sin jets. Notemos cómo al principio, en la figura \ref{fig:artificial_dEjets} la energía sí se conserva, i.e, las evaluaciones del TJ se mantienen sobre las superficies de nivel del hamiltoniano, sin embargo, cuando la vecindad se empieza a deformar más, la energía empieza a variar más respecto a la de su condición inicial. Notemos que aunque esta variación es de unas $10^8 \epsilon_{machine}$, el error en la energía es apenas en la octava cifra significativa, dado que $\epsilon_{machine} = 2.22\times 10^{-16}$.
 
 %FIGURA!
 \begin{figure}[h!]
