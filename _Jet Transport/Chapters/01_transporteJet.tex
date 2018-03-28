@@ -188,7 +188,7 @@ así, se define \textbf{$\cdot$}  en $\pk$ como
 A \cdot B = \polk{\sum_{j=0}^k a_{k-j}b_j},
 \label{eq:polprod}
 \end{equation}
-donde $( A \cdot B \ \in \pk$, o sea, un polinomio truncado a orden $n$. Aún cuando las operaciones están definidas inspiradas en la aritmética de los números, $\mathbb{K}$ puede ser cualquier campo arbitrario.
+donde $ A \cdot B \ \in \pk$, o sea, un \textbf{polinomio truncado} a orden $n$. Aún cuando las operaciones están definidas inspiradas en la aritmética de los números, $\mathbb{K}$ puede ser cualquier campo arbitrario.
 
 \begin{proposicion}
 Para $\mathbb{K} = \mathbb{R}$ o $\mathbb{C}$, $\algpol$ forma un campo.
@@ -387,9 +387,9 @@ Sea  $\pk$ con $\mathbb{K} = {{^{m}P_{\mathbb{C}}}}$, entonces, con $P(x) \in \p
 
 Con la definición planteada en el lado derecho de (\ref{eq:pkn2}) se observa cómo el polinomio $P(x)$ cuyos coeficientes son los polinomios $P_k(y)$ es equivalente a un polinomio de dos variables que vive en un espacio que denominaremos, por construcción, $\pkn{2}$. Notemos que el último conjunto de términos tiene orden $j+k = n$ para que $P(x)$  pertenezca, en efecto, a un espacio de polinomios de orden $n$. De hecho, para cada elemento de la suma se tiene que $k+j= \text{constante}$, los cuales se conocen como polinomios homogeneos de orden $k+j$.
 
-Inductivamente, se puede construir el espacio $\pkn{N}$ tomando
+Inductivamente, se puede construir el espacio $\pkn{K}$ tomando
 \begin{align}
- P(x_1) = \sum_{k_{1}=0}^n\sum_{k_2=0}^n\cdots\sum_{k_N=0}^n a_{k_{1},k_{2},\cdots,k_{N}}x_N^{k_{N}}x_{N-1}^{k_{N-1}} \cdots x_1^{k_{1}} := \sum_{||\mathbf{k}||_{1}=0}^n a_{\mathbf{k}}\mathbf{x}^{\mathbf{k}},
+ P(x_1) = \sum_{k_{1}=0}^n\sum_{k_2=0}^n\cdots\sum_{k_K=0}^n a_{k_{1},k_{2},\cdots,k_{K}}x_N^{k_{K}}x_{K-1}^{k_{K-1}} \cdots x_1^{k_{1}} := \sum_{||\mathbf{k}||_{1}=0}^n a_{\mathbf{k}}\mathbf{x}^{\mathbf{k}},
 \label{eq:pknN}
 \end{align}
 
@@ -397,7 +397,7 @@ con $\mathbf{k} = (k_1,\cdots,k_N)$, $||\mathbf{k}||_1 = k_1+k_2+\cdots+k_N$ la 
 
 %%Con esto contruido, se puede hablar de los Taylors anidados de manera muy natural, que nacen de NO truncar a orden n el espacio; notar que los espacios $\pk$ con $\mathbb{K} = {{^{n}P_{\mathbb{C}}}}$ y $\pkn{2}$ son escencialmente distintos ya que no son del mismo orden...
 
-En el caso del transporte de jets se trabaja en el espacio ${^{m}P_{\mathbb{K}}}$, $\mathbb{K} = \pkn{N}$, con $m$ el orden de la expansión temporal del método de Taylor y $n$ el orden de la expansión polinomial de $f$ en (\ref{eq:ode}) evaluada en $\U_{\xo}$. 
+En el caso del Transporte de Jets se trabajará en el espacio ${^{N}P_{\mathbb{K}}}$, $\mathbb{K} = \pkkc{M}{d}$, con $N$ el orden de la expansión temporal del método de Taylor, $M$ el orden de la expansión polinomial de $f$ en (\ref{eq:ode}) evaluada en $\U_{\xo}$ y $d$ la dimensión del sistema. 
 
 \section{Método de Taylor}
 \label{sec:taylor-metodo}
@@ -408,11 +408,11 @@ Como se observa en (\ref{eq:euler}), el método de Euler es la aproximación lin
 = \sum_{i=0}^N \frac{\mathbf{x}^{(i)}(t)}{i!}h^i + \mathcal{O}(h^{N+1}),
 \label{eq:anal-exp}
 \end{equation}
-donde $x_i$ es la i-ésima derivada normalizada, i.e. $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}^d$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{M+1})$ corresponde al residuo de la expansión hasta $M < \infty$ y, en caso de funciones analíticas, son términos cada vez más pequeños mientras estén dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método\footnote{Los métodos que incluyen el cálculo del residuo como un intervalo de error se conocen como Taylor Models.}
+donde $x_i$ es la i-ésima derivada normalizada, i.e. $x_i  := \mathbf{x}^{(i)}(t)/i! $, con $\mathbf{x}^{(i)}(t)$ la i-ésima derivada de $\mathbf{x}(t)$ evaluada en $t$. En el caso que $\mathbf{x}: \mathbb{R} \to \mathbb{R}^d$, entonces $i$ es un índice múltiple tal que $x_i := x_{i_1,\cdots,i_d} \in \mathbb{R}^d$ e $i :=\norm{\mathbf{i}}_1 = i_1 + \cdots + i_d$, compactando así la notación para dimensiones $d > 1$. El término $\mathcal{O}(h^{N+1})$ corresponde al residuo de la expansión hasta $N < \infty$ y, en caso de funciones analíticas, son términos cada vez más pequeños mientras estén dentro del radio de convergencia de ésta. Por esto, el residuo no será tomado en cuenta explícitamente y será considerado como el error del método\footnote{Los métodos que incluyen el cálculo del residuo como un intervalo de error se conocen como Taylor Models.}
 
 Comparando ambas expansiones en series de potencias de (\ref{eq:ode}) y notando que $ \frac{d}{dt} \left( \sum_{k=0} a_k t^k \right) = \sum_{k=1} k a_k t^{k-1}$,   
 \begin{equation*}
- \dot{\mathbf{x}}(t) \approx \sum_{i=1}^M i x_i t^{i-1} = \sum_{i=0}^M (i+1)x_{i+1} t^i = \sum_{i=0}^M f_i t^i.
+ \dot{\mathbf{x}}(t) = \sum_{i=1} i x_i t^{i-1} = \sum_{i=0} (i+1)x_{i+1} t^i = \sum_{i=0} f_i t^i.
 \end{equation*}
 
 Así, se define la relación de recurrencia
@@ -423,20 +423,20 @@ x_{i+1} = \frac{f_i}{i+1},
 
 obteniendo así 
 \begin{equation}
-\mathbf{x}(t_{n+1}) = \mathbf{x}(t_n) + \sum_{i=0}^M \frac{f_i}{i+1} \left(\mathbf{x}(t_{n+1}),t_n \right) h^i + \mathcal{O}(h^{M+1}),
+\mathbf{x}(t_{n+1}) = \mathbf{x}(t_n) + \sum_{i=0}^N \frac{f_i}{i+1} \left(\mathbf{x}(t_{n+1}),t_n \right) h^i + \mathcal{O}(h^{N+1}),
 \label{eq:taylor-rel}
 \end{equation}
 
 el \textbf{método de Taylor} para obtener $\mathbf{x}(t) = \flowci$ dado $\xo$.
 
-Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como varios de los Runge-Kutta, es que se puede acotar el residuo $\mathcal{O}(h^{M+1})$ en términos de $h$ si cambiamos el orden $M$ de la expansión, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su expansión en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon_{Taylor}$, es decir
+Una enorme ventaja de (\ref{eq:taylor-rel}) sobre el método de Euler, o cualquier método de integración numérica con paso fijo como varios de los Runge-Kutta, es que se puede acotar el residuo $\mathcal{O}(h^{N+1})$ en términos de $h$ si cambiamos el orden $N$ de la expansión, controlando así el error de integración del sistema de EDO para cada paso. Como $f$ y $\mathbf{x}$ son analíticas, entonces su desarrollo en series de potencias es convergente. De este modo, buscamos que la contribución del último término de la serie sea menor a cierta tolerancia $\epsilon_{Taylor}$, es decir
 \begin{equation*}
-\norm{x_M}_\infty h^M \leq \epsilon_{Taylor} \implies h = \left( \frac{\epsilon_{Taylor}}{\norm{x_M}_\infty} \right)^{1/M}.
+\norm{x_N}_\infty h^N \leq \epsilon_{Taylor} \implies h = \left( \frac{\epsilon_{Taylor}}{\norm{x_N}_\infty} \right)^{1/N}.
 \end{equation*} 
 
 Para el caso de funciones pares o impares, es probable que el último coeficiente de la serie sea identicamente cero y, para evitar indeterminaciones al encontrar $h$, se busca la mínima $h$ entre los dos últimos coeficientes de la expansión de $\mathbf{x}(t+h)$
 \begin{equation}
-h = \min_{m \in [M-1,M]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_m}_\infty} \right)^{1/m} }.
+h = \min_{n \in [N-1,N]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_n}_\infty} \right)^{1/n} }.
 \label{eq:stepsize}
 \end{equation} 
 
@@ -444,16 +444,16 @@ Esta última ecuación hace que el método de Taylor sea de presición arbitrari
 
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
-\subsection{Método de Taylor para el transporte de jets}
-Para el método que se acaba de desarrollar, cada término satisface que $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el transporte de jets (TJ) se parametriza la vecindad de la condición inicial con un polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{N}{d}$\footnote{Consultar la sección \ref{sec:pknN} para familiarizarse con esta notación.}. Dado que $P_{0,\xo}(\mathbf{\xi}) = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
+\subsection{Método de Taylor para el Transporte de Jets}
+Para el método que se acaba de desarrollar, cada término satisface que $\mathbf{x}_i \in \mathbb{R}^d$. Sin embargo, en el TJ se parametriza la vecindad de la condición inicial con un polinomio $P_{0,\xo}(\mathbf{\xi}) \in \pkk{M}{d}$. Dado que $P_{0,\xo}(\mathbf{\xi}) = \xo + \mathbf{\xi}$, la relación de recurrencia (\ref{eq:taylor-rel}) puede reescribirse como
 \begin{equation}
-P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=0}^M \frac{f_i}{i+1}(P_{n,\xo}(\xi),t_n)h^i 
+P_{n+1,\xo}(\xi) = P_{n,\xo}(\xi) + \sum_{i=0}^N \frac{f_i}{i+1}(P_{n,\xo}(\xi),t_n)h^i 
 \label{eq:jt-rel}
 \end{equation}
 
 donde $P_{n,\xo}(\xi) \in \pkk{N}{d} \ \forall \ n$. Así, puede encontrarse la solución $\phi(t_n;t_0,\xo + \mathbf{\xi}) = P_{n,\xo}(\xi)$, que representa las vecindades del flujo $\phi(t_n;t_0,\xo)$ parametrizadas por $\mathbf{\xi}$.
 
-Notemos que para este punto ya no hay problema en evaluar $P_{n,\xo}(\xi)$ ya que quedaron definidas las operaciones necesarias en la sección \ref{sec:alg_poli}. Sin embargo, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, se puede definir la $p$-norma.
+Notemos que para este punto ya no hay problema en evaluar $P_{n,\xo}(\xi)$ ya que quedaron definidas las operaciones necesarias en la sección \ref{sec:alg_poli}. Sin embargo, hay que prestar atención a cómo obtener el paso de integración $h$ ya que, siguiendo (\ref{eq:stepsize}), debemos tomar $\norm{x_m}_\infty$ y para $x_m \in \pkk{N}{d}$, definimos la $p$-norma de la siguiente manera:
 
 \begin{definicion}
 Sea $\norm{\cdot} : \mathbb{K} \to \mathbb{R}^+$, $P(\mathbf{\xi}) = \sum_{k} a_k \mathbf{\xi}^k \in \mathbb{K} = \pkk{N}{d}$. Se define la \textbf{p-norma} de $P(\xi)$ como
@@ -496,7 +496,7 @@ Sea un sistema dado por una masa $m$ que, al desplazarlo de su estado de equilib
  \mathbf{F}(\mathbf{x}) = m \ddot{\mathbf{x}} = - k\mathbf{x}
  \label{eq:oscilador_force}
 \end{equation}
-con $[k] = \frac{Kg}{s^2}$  y $k>0$. 
+con $[k] = \textrm{ Kg s}^{-2}$  y $k>0$. 
 
 Tomando $\mathbf{v} = \dot{\mathbf{x}}$ se obtienen
 \begin{align}
@@ -511,7 +511,7 @@ La primera integral de (\ref{eq:oscilador_ode})
  H(\mathbf{p},\mathbf{x}) = \frac{1}{2m}p^2 + \frac{\omega^2}{2} x^2
  \label{eq:oscilador_ham}
 \end{equation}
-con $p=mv$, cumple con las ecuaciones de (\ref{eq:ham-rel}), una constante de movimiento que representa la energía.
+con $p=mv$, cumple con las ecuaciones de (\ref{eq:ham-rel}) y es una constante de movimiento que representa la energía.
 
 %FIGURA!
 \begin{figure}[h!]
