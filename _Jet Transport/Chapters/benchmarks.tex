@@ -35,8 +35,26 @@ En la figura \ref{fig:acc_ci} se muestra cómo la precisión de las evaluaciones
 \end{figure}
 
 La figura izquierda de \ref{fig:acc_M} muestra la misma diferencia que \ref{fig:acc_ci}, pero aquí varía el orden del jet. Se toma como condición inicial a $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$.  Se observa como el orden de magnitud del error se mantiene alrededor de $10^{-8}$ para todos los órdenes del jet. Sin embargo, a la derecha de la figura se observa cómo $\xi_{max}$ es notablemente más pequeña mientras menor es el orden utilizado. Esto quiere decir que siempre se puede obtener la misma precisión, con el precio de reducir el diámetro potencial de la vecindad inicial.
+
+Un último comentario sobre la precisión es, nuevamente, sobre la cantidad $\xi_{max}$. La ecuación \ref{} construye al tamaño máximo de vecindad con el supuesto de que será cada vez más chica conforme pasa el tiempo, ya que la complejidad de las deformaciones de la vecindad crece. La figura \ref{fig:ximax_time} muestra cómo éste cambia para cada paso de integración, donde se observa que no necesariamente $\xi_{max}$ es cada vez menor.
+
+%FIGURA!
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{ximax_t_c3bp}
+\end{subfigure}
+%
+\begin{subfigure}{0.49\textwidth}
+	\centering
+	\includegraphics[width = \textwidth]{ximax_t_sp}
+\end{subfigure}
+\caption{$\xi_{max}$ en función del paso de integración del PC3C (izquierda) y el péndulo simple (derecha). Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, $\epsilon_{jet} = 10^{-5}$, orden del jet $M=4$ y $10$ pasos de integración. \textit{Izquierda}: Péndulo simple con $\xo = ( \pi/2, 0)^T$. \textit{Derecha}: PC3C con $\xo = ( L_{x_1}, 0.01, 0, 0)^T$.}
+\label{fig:acc_M}
+\end{figure}
  
-La segunda razón que vuelve atractivo al TJ es que propone una alternativa a los métodos de Montecarlo. Una vez que el ćalculo está hecho, basta con evaluar los polinomios resultantes para obtener la solución en las variaciones $\delta \xo$ dadas. El problema radica en que las operaciones del álgebra polinomial son, por construcción, mucho más lentas que las operaciones numéricas estándar. Por esto, se hace un comparativo entre el TJ y el método de Montecarlo para distinto número de evaluaciones a distintos órdenes $M$ de los jets y, como en las gráficas anteriores, se mostrará para el péndulo simple y el PC3C, con todos los demás parámetros fijos.
+La segunda razón que vuelve atractivo al TJ es que propone una alternativa a los métodos de Monte Carlo. Una vez que el ćalculo está hecho, basta con evaluar los polinomios resultantes para obtener la solución en las variaciones $\delta \xo$ dadas. El problema radica en que las operaciones del álgebra polinomial son, por construcción, mucho más lentas que las operaciones numéricas estándar. Por esto, se hace un comparativo entre el TJ y el método de Monte Carlo para distinto número de evaluaciones a distintos órdenes $M$ de los jets y, como en las gráficas anteriores, se mostrará para el péndulo simple y el PC3C, con todos los demás parámetros fijos.
 
 %FIGURE!
 \begin{figure}[h!]
@@ -54,7 +72,7 @@ La segunda razón que vuelve atractivo al TJ es que propone una alternativa a lo
 \label{fig:times}
 \end{figure}
 
-Se muestra en la figura \ref{fig:times} la integración de hasta $5000$ condiciones iniciales cercanas para el péndulo y el PC3C. En ambos casos se tiene un comportamiento parecido donde, para pocas integraciones, el método de Montecarlo es más rápido que el TJ. Esto se debe a la lentitud algebráica de los polinomios operados. Sin embargo, el tiempo que demora el TJ durante toda la gráfica es casi constante para todos los órdenes; cada orden con su tiempo característico. Dicho tiempo no es exactamente constante dado que la evaluación de los polinomios sí requiere tiempo, aunque es mucho menor al de hacer una integración más. En el caso de Montecarlo, se tiene aproximadamente una recta de pendiente positiva, lo cual es de esperarse ya que en la vecindad cada integración demora aproximadamente lo mismo. 
+Se muestra en la figura \ref{fig:times} la integración de hasta $5000$ condiciones iniciales cercanas para el péndulo y el PC3C. En ambos casos se tiene un comportamiento parecido donde, para pocas integraciones, el método de Monte Carlo es más rápido que el TJ. Esto se debe a la lentitud algebráica de los polinomios operados. Sin embargo, el tiempo que demora el TJ durante toda la gráfica es casi constante para todos los órdenes; cada orden con su tiempo característico. Dicho tiempo no es exactamente constante dado que la evaluación de los polinomios sí requiere tiempo, aunque es mucho menor al de hacer una integración más. En el caso de Monte Carlo, se tiene aproximadamente una recta de pendiente positiva, lo cual es de esperarse ya que en la vecindad cada integración demora aproximadamente lo mismo. 
 
 %FIGURE!
 \begin{figure}[h!]
@@ -90,11 +108,11 @@ $M=8$  & $-5.2 $ & $-5.2 $ & $-5.5 $ & $-5.48$ \\
 $M=16$ & $-4.73$ & $-4.73$ & $-5.05$ & $-5.02$ \\
 $M=32$ & $-4.14$ & $-4.14$ & $-4.45$ & $-4.44$ \\ \bottomrule 
 \end{tabular}
-\caption{Logaritmo base $10$ del tiempo que demora hacer cada operación elemental para polinomios $P(\mathbf{x}) \in \pkk{M}{2}$, es decir, polinomios en dos variables de orden $M$. $M=0$ representa la operación aritmética con un número flotante arbitrario.}
+\caption{Logaritmo base $10$ del tiempo que demora hacer ciertas funciones elementales para polinomios $P(\mathbf{x}) \in \pkk{M}{2}$, es decir, polinomios en dos variables de orden $M$. $M=0$ representa la operación aritmética con un número flotante arbitrario.}
 \label{table:times_algpoli_1}
 \end{table}
 
-La tabla \ref{table:times_algpoli_2}, en cambio, mantiene constante el orden del jet a $M=3$ pero cambia el numero de variables para cada operación. En todos los casos se evaluó la operación elemental en la primera variable independiente del polinomio, pero tomando en cuenta que $P(\mathbf{x}) \in \pkk{3}{n}$, con $n \in \left\lbrace 1,2,3,4,5 \right\rbrace$. 
+La tabla \ref{table:times_algpoli_2}, en cambio, mantiene constante el orden del jet a $M=3$ pero cambia el numero de variables para cada operación. En todos los casos se evaluó la función elemental en la primera variable independiente del polinomio, pero tomando en cuenta que $P(\mathbf{x}) \in \pkk{3}{d}$, con $d \in \left\lbrace 1,2,3,4,5 \right\rbrace$. 
 
 %TABLA!
 \begin{table}[h!]
@@ -109,8 +127,8 @@ La tabla \ref{table:times_algpoli_2}, en cambio, mantiene constante el orden del
  $\#_{vars} = 4$ & $-5.53$ & $-5.53$ & $-5.84$ & $-5.80$ \\
  $\#_{vars} = 5$ & $-5.47$ & $-5.47$ & $-5.78$ & $-5.74$ \\ \bottomrule 
 \end{tabular}
-\caption{Logaritmo base $10$ del tiempo que demora hacer cada operación elemental para polinomios $P(\mathbf{x}) \in \pkk{3}{n}$, es decir, polinomios en $n$ variables de orden $M = 3$. $\#_{vars}=0$ representa la operación aritmética con un número flotante arbitrario.}
+\caption{Logaritmo base $10$ del tiempo que demora hacer cada operación elemental para polinomios $P(\mathbf{x}) \in \pkk{3}{d}$, es decir, polinomios en $d$ variables de orden $M = 3$. $\#_{vars}=0$ representa la operación aritmética con un número flotante arbitrario.}
 \label{table:times_algpoli_2}
 \end{table}
 
-Todos los cálculos aquí presentados fueron realizados en serie, con un CPU Intel\textregistered  Core\texttrademark  i7-7700HQ @ 2.80GHz $\times$ 8. El lenguaje utilizado para el cálculo es \href{julialang.org}{\textsf{Julia}}, versión $0.6.0$. El álgebra polinomial es operado con el paquete \href{https://github.com/JuliaDiff/TaylorSeries.jl}{\textsf{TaylorSeries}} versión $0.7.2$ y la integración del transporte de jets es realizada con el paquete \href{https://github.com/PerezHz/TaylorIntegration.jl}{\textsf{TaylorIntegration}} versión $0.2.1$.
+Todos los cálculos aquí presentados fueron realizados en serie, con un CPU Intel\textregistered  Core\texttrademark  i7-7700HQ @ 2.80GHz $\times$ 8. El lenguaje utilizado para el cálculo es \href{julialang.org}{\textsf{Julia}}, versión $0.6.0$. El álgebra polinomial es operado con el paquete \textsf{TaylorSeries} \cite{TaylorIntegration} versión $0.7.2$ y la integración del transporte de jets es realizada con el paquete \textsf{TaylorIntegration} \cite{TaylorIntegration} versión $0.2.1$.

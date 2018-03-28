@@ -1,23 +1,23 @@
-En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el transporte de jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
+En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el Transporte de Jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
-Hay que destacar que el transporte de jets no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay un montón de cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parametros de las ecuaciones.
+Hay que destacar que el Transporte de Jets no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay un montón de cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parámetros de las ecuaciones.
 
 \subsection{Un poco de motivación vía exponentes de Lyapunov}
 \label{sec:FTLE}
 
-El transporte de jets nos permite saber qué pasa con el flujo entre condiciones iniciales vecinas. En este sentido, si se hace un transporte alrededor de $\xo$, sabemos como es el flujo de $\xo + \delta \xo$. Por esto, los Exponentes de Liapunov a Tiempo Finito (ELTF) emergen commo una motivación natural a los indicadores que serán propuestos en este capítulo. Un ELTF es, sin entrar en muchos detalles, el promedio en un lapso finito de tiempo de la tasa de máxima expansión entre dos condiciones iniciales cercanas. La construcción que aquí se plantea sigue a Shadden, Lekien y Marsden en \cite{Shadden2005}.
+El Transporte de Jets nos permite saber qué pasa con el flujo entre condiciones iniciales vecinas. En este sentido, si se hace un transporte alrededor de $\xo$, sabemos como es el flujo de $\xo + \delta \xo$. Por esto, los Exponentes de Liapunov a Tiempo Finito (ELTF) emergen commo una motivación natural a los indicadores que serán propuestos en este capítulo. Un ELTF es, sin entrar en muchos detalles, el promedio en un lapso finito de tiempo de la tasa de máxima expansión entre dos condiciones iniciales cercanas. La construcción que aquí se plantea sigue a Shadden, Lekien y Marsden en \cite{Shadden2005}.
 
-Supongamos dos condiciones iniciales vecinas $\xo$ y $\mathbf{\chi}_0 = \xo + \delta \xo$ en $\mathcal{D} \subset R^d$ con flujos $\phi(T;t_0, \xo)$ y $\phi(T;t_0, \chi_0)$, respectivamente, después de un intervalo $T$ de tiempo, con $\delta \xo \ll 1$ y en alguna dirección arbitraria . La perturbación después del intervalo $T$ es
+Consideremos dos condiciones iniciales vecinas $\xo$ y $\mathbf{\chi}_0 = \xo + \delta \xo$ en $\mathcal{D} \subset R^d$ con flujos $\phi(T;t_0, \xo)$ y $\phi(T;t_0, \chi_0)$, respectivamente, después de un intervalo $T$ de tiempo, con $\delta \xo \ll 1$ y en alguna dirección arbitraria . La diferencia después del intervalo $T$ es
 
 \begin{equation}
- \delta \mathbf{x}(T) = \phi(T;t_0, \chi_0) - \phi(T;t_0, \xo) = \frac{d \phi(T;t_0, \xo)}{d\xo} \delta \xo + \mathcal{O} \left( \norm{ \delta \xo}^2 \right).
+ \delta \mathbf{x}(T) = \phi(T;t_0, \chi_0) - \phi(T;t_0, \xo) = \frac{d \phi(T;t_0, \xo)}{d\xo} \delta \xo + \mathcal{O} \left( \norm{ \delta \xo}_2^2 \right).
  \label{eq:perturbation}
 \end{equation}
 
 Ignorando el término de orden cuadrático en $\delta \xo$, se puede encontrar la magnitud de la perturbación al tiempo $T$ via la norma estándar
 
 \begin{equation}
- \norm{\delta \mathbf{x}(T)} = \sqrt{ \left\langle \frac{d \phi(T;t_0, \xo)}{d\xo} \delta \xo, \frac{d \phi(T;t_0, \xo)}{d\xo} \delta \xo \right\rangle }.
+ \norm{\delta \mathbf{x}(T)}_2 = \sqrt{ \left\langle \frac{d \phi(T;t_0, \xo)}{d\xo} \delta \xo, \frac{d \phi(T;t_0, \xo)}{d\xo} \delta \xo \right\rangle }.
  \label{eq:perturbation_norm}
 \end{equation}
 
@@ -35,13 +35,13 @@ con $ \delta \tilde{\xo} $ en la dirección del eigenvector asociado a $\lambda_
  \sigma(\xo,T) := \frac{1}{2 \lvert T \rvert} \ln \lambda_{max}(\Lambda(\xo, T)),
  \label{eq:FTLE}
 \end{equation}
-el máximo ELTF integrado a tiempo $T$ asociado al punto que en $t_0$ pasa por $\xo$. Como se mencionaba al principio de la sección, $\sigma(\xo,T)$ nos da la tasa de máxima expansión de $\xo$ promediada en el intervalo $T$. Calcular el ELTF es fácil con el TJ ya que, por la parametrización polinomial de $\flowxi$, $\lambda(\xo,T)$ se puede calcular directamente usando jets de orden $M = 1$. Con esto, se puede estudiar al espacio fase de una campo vectorial dado ya que diferentes valores de $\sigma$ representan diferentes tasas de expansión para la misma escala temporal.
+el máximo ELTF integrado a tiempo $T$ asociado al punto que en $t_0$ pasa por $\xo$. Como se mencionaba al principio de la sección, $\sigma(\xo,T)$ nos da la tasa de máxima expansión de $\xo$ promediada en el intervalo $T$. Calcular el ELTF es fácil con el TJ ya que, por la parametrización polinomial de $\flowxi$, $\lambda(\xo,T)$ se puede calcular directamente usando jets de orden $M = 1$. Con esto, se puede estudiar el espacio fase de una campo vectorial dado ya que diferentes valores de $\sigma$ representan diferentes tasas de expansión para la misma escala temporal.
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{ftle_pendulum}
- \caption{Campo escalar de los ELTF para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $100$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $M = 25$.}
+ \caption{Campo escalar de los ELTF calculada con (\ref{eq:FTLE}) para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $100$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $M = 25$.}
  \label{fig:ftle_pendulum}
 \end{figure}
 
@@ -52,11 +52,8 @@ La figura \ref{fig:ftle_pendulum} presenta al campo escalar de los ELTF calculad
 \pagebreak
 \subsection{Tamaño máximo de las vecindades}
 \label{sec:ximax}
-%
-%Vimos, en el caso anterior, cómo el jacobiano $J^{t_n}(\xi)$ representa la deformación lineal de las trayectorias vecinas a $\xo$ al tiempo $t_n$ y cómo, con éste, se puede calcular el campo escalar de los ELTF. Sin embargo, en los ejemplos XXX se observa que a veces la aproximación lineal de las deformaciones no es suficiente para sacar conclusiones contundentes sobre el sistema de EDO. De hecho, por el teorema de Grobman-Hartman, existen casos donde las ecuaciones no son siquiera topológicamente equivalentes a su aproximación lineal. 
-%%Trabajar los ejemplos XXX.
 
-Los ELTF son una buena herramienta para ver la tasa de expansión de la variacion entre dos condiciones vecinas. Esto es una buena motivante para el transporte de jets, ya que no se tiene, a priori, la restricción de la linealidad que se tiene en el caso anterior. Lo único que se hizo para adaptar el TJ al campo de ELTF fue tomar una expansión a primer orden de las soluciones de un campo vectorial dado. Sin embargo, si las expansiones de los polinomios son de orden $N > 1$, entonces las deformaciones en las vecindades de $\xo$ exhibirán términos no lineales para cada término del flujo y, así, se puede obtener información más precisa con los indicadores pertinentes\footnote{La figura \ref{fig:pendulum_jt} es un buen ejemplo de cómo no siempre las deformaciones lineales son suficientes si la variación es suficientemente grande.}. Intuitivamente, entre mayor sea el orden de expansión de los jets, mejor será la aproximación a la solución real en las vecindades de $\xo$ y más grandes pueden ser las variaciones respecto a $\xo$; sin embargo, no se ha analizado qué tan grandes deben ser dichas variaciones para estar bajo una tolerancia impuesta.
+Los ELTF son una buena herramienta para ver la tasa de expansión de la variacion entre dos condiciones vecinas. Esto es una buena motivante para el Transporte de Jets, ya que no se tiene, a priori, la restricción de la linealidad que se tiene en el caso anterior. Lo único que se hizo para adaptar el TJ al campo de ELTF fue tomar un desarrollo a primer orden de las soluciones de un campo vectorial dado. Sin embargo, si las expansiones de los polinomios son de orden $N > 1$, entonces las deformaciones en las vecindades de $\xo$ exhibirán términos no lineales para cada término del flujo y, así, se puede obtener información más precisa con los indicadores pertinentes\footnote{La figura \ref{fig:pendulum_jt} es un buen ejemplo de cómo no siempre las deformaciones lineales son suficientes si la variación es suficientemente grande.}. Intuitivamente, entre mayor sea el orden de expansión de los jets, mejor será la aproximación a la solución real en las vecindades de $\xo$ y más grandes pueden ser las variaciones respecto a $\xo$; sin embargo, no se ha analizado qué tan grandes deben ser dichas variaciones para estar bajo una tolerancia impuesta.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -66,26 +63,11 @@ Los ELTF son una buena herramienta para ver la tasa de expansión de la variacio
 	\label{fig:xi_precision_pendulum}
 \end{figure}
 
-%FIGURA! 
-%\begin{figure}[h!]
-%\centering
-%\begin{subfigure}{0.49\textwidth}
-%	\centering
-%	\includegraphics[width = \textwidth]{euler-vs-analytical_center}
-%	\caption{Norma de la diferencia entre la solución real y evaluaciones de la solución numérica para distintos valores de $\xi$ marcados en la gráfica. Se puede observar un crecimiento lineal del error numérico, lo cual es una de las consecuencias de usar el método de Euler.}
-%	\label{fig:center-eu_vs_anal}
-%\end{subfigure}
-%%
-%\begin{subfigure}{0.49\textwidth}
-%	\centering
-%	\includegraphics[width = \textwidth]{euler-method_error}
-%	\caption{Sección del espacio fase donde se observan la solución analítica y la solución numérica para pasos de $h=10^{-4}$ con cóndición inicial $\xo = (2,0)$. \\ \\}
-
-Los coeficientes de la expansión de $\flowxi$ dependen de qué tan grandes son las variaciones de las vecindades de la condición tomada para el flujo. La figura \ref{fig:xi_precision_pendulum} muestra cómo para la misma variación $\xi = (\pm 0.1, 0)^T$ el transporte no siempre se comporta de la manera. Más cerca de la separatriz, las evaluaciones se parecen uy poco a flujo real. Así, una forma de controlar qué tan grandes pueden ser las variaciones alrededor de $\xo$ es acotar la contribución del último término a una tolerancia dada; es decir,
+Los coeficientes de la expansión de $\flowxi$ dependen de qué tan grandes son las variaciones de las vecindades de la condición tomada para el flujo. La figura \ref{fig:xi_precision_pendulum} muestra cómo para la misma variación $\xi = (\pm 0.1, 0)^T$ el transporte no siempre se comporta de la manera. Más cerca de la separatriz, las evaluaciones se parecen muy poco a flujo real. Así, una forma de controlar qué tan grandes pueden ser las variaciones alrededor de $\xo$ es acotar la contribución del último término a una tolerancia dada; es decir,
 \begin{equation*}
  a_{M}^{(n)}\xi_{max}^M \leq \epsilon_{jet}
 \end{equation*}
-donde $\flowxi = P_{n,\xo}(\xi) = \sum_{|m|=1}^M  a_{m}^{(n)} \xi^m$, con $a_{m}^{(n)}$ el polinomio de orden $m = \norm{\mathbf{m}}_1$ del jet al tiempo $t_n$.
+donde $\flowxi = P_{n,\xo}(\xi) = \sum_{|m|=1}^M  a_{m}^{(n)} \xi^m$, con $a_{m}^{(n)}$ el máximo coeficiente $m = \norm{\mathbf{m}}_1$ del jet al tiempo $t_n$.
 
 Se busca controlar el máximo de estos coeficientes, de modo que 
 \begin{align}
@@ -94,7 +76,7 @@ Se busca controlar el máximo de estos coeficientes, de modo que
 \end{align}
 es el radio máximo que la vecindad $\Uxo$ puede tomar para estar debajo de la tolerancia impuesta. 
 
-Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin que las deformaciones del jet repercutan de manera drástica en las soluciones evaluadas. La sección \ref{sec:artificial_ham} muestra cómo la dinámica del campo vectorial exige que las deformaciones de $\Uxo$ sean muy grandes y, como se observó en la figura \ref{fig:artificial_dEjets_all}, después de cierto tiempo la energía deja de conservarse, lo cual implica que la solución ya no vive en la curva de nivel del hamiltoniano y, por tanto, el TJ no es suficiente preciso para determinar soluciones cercanas. Visto de otro ángulo, la vecindad en la que se evaluó era demasiado grande para conservar la energía en toda la trayectoria del flujo.
+Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin que las deformaciones del jet repercutan de manera drástica en las soluciones evaluadas. La sección \ref{sec:artificial_ham} muestra cómo la dinámica del campo vectorial exige que las deformaciones de $\Uxo$ sean muy grandes y, como se observó en la figura \ref{fig:artificial_dEjets}, después de cierto tiempo la energía deja de conservarse, lo cual implica que la solución ya no obtenida con el TJ ya no es una buena aproximación de la solución real. Visto de otro ángulo, la vecindad en la que se evaluó era demasiado grande para ser correctamente representada por la parametrización de las soluciones.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -104,25 +86,25 @@ Con ésto se establece qué tan grandes pueden ser las variaciones de $\xo$ sin 
 	\label{fig:dE_ximax_ah}
 \end{figure}
 
-En la figura \ref{fig:dE_ximax_ah} retomamos al sistema (\ref{eq:artificial_ode}) que, en su momento, vimos cómo divirgió su energía. Ahora podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son \textbf{más pequeñas que el épsilon de la máquina}. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido arbitrariamente en la sección \ref{sec:benchmark-taylor}. 
+En la figura \ref{fig:dE_ximax_ah} retomamos al sistema (\ref{eq:artificial_ode}) que, en su momento, vimos cómo divirgió su energía. Ahora podemos ver que, al establecer una tolerancia $\epsilon_{jet} = 10^{-14}$, las variaciones de energía para ambos casos $\pm \xi_{max}$ son más pequeñas que el épsilon de la máquina. Esto implica que establecer un tamaño máximo de las vecindades reduce drásticamente el error de las soluciones calculadas. Esto, sin embargo, tiene un costo relativamente alto, ya que $\xi_{max} = 0.0235 \ll 0.1$, donde $0.1$ fue la variación respecto a $\xo$ que se había escogido arbitrariamente en la sección \ref{sec:benchmark-taylor}. 
 
-$\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importante, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en \textbf{órdenes no lineales de la vecindad de las soluciones}. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
+$\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, más importante, de la condición inicial en donde se busque saber la variación máxima posible. En general, entre más se deforme el jet con la evolución del flujo, menores serán las vecindades en las que las evaluaciones de $\flowxi$ queden debajo de $\epsilon_{jet}$. Con esto en mente, el tamaño máximo de la vecindad puede servir como un indicador similar a los ELTF, ya que es sensible a la separación entre condiciones iniciales cercanas. El tamaño de vecindad va a detectar grandes gradientes de velocidades, presencia de separatrices en el espacio fase y regiones de caos en órdenes no lineales de la vecindad de las soluciones. Se muestra en la figura \ref{fig:jt_ximax_ah} cómo $\flowU$ consta de una $\Uxo$ considerablemente más pequeña que en \ref{fig:artificial_jt}.
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{jt_ximax_ah}
- \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, evaluados para $\xi_{max} = 0.025$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^-{20}$ y orden de la expansión $N=25$. En gris están las soluciones a $\xo \pm \xi_{max}$ sin utilizar TJ. La tolerancia para $\xi_{max}$ es de $\epsilon_{jet} = 10^{-5}$.}
+ \caption{Solución para (\ref{eq:artificial_ode}), con condición inicial sobre la separatriz, donde $q_0 = 0.7$. Aquí, los jets son de orden $M=16$, en $8$ pasos de integración desde $t_0 = 0$ hasta $t_{max} = 1.7$, evaluados para $\xi_{max} = 0.025$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$ y orden de la expansión $N=25$. En gris están las soluciones a $\xo \pm \xi_{max}$ sin utilizar TJ. La tolerancia para $\xi_{max}$ es de $\epsilon_{jet} = 10^{-5}$.}
  \label{fig:jt_ximax_ah}
 \end{figure}
 
-Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (``rotación'') y la zona donde el péndulo completará períodos completos de oscilación (``libramiento'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, esta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información y nos indica sobre la presencia de la separatriz. De hecho, si las no linealidades de $\xi_{max}$ no contribuyen de manera importante al cálculo de ésta, entonces $\xi_{max}(\xo,T) \propto \frac{1}{\sigma(\xo,T)}$. 
+Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (``rotación'') y la zona donde el péndulo completará periodos completos de oscilación (``libramiento'') . A diferencia de la figura \ref{fig:ftle_pendulum}, la figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, esta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información y nos indica sobre la presencia de la separatriz. De hecho, si las no linealidades de $\xi_{max}$ no contribuyen de manera importante al cálculo de ésta, entonces $\xi_{max}(\xo,T) \propto \frac{1}{\sigma(\xo,T)}$. 
 
 %FIGURA!
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{ximax_pendulum}
- \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $60$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $M = 25$.}
+ \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ para el péndulo de (\ref{eq:pendulo-ode}) en una retícula de $60$ puntos por lado, después de un periodo, con tolerancia $\epsilon_{Taylor} = 10^{-10}$ y orden máximo de la expansión $N = 25$.}
  \label{fig:ximax_pendulum}
 \end{figure}
 
@@ -157,17 +139,13 @@ Se pueden encontrar $\theta_\pm$ y $\zeta_\pm$ para toda una rejilla de puntos y
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{seprate_max_pendulum}
-	\caption{Campos vectorial y escalar calculados con $\theta_+(\xo)$ y $\zeta_+(\xo)$,respectivamente.}
-	\label{fig:seprate_max_pendulum}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{seprate_min_pendulum}
-	\caption{Campos vectorial y escalar calculados con $\theta_-(\xo)$ y $\zeta_-(\xo)$,respectivamente.}
-	\label{fig:seprate_min_pendulum}
 \end{subfigure}
-\caption{ Campos vectoriales dados por $\left( \cos(\theta_\pm(\xo)),\sin(\theta_\pm(\xo)) \right)^T$ sobre los campos escalares $\zeta_\pm(\xo)$ para el péndulo simple, en rejillas de $15\times15$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=3$ y orden de la expansión $N=25$. }
+\caption{ Campos vectoriales dados por $\left( \cos(\theta_\pm(\xo)),\sin(\theta_\pm(\xo)) \right)^T$ sobre los campos escalares $\zeta_\pm(\xo)$ para el péndulo simple, en rejillas de $15\times15$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=3$ y orden de la expansión $N=25$. \textit{Izquierda}: Campos dados por $\theta_+(\xo)$ y $\zeta_+(\xo)$. \textit{Derecha}: Campos dados por $\theta_-(\xo)$ y $\zeta_-(\xo)$.}
 \label{fig:seprate_pendulum}
 \end{figure}
 
@@ -179,17 +157,13 @@ Es curioso ver que, para los campos escalares de $\zeta_\pm$, se detecta la pres
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{seprate_max_scalar_pendulum}
-	\caption{Campo escalar $\zeta_+(\xo)$.}
-	\label{fig:seprate_max_scalar_pendulum}
 \end{subfigure}
 %
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{seprate_min_scalar_pendulum}
-	\caption{Campo escalar $\zeta_-(\xo)$.}
-	\label{fig:seprate_min_scalar_pendulum}
 \end{subfigure}
-\caption{ Campos escalares $\left( \zeta_\pm(\xo) \right)^{1/3}$ para el péndulo simple, en rejillas de $90\times 90$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=3$ y orden de la expansión $N=25$. }
+\caption{ Campos escalares $\left( \zeta_\pm(\xo) \right)^{1/3}$ para el péndulo simple, en rejillas de $90\times 90$, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de los jets $M=3$ y orden de la expansión $N=25$. Se toma la raíz cúbica para hacer más clara la imagen. \textit{Izquierda}: Campo escalar $\zeta_+(\xo)$. \textit{Derecha}: Campo escalar $\zeta_-(\xo)$.}
 \label{fig:seprate_scalar_pendulum}
 \end{figure}
 
@@ -214,7 +188,7 @@ que define al hamiltoniano, cuyas ecuaciones de movimiento son
 
 Si definimos $\mathbf{x} := (\mathbf{q},\mathbf{p}) = (x_1,\ldots,x_{2d})^T$, entonces
 \begin{equation}
- \dot{x_i} = \omega_{i,j} \pder{H(\mathbf{x})}{x_j}
+ \dot{x_i} = \omega_{i,j} \pder{H(\mathbf{x})}{x_j},
  \label{eq:symplectic_ham_ode}
 \end{equation}
 
@@ -249,7 +223,7 @@ Las matrices que cumplen la definición anterior forman un \textbf{grupo simplé
 
 Los \textbf{grupos de Lie} son grupos cuyos elementos dependen de un número finito de parámetros, i.e., $g = g(\eta) = g(\eta_1,\ldots,\eta_N)$. Dicho esto, y como se menciona en \cite{CBHamiltonianDynamics}, para los cálculos se suele escoger una base para operar dichas matrices y, para transformaciones infinitesimales del espacio fase, éstas toman la forma
 \begin{equation}
- g(\delta \eta) := \mathbf{1} + \delta \eta \mathbf{T}
+ g(\delta \eta) := \mathbf{1} + \delta \eta \mathbf{T},
  \label{eq:symp_infinit_rotation}
 \end{equation}
 
@@ -259,7 +233,7 @@ Notemos que si al grupo de rotaciones (\ref{eq:symp_infinit_rotation}) le impone
 
 \begin{align*}
   \left( \mathbf{1} + \delta \eta \mathbf{T} \right)^T \omega \left( \mathbf{1} + \delta \eta \mathbf{T} \right) = \omega \implies 
-  \cancel{\omega} + (\delta \eta \mathbf{T})^T \omega + \omega \delta \eta \mathbf{T} + \cancelto{\mathcal{O}(\norm{\delta \eta \mathbf{T}}^2)} {(\delta \eta \mathbf{T})^T \omega \delta \eta \mathbf{T}} = \cancel{\omega}  
+  \cancel{\omega} + (\delta \eta \mathbf{T})^T \omega + \omega \delta \eta \mathbf{T} + \cancelto{\mathcal{O}(\norm{\delta \eta \mathbf{T}}^2)} {(\delta \eta \mathbf{T})^T \omega \delta \eta \mathbf{T}} = \cancel{\omega}, 
 \end{align*}
 
 obtenemos una forma explícita para que éste sea simpléctico
@@ -336,7 +310,7 @@ entonces
   = 0 
 \end{align*}
 
-probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del transporte de jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$.
+probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del Transporte de Jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$.
 
 Ahora, el problema de probar la simplecticidad de esta manera es que la expansión $P_{0,(0,0)}(\xi)$ es una expansión finita y no representa necesariamente a $f(\xi)$. Sin embargo, resulta ser que si un sistema es hamiltoniano, el correspondiente sistema dado por la expansión de sus funciones en series de Taylor hasta orden $M < \infty$ también lo es.
 
@@ -357,7 +331,7 @@ Si $f_i$ es $\mathcal{C}^\omega(\mathcal{M}) \ \forall i$, entonces $\exists! \ 
  \dot{q} &= \ \pder{\mathcal{H}}{p} = P_{f_1}^M(q,p) \\
  \dot{p} &= - \pder{\mathcal{H}}{q} = P_{f_2}^M(q,p)
 \end{align*}
-con $P_{f_i}^M(q,p)$ la expansión de Taylor de orden $M$ de $f_i$.
+con $P_{f_i}^M(q,p)$ el desarrollo de Taylor de orden $M$ de $f_i$.
 \footnote{El teorema es generalizable para $\mathcal{M} \subset \mathbb{R}^d \times \mathbb{R}^d$. La demostración queda como ejercicio para el lector.}
 \end{teorema}
 
@@ -397,7 +371,7 @@ Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{e
 \end{equation} 
 tal como se propone en la sección 42 de dicho capítulo del Arnold.
 
-Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema dado. Como el transporte de jets parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano.
+Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema Hamiltoniano dado. Como el Transporte de Jets parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -423,7 +397,7 @@ Aunque el título de esta sección suene redundante, el TJ nos permite no sólo 
 
 Tomemos, por ejemplo, al oscilador armónico dado por  
 \begin{equation}
- \ddot{x}(t) + \omega^2 x(t) = 0
+ \ddot{x}(t) + \omega^2 x(t) = 0,
  \label{eq:one_dim_oscil}
 \end{equation}
 
@@ -436,7 +410,7 @@ con $y = \dot{x}$ y $\omega \in \mathbb{C}$.
 
 Complejificando el dominio, sabemos la solución
 \begin{equation*}
- x_{\mathbb{C}}(t) = A e^{i\omega t} + B e^{-i \omega t}
+ x_{\mathbb{C}}(t) = A e^{i\omega t} + B e^{-i \omega t},
 \end{equation*}
 donde, si $\omega^2 > 0$, entonces la proyección a los reales es
 \begin{equation}
@@ -457,24 +431,24 @@ y, si $\omega^2 < 0$, la proyección es
  \label{fig:oscillator_domega}
 \end{figure}
 
-Observamos en la figura \ref{fig:oscillator_domega} cómo las curvas de nivel cambian para distintas $\omega^2$; en particular, observamos que las soluciones cambian de topología cuando $\omega^2$ cambia de signo. Con esto, pensar en una \textit{parametrización del parámetro} resulta una herramienta poderosa en el estudio de este tipo de sistemas ya que, por un lado, puede funcionar como un indicador para cambios de topología y, por otro, ayudar a encontrar conjuntos de soluciones cuando los parámetros no se conocen con exactitud. 
+Observamos en la figura \ref{fig:oscillator_domega} cómo las curvas de nivel cambian para distintas $\omega^2$; en particular, observamos que las soluciones cambian de topología cuando $\omega^2$ cambia de signo. Con esto, pensar en una \textit{parametrización del parámetro} resulta una herramienta poderosa en el estudio de este tipo de sistemas ya que, por un lado, puede funcionar como un indicador para cambios de topología o bifurcaciones de las soluciones y, por otro, ayudar a encontrar conjuntos de soluciones cuando los parámetros no se conocen con exactitud. 
 
-Para hacer esto con el transporte de jets, basta con incluir al parámetro o los parámetros que se quieran variar en el sistema de ecuaciones como $\dot{\lambda} = 0$, donde $\lambda$ es el conjunto de parámetros que se quieren variar. En este ejemplo el sistema queda como
+Para hacer esto con el Transporte de Jets, basta con incluir al parámetro o los parámetros que se quieran variar en el sistema de ecuaciones como $\dot{\lambda} = 0$, donde $\lambda$ es el conjunto de parámetros que se quieren variar. En este ejemplo el sistema queda como
 \begin{align*}
  \dot{x} &= y \\
  \dot{y} &= - \omega^2 x \\
- \dot{\omega^2} &= 0
-\end{align*}.
+ \dot{\omega^2} &= 0.
+\end{align*}
  
 %FIGURA! 
 \begin{figure}[h!]
  \centering 
  \includegraphics[width=0.8\linewidth]{oscillator_domega2}
- \caption{Solución para condición inicial $\xo = (1,0,0)$ y variación del parámetro para $\delta \omega^2 = 0.5$ en la izquierda y $-0.5$ en la derecha. $\delta \omega$ es un polinomio de orden $30$, y la expansión de Taylor para la solución es de orden $28$, con tolerancia de $10^{-20}$. Son $25$ pasos de integración de $0$ a $2 \pi$.}
+ \caption{Solución para condición inicial $\xo = (1,0,0)$ y variación del parámetro para $\delta \omega^2 = 0.5$ en la izquierda y $-0.5$ en la derecha. $\delta \omega$ es un polinomio de orden $30$, y el desarrollo de Taylor para la solución es de orden $28$, con tolerancia de $10^{-20}$. Son $25$ pasos de integración de $0$ a $2 \pi$.}
  \label{fig:oscillator_param_transport}
 \end{figure}
 
-La figura \ref{fig:oscillator_param_transport} muestra el trasnporte de jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el transporte de jets sí obtiene el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
+La figura \ref{fig:oscillator_param_transport} muestra el trasnporte de jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el Transporte de Jets sí muestra el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
 
 El flujo conserva la energía cada vez menos conforme pasa el tiempo como se observa en la figura \ref{fig:oscillator_dE_domega}; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
 
@@ -487,5 +461,5 @@ El flujo conserva la energía cada vez menos conforme pasa el tiempo como se obs
 \end{figure}
 
 
-Los indicadores desarrollados hasta ahora refuerzan el estudio del espacio fase como en los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$, permiten tener alternativas al método de Montecarlo como en la parametrización de parámetros, nos dan formas de evaluar las vecindades en un radio donde el error sea menor a una tolerancia dada y permiten corrobrar la simplecticidad de un flujo hamiltoniano. Éstas se utilizarán en un problema específico, el Problema Circular de Tres Cuerpos, el cual se desarrollará en el siguiente capítulo.
+Los indicadores desarrollados hasta ahora refuerzan el estudio del espacio fase como en los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$, permiten tener alternativas al método de Montecarlo como en la parametrización de parámetros, nos dan formas de evaluar las vecindades en un radio donde el error sea menor a una tolerancia dada y permiten corrobrar la simplecticidad de un flujo hamiltoniano. Éstas se utilizarán en un problema específico, el \textbf{problema circular de tres cuerpos}, el cual se desarrollará en el siguiente capítulo.
 %Pequeña conclusión de sección ? 

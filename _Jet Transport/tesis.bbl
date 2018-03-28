@@ -15,6 +15,14 @@ A.~Haro, ``{Automatic differentiation methods in computational dynamical
   systems: Invariant manifolds and normal forms of vector fields at fixed
   points},'' 2009.
 
+\bibitem{TaylorSeries}
+L.~Benet and D.~Sanders, ``Taylorseries.jl.''
+  \url{https://github.com/JuliaDiff/TaylorSeries.jl}.
+
+\bibitem{TaylorIntegration}
+J.~Pérez and L.~Benet, ``Taylorintegration.jl.''
+  \url{https://github.com/PerezHz/TaylorIntegration.jl}.
+
 \bibitem{Daniel2015}
 D.~P{\'{e}}rez-Palau, ``{Dynamical transport mechanisms in celestial mechanics
   and astrodynamics problems},'' 2015.
