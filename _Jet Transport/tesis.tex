@@ -1,4 +1,4 @@
- \documentclass[letterpaper,12pt]{book}
+\documentclass[letterpaper,12pt]{book}
 \usepackage[spanish]{babel}
 \decimalpoint 
 \usepackage[utf8]{inputenc}
@@ -143,8 +143,8 @@
 \newcommand{\titulito}{Working title on headers}
 \newcommand{\nombre}{{\Large \textbf{\textsc{Blas Kolic}}}}
 \newcommand{\carrera}{{\large \textsc{Físico}}}
-\newcommand{\director}{{\large\textsc{Dr. Fancy Pants}}}
-\newcommand{\fecha}{2017} 
+\newcommand{\director}{{\large\textsc{Dr. Luis Benet Fernández}}}
+\newcommand{\fecha}{2018} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Para asegurar que no ponga encabezados en las páginas blancas al
@@ -256,39 +256,7 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 %\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 %\newcommand{\pder}[3]{\frac{\partial^#3 #1}{\partial #2^#3}}
 
-\newcommand{\ketB}[1]{\big|#1\big\rangle}
-\newcommand{\braket}[2]{\left\langle #1\middle|#2\right\rangle} 
-\newcommand{\braketB}[2]{\big\langle #1 \big|#2\big\rangle} 
-\newcommand{\nubar}{\bar{\nu}}
-\newcommand{\nutau}{\nu_{\tau}}
-\newcommand{\numu}{\nu_{\mu}}
-\newcommand{\nue}{\nu_e}
-\newcommand{\numubar}{\bar{\nu}_{\mu}}
-\newcommand{\nuebar}{\bar{\nu}_e}
-\newcommand{\dmtwo}{\Delta m^2}
-\newcommand{\stt}{\sin^2{ 2 \theta}}
-\newcommand{\numunue}{\numu \rightarrow \nue}
-\newcommand{\numunuebar}{\numubar \rightarrow \nuebar}
-\newcommand{\pspace}{\left(\sin^2{ 2 \theta}, \Delta m^2\right()}
-\newcommand{\pplane}{\sin^2{ 2 \theta}\mbox{--}\Delta m^2}
-\newcommand{\bs}[1]{\boldsymbol{#1}}
-\newcommand{\data}{\boldsymbol{D}}
-\newcommand{\bgr}{\boldsymbol{B}}
-\newcommand{\signal}{\boldsymbol{S}}
-\newcommand{\pred}{\boldsymbol{Q}}
-\newcommand{\enuqe}{E_{\nu}^{QE}}
-\newcommand{\like}{\mathscr{L}}
-%\newcommand{\true}{\Delta \mathscr{L_{\mathbf{V}}}}
-\newcommand{\true}{\Delta \mathscr{L}}
-\newcommand{\fake}{\Delta \like_{\mathbf{f}\ i}^{\{\bs{p}_0\}}}
-\newcommand{\eff}{\chi^2_{\mathbf{Ef}}}%no me gusta esta notacion!!!!
-\newcommand{\NF}{n_{\mathbf{f}}}
-\newcommand{\critic}{\Delta\like^{\{\bs{p}_0\}}_c}
-
-
 \newcommand\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
-
-
 
 
 
@@ -298,11 +266,9 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \renewcommand{\floatpagefraction}{0.75}
 % %%%Puse esto para los float se queden hasta arriba cuando les toca
 
-
 % \makeatletter
 % \setlength{\@fptop}{0pt}
 % \makeatother
-
 
 %\renewcommand{\contentsname}{Contenido}
 \renewcommand{\bibname}{Bibliografía}
@@ -325,7 +291,7 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \providecommand\phantomsection{}% for hyperref
 
 \newcommand\listofillustrations{%
-    \chapter*{Índices de figuras, tablas, algoritmos y código}%
+    \chapter*{Índices de figuras y tablas}%
     \phantomsection
     \addcontentsline{toc}{chapter}{Índices de figuras, tablas,
       algoritmos y código}%
@@ -338,11 +304,6 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
     \phantomsection
     \addcontentsline{toc}{section}{\protect\numberline{}Tablas}%
     \@starttoc{lot}
-    \section*{Algoritmos y código}%
-    \phantomsection
-    \addcontentsline{toc}{section}{\protect\numberline{}Algoritmos y código}%
-    \@starttoc{loa}%
-    \bigskip
 }
 \makeatother
 
@@ -391,7 +352,20 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 {\filleft} % texto del cuerpo alineado a la derecha
 [\vspace{1pt} \noindent\rule{\textwidth}{2pt}]%\bigrule] % después del cuerpo, dejar espacio vertical y trazar línea horizontal gruesa
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Modifica el formato de las secciones para numerarlas explícitamente %%%%%
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}   % The style of the section title
+  {}                             % a prefix
+  {0pt}                          % How much space exists between the prefix and the title
+  {§\thesection \quad}    % How the section is represented
+  
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}   % The style of the section title
+  {}                             % a prefix
+  {0pt}                          % How much space exists between the prefix and the title
+  {§\thesubsection \quad}    % How the section is represented
+
 
 %%%%%%%%%%%%%%%%% segunda opcion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -468,8 +442,14 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 \fancyhead[RE]{\emph{Resumen / Abstract}}
 \renewcommand{\headrulewidth}{0.5pt}
 \addcontentsline{toc}{chapter}{Resumen / Abstract}
+\chapter{Resumen}
 \input{Chapters/resumen}
 \clearpage
+
+\mainmatter %Estilo del texto principal del documento, en que las
+            %paginas seran numeradas con numeros arabigos y los
+            %capitulos y titulos de nivel inferior, si seran
+            %numerados.
 
 \pagestyle{fancy}
 \fancyhead[LO]{}
@@ -481,16 +461,7 @@ pdftex]{hyperref} %este TIENE que ser el ultimo comando aqui
 
 % Para que de nuevo haya salto de linea. (buscar Dutch style)
 \setlength{\parskip}{1.3ex plus 0.2ex minus 0.2ex}
-
-
-           
-
-
-
-\mainmatter %Estilo del texto principal del documento, en que las
-            %paginas seran numeradas con numeros arabigos y los
-            %capitulos y titulos de nivel inferior, si seran
-            %numerados.
+          
 
 % Ajuste de los encabezados de nuevo para que esta vez, las paginas impares
 % tengan el capitulo a la izquierda, y las pares tendran capitulo x a la
