@@ -16,12 +16,10 @@ A.~Haro, ``{Automatic differentiation methods in computational dynamical
   points},'' 2009.
 
 \bibitem{TaylorSeries}
-L.~Benet and D.~Sanders, ``Taylorseries.jl.''
-  \url{https://github.com/JuliaDiff/TaylorSeries.jl}.
+L.~Benet and D.~Sanders. \url{https://github.com/JuliaDiff/TaylorSeries.jl}.
 
 \bibitem{TaylorIntegration}
-J.~Pérez and L.~Benet, ``Taylorintegration.jl.''
-  \url{https://github.com/PerezHz/TaylorIntegration.jl}.
+J.~Pérez and L.~Benet. \url{https://github.com/PerezHz/TaylorIntegration.jl}.
 
 \bibitem{Daniel2015}
 D.~P{\'{e}}rez-Palau, ``{Dynamical transport mechanisms in celestial mechanics
@@ -34,6 +32,10 @@ M.~Berz, ``{High order computation and normal form analysis of repetitive
 \bibitem{Berz1998}
 M.~Berz, ``{Differential Algebraic Techniques, Entry in 'Handbook of
   Accelerator Physics and Engineering'},'' vol.~9, pp.~4--10.
+
+\bibitem{Peskin1996}
+M.~E. Peskin, D.~V. Schroeder, and E.~Martinec, ``{An Introduction to Quantum
+  Field Theory},'' 1996.
 
 \bibitem{Shadden2005}
 S.~C. Shadden, F.~Lekien, and J.~E. Marsden, ``{Definition and properties of
