@@ -1,4 +1,4 @@
-El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran análisis desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el problema circular de tres cuerpos (PC3C), el problema presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y, en general, una rica dinámica. Además,el PC3C tiene únicamente dos grados de libertad lo cuál permite un estudio y una representación gráfica mucho más clara respecto al caso general. Ésto motiva el uso de las herramientas desarrolladas en el capítulo \ref{chap:jt_indicators}. Para ésto es necesario explorar un poco la estructura del problema; encontrar sus puntos de equilibrio, sus singularidades y las ``zonas interesantes'' del espacio fase.
+El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran análisis desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el problema circular de tres cuerpos (PC3C), presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y, en general, una rica dinámica. Además,el PC3C tiene únicamente dos grados de libertad lo cuál permite un estudio y una representación gráfica mucho más clara respecto al caso general. Ésto motiva el uso de las herramientas desarrolladas en el capítulo \ref{chap:jt_indicators}. Para ésto es necesario explorar un poco la estructura del problema; encontrar sus puntos de equilibrio, sus singularidades y las ``zonas interesantes'' del espacio fase.
 
 El caso general se plantea de manera estándar bajo el potencial gravitacional de Newton entre pares de cuerpos 
 \begin{align}
@@ -31,12 +31,12 @@ Dadas que $M_1$ y $M_2$ son los cuerpos primarios y $m_3$ es despreciable, la di
  \mathbf{F}_1(\mathbf{r}_1,\mathbf{r}_2) = M_1 \ddot{\mathbf{r}}_1 = -G \frac{M_1 M_2}{r_{1,2}^2} \hat{\mathbf{r}}_{1,2}.
  \label{eq:2body_eqs_motion}
 \end{equation}
-Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el capítulo 3 del Goldstein \cite{Goldstein2007} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el problema de Kepler, que describe la aceleración relativa
+Como $\hat{\mathbf{r}}_{1,2} = - \hat{\mathbf{r}}_{2,1}$ entonces $\mathbf{F}_2 = -\mathbf{F}_1$, lo cual es equivalente a la tercera ley de Newton. Se tomará como referencia el capítulo 3 del libro de mecánica analítica de Goldstein \cite{Goldstein2007} para obtener las soluciones de este problema. Por comodidad llamaremos a $\mathbf{r}_{1,2}$ simplemente $\mathbf{R}$ y, en términos de ésta, se puede plantear el problema de Kepler, que describe la aceleración relativa
 \begin{equation}
  \ddot{\mathbf{R}} = \ddot{\mathbf{r}}_1 - \ddot{\mathbf{r}}_2 = -G \frac{M_1 + M_2}{R^2} \hat{\mathbf{R}} = - \frac{\beta}{R^2}\hat{\mathbf{R}},
  \label{eq:kepler_problem}
 \end{equation}
-con $\beta = G \left(M_1 + M_2 \right)$. Multiplicando (\ref{eq:kepler_problem}) por $\gamma := \frac{M_1 M_2}{M_1+M_2}$ obtenemos las ecuaciones de movimiento de la fuerza relativa de $M_1$ respecto a $M_2$.
+con $\beta = G \left(M_1 + M_2 \right)$. Multiplicando (\ref{eq:kepler_problem}) por la masa reducida $\gamma := \frac{M_1 M_2}{M_1+M_2}$ obtenemos las ecuaciones de movimiento de la fuerza relativa de $M_1$ respecto a $M_2$.
 
 El problema de Kepler conserva el momento angular $\mathbf{L} := \mathbf{R} \times \mathbf{p}$, ya que
 \begin{equation}
@@ -112,7 +112,7 @@ que no es más que un oscilador armónico con forzamiento constante $\frac{\beta
 \section{Problema circular de tres cuerpos}
 \label{sec:R3BP}
 
-Ahora sí se tomará la consideración de que la tercer partícula sea mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, $m_3$ es ignorada en la dinámica de $M_2$ y $M_1$ y, por tanto, la solución para los cuerpos primarios es la desarrollada en la sección anterior. Sólo queda estudiar la dinámica de $m_3$ en relación a $M_1$ y $M_2$ para describir completamente al problema.
+Ahora se tomará a la tercer partícula considerando que sea mucho más pequeña que las otras dos, i.e., $m_3 \ll M_2 \leq M_1$. Así, $m_3$ es ignorada en la dinámica de $M_2$ y $M_1$ y, por tanto, la solución para los cuerpos primarios es la desarrollada en la sección anterior. Sólo queda estudiar la dinámica de $m_3$ en relación a $M_1$ y $M_2$ para describir completamente al problema.
 
 Para el caso circular, se toma $e = 0$ y, así, la distancia entre las masas primarias
 \begin{equation}
@@ -141,7 +141,7 @@ con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf
  V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{r_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{r_2}}} - \frac{1}{2} \Omega^2 r^2 \right)
  \label{eq:3body_restricted_potential}
 \end{equation} 
-la parte cerrada del potencial, que se suele conocer como pseudo-potencial, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
+la parte central del potencial, que se suele conocer como pseudo-potencial, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
 
 Con el afán de reducir el número de parámetros que definen al problema, trabajaremos en unidades especiales tales que 
 \begin{align}
@@ -320,7 +320,7 @@ Así, vemos explícitamente la condición para la estabilidad de los puntos $L_4
 
 Un último análisis que vale la pena hacer son las curvas de velocidad cero (CV0). Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Un análisis similar se puede encontrar en las notas de Mireles \cite{MirelesJames2006}. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más alto que cierta altura $h$ de la cual empezó. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
 
-Para encontrar estas curvas, se impone cierta pseudo-energía $C_J$ y se traza la curva tal que la velocidad sea cero, i.e.,
+Para encontrar estas curvas, se impone cierta energía de Jacobi $C_J$ y se traza la curva tal que la velocidad sea cero, i.e.,
 \begin{equation*}
  (x,y,0,0) = \left\lbrace V \ | \  V = \frac{1}{2}C_J \right\rbrace.
 \end{equation*}
