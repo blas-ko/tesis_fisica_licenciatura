@@ -1,4 +1,4 @@
-En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Rica es por elementos como la sensibilidad al parámetro de masa, dada por la ecuación (\ref{eq:mu_critica}), la sensibilidad a condiciones inciales cercanas, las regiones discriminadas por su constante de Jacobi, o sus cinco puntos lagrangianos. Esta sección busca explotar el transporte de jets como se describe en el capítulo \ref{chap:jt} así como los indicadores y herramientas desarrolladas en \ref{chap:jt_indicators}.
+En el capítulo \ref{chap:CR3BP} se estudió el problema restringido circular de los tres cuerpos. Dos partículas primarias orbitando en un plano a velocidad constante respecto a su centro de masa y una tercera influenciada por las otras dos con una dinámica muy rica. Es rica por elementos como la sensibilidad al parámetro de masa, dada por la ecuación (\ref{eq:mu_critica}), la sensibilidad a condiciones inciales cercanas, las regiones discriminadas por su constante de Jacobi, o sus cinco puntos lagrangianos. Esta sección busca explotar el Transporte de Jets como se describe en el capítulo \ref{chap:jt} así como los indicadores y herramientas desarrolladas en \ref{chap:jt_indicators}.
 
 
 Este capítulo se divide como sigue: La sección \ref{sec:parametrization} parametriza a $\mu$ y hace un TJ de dicha parametrización. La sección \ref{sec:asteroids} estudia la probabilidad de colisión entre dos asteroides orbitando cerca de la Tierra. Luego, en \ref{sec:C3BP_simplecticity} se estudia la simplecticidad del PC3C. Finalmente, en la sección \ref{sec:C3BP_heatmaps} se presentan los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$ y se compara con los resultados para el campo de ELTF.
@@ -6,7 +6,7 @@ Este capítulo se divide como sigue: La sección \ref{sec:parametrization} param
 \section{Parametrización de $\mu$}
 \label{sec:parametrization}
 
-Como se analizó en la sección \ref{sec:lag_points}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del PC3C dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por (\ref{eq:mu_critica}). 
+Como se analizó en la sección \ref{sec:lag_points}, $L_i = L_i(\mu)$, es decir, los puntos de equilibrio del Problema Circular de 3 Cuerpos (PC3C) dependen todos del parámetro de masa del sistema. Los puntos $L_4(\mu)$ y $L_5(\mu)$ son de particular interés ya que, a diferencia de los otros tres, serán estables si $\mu \leq \mu_c$, donde $\mu_c$ es el parámetro crítico de la masa dado por (\ref{eq:mu_critica}). 
 
 El análisis de eigenvalores alrededor de los puntos singulares nos da cómo es la estabilidad de dichos puntos. Sin embargo, es interesante ver las soluciones cerca de $\mu_c$ ya que nos permitirá ver directamente en el flujo el comportamiento de estabilidad de la partícula que visita a $L_4$ o $L_5$.
 
@@ -65,7 +65,7 @@ al derivar (\ref{eq:hp-filter}) respecto a $\tau_t$, donde
  \end{array} \right],
 \end{align}
 
-ya que ésta es fácilmente programable. De (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Aplicando este filtro en la figura \ref{fig:remoteness_dmu}, se obtiene el ciclo y la tendencia tal como se presenta en la figura \ref{fig:trendcycle_dmu}. En ésta, se observa cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) hacia valores más negativos, la tendencia decrece después de llegar a un máximo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$.
+ya que ésta es fácilmente programable. De (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Aplicando este filtro en la figura \ref{fig:remoteness_dmu}, se obtiene el ciclo y la tendencia tal como se presenta en la figura \ref{fig:trendcycle_dmu}. En ésta, se observa cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) hacia valores más negativos, la tendencia decrece después de llegar a un máximo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$, ya que muestra cómo aunque la partícula tiende a acercarse a $L_4$, ésta se aleja más cada vez.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -96,7 +96,7 @@ Dado que en la adimensionalización de las ecuaciones de movimiento el problema 
  \label{fig:flow_tl}
 \end{figure}
 
-Primero, al hacer el transporte de jets a $40$ unidades temporales y ver el espacio de configuraciones como se muestra en la figura \ref{fig:flow_tl}, se observa cómo las tres trayectorias $\delta\mu = \left\lbrace -\delta\mu_{max}, 0, \delta\mu_{max} \right\rbrace$ quedan siempre orbitando alrededor de $L_4$, es decir, no divergen. Resulta que $\delta\mu_{max} = 0.0063 $, lo cual equivale a una variación del $52.14 \%$ respecto a $\mu_{TL}$. Para ponerlo en perspectiva, $\mu_{TL}$ equivale a que la masa primaria (la Tierra) es unas $81$ veces más grande que la secundaria (luna). Así, $\mu_{TL} \pm \delta\mu_{max}$ equivale a que la masa primaria sea $53$ y $171$ veces más grande que la otra, respectivamente. Análogo a la figura \ref{fig:remoteness_dmu}, la figura \ref{fig:remoteness_tl} presenta la separación respecto a $\xo$ de la solución. Aquí se puede observar que, aunque al principio (en las primeras $8$ unidades, aproximadamente) las tendencias y oscilaciones siguen el mismo comportamiento que en el caso anterior, rápidamente se vuelven arbitrarias, sin tener tendencia aparente ni amplitudes creciente en los ciclos.
+Primero, al hacer el Transporte de Jets a $40$ unidades temporales y ver el espacio de configuraciones como se muestra en la figura \ref{fig:flow_tl}, se observa cómo las tres trayectorias $\delta\mu = \left\lbrace -\delta\mu_{max}, 0, \delta\mu_{max} \right\rbrace$ quedan siempre orbitando alrededor de $L_4$, es decir, no divergen. Resulta que $\delta\mu_{max} = 0.0063 $, lo cual equivale a una variación del $52.14 \%$ respecto a $\mu_{TL}$. Para ponerlo en perspectiva, $\mu_{TL}$ equivale a que la masa primaria (la Tierra) es unas $81$ veces más grande que la secundaria (luna). Así, $\mu_{TL} \pm \delta\mu_{max}$ equivale a que la masa primaria sea $53$ y $171$ veces más grande que la otra, respectivamente. Análogo a la figura \ref{fig:remoteness_dmu}, la figura \ref{fig:remoteness_tl} presenta la separación respecto a $\xo$ de la solución. Aquí se puede observar que, aunque al principio (en las primeras $8$ unidades, aproximadamente) las tendencias y oscilaciones siguen el mismo comportamiento que en el caso anterior, rápidamente se vuelven arbitrarias, sin tener tendencia aparente ni amplitudes creciente en los ciclos.
 
 %FIGURA!
 \begin{figure}
@@ -132,7 +132,7 @@ Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de l
 
 Inicialmente, los asteroides se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente, donde $\delta\mathbf{x}_{a_i} \in \pkk{n}{2}$. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ \cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
 
-La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el transporte de jets de la siguiente manera: 
+La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el Transporte de Jets de la siguiente manera: 
 
 %FIGURA!
 \begin{figure}
@@ -194,21 +194,21 @@ La figura \ref{fig:asteroid_collision_distribution} muestra una distribución no
 \end{figure}
 
 
-Algo relevante al hacer transporte de jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Esto se muestra en la figura \ref{fig:asteroid_jt_vs_nominal}.
+Algo relevante al hacer Transporte de Jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Esto se muestra en la figura \ref{fig:asteroid_jt_vs_nominal}.
 
 %FIGURA!
 \begin{figure}
  \centering
  \includegraphics[width=0.7\linewidth]{asteroid_jt_vs_nominal}
- \caption{Promedio de la distancia entre la integración nominal y el transporte de jets para $500$ condiciones iniciales con variación $\norm{\delta\mathbf{x}_{a_1}} = \norm{\delta\mathbf{x}_{a_1}} = \Delta_{max}$.}
+ \caption{Promedio de la distancia entre la integración nominal y el TJ para $500$ condiciones iniciales con variación $\norm{\delta\mathbf{x}_{a_1}} = \norm{\delta\mathbf{x}_{a_1}} = \Delta_{max}$.}
  \label{fig:asteroid_jt_vs_nominal}
 \end{figure}
 
-Así, ilustramos el método de posible colisión entre asteroides, donde se estableció la probabilidad de impacto para diferentes zonas de colisión. El transporte de jets permitió encontrar dichas probabilidades ya que en éste, simplemente hubo que evaluar la distribución de variaciones iniciales en un radio dado. Éste método es generalizable a cualquier sistema donde exista alguna incertidumbre en las condiciones iniciales. Sin embargo, hay que tener claro que el transporte de jets no es muy preciso para integraciones muy largas ni para vecindades muy grandes. En este ejemplo, el radio de las variaciones eran $0.46$ veces más pequeñas que $\xi_{max}$. Además, se hizo la integración de jets cerca del punto de posible colisión para tener tiempo de integración cortos. 
+Así, ilustramos el método de posible colisión entre asteroides, donde se estableció la probabilidad de impacto para diferentes zonas de colisión. El Transporte de Jets permitió encontrar dichas probabilidades ya que en éste, simplemente hubo que evaluar la distribución de variaciones iniciales en un radio dado. Éste método es generalizable a cualquier sistema donde exista alguna incertidumbre en las condiciones iniciales. Sin embargo, hay que tener claro que el TJ no es muy preciso para integraciones muy largas ni para vecindades muy grandes. En este ejemplo, el radio de las variaciones eran $0.46$ veces más pequeñas que $\xi_{max}$. Además, se hizo la integración de jets cerca del punto de posible colisión para tener tiempo de integración cortos. 
 
 %Mencionar adimensionalización del tiempo para ver cuánto implica 1 unidad temporal.
 
-\section{Simplecticidad del PC3C}
+\section{Simplecticidad del problema circular}
 \label{sec:C3BP_simplecticity}
 
 Se construyeron en el capítulo \ref{chap:CR3BP} los potenciales (\ref{eq:3body_potential}) y sus respectivas energías cinéticas (\ref{eq:3body_kinetic}) del problema general de tres cuerpos. Éstas nos permiten definir al hamiltoniano
@@ -238,7 +238,7 @@ con $(x,y)$ y $(X,Y)$ las nuevas y viejas coordenadas para $m_3$, respectivament
  \label{fig:rotating_frames}
 \end{figure}
 
-Para obtener el hamiltoniano modificado, que en alguna literatura se llama kamiltoniano \cite{Goldstein2007, Johns2011}, es necesario ver cómo se modifica el momento conjugado en el nuevo sistema donde, para esto, se debe conservar el principio de mínima acción
+Para obtener el hamiltoniano modificado, que a veces en la literatura literatura se llama kamiltoniano \cite{Goldstein2007, Johns2011}, es necesario ver cómo se modifica el momento conjugado en el nuevo sistema donde, para esto, se debe conservar el principio de mínima acción
 
 \begin{align}
  \delta \int_{t_0}^t \left( \dot{\mathbf{R}} \cdot \mathbf{P} - H(\mathbf{R}, \mathbf{P}, \tau) \right) d\tau &= 0 \nonumber \\
@@ -323,7 +323,7 @@ La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpl�
 
 %Valdrá la pena hacer un análisis simpléctico de mayor dimensión?
 
-\section{Campos de $\xi_{max}$ y $\varsigma_\pm$ para el PC3C}
+\section{Campos de $\xi_{max}$ y $\varsigma_\pm$ para el problema circular}
 \label{sec:C3BP_heatmaps}
 
 El estudio y exploración del TJ ha utilizado la ecuación (\ref{eq:ximax}) en varias ocaciones. Ésta ha sido el parámetro que nos ha permitido saber qué tan grandes pueden ser las vecindades dado cierto error $\epsilon_{jet}$, tal como se discute en la sección \ref{sec:ximax}. Éste se utilizó en la sección \ref{sec:asteroids} para comprobar que la incertidumbre de medición diera resultados precisos al evaluar la distribución de puntos, y en \ref{sec:parametrization} para las variaciones del parámetro de masa y analizar la estabilidad de $L_4$. $\xi_{max}$ percibe, en esencia, qué tan compleja es la deformación de la vecindad y qué tanto se alejan las condiciones vecinas de la condición nominal a tiempo fijo, por lo que $\xi_{max} \ll 1$ implica una alta sensibilidad en las condiciones iniciales cercanas o un gran gradiente de velocidades para la vecindad. 
