@@ -37,25 +37,41 @@ M.~Berz, ``{Differential Algebraic Techniques, Entry in 'Handbook of
 M.~E. Peskin, D.~V. Schroeder, and E.~Martinec, ``{An Introduction to Quantum
   Field Theory},'' 1996.
 
-\bibitem{Shadden2005}
-S.~C. Shadden, F.~Lekien, and J.~E. Marsden, ``{Definition and properties of
-  Lagrangian coherent structures from finite-time Lyapunov exponents in
-  two-dimensional aperiodic flows},'' {\em Physica D: Nonlinear Phenomena},
-  vol.~212, no.~3-4, pp.~271--304, 2005.
+\bibitem{Butcher2008}
+J.~Butcher, {\em {Numerical Methods for Ordinary Differential Equations}}.
+\newblock 2008.
+
+\bibitem{Henon1974}
+S.~{J. Aarseth}, M.~Henon, and R.~Wielen, ``{A comparison of numerical methods
+  for the study of star cluster dynamics},'' {\em Astronomy and Astrophysics},
+  vol.~37, pp.~183--187, 1974.
+
+\bibitem{Kroese2011}
+D.~P. Kroese, ``{Monte Carlo Methods},'' p.~176, 2011.
+
+\bibitem{Spigler1987}
+R.~Spigler, ``{MONTE CARLO-TYPE SIMULATION DIFFERENTIAL EQUATIONS Renato
+  SPIGLER},'' vol.~29, pp.~243--251, 1987.
+
+\bibitem{Arnold1989}
+V.~Arnold, {\em {Mathematical methods of classical mechanics}}.
+\newblock 1989.
 
 \bibitem{Haller2011}
 G.~Haller, ``{A variational theory of hyperbolic Lagrangian Coherent
   Structures},'' {\em Physica D: Nonlinear Phenomena}, vol.~240, no.~7,
   pp.~574--598, 2011.
 
+\bibitem{Shadden2005}
+S.~C. Shadden, F.~Lekien, and J.~E. Marsden, ``{Definition and properties of
+  Lagrangian coherent structures from finite-time Lyapunov exponents in
+  two-dimensional aperiodic flows},'' {\em Physica D: Nonlinear Phenomena},
+  vol.~212, no.~3-4, pp.~271--304, 2005.
+
 \bibitem{CBHamiltonianDynamics}
 P.~Cvitanovi{\'c}, R.~Artuso, R.~Mainieri, G.~Tanner, and G.~Vattay,
   ``Hamiltonian dynamics,'' in {\em Chaos: Classical and Quantum}, ch.~8,
   Copenhagen: Niels Bohr Inst., 2016.
-
-\bibitem{Arnold1989}
-V.~Arnold, {\em {Mathematical methods of classical mechanics}}.
-\newblock 1989.
 
 \bibitem{Goldstein2007}
 H.~Goldstein, C.~Poole, and J.~Safko, ``{Classical Mechanics},'' 2007.
