@@ -28,7 +28,7 @@ donde $\delta\mu \in \pkM$ y, por tanto, $\mu \in \pkM$ también. Se introduce l
  \label{fig:flow_dmu}
 \end{figure}
 
-Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad de la expresión (\ref{eq:ximax}), es decir, $\lvert \delta\mu \rvert \leq \lvert \delta\mu_{max} \rvert = \xi_{max}(\phi_\mu) \approx 0.033$ en este caso. Se puede ver en la figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad. Una forma de observar este comportamiento de manera más clara es si medimos la separación de $\phi_\mu(t)$ respecto de $\xo$ para distintos valores de $\delta \mu$. La figura \ref{fig:remoteness_dmu} muestra esta separación en función del tiempo. Se puede observar que mientras mayor sea la variación de $\mu$, mayor es la tendencia y mayor la amplitud de oscilación. 
+Para el transporte, tomaremos como condición inicial a $\xo = \left( L_{4_x}, L_{4_y} + \Delta y, 0, 0, \mu \right)$ con $\Delta y = 7\times 10^{-4}$ para no estar exáctamente en el punto fijo. Las variaciones de $\delta\mu$ estarán acotadas por el tamaño máximo de vecindad de la expresión (\ref{eq:ximax}), es decir, $\lvert \delta\mu \rvert \leq \lvert \delta\mu_{max} \rvert = \xi_{max}(\phi_\mu) \approx 0.033$ en este caso. Se puede ver en la Figura \ref{fig:flow_dmu} una integración a $40$ unidades temporales. Se observa cómo para $\delta \mu > 0$, las soluciones se alejan cada vez más de $L_4$, mientras que para $\delta \mu < 0$ se queda en cierta localidad. Una forma de observar este comportamiento de manera más clara es si medimos la separación de $\phi_\mu(t)$ respecto de $\xo$ para distintos valores de $\delta \mu$. La Figura \ref{fig:remoteness_dmu} muestra esta separación en función del tiempo. Se puede observar que mientras mayor sea la variación de $\mu$, mayor es la tendencia y mayor la amplitud de oscilación. 
 
 %FIGURA! 
 \begin{figure}
@@ -65,7 +65,7 @@ al derivar (\ref{eq:hp-filter}) respecto a $\tau_t$, donde
  \end{array} \right],
 \end{align}
 
-ya que ésta es fácilmente programable. De (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Aplicando este filtro en la figura \ref{fig:remoteness_dmu}, se obtiene el ciclo y la tendencia tal como se presenta en la figura \ref{fig:trendcycle_dmu}. En ésta, se observa cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) hacia valores más negativos, la tendencia decrece después de llegar a un máximo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$, ya que muestra cómo aunque la partícula tiende a acercarse a $L_4$, ésta se aleja más cada vez.
+ya que ésta es fácilmente programable. De (\ref{eq:hp_matrix}), obtenemos que $\mathbf{\tau}_t = \left( \lambda \mathbf{F} + \mathbf{I}_t \right)^{-1} y_t$ y $c_t = y_t - \tau_t$. Aplicando este filtro en la Figura \ref{fig:remoteness_dmu}, se obtiene el ciclo y la tendencia tal como se presenta en la Figura \ref{fig:trendcycle_dmu}. En ésta, se observa cómo desde la primera variación negativa ($\delta\mu = -\delta\mu_{max}/3$) hacia valores más negativos, la tendencia decrece después de llegar a un máximo. Esto quiere decir que la distancia respecto al punto inicial no diverge, como se había predicho en el análisis de estabilidad lineal de (\ref{eq:stability_CR3BP}). Por otro lado, es interesante ver cómo la amplitud de las oscilaciones en la parte cíclico de $\Delta\phi_\mu$ son mayores entre mayor sea $\delta_\mu$, ya que muestra cómo aunque la partícula tiende a acercarse a $L_4$, ésta se aleja más cada vez.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -79,7 +79,7 @@ ya que ésta es fácilmente programable. De (\ref{eq:hp_matrix}), obtenemos que 
 	\centering
 	\includegraphics[width = \textwidth]{cycles_dmu}
 \end{subfigure}
-\caption{ Separación en tendencia (izquierda) y ciclo(derecha) de los valores de la figura \ref{fig:remoteness_dmu} usando un filtro de Hodrick-Prescott con $\lambda = 8000$.}
+\caption{ Separación en tendencia (izquierda) y ciclo(derecha) de los valores de la Figura \ref{fig:remoteness_dmu} usando un filtro de Hodrick-Prescott con $\lambda = 8000$.}
 \label{fig:trendcycle_dmu}
 \end{figure}
 
@@ -96,7 +96,7 @@ Dado que en la adimensionalización de las ecuaciones de movimiento el problema 
  \label{fig:flow_tl}
 \end{figure}
 
-Primero, al hacer el Transporte de Jets a $40$ unidades temporales y ver el espacio de configuraciones como se muestra en la figura \ref{fig:flow_tl}, se observa cómo las tres trayectorias $\delta\mu = \left\lbrace -\delta\mu_{max}, 0, \delta\mu_{max} \right\rbrace$ quedan siempre orbitando alrededor de $L_4$, es decir, no divergen. Resulta que $\delta\mu_{max} = 0.0063 $, lo cual equivale a una variación del $52.14 \%$ respecto a $\mu_{TL}$. Para ponerlo en perspectiva, $\mu_{TL}$ equivale a que la masa primaria (la Tierra) es unas $81$ veces más grande que la secundaria (luna). Así, $\mu_{TL} \pm \delta\mu_{max}$ equivale a que la masa primaria sea $53$ y $171$ veces más grande que la otra, respectivamente. Análogo a la figura \ref{fig:remoteness_dmu}, la figura \ref{fig:remoteness_tl} presenta la separación respecto a $\xo$ de la solución. Aquí se puede observar que, aunque al principio (en las primeras $8$ unidades, aproximadamente) las tendencias y oscilaciones siguen el mismo comportamiento que en el caso anterior, rápidamente se vuelven arbitrarias, sin tener tendencia aparente ni amplitudes creciente en los ciclos.
+Primero, al hacer el Transporte de Jets a $40$ unidades temporales y ver el espacio de configuraciones como se muestra en la Figura \ref{fig:flow_tl}, se observa cómo las tres trayectorias $\delta\mu = \left\lbrace -\delta\mu_{max}, 0, \delta\mu_{max} \right\rbrace$ quedan siempre orbitando alrededor de $L_4$, es decir, no divergen. Resulta que $\delta\mu_{max} = 0.0063 $, lo cual equivale a una variación del $52.14 \%$ respecto a $\mu_{TL}$. Para ponerlo en perspectiva, $\mu_{TL}$ equivale a que la masa primaria (la Tierra) es unas $81$ veces más grande que la secundaria (luna). Así, $\mu_{TL} \pm \delta\mu_{max}$ equivale a que la masa primaria sea $53$ y $171$ veces más grande que la otra, respectivamente. Análogo a la Figura \ref{fig:remoteness_dmu}, la Figura \ref{fig:remoteness_tl} presenta la separación respecto a $\xo$ de la solución. Aquí se puede observar que, aunque al principio (en las primeras $8$ unidades, aproximadamente) las tendencias y oscilaciones siguen el mismo comportamiento que en el caso anterior, rápidamente se vuelven arbitrarias, sin tener tendencia aparente ni amplitudes creciente en los ciclos.
 
 %FIGURA!
 \begin{figure}
@@ -106,7 +106,7 @@ Primero, al hacer el Transporte de Jets a $40$ unidades temporales y ver el espa
  \label{fig:remoteness_tl}
 \end{figure}
 
-De hecho, en la figura \ref{fig:trendcycle_tl} se muestran los gráficas al aplicar el filtro de Hodrick-Prescott. Al aplicar dicho filtro, ¡no se puede observar absolutamente nada! Ni la gráfica de ciclo ni la de tendencia tienen ninguna coherencia en realción a las variaciones del parámetro de masa. Esto significa que $\mu_{TL} + \delta\mu$ es, en efecto, estable para todo el conjunto de valores $\delta\mu$ evaluados alrededor de $L_4$ y $L_5$. Este es un caso donde el TJ es una herramienta natural para evaluar la estabilidad de estos puntos lagrangianos y para ver cómo varían las trayectorias en función de los parámetros del problema-. Muchas otras exploraciones se pueden hacer con variación de parámetros en el problema de tres cuerpos. Sin embargo, este análisis basta para ver las capacidades del TJ cuando no son específicamente ``Jets'' los que transporta.
+De hecho, en la Figura \ref{fig:trendcycle_tl} se muestran los gráficas al aplicar el filtro de Hodrick-Prescott. Al aplicar dicho filtro, ¡no se puede observar absolutamente nada! Ni la gráfica de ciclo ni la de tendencia tienen ninguna coherencia en realción a las variaciones del parámetro de masa. Esto significa que $\mu_{TL} + \delta\mu$ es, en efecto, estable para todo el conjunto de valores $\delta\mu$ evaluados alrededor de $L_4$ y $L_5$. Este es un caso donde el TJ es una herramienta natural para evaluar la estabilidad de estos puntos lagrangianos y para ver cómo varían las trayectorias en función de los parámetros del problema-. Muchas otras exploraciones se pueden hacer con variación de parámetros en el problema de tres cuerpos. Sin embargo, este análisis basta para ver las capacidades del TJ cuando no son específicamente ``Jets'' los que transporta.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -120,7 +120,7 @@ De hecho, en la figura \ref{fig:trendcycle_tl} se muestran los gráficas al apli
 	\centering
 	\includegraphics[width = \textwidth]{cycles_tl}
 \end{subfigure}
-\caption{ Separación en tendencia (izquierda) y ciclo(derecha) de los valores de la figura \ref{fig:remoteness_tl} usando un filtro de Hodrick-Prescott con $\lambda = 8000$.}
+\caption{ Separación en tendencia (izquierda) y ciclo(derecha) de los valores de la Figura \ref{fig:remoteness_tl} usando un filtro de Hodrick-Prescott con $\lambda = 8000$.}
 \label{fig:trendcycle_tl}
 \end{figure}
 
@@ -132,7 +132,7 @@ Sean $a_1$ y $a_2$ dos asteroides con la misma energía de Jacobi alrededor de l
 
 Inicialmente, los asteroides se encuentran a $\mathbf{x}_{a_1}(t_0) + \delta\mathbf{x}_{a_1}(t_0)$  y $\mathbf{x}_{a_2}(t_0) + \delta\mathbf{x}_{a_2}(t_0)$, respectivamente, donde $\delta\mathbf{x}_{a_i} \in \pkk{n}{2}$. La variación en cada condición representa el error de medición de éstos. Por tomar una referencia, tomemos la incertidumbre en el orden de los datos del asteroide Apophis en los años $2012 - 2028$ \cite{Desmars2013}, donde definimos $\Delta_{max} := 350 $ km como la incertidumbre máxima para los asteroides.
 
-La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el Transporte de Jets de la siguiente manera: 
+La Figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectoria nominal de $a_1$ y $a_2$ para condiciones iniciales con energía $C_J = -1.81252 < C_J(L_1)$. En esta integración, la mínima distancia entre ambos cuerpos es de $0.00348$ que representa unos $1341$ kilómetros. Sin embargo, aunque para esta condición particular los asteroides no chocan, es posible que sí lo hagan dentro de una incertidumbre de radio $\Delta_{max}$. Esto se puede hacer con el Transporte de Jets de la siguiente manera: 
 
 %FIGURA!
 \begin{figure}
@@ -168,7 +168,7 @@ La figura \ref{fig:asteroid_collision_nominal_integration} muestra la trayectori
  \label{fig:asteroid_collision_distribution}
 \end{figure}
 
-La figura \ref{fig:asteroid_collision_distribution} muestra una distribución normal de $7000$ puntos\footnote{$ N = 7000$ ya converge a una probabilidad cuyas cifras significativas no afectan el redondeo de la tabla \ref{table:collision_table}.} evaluados en el transporte alrededor de $\mathbf{q}_{a_i}^{(col)}$ para $i = \{1,2\}$. La probabilidad de impacto dependerá del tamaño que tengan los asteroides, la cual se presenta en la tabla \ref{table:collision_table}. Se presenta en la figura \ref{fig:asteroid_collision_histogram} la distribución de distancias entre ambos asteroides en la zona de riesgo de colisión. Aún cuando $D_{col}$ e incluso $\Delta_{max}$ quedan debajo del escenario más posible en la distribución, la probabilidad de impacto es suficientemente grande para no ser ignorada en los asteroides de mayor dimensión.
+La Figura \ref{fig:asteroid_collision_distribution} muestra una distribución normal de $7000$ puntos\footnote{$ N = 7000$ ya converge a una probabilidad cuyas cifras significativas no afectan el redondeo de la Tabla \ref{table:collision_table}.} evaluados en el transporte alrededor de $\mathbf{q}_{a_i}^{(col)}$ para $i = \{1,2\}$. La probabilidad de impacto dependerá del tamaño que tengan los asteroides, la cual se presenta en la Tabla \ref{table:collision_table}. Se presenta en la Figura \ref{fig:asteroid_collision_histogram} la distribución de distancias entre ambos asteroides en la zona de riesgo de colisión. Aún cuando $D_{col}$ e incluso $\Delta_{max}$ quedan debajo del escenario más posible en la distribución, la probabilidad de impacto es suficientemente grande para no ser ignorada en los asteroides de mayor dimensión.
 
 %TABLA!
 \begin{table}[h!]
@@ -189,12 +189,12 @@ La figura \ref{fig:asteroid_collision_distribution} muestra una distribución no
 \begin{figure}
  \centering
  \includegraphics[width=0.7\linewidth]{asteroid_collision_histogram}
- \caption{Distribución normalizada de distancias entre $a_1$ y $a_2$ cerca del punto de posible dadas $7000$ variaciones iniciales alrededor de $\mathbf{q}_{a_1}^{col}$ y $\mathbf{q}_{a_2}^{col}$. Las líneas verticales muestran los valores usados en la tabla \ref{table:collision_table}.}
+ \caption{Distribución normalizada de distancias entre $a_1$ y $a_2$ cerca del punto de posible dadas $7000$ variaciones iniciales alrededor de $\mathbf{q}_{a_1}^{col}$ y $\mathbf{q}_{a_2}^{col}$. Las líneas verticales muestran los valores usados en la Tabla \ref{table:collision_table}.}
  \label{fig:asteroid_collision_histogram}
 \end{figure}
 
 
-Algo relevante al hacer Transporte de Jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Esto se muestra en la figura \ref{fig:asteroid_jt_vs_nominal}.
+Algo relevante al hacer Transporte de Jets es la presición de éste. Se encuentra que $\xi_{max}(\phi_{a_1}) = 0.0022 \approx 865 \ km \gg \Delta_{max}$\footnote{$\xi_{max}(\phi_{a_2})$ es prácticamente igual a $\xi_{max}(\phi_{a_1})$.}, por lo que se tiene bastante confianza en la precisión de las evaluaciones de la distribución. De hecho, al tomar una serie de variaciones $\norm{\delta\mathbf{x}_{a_i}} = \Delta_{max}$ y hacer la integración nominal de éstas, se encuentra que el error promedio respecto a éstas es del orden de $10^{-11} \approx 4 mm$, o sea, nada. Esto se muestra en la Figura \ref{fig:asteroid_jt_vs_nominal}.
 
 %FIGURA!
 \begin{figure}
@@ -228,7 +228,7 @@ Cuando en la sección \ref{sec:R3BP} se supuso que la masa menor no influye en l
  x &= X\cos (\Omega t) - Y \sin (\Omega t), \\
  y &= X\sin (\Omega t) - Y \cos (\Omega t), 
 \end{align*} 
-con $(x,y)$ y $(X,Y)$ las nuevas y viejas coordenadas para $m_3$, respectivamente, tal como se muestra en la figura \ref{fig:rotating_frames}.
+con $(x,y)$ y $(X,Y)$ las nuevas y viejas coordenadas para $m_3$, respectivamente, tal como se muestra en la Figura \ref{fig:rotating_frames}.
 
 %FIGURA!
 \begin{figure}[h!]
@@ -301,9 +301,9 @@ y aplicar la relación (\ref{eq:sympletic_flow}).
 \label{fig:non_symplectic_L4_L1}
 \end{figure}
 
-Si uno no hace dichas transformaciones, parecerá que el problema no conserva la forma simpléctica, tal como en el ingenuo intento que se muestra en la figura \ref{fig:non_symplectic_L4_L1} para diferentes condiciones iniciales. Para obtener $\varsigma$ se utiliza la ecuación (\ref{eq:scalar_symplecticity}) que, como se discute en la sección \ref{sec:formas-simplecticas}, opera de manera muy natural con el TJ, ya que la parametrización de vecindades del espacio fase permite computar al jacobiano en cada punto de manera directa.
+Si uno no hace dichas transformaciones, parecerá que el problema no conserva la forma simpléctica, tal como en el ingenuo intento que se muestra en la Figura \ref{fig:non_symplectic_L4_L1} para diferentes condiciones iniciales. Para obtener $\varsigma$ se utiliza la ecuación (\ref{eq:scalar_symplecticity}) que, como se discute en la sección \ref{sec:formas-simplecticas}, opera de manera muy natural con el TJ, ya que la parametrización de vecindades del espacio fase permite computar al jacobiano en cada punto de manera directa.
 
-La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpléctica del PC3C bajo la transformación (\ref{eq:momentum_transformation}), donde se observa cómo $\varsigma(t)$ se mantiene constante durante toda la integración. En ésta, se tomaron las mismas dos condiciones iniciales que en la figura \ref{fig:non_symplectic_L4_L1}; una cerca de $L_4$, que es una trayectoría estable, y otra cerca de $L_1$, que orbita alrededor de la masa primaria menor. Se puede observar cómo en la condición más estable la conservación de la simplecticidad varía en unos dos órdenes de magnitud menos que cerca de $L_1$. Sin emabrgo, ambas tienen variaciones menor a $10^{-10}$ en cada punto de la trayectoria, por lo que podemos decir que, en efecto, el sistema es simpléctico. Esta es una aplicación muy directa para el TJ que aprovecha su estructura paramétrica, de la cual se pueden obetener el jacobiano o incluso variaciones de órdenes mayores. 
+La Figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpléctica del PC3C bajo la transformación (\ref{eq:momentum_transformation}), donde se observa cómo $\varsigma(t)$ se mantiene constante durante toda la integración. En ésta, se tomaron las mismas dos condiciones iniciales que en la Figura \ref{fig:non_symplectic_L4_L1}; una cerca de $L_4$, que es una trayectoría estable, y otra cerca de $L_1$, que orbita alrededor de la masa primaria menor. Se puede observar cómo en la condición más estable la conservación de la simplecticidad varía en unos dos órdenes de magnitud menos que cerca de $L_1$. Sin emabrgo, ambas tienen variaciones menor a $10^{-10}$ en cada punto de la trayectoria, por lo que podemos decir que, en efecto, el sistema es simpléctico. Esta es una aplicación muy directa para el TJ que aprovecha su estructura paramétrica, de la cual se pueden obetener el jacobiano o incluso variaciones de órdenes mayores. 
 
 %FIGURA!
 \begin{figure}[h!]
@@ -328,7 +328,7 @@ La figura \ref{fig:symplectic_L4_L1}, en cambio, muestra la conservación simpl�
 
 El estudio y exploración del TJ ha utilizado la ecuación (\ref{eq:ximax}) en varias ocaciones. Ésta ha sido el parámetro que nos ha permitido saber qué tan grandes pueden ser las vecindades dado cierto error $\epsilon_{jet}$, tal como se discute en la sección \ref{sec:ximax}. Éste se utilizó en la sección \ref{sec:asteroids} para comprobar que la incertidumbre de medición diera resultados precisos al evaluar la distribución de puntos, y en \ref{sec:parametrization} para las variaciones del parámetro de masa y analizar la estabilidad de $L_4$. $\xi_{max}$ percibe, en esencia, qué tan compleja es la deformación de la vecindad y qué tanto se alejan las condiciones vecinas de la condición nominal a tiempo fijo, por lo que $\xi_{max} \ll 1$ implica una alta sensibilidad en las condiciones iniciales cercanas o un gran gradiente de velocidades para la vecindad. 
 
-Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. Dichos campos son comparables con el campo de ELTF desarrollado al principio del capítulo \ref{chap:jt_indicators}, por lo que se hará una comparación con estos al final de la sección. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $T = 0.3$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la figura \ref{fig:3body_pseudo_potential} de la sección \ref{sec:lag_points} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que el tiempo de cómputo es muy grande cerca de éstos. 
+Para esta sección se hará un análisis del PC3C de los campos escalares de $\xi_{max}$ así como las tasas de expansión y contracción discutidas en \ref{sec:contraccion_expansion}. Dichos campos son comparables con el campo de ELTF desarrollado al principio del capítulo \ref{chap:jt_indicators}, por lo que se hará una comparación con estos al final de la sección. En el problema restringido el gradiente apunta siempre hacia las masas primarias del sistema, lo cual se puede observar en la Figura \ref{fig:C3BP_ximax1}, donde se calcula el campo escalar para $\xi_{max}$ a $T = 0.3$ unidades adimensionales. Ésta es semejante a la representación de curvas de nivel de la Figura \ref{fig:3body_pseudo_potential} de la sección \ref{sec:lag_points} y, al tener un tiempo de integración muy corto, no da tiempo a una gran deformación de las vecindades, planteando únicamente los lugares de mayor gradiente de velocidad. En todas las figuras que se presentan se ignoraron los puntos muy cercanos a las masas primarias, ya que el tiempo de cómputo es muy grande cerca de éstos. 
 
 %FIGURA! 
 \begin{figure}
@@ -338,18 +338,18 @@ Para esta sección se hará un análisis del PC3C de los campos escalares de $\x
  \label{fig:C3BP_ximax1}
 \end{figure}
 
-La figura \ref{fig:C3BP_ximax3}, en cambio, presenta el mismo campo escalar pero integrada a $T = 3$ unidades adimensionales. Como se menciona al inicio de esta sección, las dos principales formas en las que $\xi_{max}$ sea chica es si el gradiente de velocidades en una vecindad es muy grande o si la deformación de la vecindad inicial es muy pronunciada. Ambas figuras muestran cómo $\xi_{max}$ decrece gradualmente al aumentar el gradiente de velocidad hacia las singularidades. Esto muestra la tendencia de la tercer partícula atrayéndose hacia las masas primarias. Sin embargo, en la figura \ref{fig:C3BP_ximax3} se observan curvas donde $\xi_{max}$ es pequeña  respecto a los valores vecinos. Los puntos en estas curvas, a las cuales llamaremos $\mathcal{C}_s$, no reflejan un gran gradiente de velocidad, pero sí una deformación muy pronunciada del jet. Aquí seguramente divergieron las condiciones por debajo y por arriba de la condición inicial. Notemos que el campo planteado en estas figuras tiene una variación $\lvert \xi \rvert \leq \xi_{max}$ en cualquier dirección arbitraria, la cual no corresponde necesariamente a variaciones con la misma energía de Jacobi, por lo que no se puede concluir que las curvas $\mathcal{C}_s$ correspondan a curvas con cantidades conservadas.
+La Figura \ref{fig:C3BP_ximax3}, en cambio, presenta el mismo campo escalar pero integrada a $T = 3$ unidades adimensionales. Como se menciona al inicio de esta sección, las dos principales formas en las que $\xi_{max}$ sea chica es si el gradiente de velocidades en una vecindad es muy grande o si la deformación de la vecindad inicial es muy pronunciada. Ambas figuras muestran cómo $\xi_{max}$ decrece gradualmente al aumentar el gradiente de velocidad hacia las singularidades. Esto muestra la tendencia de la tercer partícula atrayéndose hacia las masas primarias. Sin embargo, en la Figura \ref{fig:C3BP_ximax3} se observan curvas donde $\xi_{max}$ es pequeña  respecto a los valores vecinos. Los puntos en estas curvas, a las cuales llamaremos $\mathcal{C}_s$, no reflejan un gran gradiente de velocidad, pero sí una deformación muy pronunciada del jet. Aquí seguramente divergieron las condiciones por debajo y por arriba de la condición inicial. Notemos que el campo planteado en estas figuras tiene una variación $\lvert \xi \rvert \leq \xi_{max}$ en cualquier dirección arbitraria, la cual no corresponde necesariamente a variaciones con la misma energía de Jacobi, por lo que no se puede concluir que las curvas $\mathcal{C}_s$ correspondan a curvas con cantidades conservadas.
 
 %FIGURA! 
 \begin{figure}
  \centering
  \includegraphics[width=0.8\linewidth]{C3BP_ximax3}
- \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ con condiciones idénticas que para la figura \ref{fig:C3BP_ximax1} pero integrado a $3$ unidades temporales.}
+ \caption{Campo escalar de los tamaños máximos de vecindad $\xi_{max}$ con condiciones idénticas que para la Figura \ref{fig:C3BP_ximax1} pero integrado a $3$ unidades temporales.}
 
  \label{fig:C3BP_ximax3}
 \end{figure}
 
-Para reforzar este análisis, se calcularon las direcciones de mayor expansión para la vecindad de los puntos lagrangianos. La figura \ref{fig:C3BP_seprate3} presenta dichas direcciones en distintas secciones del espacio de configuraciones, donde se observa cómo en las zonas de menor expansión, equivalentes a las zonas donde $\xi_{max}$ es pequeña,  $\theta_{+}$ cambia drásticamente. Esto nos pensar que dichas curvas pueden ser variedades invariantes en el espacio extendido de las fases, ya que parecen depender del tiempo. Esta figura presenta una acercamiento alrededor de $L_4$ y $L_3$, donde se observa cómo la dirección de  $\theta_{+}$ cambia cuando se cruza por una curva $\mathcal{C}_s$. Lejos de las singularidades el gradiente tiende hacia ellas pero al cruzar por estas curvas especiales, la dirección de expansión máxima cambia de sentido. Se puede inferir que éstas determinan las regiones donde las trayectorias escapan de sus órbitas después de un tiempo dado.
+Para reforzar este análisis, se calcularon las direcciones de mayor expansión para la vecindad de los puntos lagrangianos. La Figura \ref{fig:C3BP_seprate3} presenta dichas direcciones en distintas secciones del espacio de configuraciones, donde se observa cómo en las zonas de menor expansión, equivalentes a las zonas donde $\xi_{max}$ es pequeña,  $\theta_{+}$ cambia drásticamente. Esto nos pensar que dichas curvas pueden ser variedades invariantes en el espacio extendido de las fases, ya que parecen depender del tiempo. Esta figura presenta una acercamiento alrededor de $L_4$ y $L_3$, donde se observa cómo la dirección de  $\theta_{+}$ cambia cuando se cruza por una curva $\mathcal{C}_s$. Lejos de las singularidades el gradiente tiende hacia ellas pero al cruzar por estas curvas especiales, la dirección de expansión máxima cambia de sentido. Se puede inferir que éstas determinan las regiones donde las trayectorias escapan de sus órbitas después de un tiempo dado.
 
 
 %FIGURE!
@@ -360,7 +360,7 @@ Para reforzar este análisis, se calcularon las direcciones de mayor expansión 
  \label{fig:C3BP_seprate3}
 \end{figure}
 
-Notemos de la figura \ref{fig:C3BP_FTLE}, que el campo escalar para $\xi_{max}$ es bastante similar al campo de los ELTF. Se presentan las mismas líneas invariantes que en \ref{fig:C3BP_ximax3}. Sin embargo, la diferencia conceptual es que en el caso de ELTF éstas representan las zonas de mayor tasa de expansión, mientras que en $\xi_{max}$ representan el tamaño donde las variaciones son más pequeñas.
+Notemos de la Figura \ref{fig:C3BP_FTLE}, que el campo escalar para $\xi_{max}$ es bastante similar al campo de los ELTF. Se presentan las mismas líneas invariantes que en \ref{fig:C3BP_ximax3}. Sin embargo, la diferencia conceptual es que en el caso de ELTF éstas representan las zonas de mayor tasa de expansión, mientras que en $\xi_{max}$ representan el tamaño donde las variaciones son más pequeñas.
 
 %FIGURE!
 \begin{figure}
