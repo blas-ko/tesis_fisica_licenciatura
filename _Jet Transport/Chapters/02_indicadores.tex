@@ -1,8 +1,8 @@
-En los ejemplos anteriores se ha evaluado la precisión del método de Taylor con y sin el Transporte de Jets. Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
+En los ejemplos del capítulo anterior se ha evaluado la precisión del método de Taylor con y sin el Transporte de Jets (TJ). Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
-Hay que destacar que el Transporte de Jets no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay un montón de cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parámetros de las ecuaciones.
+Hay que destacar que el Transporte de Jets no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay realmente muchas cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parámetros de las ecuaciones.
 
-\subsection{Un poco de motivación vía exponentes de Lyapunov}
+\section{Un poco de motivación vía Exponentes de Lyapunov a Tiempo Finito}
 \label{sec:FTLE}
 
 El Transporte de Jets nos permite saber qué pasa con el flujo entre condiciones iniciales vecinas. En este sentido, si se hace un transporte alrededor de $\xo$, sabemos como es el flujo de $\xo + \delta \xo$. Por esto, los Exponentes de Liapunov a Tiempo Finito (ELTF) emergen commo una motivación natural a los indicadores que serán propuestos en este capítulo. Un ELTF es, sin entrar en muchos detalles, el promedio en un lapso finito de tiempo de la tasa de máxima expansión entre dos condiciones iniciales cercanas. La construcción que aquí se plantea sigue a Shadden, Lekien y Marsden en \cite{Shadden2005}.
@@ -113,7 +113,7 @@ Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, 
 \subsection{Tasa de expansión y contracción}
 \label{sec:contraccion_expansion}
 
-Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. La ventaja de esto sobre el campo escalar de ELTF o del tamaño máximo de vecindades es que aquí es posible saber \textbf{en qué dirección} se tienen la mayor y menor deformación respecto a un punto en el espacio fase. Este indicador se relaciona, en este sentido, con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crece o se contrae la aproximación lineal de las soluciones bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
+Otra forma de obtener información sobre los flujos es viendo la tasa de deformación de los jets propagados en el espacio fase. La ventaja de esto sobre el campo escalar de ELTF o del tamaño máximo de vecindades es que aquí es posible saber \textbf{en qué dirección} se tienen la mayor y menor deformación respecto a un punto en el espacio fase. Este indicador se relaciona con el espectro de Lyapunov, que no es más que el conjunto de eigenvalores $\lambda_i$ obtenidos por las raíces del polinomio característico $P(\lambda) = \det(A - \lambda\mathbf{1})$. El espectro de Lyapunov nos dice cómo crece o se contrae la aproximación lineal de las soluciones bajo un cambio invertible de coordenadas. Las \textbf{tasas de expansión y contracción} de vecindades del flujo $\flowci$ ($\zeta_+$ y $\zeta_-$, respectivamente) nos dicen cuáles son la máxima y mínima separación de $\xo$ con una variación $\xi$ de radio $|\xi(\theta)| = \xi_{max}$.
 
 Para obtener dicho indicador se hace el TJ del orden $M$ deseado integrando hasta $t = t_n$, se obtiene el radio máximo de la vecindad con el método de la sección anterior y se evalúa la frontera de $\Uxo$ en $P_{n,\xo}(\xi(\theta))$. Una vez evaluada, se encuentra el ángulo de máxima (mínima) separación 
 \begin{equation}
@@ -128,7 +128,7 @@ y se calcula
 En el caso de un grado de libertad, como los ejemplos hasta ahora planteados, se ha parametrizado dicha frontera con $\xi(\theta) = \xi_{max} \left( \cos(\theta), \sin(\theta) \right)^T, \theta \in [0,2\pi]$. Evidentemente no se puede evaluar la frontera de $\Uxo$ en un continuo de puntos en la computadora, así que se plantean dos maneras de mejorar la precisión sobre dichos máximos y mínimos: 
 \begin{itemize}
 \item Aumentar el número de puntos con los cuales se evalúa $\delta \Uxo$
-\item Encontrar $\theta_{\pm}$ de los puntos disponibles y luego hacer un Newton-Rapson con $P_{n,\xo}$. 
+\item Encontrar $\theta_{\pm}$ de los puntos disponibles y luego aplicas el método de Newton-Rapson con $P_{n,\xo}$. 
 \end{itemize} 
 
 Se pueden encontrar $\theta_\pm$ y $\zeta_\pm$ para toda una rejilla de puntos y obtener dos campos vectoriales y dos escalares, respectivamente. Los campos vectoriales indican, para cada punto, la dirección de mayor y menor separación de la condición $\xo$ dada; los campos escalares indican la magnitud de esto último. En la Figura \ref{fig:seprate_pendulum} se pueden ver ambos campos encimados para el péndulo simple donde, para cada punto de la rejilla, hay un vector en la dirección de máxima (mínima) separación y en color se indica la magnitud de dicha separación.
@@ -169,7 +169,7 @@ Es curioso ver que, para los campos escalares de $\zeta_\pm$, se detecta la pres
 
 %Teniendo xi_max se puede ver en qué dirección se expande más (menos) la deformación de de dx. ESte se hace encontrando el máximo y mínimo en la vecindad evaluada. ¿Cómo serviría esto? 
 
-\subsection{Formas Simplécticas}
+\section{Formas Simplécticas}
 \label{sec:formas-simplecticas}
 %Motivar un poco porqué hablaríamos de formas simpléticas y decir que el desarrollo viene motivado del chaosbook... si se puede encontrar algún otro libro para complementar estaría muy bien. 
 
@@ -242,15 +242,15 @@ obtenemos una forma explícita para que éste sea simpléctico
   \label{eq:eq:symplectic_condition2}
 \end{equation}
 
-En el caso de tener un hamiltoniano $H(\mathbf{x})$, basta darse cuenta que
+En caso de tener un hamiltoniano $H(\mathbf{x})$, basta darse cuenta que
 \begin{itemize}
 \item $H(\mathbf{x})$ es, al menos, $\mathcal{C}^2(\mathcal{M})$; esto es, $\frac{\partial^2 H}{\partial x_i \partial x_j} = \frac{\partial^2 H}{\partial x_j \partial x_i}$.
 
 \item Los generadores de las transformaciones infinitesimales del sistema de EDO (\ref{eq:ode}) están dadas por $A_{i,j}(\mathbf{x}) := \pder{f_i(\mathbf{x})}{x_j}$. $A_{i,j}(\mathbf{x})$ son los elementos de matriz de $A(\mathbf{x})$, la cual se conoce como \textbf{matriz de estabilidad} del sistema.
 
-\item La matriz de estabilidad puede representarse en términos de $\omega$ como $A(\mathbf{x}) = \omega \Xi(\mathbf{x})$, donde $\Xi(\mathbf{x}) = \left[ \frac{\partial^2 H(\mathbf{x})}{\partial x_i \partial x_j} \right]$ es la \textbf{matriz hessiana}, o matriz de segundas derivadas, de $H$.
+\item La matriz de estabilidad puede representarse en términos de $\omega$ como $A(\mathbf{x}) = \omega \Xi(\mathbf{x})$, donde $\Xi(\mathbf{x}) = \left[ \frac{\partial^2 H(\mathbf{x})}{\partial x_i \partial x_j} \right]$ es la \textbf{matriz hessiana} o matriz de segundas derivadas de $H$.
 
-\item Como $H$ es $\mathcal{C}^2(\mathcal{M})$, entonces $\Xi$ es simétrica y, por tanto, $\Xi = \Xi^T$.
+\item Como $H$ es $\mathcal{C}^2(\mathcal{M})$ entonces $\Xi$ es simétrica y, por tanto, $\Xi = \Xi^T$.
 \end{itemize}
 
 Con las observaciones anteriores podemos ver que
@@ -267,7 +267,7 @@ Así, cualquier sistema hamiltoniano es un sistema simpléctico y cumple
 
 %Valdrá la pena hablar/demostrar que la simplecticidad implica la conservación de volumen? 
 
-Regresemos, como siempre, al caso del péndulo simple. Sabemos, por (\ref{eq:pendulo-ham}), que es un sistema hamiltoniano y, por tanto, debe de cumplir (\ref{eq:symplectic_hamiltonian}). La matriz de estabilidad de éste\footnote{Se toma, sin pérdida de generalidad, $g = m = l = 1$.} está dada por
+Regresemos, como siempre, al caso del péndulo simple. Sabemos, por (\ref{eq:pendulo-ham}), que es un sistema hamiltoniano y, por tanto, debe de cumplir (\ref{eq:symplectic_hamiltonian}). La matriz de estabilidad de éste\footnote{Se toma por simplicidad y sin pérdida de generalidad $g = m = l = 1$.} está dada por
 \begin{equation*}
   A_{pend}(\theta,p_\theta) =
   \begin{bmatrix}
@@ -310,7 +310,7 @@ entonces
   = 0 
 \end{align*}
 
-probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del Transporte de Jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad, cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$.
+probando ``a mano'', que es un sistema simpléctico. Sin embargo, la matriz de estabilidad también se calculó a mano, y ese es un proceso que la construcción polinomial del Transporte de Jets nos puede ahorrar. Dado que parametrizamos las vecindades de la condición inicial vía $\xo \to \xo + \xi = P_{0,\xo}(\xi)$, si evaluamos $P_{0,\xo}(\xi)$ en el campo vectorial $f$ obtendremos la parametrización de éste alrededor de $\xo$ y, como la evaluación es un vector de polinomios en $\xi$, se puede obtener la matriz de estabilidad cuyos elementos son $A_{i,j}(\xi) = \pder{f_i(P_{0,\xo=(0,0)}(\xi))}{\xi_j}$.
 
 Ahora, el problema de probar la simplecticidad de esta manera es que la expansión $P_{0,(0,0)}(\xi)$ es una expansión finita y no representa necesariamente a $f(\xi)$. Sin embargo, resulta ser que si un sistema es hamiltoniano, el correspondiente sistema dado por la expansión de sus funciones en series de Taylor hasta orden $M < \infty$ también lo es.
 
@@ -364,7 +364,7 @@ Si $H$ define un sistema hamiltoniano, entonces $\mathcal{H}$ es simpléctico.
 
 Así, como sabemos que los ejemplos construidos hasta ahora vienen de un hamiltoniano $H(q,p)$, entonces la expansión polinomial $f(P_{0,(0,0)}(\xi))$ define una matriz de estabilidad simpléctica. 
 
-Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{eq:symplectic_condition}) e interpretando la matriz $g$. Hay una visión geométrica que plantea Arnold \cite{Arnold1989} en su capítulo de variedades simplécticas, donde una estructura simplética es una 2-forma cerrada, lo cual representa la conservación del espacio fase. De este modo, la matriz $g$ se puede representar con el jacobiano de $\phi(t;t_0,\xo)$ y, para cualquier tiempo $t$ del flujo, un sistema es simpléctico cumple
+Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{eq:symplectic_condition}) e interpretando la matriz $g$. Hay una visión geométrica que plantea Arnold \cite{Arnold1989} en su capítulo de variedades simplécticas, donde una estructura simplética es una 2-forma cerrada, lo cual representa la conservación del espacio fase dadas las variaciones respecto al flujo del sistema. De este modo, la matriz $g$ se puede representar con el jacobiano de $\phi(t;t_0,\xo)$ y, para cualquier tiempo $t$ de la trayectoria, un sistema es simpléctico cumple
 \begin{equation}
  J(\phi(t))^T \omega J(\phi(t)) = \omega \ \forall t.
  \label{eq:sympletic_flow}
@@ -391,7 +391,7 @@ y no es más que el máximo valor absolutos de la matriz de (\ref{eq:sympletic_f
 Podemos observar en dicha Figura un comportamiento browniano, similar a como pasa con la energía en los ejemplos de sistemas hamiltonianos planteados hasta ahora.
 
 
-\subsection{Variación de parámetros}
+\section{Variación de parámetros}
 \label{sec:parameter_variation}
 El TJ nos permite no sólo parametrizar las vecindades de $\xo$ en un campo vectorial dado sino también los parámetros que lo definen.
 
@@ -431,7 +431,7 @@ y, si $\omega^2 < 0$, la proyección es
  \label{fig:oscillator_domega}
 \end{figure}
 
-Observamos en la Figura \ref{fig:oscillator_domega} cómo las curvas de nivel cambian para distintas $\omega^2$; en particular, observamos que las soluciones cambian de topología cuando $\omega^2$ cambia de signo. Con esto, pensar en una \textit{parametrización del parámetro} resulta una herramienta poderosa en el estudio de este tipo de sistemas ya que, por un lado, puede funcionar como un indicador para cambios de topología o bifurcaciones de las soluciones y, por otro, ayudar a encontrar conjuntos de soluciones cuando los parámetros no se conocen con exactitud. 
+Observamos en la Figura \ref{fig:oscillator_domega} cómo las curvas de nivel cambian para distintas $\omega^2$. En particular, observamos que las soluciones cambian de topología cuando $\omega^2$ cambia de signo. Con esto, pensar en una \textit{parametrización del parámetro} resulta una herramienta poderosa en el estudio de este tipo de sistemas ya que, por un lado, puede funcionar como un indicador para cambios de topología o bifurcaciones de las soluciones y, por otro, ayudar a encontrar conjuntos de soluciones cuando los parámetros no se conocen con exactitud. 
 
 Para hacer esto con el Transporte de Jets, basta con incluir al parámetro o los parámetros que se quieran variar en el sistema de ecuaciones como $\dot{\lambda} = 0$, donde $\lambda$ es el conjunto de parámetros que se quieren variar. En este ejemplo el sistema queda como
 \begin{align*}
@@ -448,7 +448,7 @@ Para hacer esto con el Transporte de Jets, basta con incluir al parámetro o los
  \label{fig:oscillator_param_transport}
 \end{figure}
 
-La Figura \ref{fig:oscillator_param_transport} muestra el trasnporte de jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el Transporte de Jets sí muestra el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
+La Figura \ref{fig:oscillator_param_transport} muestra el Transporte de Jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el Transporte de Jets sí muestra el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
 
 El flujo conserva la energía cada vez menos conforme pasa el tiempo como se observa en la Figura \ref{fig:oscillator_dE_domega}; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
 
