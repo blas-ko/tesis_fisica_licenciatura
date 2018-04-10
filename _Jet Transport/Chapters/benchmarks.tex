@@ -1,4 +1,4 @@
-El transporte de jets es una herramienta conveniente por dos principales razones: la primera es que al integrar la parametrización de la vecindad de $\xo$ con polinomios de orden $M$, se pueden obtener términos variacionales hasta de este orden de manera automática. En este sentido, es importante que el transporte sea suficientemente preciso para dichas variaciones. Se prupuso en la sección \ref{sec:ximax} una forma de controlar el error del método via $\xi_{max}$. En éste apéndice se mostrará, tomando al PC3C, la precisión respecto a la integración nominal a distintos órdenes de jet y distintas condiciones inciales, con todos los demás parámetros fijos. 
+El Transporte de Jets es una herramienta conveniente por dos principales razones: la primera es que al integrar la parametrización de la vecindad de $\xo$ con polinomios de orden $M$, se pueden obtener términos variacionales hasta de este orden de manera automática. En este sentido, es importante que el transporte sea suficientemente preciso para dichas variaciones. Se prupuso en la sección \ref{sec:ximax} una forma de controlar el error del método via $\xi_{max}$. En éste apéndice se mostrará, tomando al PC3C, la precisión respecto a la integración nominal a distintos órdenes de jet y distintas condiciones inciales, con todos los demás parámetros fijos. 
 
 %FIGURA!
 \begin{figure}[h!]
@@ -12,7 +12,7 @@ El transporte de jets es una herramienta conveniente por dos principales razones
 	\centering
 	\includegraphics[width = \textwidth]{acc_c3bp_ci2}
 \end{subfigure}
-\caption{Diferencia entre la integración nominal y el transporte de jets para dos condiciones iniciales del PC3C con $\mu = 0.012$. Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, orden del jet $M=4$ y $6$ unidades temporales a $10$ pasos de integración. \textit{Izquierda}: $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$. \textit{Derecha}: $\xo = \left(L_{1_x}, 0.01, 0, 0 \right)^T$.}
+\caption{Diferencia entre la integración nominal y el Transporte de Jets para dos condiciones iniciales del PC3C con $\mu = 0.012$. Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, orden del jet $M=4$ y $6$ unidades temporales a $10$ pasos de integración. \textit{Izquierda}: $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$. \textit{Derecha}: $\xo = \left(L_{1_x}, 0.01, 0, 0 \right)^T$.}
 \label{fig:acc_ci}
 \end{figure}
 
@@ -30,11 +30,11 @@ En la figura \ref{fig:acc_ci} se muestra cómo la precisión de las evaluaciones
 	\centering
 	\includegraphics[width = \textwidth]{M_ximax}
 \end{subfigure}
-\caption{ \textit{Izquierda}: Diferencia entre la integración nominal y el transporte de jets en términos del $\xi_{max}$ correspondiente para diferentes órdenes $M$ del jet con condición inicial $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$. Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, $\epsilon_{jet} = 10^{-5}$ y $6$ unidades temporales a $10$ pasos de integración. \textit{Derecha}: Tamaño máximo de vecindad $\xi_{max}$ para diferentes órdenes de jet con las condiciones mencionadas.}
+\caption{ \textit{Izquierda}: Diferencia entre la integración nominal y el Transporte de Jets en términos del $\xi_{max}$ correspondiente para diferentes órdenes $M$ del jet con condición inicial $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$. Las integraciones para ambos casos fueron realizadas con una tolerancia $\epsilon_{Taylor} = 10^{-18}$, orden de la expansión $N=20$, $\epsilon_{jet} = 10^{-5}$ y $6$ unidades temporales a $10$ pasos de integración. \textit{Derecha}: Tamaño máximo de vecindad $\xi_{max}$ para diferentes órdenes de jet con las condiciones mencionadas.}
 \label{fig:acc_M}
 \end{figure}
 
-La figura izquierda de \ref{fig:acc_M} muestra la misma diferencia que \ref{fig:acc_ci} en unidades de $\xi_{M_{max}}$, donde varía el orden del jet. Se toma como condición inicial a $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$.  Se observa como el orden de magnitud del error sidminuye entre mayor sea el orden, aún cuando para cada caso la cantidad esté dividida entre una $\xi_{max}$ mayor. A la derecha de la figura se observa cómo $\xi_{max}$ es notablemente más pequeña mientras menor es el orden utilizado. Esto quiere decir que siempre se puede obtener la misma precisión, con el precio de reducir el diámetro potencial de la vecindad inicial.
+La figura izquierda de \ref{fig:acc_M} muestra la misma diferencia que \ref{fig:acc_ci} en unidades de $\xi_{M_{max}}$, donde varía el orden del jet. Se toma como condición inicial a $\xo =\left(L_{4_x}, L_{4_y} + 0.01, 0, 0 \right)^T$.  Se observa como el orden de magnitud del error disminuye entre mayor $M$, aún cuando para cada caso la cantidad esté dividida entre una $\xi_{max}$ mayor. A la derecha de la figura se observa cómo $\xi_{max}$ es notablemente más pequeña mientras menor es el orden utilizado. Esto quiere decir que siempre se puede obtener la misma precisión, con el precio de reducir el diámetro potencial de la vecindad inicial.
 
 %Un último comentario sobre la precisión es, nuevamente, sobre la cantidad $\xi_{max}$. La ecuación \ref{} construye al tamaño máximo de vecindad con el supuesto de que será cada vez más chica conforme pasa el tiempo, ya que la complejidad de las deformaciones de la vecindad crece. La figura \ref{fig:ximax_time} muestra cómo éste cambia para cada paso de integración, donde se observa que no necesariamente $\xi_{max}$ es cada vez menor.
 %
@@ -131,4 +131,4 @@ La tabla \ref{table:times_algpoli_2}, en cambio, mantiene constante el orden del
 \label{table:times_algpoli_2}
 \end{table}
 
-Todos los cálculos aquí presentados fueron realizados en serie, con un CPU Intel\textregistered  Core\texttrademark  i7-7700HQ @ 2.80GHz $\times$ 8. El lenguaje utilizado para el cálculo es \href{julialang.org}{\textsf{Julia}}, versión $0.6.0$. El álgebra polinomial es operado con el paquete \textsf{TaylorSeries} \cite{TaylorIntegration} versión $0.7.2$ y la integración del transporte de jets es realizada con el paquete \textsf{TaylorIntegration} \cite{TaylorIntegration} versión $0.2.1$.
+Todos los cálculos aquí presentados fueron realizados en serie, con un CPU Intel\textregistered  Core\texttrademark  i7-7700HQ @ 2.80GHz $\times$ 8. El lenguaje utilizado para el cálculo es \href{julialang.org}{\textsf{Julia}}, versión $0.6.0$. El álgebra polinomial es operado con el paquete \textsf{TaylorSeries} \cite{TaylorIntegration} versión $0.7.2$ y la integración del Transporte de Jets es realizada con el paquete \textsf{TaylorIntegration} \cite{TaylorIntegration} versión $0.2.1$.

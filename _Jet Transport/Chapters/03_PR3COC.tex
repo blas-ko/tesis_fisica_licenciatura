@@ -1,10 +1,10 @@
-El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran análisis desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el problema circular de tres cuerpos (PC3C), presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y, en general, una rica dinámica. Además,el PC3C tiene únicamente dos grados de libertad lo cuál permite un estudio y una representación gráfica mucho más clara respecto al caso general. Ésto motiva el uso de las herramientas desarrolladas en el capítulo \ref{chap:jt_indicators}. Para ésto es necesario explorar un poco la estructura del problema; encontrar sus puntos de equilibrio, sus singularidades y las ``zonas interesantes'' del espacio fase.
+El problema de tres cuerpos interactuando en campos gravitacionales ha sido uno de gran análisis desde hace más de 300 años ya que la dinámica de éste tiene comportamientos que distan de ser obvios. Aún en el caso más simplificado, o sea, el problema circular de tres cuerpos (PC3C), presenta alta sensibilidad a las condiciones iniciales, varios puntos de equilibrio, órbitas periódicas y semiperiódicas y, en general, una rica dinámica. Además, el PC3C tiene únicamente dos grados de libertad, lo cuál permite un estudio y una representación gráfica mucho más clara respecto al caso general. Ésto motiva el uso de las herramientas desarrolladas en el capítulo \ref{chap:jt_indicators}. Para ésto es necesario explorar un poco la estructura del problema; encontrar sus puntos de equilibrio, sus singularidades y las ``zonas interesantes'' del espacio fase.
 
 El caso general se plantea de manera estándar bajo el potencial gravitacional de Newton entre pares de cuerpos 
 \begin{align}
- U_{M_1}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_1 M_2}{r_{1,2}} - G \frac{M_1 M_3}{r_{1,3}}, \\
- U_{M_2}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_2 M_1}{r_{2,1}} - G \frac{M_2 M_3}{r_{2,3}}, \\
- U_{M_3}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_3 M_1}{r_{3,1}} - G \frac{M_3 M_2}{r_{3,2}},
+ U_{M_1}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_1 M_2}{r_{1,2}} - G \frac{M_1 m_3}{r_{1,3}}, \\
+ U_{M_2}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{M_2 M_1}{r_{2,1}} - G \frac{M_2 m_3}{r_{2,3}}, \\
+ U_{M_3}(\mathbf{r}_1,\mathbf{r}_2,\mathbf{r}_3) &= -G \frac{m_3 M_1}{r_{3,1}} - G \frac{m_3 M_2}{r_{3,2}},
  \label{eq:3body_potential}
 \end{align}
 
@@ -22,7 +22,7 @@ y define un sistema de 6 ecuaciones acopladas dadas por la segunda ley de Newton
 \end{equation}
 con $\hat{\mathbf{r}}_{i,j} = \frac{\mathbf{r}_{i,j}}{r_{i,j}}$ un vector unitario en la dirección de $\mathbf{r}_{i,j}$.
 
-Hasta aquí, ninguna restricción ha sido impuesta, y encontrar simetrías para reducir los grados de libertad no es fácil. Sin embargo, para el problema restringido de tres cuerpos uno supone que una de las partículas es mucho menos masiva que las otras dos y, por tanto, las dos más grandes se mueven como si la tercera no existiera. Vale la pena estudiar primero el caso de dos cuerpos, ver la dinámica entre ellos y luego regresar a la tercer partícula bajo la influencia de éstos dos. 
+Hasta aquí, ninguna restricción ha sido impuesta, y encontrar simetrías para reducir los grados de libertad no es fácil. Sin embargo, para el problema restringido de tres cuerpos uno supone que una de las partículas es mucho menos masiva que las otras dos y, por tanto, las dos más grandes se mueven como si la tercera no existiera. Vale la pena estudiar primero el caso de dos cuerpos, ver la dinámica entre ellos y luego regresar a la tercer partícula bajo la influencia de estos dos. 
 
 \section{Problema de dos cuerpos}
 \label{sec:2body_problem}
@@ -141,7 +141,7 @@ con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf
  V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{r_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{r_2}}} - \frac{1}{2} \Omega^2 r^2 \right),
  \label{eq:3body_restricted_potential}
 \end{equation} 
-que se suele conocer como pseudo-potencial, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
+que se conoce como \textbf{pseudo-potencial}, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
 
 Con el afán de reducir el número de parámetros que definen al problema, trabajaremos en unidades especiales tales que 
 \begin{align}
@@ -151,7 +151,7 @@ Con el afán de reducir el número de parámetros que definen al problema, traba
  \implies G &= 1 \frac{ud^3}{ut^2 \cdot um}. 
  \label{eq:3body_new_units}
 \end{align}
-Éstas nos permiten además adimensionalizar las ecuaciones de movimiento. Para ésto, es cómodo poner el origen en el centro de masa entre $M_1$ y $M_2$, y a éstas alineadas sobre el eje $x$, así $CM = (0,0) = (-M_1r_1 + M_2r_2, 0)$ obteniendo $-r_1 = -M_2$ y $r_2 =M_1$, con las unidades establecidas en (\ref{eq:3body_new_units}). Definimos el parámetro de masa 
+Éstas nos permiten además adimensionalizar las ecuaciones de movimiento. Para ésto, es cómodo poner el origen en el centro de masa entre $M_1$ y $M_2$, y a éstas alineadas sobre el eje $x$, así $CM = (0,0) = (-M_1r_1 + M_2r_2, 0)$ obteniendo $-r_1 = -M_2$ y $r_2 =M_1$, ya dividiendo entre las unidades establecidas en (\ref{eq:3body_new_units}). Definimos el parámetro de masa 
 \begin{equation*}
  \mu = \frac{M_2}{M_1 + M_2} 
 \end{equation*}
@@ -194,7 +194,7 @@ con $C_J$ la constante de integración que se conoce como constante de Jacobi o 
 \subsection{Puntos lagrangianos}
 \label{sec:lag_points}
 
-Aún sin que el problema sea conservativo si no tomamos en cuenta las fuerzas de Coriolis ya que de este modo la energía mecánica no es una constante de movimiento, vale la pena estudiar las curvas de nivel del pseudo-potencial, o curvas de velocidad cero, ya que éste nos dará una buena intuición sobre cómo será la trayectoria de nuestra partícula. De hecho, los puntos de equilibrio seguirán siéndolo cuando se tome el sistema completo, ya que en éstos la velocidad es cero\footnote{Estos puntos de equilibrio se vuelven órbitas periódicas de velocidad angular constante en el sistema inercial.}. La Figura \ref{fig:3body_pseudo_potential} presenta dichas curvas de nivel, donde se observan tres puntos singulares en el eje alineados a $M_1$ y $M_2$ que se suelen llamar $L_2$,$L_1$ y $L_3$, respectivamente. Otros dos existen para $y \neq 0$ los cuales se conocen como $L_4$ y $L_5$. Éstos cinco reciben el nombre de puntos lagrangianos en honor a los estudios de Lagrange y Euler sobre el tema \cite{Lagrange1867 , Euler1736}.
+Aún sin que el problema sea conservativo si no tomamos en cuenta las fuerzas de Coriolis ya sin ésta la energía mecánica no es una constante de movimiento, vale la pena estudiar las curvas de nivel del pseudo-potencial, o curvas de velocidad cero, ya que éste nos dará una buena intuición sobre cómo será la trayectoria de nuestra partícula. De hecho, los puntos de equilibrio seguirán siéndolo cuando se tome el sistema completo, ya que en éstos la velocidad es cero\footnote{Estos puntos de equilibrio se vuelven órbitas periódicas de velocidad angular constante en el sistema inercial.}. La Figura \ref{fig:3body_pseudo_potential} presenta dichas curvas de nivel, donde se observan tres puntos singulares en el eje alineados a $M_1$ y $M_2$ que se suelen llamar $L_2$,$L_1$ y $L_3$, respectivamente. Otros dos existen para $y \neq 0$ los cuales se conocen como $L_4$ y $L_5$. Éstos cinco reciben el nombre de puntos lagrangianos en honor a los estudios de Lagrange y Euler sobre el tema \cite{Lagrange1867 , Euler1736}.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -224,7 +224,7 @@ También se pueden obtener estos valores numéricamente para cualquier $\mu$, pe
  \label{fig:3body_pseudo_xaxis}
 \end{figure}
 
-Para obtener $L_4$ y $L_5$ es importante destacar que la fuerza centrífuga es, por definición, radial hacia afuera. En este sentido, en la dirección radial se deben balancear la fuerza centrífuga con la gravitacional. Ésto hace que el balance en la dirección tangencial sea debido únicamente a los dos cuerpos primarios interactuando bajo sus campos gravitacionales. Para ésto, se proyecta la fuerza hacia sus direcciones radiales y tangenciales con los vectores $\mathbf{r}_{\parallel} = (x,y)$ y $\mathbf{r}_{\bot} = (-y,x)$, así
+Para obtener $L_4$ y $L_5$ es importante destacar que la fuerza centrífuga es, por definición, radial hacia afuera. En este sentido, en la dirección radial se deben balancear la fuerza centrífuga con la gravitacional. Ésto hace que el balance en la dirección tangencial sea debido únicamente a los dos cuerpos primarios interactuando bajo sus campos gravitacionales. Para ésto, se proyecta la fuerza hacia sus direcciones radiales y tangenciales con los vectores $\mathbf{r}_{\parallel} = (x,y)$ y $\mathbf{r}_{\bot} = (-y,x)$. Así
 \begin{align*}
  F_{\bot} &= \frac{1}{r_{\bot}} \mathbf{r}_{\bot} \cdot \mathbf{F} = \frac{y}{r_{\bot}} \left( - \frac{(1-\mu)(x + \mu)}{ r_{1,3}^3 } - \frac{\mu(x - 1 +\mu )}{ r_{2,3}^3 } + \frac{(1-\mu)x}{ r_{1,3}^3 } + \frac{\mu x}{ r_{2,3}^3 } \right) \\
  \therefore F_{\bot} &= \frac{ \mu(1-\mu) y}{r_{\bot}} \left( \frac{1}{r_{1,3}^3} - \frac{1}{r_{2,3}^3} \right),
@@ -318,9 +318,9 @@ Así, vemos explícitamente la condición para la estabilidad de los puntos $L_4
 \subsection{Curvas de velocidad cero}
 \label{sec:zvc}
 
-Un último análisis que vale la pena hacer son las curvas de velocidad cero (CV0). Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Un análisis similar se puede encontrar en las notas de Mireles \cite{MirelesJames2006}. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más alto que cierta altura $h$ de la cual empezó. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
+Un último análisis que vale la pena hacer son las curvas de velocidad cero (CV0). Éstas son el punto máxmimo de retorno para una energía dada en el espacio de configuraciones. Este estudio se guía de las notas de Mireles en \cite{MirelesJames2006}. Podemos pensar, como analogía, que para una energía potencial dada, una partícula en caída libre no podrá rebotar más alto que cierta altura $h$ de la cual empezó. De hecho, justo cuando la partícula alcance dicha altura, su velocidad será idénticamente cero y volverá a caer. 
 
-Para encontrar estas curvas, se impone cierta energía de Jacobi $C_J$ y se traza la curva tal que la velocidad sea cero, i.e.,
+Para encontrar estas curvas en el PC3C, se impone cierta energía de Jacobi $C_J$ y se traza la curva tal que la velocidad sea cero, i.e.,
 \begin{equation*}
  (x,y,0,0) = \left\lbrace V \ | \  V = \frac{1}{2}C_J \right\rbrace.
 \end{equation*}
