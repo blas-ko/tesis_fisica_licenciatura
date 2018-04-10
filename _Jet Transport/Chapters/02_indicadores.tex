@@ -1,6 +1,6 @@
 En los ejemplos del capítulo anterior se ha evaluado la precisión del método de Taylor con y sin el Transporte de Jets (TJ). Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
-Hay que destacar que el Transporte de Jets no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay realmente muchas cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parámetros de las ecuaciones.
+Hay que destacar que el TJ no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay realmente muchas cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parámetros de las ecuaciones.
 
 \section{Un poco de motivación vía Exponentes de Lyapunov a Tiempo Finito}
 \label{sec:FTLE}
@@ -49,7 +49,6 @@ La Figura \ref{fig:ftle_pendulum} presenta al campo escalar de los ELTF calculad
 
 %Casos donde esto falla o donde el jacobiano no es suficientemente buena aproximación... 
 
-\pagebreak
 \subsection{Tamaño máximo de las vecindades}
 \label{sec:ximax}
 
@@ -167,6 +166,7 @@ Es curioso ver que, para los campos escalares de $\zeta_\pm$, se detecta la pres
 \label{fig:seprate_scalar_pendulum}
 \end{figure}
 
+Los indicadores desarrollados hasta ahora en este capítulo han sido tomados del análisis que hace Daniel Pérez-Palau en sus artículos. Éstos fueron replicados en esta tesis con el propósito de hacer una exploración un poco más profunda de dichas cantidades. Además, éstos se utilizarán en el capítulo de resultados. De aquí hasta el final del capítulo, los indicadores propuestos ya no son incluidos en el estudio de Pérez-Palau y son contribución propia a las aplicaciones del Transporte de Jets.
 %Teniendo xi_max se puede ver en qué dirección se expande más (menos) la deformación de de dx. ESte se hace encontrando el máximo y mínimo en la vecindad evaluada. ¿Cómo serviría esto? 
 
 \section{Formas Simplécticas}
@@ -371,7 +371,7 @@ Otra forma de ver la simplecticidad de un sistema es usando directamente (\ref{e
 \end{equation} 
 tal como se propone en la sección 42 de dicho capítulo del Arnold.
 
-Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema Hamiltoniano dado. Como el Transporte de Jets parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano.
+Esta forma de ver la simplecticidad es una mejor opción para ver qué tan buena es la integración de un sistema Hamiltoniano dado. Como el TJ parametriza las vecindades de una trayectoria en el espacio fase, se puede obtener fácilmente el jacobinano para cada punto de ésta, y comprobar la simplecticidad de los sistemas se vuelve un proceso bastante directo una vez obtenida la solución. En este sentido, además de cualquier constante de movimiento que pueda tener un sistema, éste es un indicador de qué tan buena es la integración siempre que se tenga un sistema hamiltoniano.
 
 %FIGURA! 
 \begin{figure}[h!]
@@ -448,7 +448,7 @@ Para hacer esto con el Transporte de Jets, basta con incluir al parámetro o los
  \label{fig:oscillator_param_transport}
 \end{figure}
 
-La Figura \ref{fig:oscillator_param_transport} muestra el Transporte de Jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el Transporte de Jets sí muestra el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
+La Figura \ref{fig:oscillator_param_transport} muestra el Transporte de Jets para $\omega^2$ para la condición inicial $\omega^2 = \omega_0^2 + \delta \xi$. En este caso $\omega_0^2 = 0$ y $\delta\xi = \pm 0.5$. Resulta que el TJ sí muestra el cambio de topología dado por el signo de $\omega^2$. Sin embargo, hay que ver qué tan precisa es la solución, lo cual se puede checar con la conservación de la energía al evaluar el hamiltoniano. 
 
 El flujo conserva la energía cada vez menos conforme pasa el tiempo como se observa en la Figura \ref{fig:oscillator_dE_domega}; de hecho, la solución que diverge más pierde hasta $15000$ epsilons casi al final de la integración. Sin embargo, el error máximo en términos absolutos es de $3.63 \times 10^{-12}$, lo cual es bastante aceptable.
 
