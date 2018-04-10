@@ -1,6 +1,6 @@
 En los ejemplos del capítulo anterior se ha evaluado la precisión del método de Taylor con y sin el Transporte de Jets (TJ). Hemos estudiado casos hamiltonianos en donde las soluciones a las ecuaciones diferenciales viven en curvas de energía constante sobre el espacio fase. Es importante tener en cuenta que éste es sólo un subconjunto de casos en la familia de sistemas de ecuaciones diferenciales ordinarias. Nuevos elementos aparecen en los campos vectoriales impuestos por la forma más general de (\ref{eq:ode}) como órbitas periódicas, atractores, repulsores o atractores extraños \cite{Perez2015}. La idea de los indicadores dinámicos radica en encontrar estructuras que nos permitan catalogar a los campos vectoriales, sean hamiltonianos o no, y sacar información relevante acerca de las soluciones al sistema de ecuaciones dado. 
 
-Hay que destacar que el TJ no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay realmente muchas cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Montecarlo o hacer variación de los parámetros de las ecuaciones.
+Hay que destacar que el TJ no sirve únicamente para dar indicadores dinámicos del espacio fase. Hay realmente muchas cosas que se pueden aprovechar al tener la solución parametrizada por polinomios. Entre éstas están hacer simulaciones de Monte Carlo o hacer variación de los parámetros de las ecuaciones.
 
 \section{Un poco de motivación vía Exponentes de Lyapunov a Tiempo Finito}
 \label{sec:FTLE}
@@ -49,7 +49,7 @@ La Figura \ref{fig:ftle_pendulum} presenta al campo escalar de los ELTF calculad
 
 %Casos donde esto falla o donde el jacobiano no es suficientemente buena aproximación... 
 
-\subsection{Tamaño máximo de las vecindades}
+\section{Tamaño máximo de las vecindades}
 \label{sec:ximax}
 
 Los ELTF son una buena herramienta para ver la tasa de expansión de la variacion entre dos condiciones vecinas. Esto es una buena motivante para el Transporte de Jets, ya que no se tiene, a priori, la restricción de la linealidad que se tiene en el caso anterior. Lo único que se hizo para adaptar el TJ al campo de ELTF fue tomar un desarrollo a primer orden de las soluciones de un campo vectorial dado. Sin embargo, si las expansiones de los polinomios son de orden $N > 1$, entonces las deformaciones en las vecindades de $\xo$ exhibirán términos no lineales para cada término del flujo y, así, se puede obtener información más precisa con los indicadores pertinentes\footnote{La Figura \ref{fig:pendulum_jt} es un buen ejemplo de cómo no siempre las deformaciones lineales son suficientes si la variación es suficientemente grande.}. Intuitivamente, entre mayor sea el orden de expansión de los jets, mejor será la aproximación a la solución real en las vecindades de $\xo$ y más grandes pueden ser las variaciones respecto a $\xo$; sin embargo, no se ha analizado qué tan grandes deben ser dichas variaciones para estar bajo una tolerancia impuesta.
@@ -97,7 +97,7 @@ $\xi_{max}$ depende fuertemente de la tolerancia $\epsilon_{jet}$ escogida y, m�
  \label{fig:jt_ximax_ah}
 \end{figure}
 
-Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (``rotación'') y la zona donde el péndulo completará periodos completos de oscilación (``libramiento''). A diferencia de la Figura \ref{fig:ftle_pendulum}, la Figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, esta Figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información y nos indica sobre la presencia de la separatriz. De hecho, si las no linealidades de $\xi_{max}$ no contribuyen de manera importante al cálculo de ésta, entonces $\xi_{max}(\xo,T) \propto \frac{1}{\sigma(\xo,T)}$. 
+Dicho lo anterior, y a modo de comparar con los ELTF desarrollados previamente, tomemos el caso del péndulo simple, que tiene una separatriz que divide la zona en donde el péndulo oscila respecto a un punto de equilibrio (``rotación'') y la zona donde el péndulo completará periodos completos de oscilación (``libramiento''). A diferencia de la Figura \ref{fig:ftle_pendulum}, la Figura \ref{fig:ximax_pendulum} alcanza sus mayores valores en el centro, que es donde las velocidades del campo vectorial son menores y, en cambio, en los valores de la separatriz, se alcanzan los mínimos valores para $\xi_{max}$, ya que es donde los jets sufren mayores deformaciones. Sin embargo, esta figura nos da información equivalente a los ELTF, ya que, cualitativamente, presenta la misma información y nos indica sobre la presencia de la separatriz. De hecho, si las no linealidades de $\xi_{max}$ no contribuyen de manera importante al cálculo de ésta, entonces $\xi_{max}(\xo,T) \propto \frac{1}{\sigma(\xo,T)}$. 
 
 %FIGURA!
 \begin{figure}[h!]
@@ -388,7 +388,7 @@ La Figura \ref{fig:simplecticity_pendulum} muestra la variación de la cantidad 
 \end{equation}
 y no es más que el máximo valor absolutos de la matriz de (\ref{eq:sympletic_flow}). $\varsigma$ es una forma escalar de representar la simplecticidad del sistema para poder visualizarlo gráficamente para cada paso temporal.
   
-Podemos observar en dicha Figura un comportamiento browniano, similar a como pasa con la energía en los ejemplos de sistemas hamiltonianos planteados hasta ahora.
+Podemos observar en dicha figura un comportamiento browniano, similar a como pasa con la energía en los ejemplos de sistemas hamiltonianos planteados hasta ahora.
 
 
 \section{Variación de parámetros}
@@ -461,5 +461,5 @@ El flujo conserva la energía cada vez menos conforme pasa el tiempo como se obs
 \end{figure}
 
 
-Los indicadores desarrollados hasta ahora refuerzan el estudio del espacio fase como en los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$, permiten tener alternativas al método de Montecarlo como en la parametrización de parámetros, nos dan formas de evaluar las vecindades en un radio donde el error sea menor a una tolerancia dada y permiten corrobrar la simplecticidad de un flujo hamiltoniano. Éstas se utilizarán en un problema específico, el \textbf{problema circular de tres cuerpos}, el cual se desarrollará en el siguiente capítulo.
+Los indicadores desarrollados hasta ahora refuerzan el estudio del espacio fase como en los campos escalares y vectoriales de $\xi_{max}$ y $\theta_{\pm}$, permiten tener alternativas al método de Monte Carlo como en la parametrización de parámetros, nos dan formas de evaluar las vecindades en un radio donde el error sea menor a una tolerancia dada y permiten corrobrar la simplecticidad de un flujo hamiltoniano. Éstas se utilizarán en un problema específico, el \textbf{problema circular de tres cuerpos}, el cual se desarrollará en el siguiente capítulo.
 %Pequeña conclusión de sección ? 

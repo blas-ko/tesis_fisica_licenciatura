@@ -131,17 +131,17 @@ Para la dinámica de $m_3$ conviene establecer un marco de referencia en rotaci�
 
 %Recordemos, de la sección  \ref{sec:ficticious_forces}, que un sistema de referencia en rotación traerá algunas fuerzas ficticias descritas por (\ref{eq:rotating_constant_acceleration}), más específicamente la aceleración de Coriolis y la aceleración centrípeta. Como en este caso el sistema está centrado en el centro de gravedad de $M_1$ y $M_2$, la aceleración inercial del sistema será nula en todo momento.
 
-Las ecuaciones de movimiento para $m_3$ en el sistema rotativo son
+Las ecuaciones de movimiento para $m_3$ en el sistema en rotación son
 \begin{equation}
  \ddot{\mathbf{r}} + 2\mathbf{\Omega} \times \dot{\mathbf{r}} = - \nabla V(\mathbf{r}),
  \label{eq:3body_restricted_acceleration}
 \end{equation}
 con $\mathbf{r} = (x,y,z)$ la distancia de $m_3$ al centro de gravedad, $\mathbf{R} = \mathbf{r}_1 - \mathbf{r}_2 = (r_1 + r_2,0,0)$ la distancia entre $M_1$ y $M_2$ y
 \begin{equation}
- V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{r_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{r_2}}} - \frac{1}{2} \Omega^2 r^2 \right)
+ V(r) = \left( -G \frac{M_1}{\norm{\mathbf{r}-\mathbf{r_1}}} - G \frac{M_2}{\norm{\mathbf{r}-\mathbf{r_2}}} - \frac{1}{2} \Omega^2 r^2 \right),
  \label{eq:3body_restricted_potential}
 \end{equation} 
-la parte central del potencial, que se suele conocer como pseudo-potencial, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
+que se suele conocer como pseudo-potencial, ya que si la velocidad es distinta de cero, la fuerza de Coriolis debe ser considerada para la dinámica de la partícula.
 
 Con el afán de reducir el número de parámetros que definen al problema, trabajaremos en unidades especiales tales que 
 \begin{align}

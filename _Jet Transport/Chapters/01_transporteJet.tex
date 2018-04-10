@@ -8,9 +8,9 @@ con $f$ una función que define al campo vectorial del sistema y $t$ su parámet
 Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obtener de manera analítica y, por tanto, estudiar las familias de soluciones para diferentes condiciones iniciales termina siendo, casi siempre, un estudio indirecto o aproximado. Se han considerado varias formas para darle la vuelta a este problema y, en los esfuerzos de lo aproximado, una de las soluciones más prácticas ha sido discretizar al parámetro temporal $t$ de (\ref{eq:ode}) y encontrar, en saltos discretos de $t$, el ``estado actual'' del sistema dado un ``estado anterior''.
 
 Gracias a que hoy en día existe poder de cómputo para hacer muchas operaciones simples en relativamente poco tiempo, se ha explotado el estudio y uso de métodos iterativos para obtener $\flowci$, siendo de gran utilidad en los últimos años, como se resume en \cite{Butcher2008}. Éstos se conocen como métodos numéricos de integración de ecuaciones diferenciales. Con estos métodos se puede obtener una solución aproximada dada una condición inicial $\xo := \mathbf{x}(t_0)$. Sin embargo, no siempre es suficiente obtener la solución de una única condición inicial dada y, muchas veces, interesa toda una familia de soluciones alrededor de un punto $\xo$ de interés. Esto puede pasar, por ejemplo, en aceleradores de partículas que disparan paquetes de onda como si fuesen ``gotas'' sujetas a algún campo externo \cite{Peskin1996}. En sistemas de muchos cuerpos se ha pensado en familias de soluciones cercanas \cite{Henon1974}, ya que difícilmente se conocen las condiciones iniciales de todo el sistema con una precisión profunda, de hecho, en todos los sistemas donde las condiciones iniciales pueden no saberse con exactitud, un método exhaustivo sería el conseguir todas las soluciones de las posibles condiciones iniciales para estos sistemas. Una rama muy relacionada a lo anterior son los métodos de Monte Carlo, donde, en el caso de las EDO, parte de una distribución de condiciones iniciales discretizada y se obtiene cada una de las soluciones para ésta \cite{Kroese2011,Spigler1987}.  
-En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de la forma (\ref{eq:ode}). Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos de equilibrio o, más generalmente, la topología del campo vectorial que representa las soluciones de las ecuaciones como lo desarrolla Arnold en su libro \cite{Arnold1989}. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones, como lo hace Haller con el conepto de estructuras coherentes lagrangianas \cite{Haller2011}. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que son representaciones de la solución en un espacio de menor dimensionalidad que el espacio fase, donde normalmente se busca que no sea tangente a las soluciones para entender cómo éstas cruzan dichas secciones, los exponentes de Lyapunov, que cuantifica la separación de soluciones cercanas a una condición inicial dada, la derivada de Lie, que compara al campo vectorial de (\ref{eq:ode}) contra otro campo vectorial, la linealización de Grobman-Hartman, que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas y analiza qué quiere decir ``suficientemente'', entre otras. 
+En un plano más general, el mundo de las ecuaciones diferenciales ordinarias ha estudiado exhaustivamente los campos vectoriales que generan las ecuaciones de la forma (\ref{eq:ode}). Ha habido gran interés en entender el comportamiento de órbitas periódicas y puntos de equilibrio o, más generalmente, la topología del campo vectorial que representa las soluciones de las ecuaciones como lo desarrolla Arnold en su libro \cite{Arnold1989}. Se han desarrollado métodos para encontrar estructuras hiperbólicas en el espacio fase y métricas para catalogar el comportamiento de las soluciones, como lo hace Haller con el concepto de estructuras coherentes lagrangianas \cite{Haller2011}. Algunos de los resultados teóricos para esto son el número de Euler, que categoriza la topología del espacio, las secciones de Poincaré, que son representaciones de la solución en un espacio de menor dimensionalidad que el espacio fase, donde normalmente se busca que no sea tangente a las soluciones para entender cómo éstas cruzan dichas secciones, los exponentes de Lyapunov, que cuantifica la separación de soluciones cercanas a una condición inicial dada, la derivada de Lie, que compara al campo vectorial de (\ref{eq:ode}) contra otro campo vectorial, la linealización de Grobman-Hartman, que toma la parte lineal de $\dot{\mathbf{x}}(t)$ en localidades suficientemente pequeñas y analiza qué quiere decir ``suficientemente'', entre otras. 
 
-Muchas de estas preguntas podrían responderse si en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta vecindad; ésto es, en escencia, un Jet. La motivación principal viene de los trabajos de Daniel-Perez sobre aplicaciones del Transporte de Jets (TJ), \cite{Perez2013,Perez2015}. Parecería una idea idéntica a las simulaciones de Monte Carlo, pero la gran diferencia es que en Monte Carlo se integra cada solución de manera independiente dada una distribución y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del TJ; dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $\flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la Figura \ref{fig:jt_scheme} se observa un esquema cualitativo de la idea del transporte de jets. Vale la pena ilustrar dicha discretización con un método muy sencillo e intuitivo como es el método de Euler. A fin de entender la idea básica; más adelante, usaremos métodos más precisos en esta tesis.
+Muchas de estas preguntas podrían responderse si en vez de encontrar $\flowci$ para una condición $\mathbf{x}_0$ dada se tuviera una vecindad inicial $\U$ alrededor de $\mathbf{x}_0$ (que llamaremos $\Uxo$) y se encuentra el flujo para toda esta vecindad; ésto es, en escencia, un Jet. La motivación principal viene de los trabajos de Daniel-Perez sobre aplicaciones del Transporte de Jets (TJ), \cite{Perez2013,Perez2015}. Parecería una idea idéntica a las simulaciones de Monte Carlo, pero la gran diferencia es que en Monte Carlo se integra cada solución de manera independiente dada una distribución y aquí se integra toda la vecindad $\Uxo$ a la vez. Ésta es la principal motivación detrás del TJ; dada la vecindad inicial $\U_{\xo}$ alrededor de $\xo$ parametrizada por el vector $\mathbf{\xi}$, se busca obtener $\flowxi$ y evaluar $\xi$ en $\Uxo$ para obtener $\flowU$, la deformación de la vecindad $\U_{\xo}$ al tiempo $t$. La idea operativa computacional del TJ es muy similar a la de cualquier método numérico de integación de EDO: discretiza los pasos del parámetro de evolución (tiempo) en intervalos $h_n$ y encuentra un método iterativo para conseguir el siguiente punto del flujo $\flowci$. En la Figura \ref{fig:jt_scheme} se observa un esquema cualitativo de la idea del Transporte de Jets. Vale la pena ilustrar dicha discretización con un método muy sencillo e intuitivo como es el método de Euler. A fin de entender la idea básica; más adelante, usaremos métodos más precisos en esta tesis.
 
 
 %FIGURA!
@@ -60,7 +60,7 @@ donde $P_{n,\xo}(\xi) := P_{t_n,\xo}(\xi)$ representa al flujo $\flowxi$. Basta 
 
 Es importante notar que la solución $\flowci$ o el conjunto de soluciones $\flowU$ son sensibles al método de integración utilizado para encontrarlas dado que la solución construida es una aproximación. Se recomienda al lector leer el desarrollo explícito en \cite{Perez2015} para ver estas diferencias.
 
-Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que motive el uso del Transporte de Jet.
+Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que motive el uso del Transporte de Jets.
 
 Sea
 \begin{align}
@@ -72,7 +72,7 @@ Sea
 \end{align}
 un campo vectorial que describe centros alrededor de $x_0 = (0,0)$. 
 
-Si se toma $P_{0,\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inicial, podemos desarrollar ``a mano'' el transporte de Jet, donde, usando el método de Euler tenemos
+Si se toma $P_{0,\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la vecindad inicial, podemos desarrollar ``a mano'' el Transporte de Jets, donde, usando el método de Euler tenemos
 
 \begin{align*}
 \mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi),t_0) \\
@@ -82,7 +82,7 @@ h & 1  \\
 \end{array} \right] (\xi_1,\xi_2)^T.
 \end{align*} 
 
-El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin el Transporte de Jets. El segundo término es la solución de las ecuaciones variacionales de primer orden para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$'s. Se puede notar que el hecho de que el resultado sea lineal en $\xi_1$ y $\xi_2$ se debe a la linealidad del campo vectorial; campos vectoriales no lineales tendrían términos no lineales en $\xi$, si el orden de éstos lo permite. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}(\xi)$. De este modo, el TJ plantea ser una alternativa interesante al método de Monte Carlo, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. Existen dos principales desventajas para esto; una es que la integración de $\U_{\xo}$, al operar con polinomios y no con números, suele ser más lenta que la de una única trayectoria que pasa por $\xo$ en $t_0$. La otra es que pueden existir funciones que el Jet es sólo una aproximación de la función, por lo que puede perder precisión en algunos casos. Naturalmente, el tiempo en donde uno u otro método es mejor es discutible y dependerá fuertemente de la complejidad y la dimensionalidad de las ecuaciones presentes en el sistema\footnote{Para una discusión más a fondo sobre este tema, revisar el apéndice \ref{chap:benchmarks}, donde se hacen varias evaluaciones en relación al tiempo de cómputo y la memoria utilizada.}.
+El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración de $\xo$ sin el TJ. El segundo término es la solución de las ecuaciones variacionales de primer orden para el primer paso con el método de Euler, o dicho de otra manera, una aproximación lineal de soluciones cercanas a $\xo$ parametrizadas por las $\xi$'s. Se puede notar que el hecho de que el resultado sea lineal en $\xi_1$ y $\xi_2$ se debe a la linealidad del campo vectorial; campos vectoriales no lineales tendrían términos no lineales en $\xi$, si el orden de éstos lo permite. Gracias a esta parametrización, es natural pensar en obtener soluciones cercanas simplemente evaluando $\xi$ en $P_{1,\xo}(\xi)$ o, más generalmente, en $P_{n,\xo}(\xi)$. De este modo, el TJ plantea ser una alternativa interesante al método de Monte Carlo, ya que habría que hacer una sola integración de $\U_{\xo}$ y después simplemente evaluar los polinomios. Existen dos principales desventajas para esto; una es que la integración de $\U_{\xo}$, al operar con polinomios y no con números, suele ser más lenta que la de una única trayectoria en que pasa por $\xo$ en $t_0$. La otra es que pueden existir funciones que el Jet es sólo una aproximación de la función, por lo que puede perder precisión en algunos casos. Naturalmente, el tiempo en donde uno u otro método es mejor es discutible y dependerá fuertemente de la complejidad y la dimensionalidad de las ecuaciones presentes en el sistema\footnote{Para una discusión más a fondo sobre este tema, revisar el apéndice \ref{chap:benchmarks}, donde se hacen varias evaluaciones en relación al tiempo de cómputo y la memoria utilizada.}.
 
 Se podría seguir haciendo el desarrollo del TJ iterativamente con el método de Euler. Por ejemplo, el segundo paso quedaría como 
 \begin{align*}
@@ -440,7 +440,7 @@ h = \min_{n \in [N-1,N]}{ \left( \frac{\epsilon_{Taylor}}{\norm{x_n}_\infty} \ri
 \label{eq:stepsize}
 \end{equation} 
 
-Esta última ecuación hace que el método de Taylor sea de presición arbitraria. El paso es adaptativo para cada iteración y, dependiendo si uno busca presición o rápidez, uno selecciona a $\epsilon_{Taylor}$ grande o chica, respectivamente. Típicamente, para obtener la mejor presición posible, $\epsilon_{Taylor} \leq \epsilon_{machine}$, donde $\epsilon_{machine}$ es la presición de la máquina.
+Esta última ecuación hace que el método de Taylor sea de presición arbitraria. El paso es adaptativo para cada iteración y, dependiendo si uno busca presición o rápidez, uno selecciona a $\epsilon_{Taylor}$ grande o chica, respectivamente. Típicamente, para obtener la mejor presición posible, $\epsilon_{Taylor} \leq \epsilon_{machine}$, donde $\epsilon_{machine}$ es la presición de la máquina, definida como el mínimo valor que sumado a $1$ da como resultado algo diferente de $1$ en la computadora. En este caso $\epsilon_{machine} = 2.22 \times 10^{-16}$.
 
 %% De acuerdo con Simo y la tesis de Dani Perez, esta no es la mejor selección para el paso de integración. De hecho, no pude demosttrar que este paso sea, en efecto, una buena elección. Sin embargo, suena como algo intuitivo ya que la serie es convergente. Ellos, sin embargo, sí acotan de manera formal la contribución del error del residuo... checarlo.
 
@@ -469,7 +469,7 @@ Así, la elección del paso de integración tiene sentido ahora también para po
 \subsection{Probando el método de Taylor}
 \label{sec:benchmark-taylor}
 
-Hasta ahora se han desarrollado ejemplos usando únicamente el método de Euler con la intención de mostrar la esencia del Transporte de Jets. Sin embargo, es momento de poner a prueba el método de Taylor desarrollado en párrafos anteriores y ver si las ecuaciones (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisas con el TJ. Además, se analizará a la ecuación (\ref{eq:jt-rel}) en particular para explorar e implementar cómo se puede enriquecer el método a través del desarrollo de diferentes indicadores.
+Hasta ahora se han desarrollado ejemplos usando únicamente el método de Euler con la intención de mostrar la esencia del TJ. Sin embargo, es momento de poner a prueba el método de Taylor desarrollado en párrafos anteriores y ver si las ecuaciones (\ref{eq:taylor-rel}) y (\ref{eq:jt-rel}) son suficientemente precisas con el TJ. Además, se analizará la ecuación (\ref{eq:jt-rel}) para explorar e implementar cómo se puede enriquecer el método a través del desarrollo de diferentes indicadores.
 
 %Referenciar capítulo de mecánica?
 Para probar el método se tomarán algunos hamiltonianos de la forma
@@ -486,7 +486,7 @@ donde
 \label{eq:ham-rel}
 \end{align}
 
-Tomar este tipo de sistemas es cómodo ya que las soluciones viven en curvas de nivel con $H$ constante que, de paso, representan la conservación de la energía mecánica. Ésto nos permite hacer una revisión de dicha conservación, la cual debería ser constante para toda la trayectoria. Si se toma $\epsilon_{Taylor} \leq \epsilon_{machine}$, es decir, se tomará la tolerancia del método de Taylor menor que el error de redondeo de la computadora para que el análisis de precisión sea robustos. Se tiene que $\epsilon_{machine} \approx 2 \times 10^{-16}$.
+Tomar este tipo de sistemas es cómodo ya que las soluciones viven en curvas de nivel con $H$ constante que, de paso, representan la conservación de la energía mecánica. Ésto nos permite hacer una revisión de dicha conservación, la cual debería ser constante para toda la trayectoria. Si se toma $\epsilon_{Taylor} \leq \epsilon_{machine}$, es decir, se tomará la tolerancia del método de Taylor menor que el error de redondeo de la computadora para que el análisis de precisión sea robusto. Se tiene que $\epsilon_{machine} \approx 2 \times 10^{-16}$.
 
 \subsubsection{Oscilador armónico}
 \label{sec:oscilador}
@@ -499,11 +499,11 @@ con $[k] = \textrm{ Kg s}^{-2}$  y $k>0$.
 
 Tomando $\mathbf{v} = \dot{\mathbf{x}}$ se obtienen
 \begin{align}
- \dot{\mathbf{x}} &= \frac{k}{m} \mathbf{p} \nonumber \\
+ \dot{\mathbf{x}} &= \frac{1}{m} \mathbf{p} \nonumber \\
  \dot{\mathbf{v}} &= - \frac{k}{m} \mathbf{x}
  \label{eq:oscilador_ode}
 \end{align}
-las EDO para el \textbf{oscilador armónico}, las cuales son equivalentes, para $\omega^2 := \frac{k}{m} = 1$ y $\mathbf{x} \in \mathbb{R},\ \mathbf{p} \in \mathbb{R}$, a (\ref{eq:center}). 
+las EDO's para el \textbf{oscilador armónico}, las cuales son equivalentes, para $\omega^2 := \frac{k}{m} = 1$ y $\mathbf{x} \in \mathbb{R},\ \mathbf{p} \in \mathbb{R}$, a (\ref{eq:center}). 
 
 Usando la primera integral de (\ref{eq:oscilador_ode}) y la ecuación (\ref{eq:ham-rel}) se obtiene
 \begin{equation}
@@ -527,7 +527,7 @@ Así, tenemos que las soluciones analíticas son de la forma
  \label{eq:oscilador_analytical}
 \end{align}
 
-La Figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico junto con la solución de una vecindad $\U$ calculada con el Transporte de Jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la Figura la estructura de centros alrededor del único punto de equilibrio $(0,0)^T$, donde la vecindad calculada por el TJ oscila siempre a la misma frecuencia $\omega$, lo cual es característico de este sistema. Notemos que en esta Figura $\U$ recorre diferentes curvas de nivel, por lo que el transporte fue transparente a conservar la energía del problema.
+La Figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armónico junto con la solución de una vecindad $\U$ calculada con el Transporte de Jets. En ésta se observa cómo las soluciones evaluadas en una vecindad inicial parametrizada por un círculo están siempre en las líneas de las curvas de nivel del hamiltoniano. Se observa además en la figura la estructura de centros alrededor del único punto de equilibrio $(0,0)^T$, donde la vecindad calculada por el TJ oscila siempre a la misma frecuencia $\omega$, lo cual es característico de este sistema. Notemos que en esta figura $\U$ recorre diferentes curvas de nivel, por lo que el transporte fue transparente a conservar la energía del problema.
 
 %FIGURA!
  \begin{figure}[h!]
@@ -541,7 +541,6 @@ La Figura \ref{fig:oscilador_phsp} presenta al espacio fase del oscilador armón
 \begin{subfigure}{0.49\textwidth}
 	\centering
 	\includegraphics[width = \textwidth]{oscillator_dx}
-	\caption{}
 	\label{fig:oscillator_dx}
 \end{subfigure}
 \caption{Variaciones de energía y trayectoria para el oscilador armónico en cada uno de los pasos temporales de la solución en unidades de $\epsilon_{machine}$ con condición inicial $\xo = (1,0)^T$ y vecindad parametrizada por  $\mathbf{\xi}(\tau) = 0.1\cdot \left( \cos(\tau), \sin(\tau) \right)^T$, $\tau \in [0,1]$. Se utilizó tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de la expansión $N = 24$ y orden del jet $M=4$. \textit{Izquierda}: variación $\delta E(t_n) = \frac{E(t_n)-E_0}{\epsilon_{machine}}$ de la energía respecto a la energía inicial $E_0 = 1$ Joule. \textit{Derecha}: variación $\delta \mathbf{x}(t) =  \frac{\norm{\mathbf{x}(t_n) - \mathbf{x_n}}_2}{\epsilon_{machine}}$ respecto a la solución analítica (\ref{eq:oscilador_analytical}) para distintos desplazamientos $\xi$ respecto de la condición inicial $\xo = (0,0)^T$. Notemos que aunque el error crece de manera lineal, éste está en erminos del error de redondeo de la máquina, por lo que las soluciones calculadas son muy buenas.}
@@ -683,7 +682,7 @@ Se muestra en la Figura \ref{fig:artificial_phsp} el espacio fase dado por el ha
  \label{fig:artificial_jt}
 \end{figure}
 
-Si tomamos $q_0 = 0.7$ con la condición anterior, y hacemos un Transporte de Jets alrededor de dicha condición inicial podríamos ver, en teoría, las trayectorias que toman las soluciones cercanas a la curva límite en cada lado de la frontera que ésta impone. En la Figura \ref{fig:artificial_jt} se observa la deformación de estos jets conforme pasa el tiempo y es evidente la tendencia que tienen las soluciones cercanas a diverger.
+Si tomamos $q_0 = 0.7$ con la condición anterior, y hacemos un TJ alrededor de dicha condición inicial podríamos ver, en teoría, las trayectorias que toman las soluciones cercanas a la curva límite en cada lado de la frontera que ésta impone. En la Figura \ref{fig:artificial_jt} se observa la deformación de estos jets conforme pasa el tiempo y es evidente la tendencia que tienen las soluciones cercanas a diverger.
 
 En este problema se vuelve importante muy rápidamente la precisión con la que los jets nos dan soluciones cercanas ya que la deformación de la vecindad inicial $\U_{\xo}$ es muy grande. Por esto, se muestra en la Tabla \ref{table:djet_artificial} la diferencia entre evaluar el jet en $\xi = (0,-0.1)^T$ y hacer el método de Taylor convencional partiendo de ese punto. De hecho, se observan en la Figura \ref{fig:artificial_jO2_jO16} la evaluación de jets de distinto orden para la misma vecindad inicial alrededor de $\xo$.
 
@@ -719,7 +718,7 @@ Recordemos que como (\ref{eq:artificial_ode}) es un sistema de EDO hamiltoniano 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=0.7\linewidth]{artificial_dE}
- \caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} sin Transporte de Jets, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 24$ y $8000$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
+ \caption{Diferencia en energía $\delta E(t_n) = \frac{1}{\epsilon_{machine}} \left( H(\mathbf{x}(t_n)) - H(\xo) \right)$ para el sistema \ref{eq:artificial_ode} sin TJ, con tolerancia $\epsilon_{Taylor} = 10^{-20}$, orden de expansión $N = 24$ y $8000$ pasos temporales de $t_0 = 0$ a $t_{max} = 1.7$.}
  \label{fig:artificial_dE}
 \end{figure}
 
