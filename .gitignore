@@ -18,6 +18,7 @@
 
 #ignored directories
 notebooks/media/
+ppt/
 
 #notebooks ignored (this may change)
 *.ipynb
