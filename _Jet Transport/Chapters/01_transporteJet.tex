@@ -370,7 +370,16 @@ Se define la \textbf{división} como
  \label{eq:polidiv}
 \end{equation}
 
-Con el mismo espíritu, Haro desarrolla en su artículo \cite{Haro2009} una serie de relaciones de recurrencia para las operaciones elementales como $\sin, \ \cos, \  \exp, \ \log$, etc. Se recomienda al lector consultar dichas relaciones de recurrencia si busca implementar un álgebra polinomial como aquí.
+Con el mismo espíritu, Haro desarrolla en su artículo \cite{Haro2009} una serie de relaciones de recurrencia para las operaciones elementales como $\sin, \ \cos, \  \exp, \ \log$, etc. Se recomienda al lector consultar dichas relaciones de recurrencia si busca implementar un álgebra polinomial como aquí. Se presenta como ejemplo el desarrollo de la exponencial para ilustrar dichas relaciones de recurrencia. 
+
+Sea $E(x) = \exp (A(x)) \in \pk$ con $E(x) = \sum_{k=0}^n e_k x^k$ y $A(x) = \sum_{k=0}^n a_k x^k$. Consideremos la derivada $E'(x) = \exp (A(x)) A'(x) = E(x) A'(x)$, entonces
+\begin{equation*}
+ \sum_{k=0}^n (k+1)e_{k+1}x^k = \sum_{k=0}^n e_k x^k \sum_{k=0}^n (k+1)f_{k+1} x^k = \sum_{k=0}^n \left(\sum_{j=0}^{k} (k+1-j)f_{k+1-j} e_j \right) x^k,
+\end{equation*}
+la cual define la \textbf{relación de recurrencia para la exponencial}
+\begin{equation}
+e_k = \frac{1}{k} \sum_{j=0}^{k-1} (k-j) f_{k-j} e_j.
+\end{equation}
 
 %		- Maybe I can make just a few and then cite "Haro"... in the spirit of Haro, other functions will be defined as ---
 
