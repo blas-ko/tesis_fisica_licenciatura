@@ -12,7 +12,7 @@ con $G$ la constante de gravitación universal, $\mathbf{r}_i = x_i \hat{\imath}
 
 La energía cinética del problema se define de manera usual 
 \begin{equation}
- T(\dot{\mathbf{r}}_1,\dot{\mathbf{r}}_2,\dot{\mathbf{r}}_3) = \sum_{i=1}^3 M_i \dot{r}_i^2,
+ T(\dot{\mathbf{r}}_1,\dot{\mathbf{r}}_2,\dot{\mathbf{r}}_3) = \frac{1}{2} \sum_{i=1}^3 M_i \dot{r}_i^2,
  \label{eq:3body_kinetic}
 \end{equation}
 y define un sistema de 6 ecuaciones acopladas dadas por la segunda ley de Newton
@@ -209,8 +209,8 @@ Siguiendo el desarrollo de \cite{Cornish1998, Widnall2008}, encontraremos dónde
 Los tres primeros se dan cuando $y=0$, quedando por resolver únicamente cuándo $\dot{v}_x = 0$. Esto plantea una ecuación de quinto grado en $x$ complicada de resolver analíticamente. Sin embargo, cuando $M_1$ es considerablemente más grande que $M_2$, se puede tomar la aproximación a primer orden de $\mu$ y conseguir
 \begin{align}
  L_1 &\approx \left( \left[ 1 - \left(\frac{\mu}{3}\right)^{1/3} \right] R , 0 \right) \nonumber, \\ 
- L_2 &\approx \left( R\left[ 1 + \left(\frac{\mu}{3}\right)^{1/3} \right] R , 0 \right) \nonumber, \\
- L_3 &\approx \left( -R\left[ 1 5 \frac{5 \mu}{12} \right] R, 0 \right).
+ L_2 &\approx \left( \left[ 1 + \left(\frac{\mu}{3}\right)^{1/3} \right] R , 0 \right) \nonumber, \\
+ L_3 &\approx \left( -\left[ 1 + \frac{5 \mu}{12} \right] R, 0 \right).
  \label{eq:3body_L123}
 \end{align} 
 

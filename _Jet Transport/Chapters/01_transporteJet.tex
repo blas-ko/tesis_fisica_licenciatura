@@ -1,9 +1,9 @@
 Consideremos un sistema de ecuaciones diferenciales ordinarias (EDO) descrito por 
 \begin{equation}
-\dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)
+\dot{\mathbf{x}}(t) = \mathbf{f}(\mathbf{x}(t),t)
 \label{eq:ode}
 \end{equation}
-con $f$ una función que define al campo vectorial del sistema y $t$ su parámetro de evolución. Sea $\flowci$ la trayectoria o \textbf{flujo} de la solución que en $t_0$ se encuentra en $\xo$. En la mayoría de los sistemas físicos, el parámetro $t$ describe al tiempo, i.e., $t \in \mathbb{R}$, y al sistema de EDO se le conoce como sistema dinámico.
+con $\mathbf{f}$ una función que define al campo vectorial del sistema y $t$ su parámetro de evolución. Sea $\flowci$ la trayectoria o \textbf{flujo} de la solución que en $t_0$ se encuentra en $\xo$. En la mayoría de los sistemas físicos, el parámetro $t$ describe al tiempo, i.e., $t \in \mathbb{R}$, y al sistema de EDO se le conoce como \textbf{sistema dinámico}.
 
 Pocos son los casos en donde la solución a $\dot{\mathbf{x}}(t)$ se puede obtener de manera analítica y, por tanto, estudiar las familias de soluciones para diferentes condiciones iniciales termina siendo casi siempre un estudio indirecto o aproximado. Se han considerado varias formas para darle la vuelta a este problema y, en los esfuerzos de lo aproximado, una de las soluciones más prácticas ha sido discretizar al parámetro temporal $t$ de (\ref{eq:ode}) y encontrar, en saltos discretos de $t$, el ``estado actual'' del sistema dado un ``estado anterior''.
 
@@ -31,10 +31,10 @@ Si tomamos $h$ \textit{suficientemente pequeña}, aunque finita, podemos aproxim
  \mathbf{x}(t+h) \approx \mathbf{x}(t) + h \dot{\mathbf{x}}(t)
 \end{equation*}
 
-que, si tomamos en cuenta que $\dot{\mathbf{x}}(t) = f(\mathbf{x}(t),t)$ y que $h$ es un paso de integración, se obtiene
+que, si tomamos en cuenta que $\dot{\mathbf{x}}(t) = \mathbf{f}(\mathbf{x}(t),t)$ y que $h$ es un paso de integración, se obtiene
  
 \begin{equation}
- \mathbf{x}_{n+1} = \mathbf{x}_n + h f(\mathbf{x}_n,t_n),
+ \mathbf{x}_{n+1} = \mathbf{x}_n + h \mathbf{f}(\mathbf{•}athbf{x}_n,t_n),
  \label{eq:euler} 
 \end{equation}
 
@@ -47,12 +47,12 @@ Ahora, para la evolución del TJ se parametriza a la vecindad $\Uxo$ usando un p
 
 y se evalúa con el método de Euler (o cualquier otro) para obtener el flujo de $\Uxo$ en algún tiempo $t$ posterior $\flowU$
 \begin{equation*}
-P_{1,\xo}(\xi) := P_{t_0+h,\xo}(\xi) = P_{t_0,\xo}(\xi) + h f(P_{0,\xo},t_0) = \xo + \xi + h f(\xo + \xi).
+P_{1,\xo}(\xi) := P_{t_0+h,\xo}(\xi) = P_{t_0,\xo}(\xi) + h \mathbf{f}(P_{0,\xo},t_0) = \xo + \xi + h \mathbf{f}(\xo + \xi).
 \end{equation*}
 
 Así, se puede extender el método de Euler al TJ 
 \begin{equation}
- P_{t_n,\xo}(\xi) = P_{n,\xo}(\xi) = P_{n-1,\xo}(\xi) + h f(P_{n-1,\xo}(\xi),t_{n-1})
+ P_{n,\xo}(\xi) = P_{n-1,\xo}(\xi) + h f(P_{n-1,\xo}(\xi),t_{n-1})
  \label{eq:eulerU}
 \end{equation}
 
@@ -64,7 +64,7 @@ Para ilustrar un poco lo anterior, merece la pena desarrollar un ejemplo que mot
 
 Sea
 \begin{align}
-\dotx = f(\mathbf{x},t) = \left[ \begin{array}{cc}
+\dotx = \mathbf{f}(\mathbf{x},t) = \left[ \begin{array}{cc}
  0 & -1  \\
  1 & 0  \\
 \end{array} \right] \left( x_1, x_2 \right)^T
@@ -75,7 +75,7 @@ un campo vectorial que describe centros alrededor de $x_0 = (0,0)$.
 Si se toma $P_{0,\xo} = (x_{1_0},x_{2_0}) + (\xi_1,\xi_2)$ como la condición inicial parametrizada, podemos desarrollar ``a mano'' el Transporte de Jets donde, usando el método de Euler, obtenemos
 
 \begin{align*}
-\mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h f(P_{0,\xo}(\xi),t_0) \\
+\mathbf{x}_1 &= P_{1,\xo}(\xi) = P_{0,\xo}(\xi) + h \mathbf{f}(P_{0,\xo}(\xi),t_0) \\
 &= (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
  1 & -h  \\
 h & 1  \\
@@ -86,7 +86,7 @@ El primer término de $\mathbf{x}_1$ corresponde al primer paso de integración 
 
 Se podría seguir haciendo el desarrollo del TJ iterativamente con el método de Euler. Por ejemplo, para el segundo paso para el oscilador armónico se obtiene
 \begin{align*}
-\mathbf{x}_2 =& P_{2,\xo}(\xi) = P_{1,\xo}(\xi) + h f(P_{1,\xo}(\xi),t_n) \\
+\mathbf{x}_2 =& P_{2,\xo}(\xi) = P_{1,\xo}(\xi) + h \mathbf{f}(P_{1,\xo}(\xi),t_n) \\
 =& (x_{1_0} - h x_{2_0}, h x_{1_0} + x_{2_0} )^T + \left[ \begin{array}{cc}
  1 & -h  \\
 h & 1  \\
