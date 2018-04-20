@@ -1,4 +1,4 @@
-El Transporte de Jets es una herramienta conveniente por dos principales razones: la primera es que al integrar la parametrización de la vecindad de $\xo$ con polinomios de orden $M$, se pueden obtener términos variacionales hasta de este orden de manera automática. En este sentido, es importante que el transporte sea suficientemente preciso para dichas variaciones. Se prupuso en la sección \ref{sec:ximax} una forma de controlar el error del método via $\xi_{max}$. En éste apéndice se mostrará, tomando al PC3C, la precisión respecto a la integración nominal a distintos órdenes de jet y distintas condiciones inciales, con todos los demás parámetros fijos. 
+El Transporte de Jets es una herramienta conveniente por dos principales razones: la primera es que al integrar la parametrización de la vecindad de $\xo$ con polinomios de orden $M$, se pueden obtener términos variacionales hasta de este orden de manera automática. En este sentido, es importante que el transporte sea suficientemente preciso para dichas variaciones. Se propuso en la sección \ref{sec:ximax} una forma de controlar el error del método via $\xi_{max}$. En el apéndice se mostrará, tomando al PC3C, la precisión respecto a la integración nominal a distintos órdenes de jet y distintas condiciones inciales, con todos los demás parámetros fijos. 
 
 %FIGURA!
 \begin{figure}[h!]
@@ -16,7 +16,7 @@ El Transporte de Jets es una herramienta conveniente por dos principales razones
 \label{fig:acc_ci}
 \end{figure}
 
-En la figura \ref{fig:acc_ci} se muestra cómo la precisión de las evaluaciones del jet para variaciones tamaño $\norm{\delta \xo} = \xi_{max}$ queda siempre del orden de$10^{-8}$, que es bastante inferior a la cota máxima dada $\epsilon_{jet} = 10^{-5}$. El error de la condición $x_0 = (L_{1}, 0.01, 0,0)^T$ es menor, sin embargo, el tamaño de la vecindad tuvo que ser mucho más pequeña $\xi_{max} = 2.03 \times 10^{-5}$ comparado con la otra condición inicial, donde $\xi_{max} = 2.33 \times 10^{-3}$. 
+En la figura \ref{fig:acc_ci} se muestra cómo la precisión de las evaluaciones del jet para variaciones tamaño $\norm{\delta \xo} = \xi_{max}$ queda siempre del orden de $10^{-8}$, que es bastante inferior a la cota máxima dada $\epsilon_{jet} = 10^{-5}$. Aunque el error de la condición $x_0 = (L_{1}, 0.01, 0,0)^T$ es menor que en $x_0 = (L_{4_x}, L_{4_y} + 0.01, 0,0)^T$, el tamaño de la vecindad tuvo que ser mucho más pequeña $\xi_{max} = 2.03 \times 10^{-5}$ comparado con la otra condición inicial, donde $\xi_{max} = 2.33 \times 10^{-3}$. 
 
 %FIGURA!
 \begin{figure}[h!]
